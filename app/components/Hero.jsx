@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import Timer from "./Timer";
 
 const Hero = () => {
   return (
@@ -16,6 +17,7 @@ const Hero = () => {
           Events
         </button>
       </div>
+      <Timer />
     </section>
   );
 };
