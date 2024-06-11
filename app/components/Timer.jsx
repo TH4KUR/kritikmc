@@ -1,17 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-const timeStringGenerator = () => {
-  const deadline = new Date("2024-06-24").getTime();
-  const distance = deadline - new Date().getTime();
-  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  return `${days ? days > 1 : ""}${
-    "days" ? days > 1 : ""
-  } ${hours}:${mins}:${secs} `;
-};
 const Timer = (type) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
@@ -19,7 +8,7 @@ const Timer = (type) => {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const target = new Date("2024-06-24");
+    const target = new Date("2024-06-12");
 
     const interval = setInterval(() => {
       const now = new Date();
@@ -28,25 +17,36 @@ const Timer = (type) => {
       const d = Math.floor(difference / (1000 * 60 * 60 * 24));
       setDays(d);
 
-      const h = Math.floor(
+      let h = Math.floor(
         (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
+      h = h > 9 ? h : "0" + String(h);
       setHours(h);
 
-      const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      let m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      m = m > 9 ? m : "0" + String(m);
       setMinutes(m);
 
-      const s = Math.floor((difference % (1000 * 60)) / 1000);
+      let s = Math.floor((difference % (1000 * 60)) / 1000);
+      s = s > 9 ? s : "0" + String(s);
+
       setSeconds(s);
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className=" bg-accent2 text-white font-bold">
-      <p>
+    <div className="text-sm py-3 bg-accent2 text-white font-semibold">
+      <p className=" text-center">
         Hurry Up! Registrations Close in:
-        <br /> {days}days {`${hours}:${minutes}:${seconds} `}
+        {days != 0 ? (
+          <>
+            <br /> {days} day(s)
+          </>
+        ) : (
+          ""
+        )}{" "}
+        {`${hours}:${minutes}:${seconds} `} hrs
       </p>
     </div>
   );

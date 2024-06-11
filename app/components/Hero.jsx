@@ -2,14 +2,19 @@
 import React from "react";
 import Timer from "./Timer";
 
-const Hero = () => {
+const Hero = async () => {
   return (
-    <section className=" -translate-y-6">
-      <img src="/hero_mobile.svg" alt="a picture of kakatiya medical college" />
+    <section>
+      <img
+        src="/hero.webp"
+        alt="a picture of kakatiya medical college"
+        className=" min-w-[100%]"
+      />
+
       <h1 className="hidden">
         The most awaited medical conference of the year is back!
       </h1>
-      <div className="-translate-y-24 flex justify-end gap-3 mr-4">
+      <div className="flex justify-end gap-3 mr-4 mb-4 -translate-y-3">
         <button className="bg-accent px-4 py-2 rounded-lg text-white font-semibold text-xs">
           Register Now!
         </button>
