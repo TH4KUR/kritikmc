@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import Speaker from "./components/Speaker";
 import { Suspense } from "react";
 import Loading from "./loading";
+import Timeline from "./components/Timeline";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <main>
         <Hero />
         <Speaker />
+        <Timeline />
       </main>
     </Suspense>
   );
