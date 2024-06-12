@@ -1,14 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const Timer = (type) => {
+const Timer = ({ deadline }) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const target = new Date("2024-06-13");
+    const target = new Date(deadline);
 
     const interval = setInterval(() => {
       const now = new Date();
