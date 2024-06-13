@@ -29,7 +29,7 @@ export default async function Home() {
         </header>
         <main>
           <Hero />
-          <Timer deadline={deadline} />
+          <Timer deadline={deadline} x={x} />
           <Speaker />
           <Timeline />
         </main>
