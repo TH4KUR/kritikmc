@@ -9,7 +9,6 @@ const Timer = ({ deadline }) => {
 
   useEffect(() => {
     const target = new Date(deadline);
-
     const interval = setInterval(() => {
       const now = new Date();
       const difference = target.getTime() - now.getTime();

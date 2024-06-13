@@ -3,7 +3,7 @@ import Bullet from "./Bullet";
 
 const TimelineCard = ({ data }) => {
   return (
-    <div className="font-semibold bg-bgSecondary rounded-lg mt-3 mx-2 px-6 py-8 text-bg">
+    <div className="font-medium bg-bgSecondary rounded-lg mt-3 mx-2 px-6 py-8 text-bg">
       {/* 
       data {day: 'Day 1', 
             date: '27 July 20xx'

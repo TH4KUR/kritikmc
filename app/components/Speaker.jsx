@@ -4,7 +4,9 @@ import SpeakerCard from "./SpeakerCard";
 const Speaker = () => {
   return (
     <section className="bg-bgSecondary flex flex-col items-center py-6 px-3">
-      <h2 className=" text-[#DA5867] uppercase font-bold text-sm">Speakers</h2>
+      <h2 className=" text-[#DA5867] uppercase font-semibold text-sm">
+        Speakers
+      </h2>
       <h3 className="text-gray-100 text-2xl font-semibold">
         Know the Speakers
       </h3>
