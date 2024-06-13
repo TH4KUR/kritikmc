@@ -15,7 +15,7 @@ import {
 import Cancel from "./icons/Cancel";
 
 const Nav = () => {
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
 
   function open() {
     setIsOpen(true);
