@@ -3,7 +3,7 @@ import SpeakerCard from "./SpeakerCard";
 
 const Speaker = () => {
   return (
-    <section className="bg-bgSecondary flex flex-col items-center py-6 px-3">
+    <section className="bg-bgSecondary flex flex-col items-center pt-8 pb-14 px-6">
       <h2 className=" text-[#DA5867] uppercase font-semibold text-sm">
         Speakers
       </h2>

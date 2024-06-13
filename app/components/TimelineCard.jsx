@@ -1,9 +1,9 @@
 import React from "react";
-import Bullet from "./Bullet";
+import Bullet from "./icons/Bullet";
 
 const TimelineCard = ({ data }) => {
   return (
-    <div className="font-medium bg-bgSecondary rounded-lg mt-3 mx-2 px-6 py-8 text-bg">
+    <div className="font-medium bg-bgSecondary rounded-lg mt-3 px-6 py-8 text-bg">
       {/* 
       data {day: 'Day 1', 
             date: '27 July 20xx'
@@ -26,14 +26,14 @@ const TimelineCard = ({ data }) => {
 
 
          */}
-      <div className="flex justify-between mb-7">
-        <h4 className="text-bg uppercase underline underline-offset-4 text-3xl">
+      <div className="flex justify-between items-center mb-7">
+        <h4 className="text-bg uppercase underline underline-offset-4 text-lg">
           {data.day}
         </h4>
-        <h5 className="text-[#D5EAF9] text-lg">{data.date}</h5>
+        <h5 className="text-[#D5EAF9] text-sm">{data.date}</h5>
       </div>
       <div className="">
-        <ul className=" text-sm">
+        <ul className=" text-xs">
           {data.schedule.map((el, i) => {
             return (
               <li key={i} className="mt-4">

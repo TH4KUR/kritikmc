@@ -30,22 +30,22 @@ const Timeline = () => {
     },
   ];
   return (
-    <section className="bg-bg flex flex-col items-center py-6 px-3">
+    <section className="bg-bg flex flex-col items-center py-6 px-1">
       <h1 className=" text-accent uppercase font-bold text-base">Timeline</h1>
       <h3 className="text-2xl font-bold mb-7">Events Timing Breakdown</h3>
-      <div className="flex flex-col gap-4 w-full">
-        <div className="flex justify-between px-6 py-1 rounded-full bg-[#CBE896] w-full text-sm font-bold">
+      <div className="flex flex-col gap-4 w-11/12 mx-auto">
+        <div className="flex justify-between px-6 py-1 rounded-full bg-[#CBE896] w-full text-sm font-semibold">
           <p>Registration Open</p>
           <span className="before:content-[''] before:absolute  before:w-[50px] before:h-[1px] before:bg-black relative flex items-center justify-center "></span>
           <p>27 July 20xx</p>
         </div>
-        <div className="flex justify-between px-6 py-1 rounded-full bg-[#F99696] w-full text-sm font-bold">
+        <div className="flex justify-between px-6 py-1 rounded-full bg-[#F99696] w-full text-sm font-semibold">
           <p>Registration Close</p>
           <span className="before:content-[''] before:absolute  before:w-[50px] before:h-[1px] before:bg-black relative flex items-center justify-center "></span>
           <p>27 Sept 20xx</p>
         </div>
       </div>
-      <div className="w-full ">
+      <div className="mt-5 w-full grid grid-cols-2 gap-1">
         {data.map((dat, i) => {
           return <TimelineCard key={i} data={dat} />;
         })}

@@ -11,7 +11,7 @@ const SpeakerCard = ({ type }) => {
           alt="Speaker 1"
         /> */}
         </div>
-        <div className=" bg-[#F1F5DA] col-span-8 rounded-r-lg px-3 py-3">
+        <div className=" bg-[#F1F5DA] col-span-8 rounded-r-lg px-3 py-4">
           <h3 className="font-bold text-lg">Dr. Sumirta Mahajan</h3>
           <h4 className=" text-xs text-[#327D18] font-semibold">
             Guest Speaker
