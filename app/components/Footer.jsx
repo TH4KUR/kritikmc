@@ -19,27 +19,27 @@ const Footer = () => {
           <h4 className="font-semibold">Quick Links</h4>
           <ul className="font-normal text-gray-300 text-[0.8rem] ml-2">
             <li className="flex items-center gap-1">
-              <Caret color={'#ddd'} />
+              <Caret color={"#ddd"} />
               <Link href={"#"}>home.</Link>
             </li>
             <li className="flex items-center gap-1">
-              <Caret color={'#ddd'} />
+              <Caret color={"#ddd"} />
               <Link href={"#"}>about us.</Link>
             </li>
             <li className="flex items-center gap-1">
-              <Caret color={'#ddd'} />
+              <Caret color={"#ddd"} />
               <Link href={"#"}>events.</Link>
             </li>
             <li className="flex items-center gap-1">
-              <Caret color={'#ddd'} />
+              <Caret color={"#ddd"} />
               <Link href={"#"}>archives.</Link>
             </li>
             <li className="flex items-center gap-1">
-              <Caret color={'#ddd'} />
+              <Caret color={"#ddd"} />
               <Link href={"#"}>alumini.</Link>
             </li>
             <li className="flex items-center gap-1">
-              <Caret />
+              <Caret color={"#ddd"} />
               <Link href={"#"}>KC Chronicles.</Link>
             </li>
           </ul>

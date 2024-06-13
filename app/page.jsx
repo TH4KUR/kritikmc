@@ -18,6 +18,7 @@ async function getDeadline() {
 }
 
 export default async function Home() {
+  const x = await new Promise((resolve) => setTimeout(resolve, 2000));
   const ret = await getDeadline();
   const deadline = ret.result[0].deadline;
   return (
