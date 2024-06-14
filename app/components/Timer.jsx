@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
-const Timer = ({ deadline }) => {
+const Timer = ({ deadline, showButton }) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -39,19 +40,39 @@ const Timer = ({ deadline }) => {
     return () => clearInterval(interval);
   }, [deadline]);
   return (
-    <div className="text-sm py-3 bg-accent2 text-white font-semibold">
+    <div className="text-sm py-3 bg-accent2 text-white font-medium flex flex-col items-center">
       {!regOver ? (
-        <p className=" text-center">
-          Hurry Up! Registrations Close in:
-          {days != 0 ? (
-            <>
-              <br /> {days} day(s)
-            </>
+        <>
+          <p className="flex justify-center gap-3">
+            <span className="font-semibold">
+              {" "}
+              Hurry Up! Registrations Close in:
+            </span>
+            <span>
+              {days != 0 ? <>{days} day(s)</> : ""}{" "}
+              {`${hours}:${minutes}:${seconds} `} hrs
+            </span>
+          </p>
+          {showButton ? (
+            <Link
+              href={"#"}
+              className="text-sm underline underline-offset-1 flex items-center justify-self-center"
+            >
+              Register Now{" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="10"
+                fill="#eee"
+                viewBox="0 0 256 256"
+              >
+                <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
+              </svg>
+            </Link>
           ) : (
             ""
-          )}{" "}
-          {`${hours}:${minutes}:${seconds} `} hrs
-        </p>
+          )}
+        </>
       ) : (
         <p className="text-center">The registrations are now closed!</p>
       )}

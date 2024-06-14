@@ -40,7 +40,7 @@ const Nav = () => {
             Register Now!
           </Link>
           <div className="flex items-center">
-            <button onClick={() => setIsOpen(true)}>
+            <button onClick={open}>
               <Menu />
             </button>
             <Transition appear show={isOpen}>

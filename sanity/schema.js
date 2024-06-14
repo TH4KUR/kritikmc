@@ -4,7 +4,16 @@ import { post } from "./schemaTypes/post";
 import { author } from "./schemaTypes/author";
 import { deadline } from "./schemaTypes/deadline";
 import { siteSettings } from "./schemaTypes/siteSettings";
+import { speakers } from "./schemaTypes/speakers";
 
 export const schema = {
-  types: [post, author, category, blockContent, deadline, siteSettings],
+  types: [
+    post,
+    author,
+    category,
+    blockContent,
+    deadline,
+    siteSettings,
+    speakers,
+  ],
 };

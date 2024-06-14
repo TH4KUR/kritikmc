@@ -7,20 +7,21 @@ import Timeline from "./components/Timeline";
 import Timer from "./components/Timer";
 import Footer from "./components/Footer";
 import Link from "next/link";
+import { myClient } from "@/sanity";
 
 async function getDeadline() {
   // TODO: prevent api leaking to client side!!
-  const res = await fetch(
-    `https://tcfgh3jw.api.sanity.io/v2024-06-12/data/query/production?query=*%5B_type+%3D%3D+%27siteSettings%27%5D%7Bdeadline%7D`
-  );
-  const data = await res.json();
+  const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
+  return res[0].deadline;
+}
+async function getSpeakerData() {
+  const speakerQuery = `*[_type=='speakers']{speakername,speakertype,speakerimg,speakerdesc} | order(speakertype asc)`;
+  const data = await myClient.fetch(speakerQuery);
   return data;
 }
-
 export default async function Home() {
-  const x = await new Promise((resolve) => setTimeout(resolve, 2000));
-  const ret = await getDeadline();
-  const deadline = ret.result[0].deadline;
+  const deadline = await getDeadline();
+  const speakerdata = await getSpeakerData();
   return (
     <>
       <Suspense fallback={<Loading />}>
@@ -29,8 +30,8 @@ export default async function Home() {
         </header>
         <main>
           <Hero />
-          <Timer deadline={deadline} x={x} />
-          <Speaker />
+          <Timer deadline={deadline} />
+          <Speaker speakerdata={speakerdata} />
           <Timeline />
         </main>
         <Footer />

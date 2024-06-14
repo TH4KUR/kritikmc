@@ -45,7 +45,8 @@ const Footer = () => {
           </ul>
         </div>
         <div className="text-xs  text-gray-400 text-center">
-          &copy; Kakatiya Medical College. All rights reserved 2024
+          &copy; Kakatiya Medical College. All rights reserved{" "}
+          {new Date().getFullYear()}
         </div>
       </div>
     </footer>
