@@ -46,7 +46,7 @@ const Nav = () => {
             <Transition appear show={isOpen}>
               <Dialog
                 as="div"
-                className="relative z-10 focus:outline-none"
+                className="relative z-[100] focus:outline-none"
                 onClose={close}
               >
                 <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -59,9 +59,9 @@ const Nav = () => {
                       leaveFrom="opacity-100 transform-[scale(100%)]"
                       leaveTo="opacity-0 transform-[scale(95%)]"
                     >
-                      <DialogPanel className="w-full max-w-md rounded-xl px-4 py-2 bg-bgNav h-screen">
+                      <DialogPanel className="w-full rounded-xl px-4 py-2 bg-bgNav h-screen">
                         <DialogTitle
-                          as="h3"
+                          as="div"
                           className="text-base/7 font-medium text-black flex justify-between items-center"
                         >
                           <h3 className="text-4xl font-bold h3x-4 py-2">
@@ -86,7 +86,7 @@ const Nav = () => {
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
-                              <Link href={"#"}>events.</Link>
+                              <Link href={"/events"}>events.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
@@ -102,7 +102,7 @@ const Nav = () => {
                             <ul className="font-semibold text-black ml-3 mt-3 text-lg">
                               <li className="flex items-center gap-1 mt-1">
                                 <Caret color={"#000"} />
-                                <Link href={"#"}>KC Chronicles.</Link>
+                                <Link href={"/chronicles"}>KC Chronicles.</Link>
                               </li>
                             </ul>
                           </div>

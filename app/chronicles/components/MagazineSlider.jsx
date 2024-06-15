@@ -34,7 +34,7 @@ function EmblaCarousel() {
                 console.log("Clicked");
               }}
             >
-              <img src="/v1.webp" alt="magazine cover" />
+              <img className="rounded-xl" src="/v1.webp" alt="magazine cover" />
               <span className="mt-3 font-semibold">Issue 1</span>
               <span className="text-xs">July 2023</span>
             </button>
@@ -44,7 +44,7 @@ function EmblaCarousel() {
                 console.log("Clicked");
               }}
             >
-              <img src="/v2.webp" alt="magazine cover" />
+              <img className="rounded-xl" src="/v2.webp" alt="magazine cover" />
               <span className="mt-3 font-semibold">Issue 2</span>
               <span className="text-xs">November 2023</span>
             </button>
@@ -54,7 +54,7 @@ function EmblaCarousel() {
                 console.log("Clicked");
               }}
             >
-              <img src="/v3.webp" alt="magazine cover" />
+              <img className="rounded-xl" src="/v3.webp" alt="magazine cover" />
               <span className="mt-3 font-semibold">Issue 3</span>
               <span className="text-xs">May 2024</span>
             </button>

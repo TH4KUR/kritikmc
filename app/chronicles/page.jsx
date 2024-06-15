@@ -6,6 +6,7 @@ import { myClient } from "@/sanity";
 import Loading from "./loading";
 import MagazineSlider from "./components/MagazineSlider";
 import Footer from "../components/Footer";
+import Articles from "./components/Articles";
 
 async function getDeadline() {
   const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
@@ -31,6 +32,8 @@ async function page() {
         />
         <Timer deadline={deadline} showButton={true} />
         <MagazineSlider />
+        <hr className="border-black  w-1/4 mx-auto mt-2" />
+        <Articles />
         <Footer />
       </Suspense>
     </>
