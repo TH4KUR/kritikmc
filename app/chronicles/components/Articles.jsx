@@ -66,8 +66,8 @@ function EmblaCarousel() {
                     Neck Mystery Unveiled
                   </h2>
                   <p className="text-xs px-2 mb-2">
-                    Woman's rare neck swelling and spine involvement, treated
-                    effectively with anti-tuberculous meds.
+                    Woman&apos;s rare neck swelling and spine involvement,
+                    treated effectively with anti-tuberculous meds.
                   </p>
                 </div>
               </div>
