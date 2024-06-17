@@ -8,6 +8,9 @@ import Timer from "./components/Timer";
 import Footer from "./components/Footer";
 import Link from "next/link";
 import { myClient } from "@/sanity";
+import Arrow from "./components/icons/Arrow";
+import Sponsors from "./components/Sponsors";
+import Archive from "./components/Archive";
 
 async function getDeadline() {
   // TODO: prevent api leaking to client side!!
@@ -32,7 +35,9 @@ export default async function Home() {
           <Hero />
           <Timer deadline={deadline} />
           <Speaker speakerdata={speakerdata} />
+          <Sponsors />
           <Timeline />
+          <Archive />
         </main>
         <Footer />
         <div className=" bg-[#0b0f1d] text-gray-300 py-4 px-1 text-xs">
@@ -42,16 +47,7 @@ export default async function Home() {
               className=" underline underline-offset-2 flex items-center"
               href={"#"}
             >
-              Eashaan{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="10"
-                height="10"
-                fill="#eee"
-                viewBox="0 0 256 256"
-              >
-                <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
-              </svg>
+              Eashaan <Arrow size={10} color={"#eee"} />
             </Link>{" "}
             & Aarush Thakur
           </p>
