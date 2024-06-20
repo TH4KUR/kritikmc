@@ -10,14 +10,14 @@ const Sponsors = () => {
         kriti<span className="text-accent">.</span> is sponsored by
       </h3>
       <div className="grid grid-cols-3 items-center gap-4">
-        <div className=" object-cover p-5">
-          <img src="/marrow.png" alt="Marrow" />
+        <div className=" object-cover  p-5">
+          <img src="/marrow.png" className="rounded-lg" alt="Marrow" />
         </div>
-        <div className=" object-cover p-1">
-          <img src="/kaplan.png" alt="Kaplan" />
+        <div className=" object-cover  p-1">
+          <img src="/kaplan.png" className="rounded-lg" alt="Kaplan" />
         </div>
-        <div className=" object-cover p-5">
-          <img src="/prepladder.png" alt="Prepladder" />
+        <div className=" object-cover  p-5">
+          <img src="/prepladder.png" className="rounded-lg" alt="Prepladder" />
         </div>
       </div>
     </section>

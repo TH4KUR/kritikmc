@@ -5,6 +5,7 @@ import Timer from "../components/Timer";
 import { myClient } from "@/sanity";
 import Loading from "./loading";
 import Footer from "../components/Footer";
+import Event from "./components/Event";
 
 async function getDeadline() {
   const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
@@ -31,6 +32,7 @@ async function page() {
           }
         />
         <Timer deadline={deadline} showButton={true} />
+        <Event />
         <Footer />
       </Suspense>
     </>
