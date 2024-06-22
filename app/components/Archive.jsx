@@ -1,5 +1,6 @@
 import React from "react";
 import Arrow from "./icons/Arrow";
+import Link from "next/link";
 
 const Archive = () => {
   return (
@@ -10,10 +11,13 @@ const Archive = () => {
         Discover previous editions of kriti
         <span className="text-accent">.</span>
       </h3>
-      <div className="bg-[url('/archive.png')] flex items-center justify-center w-5/12 min-h-[20vh] bg-cover p-">
-        <button className="bg-accent px-4 py-2 rounded-lg text-white font-semibold text-xs flex justify-center items-center gap-1">
+      <div className="bg-[url('/archive.png')] flex items-center justify-center w-[219px] min-h-[196px] bg-cover">
+        <Link
+          href={"/archive"}
+          className="flex items-center justify-between gap-3 bg-accent hover:scale-105 transition-all px-4 py-2 hover focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-sm"
+        >
           Archive <Arrow color={"#eee"} size={12} />
-        </button>
+        </Link>
       </div>
     </section>
   );

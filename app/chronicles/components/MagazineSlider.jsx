@@ -14,7 +14,7 @@ function EmblaCarousel() {
   }, [emblaApi]);
   return (
     <>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 bg-bg">
         <button className="embla__prev relative z-[100]" onClick={scrollPrev}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ function EmblaCarousel() {
 
 const MagazineSlider = () => {
   return (
-    <section className="flex flex-col items-center py-8 px-2 font-medium">
+    <section className="flex flex-col items-center py-8 px-2 font-medium bg-bg">
       <h1 className=" text-accent font-semibold">
         All Volumes issued to date.
       </h1>

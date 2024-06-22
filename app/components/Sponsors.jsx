@@ -3,7 +3,7 @@ import React from "react";
 
 const Sponsors = () => {
   return (
-    <section className="bg-bg flex flex-col items-center py-6 px-1 text-black">
+    <section className="bg-bg flex flex-col items-center py-14 px-1 text-black">
       <h1 className=" text-accent uppercase font-bold text-base">Sponsors</h1>
       <h3 className="text-2xl font-bold mb-7">
         {" "}

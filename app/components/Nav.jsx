@@ -64,9 +64,11 @@ const Nav = () => {
                           as="div"
                           className="text-base/7 font-medium text-black flex justify-between items-center"
                         >
-                          <h3 className="text-4xl font-bold h3x-4 py-2">
-                            kriti<span className="text-accent">.</span>
-                          </h3>{" "}
+                          <Link href={"/"}>
+                            <h3 className="text-4xl font-bold h3x-4 py-2">
+                              kriti<span className="text-accent">.</span>
+                            </h3>{" "}
+                          </Link>
                           <Button
                             className={" self-start py-1"}
                             onClick={close}
@@ -78,7 +80,7 @@ const Nav = () => {
                           <ul className="font-semibold text-black ml-3 mt-3 text-lg">
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
-                              <Link href={"#"}>home.</Link>
+                              <Link href={"/"}>home.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />

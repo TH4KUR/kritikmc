@@ -16,12 +16,15 @@ const Hero = async () => {
         The most awaited medical conference of the year is back!
       </h1>
       <div className="flex justify-end gap-3 mr-4 mb-4 -translate-y-3">
-        <button className="bg-accent px-4 py-2 rounded-lg text-white font-semibold text-xs">
+        <Link
+          href={"#"}
+          className="bg-accent hover:scale-105 transition-all px-4 py-2 grid place-items-center hover focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-sm"
+        >
           Register Now!
-        </button>
+        </Link>
         <Link
           href={"/events"}
-          className="border-2 border-black font-bold px-4 py-2 rounded-lg text-xs"
+          className="border-2 border-black font-bold px-4 py-2 rounded-lg text-sm hover:bg-[#111] hover:scale-110 hover:text-white focus:outline-none focus:ring focus:ring-slate-600 transition-all"
         >
           Events
         </Link>

@@ -25,15 +25,21 @@ async function getSpeakerData() {
 export default async function Home() {
   const deadline = await getDeadline();
   const speakerdata = await getSpeakerData();
+  const target = new Date(deadline).getTime();
+  const now = new Date().getTime();
   return (
     <>
       <Suspense fallback={<Loading />}>
         <header>
           <Nav />
         </header>
-        <main>
+        <main className="bg-bg">
           <Hero />
-          <Timer deadline={deadline} />
+          <Timer
+            deadline={deadline}
+            alreadyOver={target < now ? true : false}
+          />
+
           <Speaker speakerdata={speakerdata} />
           <Sponsors />
           <Timeline />

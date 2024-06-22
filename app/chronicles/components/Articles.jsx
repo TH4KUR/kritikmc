@@ -35,7 +35,7 @@ function EmblaCarousel() {
               }}
             >
               <div className="rounded bg-bgSecondary text-white overflow-hidden w-full min-h-[14rem] grid grid-rows-5">
-                <div className="article-img bg-[url('https://media.canva.com/v2/image-resize/format:JPG/height:197/quality:75/uri:s3%3A%2F%2Fmedia-private.canva.com%2Fqz128%2FMAGDZtqz128%2F1%2Fp.jpg/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAAyvHdryZKLXdv7BAH8CkJkFTBZuCkdbKYeNx4LY2DM8&exp=1718470989&osig=AAAAAAAAAAAAAAAAAAAAAJ2eaQfO6zNtR5_FstL7tFEkqOvIlmZZ0McjWCgwK03q&signer=media-rpc&x-canva-quality=thumbnail')] row-span-2">
+                <div className="article-img bg-[url('https://neurosciencenews.com/files/2023/12/log-covid-brain-changes-neurosicence.jpg')] row-span-2">
                   {" "}
                   {/* <img src="/speaker1.webp" alt="article" /> */}
                 </div>
@@ -57,7 +57,7 @@ function EmblaCarousel() {
               }}
             >
               <div className="rounded bg-bgSecondary text-white overflow-hidden w-full min-h-[14rem] grid grid-rows-5">
-                <div className="article-img bg-[url('https://media.canva.com/v2/image-resize/format:JPG/height:748/quality:92/uri:s3%3A%2F%2Fmedia-private.canva.com%2FpFIEs%2FMAGEDnpFIEs%2F1%2Fp.jpg/watermark:F/width:800?csig=AAAAAAAAAAAAAAAAAAAAAFNAm4-vBdADwnCgqw33IIXdQfFkMwVlW2UJc6Mi2nBa&exp=1718471723&osig=AAAAAAAAAAAAAAAAAAAAANBW-OJp_BlDuDstXwRAr6JIvzAkyDeCXDQ5scw2J6gz&signer=media-rpc&x-canva-quality=screen')] row-span-2">
+                <div className="article-img bg-[url('https://neurosciencenews.com/files/2023/12/log-covid-brain-changes-neurosicence.jpg')] row-span-2">
                   {" "}
                   {/* <img src="/speaker1.webp" alt="article" /> */}
                 </div>
@@ -79,7 +79,7 @@ function EmblaCarousel() {
               }}
             >
               <div className="rounded bg-bgSecondary text-white overflow-hidden w-full min-h-[14rem] grid grid-rows-5">
-                <div className="article-img bg-[url('https://media.canva.com/v2/image-resize/format:JPG/height:420/quality:92/uri:s3%3A%2F%2Fmedia-private.canva.com%2F_PrnQ%2FMAGD2x_PrnQ%2F1%2Fp.jpg/watermark:F/width:800?csig=AAAAAAAAAAAAAAAAAAAAAME2u_ZVbbyCFDcDGP28gDuw4wQDRH57CBtAEnecmQxy&exp=1718470365&osig=AAAAAAAAAAAAAAAAAAAAAK0n1So7XyZzRw3dTN-PBXMXAuZgoRK1vJ4ZRrUu-roe&signer=media-rpc&x-canva-quality=screen')] row-span-2">
+                <div className="article-img bg-[url('https://neurosciencenews.com/files/2023/12/log-covid-brain-changes-neurosicence.jpg')] row-span-2">
                   {" "}
                   {/* <img src="/speaker1.webp" alt="article" /> */}
                 </div>

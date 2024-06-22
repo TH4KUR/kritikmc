@@ -26,7 +26,7 @@
 
 /* Veticlas Tabs */
 .section__Jobs-container {
-  @apply my-[50px] transition-all;
+  @apply mt-[70px] pb-[70px] transition-all;
   max-width: 700px;
   position: relative;
   background-color: #07090f;

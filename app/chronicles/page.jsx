@@ -15,6 +15,8 @@ async function getDeadline() {
 
 async function page() {
   const deadline = await getDeadline();
+  const target = new Date(deadline).getTime();
+  const now = new Date().getTime();
   return (
     <>
       <Suspense fallback={<Loading />}>
@@ -30,9 +32,14 @@ async function page() {
             </>
           }
         />
-        <Timer deadline={deadline} showButton={true} />
+        <Timer
+          deadline={deadline}
+          showButton={true}
+          alreadyOver={target < now ? true : false}
+        />
+
         <MagazineSlider />
-        <hr className="border-black  w-1/4 mx-auto mt-2" />
+        <hr className="border-black bg-bg w-1/4 mx-auto" />
         <Articles />
         <Footer />
       </Suspense>

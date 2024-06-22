@@ -3,7 +3,7 @@ import Bullet from "./icons/Bullet";
 
 const TimelineCard = ({ data }) => {
   return (
-    <div className="font-medium bg-bgSecondary rounded-lg mt-3 px-6 py-8 text-bg">
+    <div className="font-medium rounded-lg mt-3 px-4 py-8 text-bg">
       {/* 
       data {day: 'Day 1', 
             date: '27 July 20xx'
@@ -27,23 +27,23 @@ const TimelineCard = ({ data }) => {
 
          */}
       <div className="flex justify-between items-center mb-7">
-        <h4 className="text-bg uppercase underline underline-offset-4 text-lg">
+        <h4 className="text-black uppercase underline underline-offset-4 text-lg font-bold">
           {data.day}
         </h4>
-        <h5 className="text-[#D5EAF9] text-sm">{data.date}</h5>
+        <h5 className="text-black text-sm ">{data.date}</h5>
       </div>
       <div className="">
         <ul className=" text-xs">
           {data.schedule.map((el, i) => {
             return (
-              <li key={i} className="mt-4">
+              <li key={i} className="mt-4 font-bold text-gray-800">
                 {el.time}
                 <br />
                 {el.events.map((eventName, j) => {
                   return (
                     <p
                       key={j}
-                      className="ml-3 text-gray-100 flex items-center gap-2"
+                      className="ml-3 text-black flex items-center gap-2 font-normal"
                     >
                       <Bullet />
                       {eventName}
