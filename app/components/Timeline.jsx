@@ -6,7 +6,7 @@ import Link from "next/link";
 const Timeline = ({ light = false }) => {
   if (!light) {
     return (
-      <section className="bg-bgSecondary flex flex-col items-center py-14 px-1 text-gray-200">
+      <section className="bg-[url('/timelinebg.svg')] bg-contain bg-origin-border flex flex-col items-center py-14 px-1 text-gray-200">
         <h1 className=" text-[#DA5867] uppercase font-bold text-base">
           Timeline
         </h1>

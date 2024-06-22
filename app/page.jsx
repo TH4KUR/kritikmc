@@ -11,9 +11,9 @@ import { myClient } from "@/sanity";
 import Arrow from "./components/icons/Arrow";
 import Sponsors from "./components/Sponsors";
 import Archive from "./components/Archive";
+import Credits from "./components/Credits";
 
 async function getDeadline() {
-  // TODO: prevent api leaking to client side!!
   const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
   return res[0].deadline;
 }
@@ -25,40 +25,30 @@ async function getSpeakerData() {
 export default async function Home() {
   const deadline = await getDeadline();
   const speakerdata = await getSpeakerData();
+
+  // Need to remove this
   const target = new Date(deadline).getTime();
   const now = new Date().getTime();
+
+  // FORCING Loading Screen
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <header>
-          <Nav />
-        </header>
-        <main className="bg-bg">
-          <Hero />
-          <Timer
-            deadline={deadline}
-            alreadyOver={target < now ? true : false}
-          />
+      <header>
+        <Nav />
+      </header>
+      <main className="bg-bg">
+        <Hero />
+        <Timer deadline={deadline} alreadyOver={target < now ? true : false} />
 
-          <Speaker speakerdata={speakerdata} />
-          <Sponsors />
-          <Timeline />
-          <Archive />
-        </main>
-        <Footer />
-        <div className=" bg-[#0b0f1d] text-gray-300 py-4 px-1 text-xs">
-          <p className="flex gap-1 justify-center">
-            Made with ❤️ by{" "}
-            <Link
-              className=" underline underline-offset-2 flex items-center"
-              href={"#"}
-            >
-              Eashaan <Arrow size={10} color={"#eee"} />
-            </Link>{" "}
-            & Aarush Thakur
-          </p>
-        </div>
-      </Suspense>
+        <Speaker speakerdata={speakerdata} />
+        <Sponsors />
+        <Timeline />
+        <Archive />
+      </main>
+      <Footer />
+      <Credits />
     </>
   );
 }

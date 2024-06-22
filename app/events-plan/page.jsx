@@ -1,15 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import SecondaryHero from "../components/SecondaryHero";
 import Nav from "../components/Nav";
-import { Cutive } from "next/font/google";
 import TimelineCard from "../components/TimelineCard";
 import Footer from "../components/Footer";
-const specialElite = Cutive({
-  subsets: ["latin"],
-  weight: ["400"],
-});
 
-const page = () => {
+async function page() {
   let data = [
     {
       day: "Day 1",
@@ -37,36 +32,29 @@ const page = () => {
       ],
     },
   ];
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   return (
     <>
       <Nav />
-      <main>
+      <main className="mb-7">
         <SecondaryHero
           title={"Compete and Conquer: Events Plan Page."}
           body={
             "Discover upcoming competitions catering to all skill levels. Plan your strategy and join us for thrilling events that test your skills and passion for competition."
           }
         />
-        <div
-          className={
-            "relative before:absolute before:bg-[url('/papertexture.jpg')] before:h-full before:w-full before:block before:z-[-1] before:opacity-60 before:bg-cover h-[80vh]"
-          }
-        >
-          <div className="flex justify-center pt-10">
-            <h3
-              className={
-                specialElite.className + " text-2xl font-bold underline"
-              }
-            >
+        <div className={""}>
+          <div className="pt-10">
+            <h2 className=" text-accent font-bold text-sm text-center uppercase">
+              Timeline
+            </h2>
+            <h3 className={" text-center text-2xl font-bold mb-6"}>
               Event Breakdown
             </h3>
+            {/* <hr className=" w-1/5 mx-auto border-black mb-4" /> */}
           </div>
-          <div
-            className={
-              specialElite.className + " w-full grid grid-cols-2 gap-1"
-            }
-          >
+          <div className={" w-full "}>
             {data.map((dat, i) => {
               return <TimelineCard key={i} data={dat} />;
             })}
@@ -76,6 +64,6 @@ const page = () => {
       <Footer />
     </>
   );
-};
+}
 
 export default page;

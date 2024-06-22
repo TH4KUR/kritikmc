@@ -16,38 +16,38 @@ async function page() {
   const deadline = await getDeadline();
   const target = new Date(deadline).getTime();
   const now = new Date().getTime();
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <Nav />
+      <Nav />
 
-        <main className="bg-[#090909]">
-          <SecondaryHero
-            title={"Explore upcoming Events."}
-            body={
-              <>
-                Dive into our conference events for cutting-edge workshops,
-                seminars, and networking! Join experts, students, and
-                professionals in shaping the future of healthcare innovation.
-                <br />
-                <br />
-                Don&apos;t miss out — be a part of the action!
-              </>
-            }
-          />
-          <Timer
-            deadline={deadline}
-            showButton={true}
-            alreadyOver={target < now ? true : false}
-          />
-          <Event />
-          <Timeline light={true} />
-          <hr className=" bg-bg" />
-        </main>
+      <main className="bg-[#090909]">
+        <SecondaryHero
+          title={"Explore upcoming Events."}
+          body={
+            <>
+              Dive into our conference events for cutting-edge workshops,
+              seminars, and networking! Join experts, students, and
+              professionals in shaping the future of healthcare innovation.
+              <br />
+              <br />
+              Don&apos;t miss out — be a part of the action!
+            </>
+          }
+        />
+        <Timer
+          deadline={deadline}
+          showButton={true}
+          alreadyOver={target < now ? true : false}
+        />
+        <Event />
+        <Timeline light={true} />
+        <hr className=" bg-bg" />
+      </main>
 
-        {/* <Tabx /> */}
-        <Footer />
-      </Suspense>
+      {/* <Tabx /> */}
+      <Footer />
     </>
   );
 }

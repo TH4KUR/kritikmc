@@ -17,32 +17,32 @@ async function page() {
   const deadline = await getDeadline();
   const target = new Date(deadline).getTime();
   const now = new Date().getTime();
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <Nav />
-        <SecondaryHero
-          title={"View the online version of our exclusive magazine"}
-          body={
-            <>
-              Welcome to our online Kakatiya Medical College Magazine! Explore
-              inspiring stories, cutting-edge research, and the human side of
-              medicine. <br />
-              <br /> Dive in and be inspired!
-            </>
-          }
-        />
-        <Timer
-          deadline={deadline}
-          showButton={true}
-          alreadyOver={target < now ? true : false}
-        />
+      <Nav />
+      <SecondaryHero
+        title={"View the online version of our exclusive magazine"}
+        body={
+          <>
+            Welcome to our online Kakatiya Medical College Magazine! Explore
+            inspiring stories, cutting-edge research, and the human side of
+            medicine. <br />
+            <br /> Dive in and be inspired!
+          </>
+        }
+      />
+      <Timer
+        deadline={deadline}
+        showButton={true}
+        alreadyOver={target < now ? true : false}
+      />
 
-        <MagazineSlider />
-        <hr className="border-black bg-bg w-1/4 mx-auto" />
-        <Articles />
-        <Footer />
-      </Suspense>
+      <MagazineSlider />
+      <hr className="border-black bg-bg w-1/4 mx-auto" />
+      <Articles />
+      <Footer />
     </>
   );
 }
