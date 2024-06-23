@@ -131,17 +131,19 @@
 
   display: block;
   position: absolute;
-  height: 105%;
-  width: 115%;
+  height: 180%;
+  width: 120%;
   content: "";
   z-index: -1;
-  top: 0;
-  left: 0;
-  transform: translate(-4%, 0%);
+  background-color: #310b0b;
+  top: 50%; /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+
+  transform: translate(-50%, -50%);
 }
 .event-tabs-button {
   @apply h-16 w-16 p-5 bg-bgSecondary text-gray-200 font-semibold flex items-center justify-center mb-1 cursor-pointer focus:bg-[#16040F] focus:text-[#FC6D6D] transition-colors;
 }
 .event-img {
-  clip-path: polygon(0 1%, 100% 0%, 100% 92%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);
 }

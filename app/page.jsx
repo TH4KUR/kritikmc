@@ -2,7 +2,7 @@ import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Speaker from "./components/Speaker";
 import { Suspense } from "react";
-import Loading from "./loading";
+ 
 import Timeline from "./components/Timeline";
 import Timer from "./components/Timer";
 import Footer from "./components/Footer";
@@ -31,7 +31,7 @@ export default async function Home() {
   const now = new Date().getTime();
 
   // FORCING Loading Screen
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await fetch("https://reqres.in/api/users?delay=2",{cache: 'no-cache'});;
 
   return (
     <>

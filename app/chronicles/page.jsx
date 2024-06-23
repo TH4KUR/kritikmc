@@ -3,7 +3,7 @@ import Nav from "../components/Nav";
 import SecondaryHero from "../components/SecondaryHero";
 import Timer from "../components/Timer";
 import { myClient } from "@/sanity";
-import Loading from "./loading";
+
 import MagazineSlider from "./components/MagazineSlider";
 import Footer from "../components/Footer";
 import Articles from "./components/Articles";
@@ -17,7 +17,7 @@ async function page() {
   const deadline = await getDeadline();
   const target = new Date(deadline).getTime();
   const now = new Date().getTime();
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await fetch("https://reqres.in/api/users?delay=2", { cache: "no-cache" });
 
   return (
     <>

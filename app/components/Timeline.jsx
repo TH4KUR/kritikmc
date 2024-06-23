@@ -6,11 +6,11 @@ import Link from "next/link";
 const Timeline = ({ light = false }) => {
   if (!light) {
     return (
-      <section className="bg-[url('/timelinebg.svg')] bg-contain bg-origin-border flex flex-col items-center py-14 px-1 text-gray-200">
+      <section className="bg-[url('/timelinebg.png')] bg-contains bg-origin-border flex flex-col items-center py-20 px-1 text-gray-200">
         <h1 className=" text-[#DA5867] uppercase font-bold text-base">
           Timeline
         </h1>
-        <h3 className="text-2xl font-bold mb-7 text-center">
+        <h3 className="text-2xl font-semibold mb-10 text-center">
           Events Timing Breakdown
         </h3>
         <div className="flex flex-col gap-4 w-11/12 mx-auto">
@@ -40,9 +40,9 @@ const Timeline = ({ light = false }) => {
     );
   } else {
     return (
-      <section className="bg-bg flex flex-col items-center py-14 px-1 text-black">
+      <section className="bg-bg flex flex-col items-center py-20 px-1 text-black">
         <h1 className=" text-accent uppercase font-bold text-base">Timeline</h1>
-        <h3 className="text-2xl font-bold mb-7 text-center">
+        <h3 className="text-2xl font-semibold mb-10 text-center">
           Events Timing Breakdown
         </h3>
         <div className="flex flex-col gap-4 w-11/12 mx-auto">

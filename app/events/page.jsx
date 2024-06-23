@@ -5,7 +5,6 @@ import Timer from "../components/Timer";
 import { myClient } from "@/sanity";
 import Footer from "../components/Footer";
 import Event from "./components/Event";
-import Loading from "./loading";
 import Timeline from "../components/Timeline";
 // import "./events.css";
 async function getDeadline() {
@@ -16,7 +15,7 @@ async function page() {
   const deadline = await getDeadline();
   const target = new Date(deadline).getTime();
   const now = new Date().getTime();
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await fetch("https://reqres.in/api/users?delay=2", { cache: "no-cache" });
 
   return (
     <>
