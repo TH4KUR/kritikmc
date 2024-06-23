@@ -31,15 +31,15 @@ const Box = ({ wrapper, tabId, setTab }) => {
       animate={control}
       variants={boxVariant}
       ref={ref}
-      className="snap-center bg-[#16040F] h-[70vh] flex flex-col gap-10"
+      className="snap-center bg-[#16040F] h-[70vh] flex flex-col"
     >
       <div className="">
         <img className="event-img" src="/event1.webp" alt="event 1" />
       </div>
       <div className="flex flex-col items-center justify-center">
-        <h2 className="flex justify-center event-name text-[#FF4E4E] font-semibold">
+        <h3 className="flex justify-center px-4 py-3 bg-[#370a1e] text-[#FF4E4E] font-semibold -translate-y-6 -rotate-2">
           Paper and poster presentation
-        </h2>
+        </h3>
         <p className="px-3 text-sm text-gray-100">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam
           deleniti amet, obcaecati dolore inventore perferendis sunt! Quaerat
@@ -62,57 +62,65 @@ function VerticalTab(props) {
   }
   const wrapperRef = useRef(null);
   return (
-    <div className="section__Jobs-container">
-      <div className="flex gap-2">
-        <div>
-          <div className="section__Jobs-styledTab">
-            <ul className="section__Jobs-styledTabList">
-              {props.data.map((job, index) => (
-                <VTlist
-                  key={index}
-                  onClick={btnClick}
-                  data={job}
-                  index={index}
-                  activeTabId={activeTabId}
-                />
-              ))}
-            </ul>
+    <>
+      <div className="flex items-center flex-col my-12">
+        <h2 className="text-sm text-accent2 uppercase font-bold">Events</h2>
+        <h4 className="text-lg font-semibold text-gray-100">
+          Explore All Events Taking Place
+        </h4>
+      </div>
+      <div className="section__Jobs-container">
+        <div className="flex gap-2">
+          <div>
+            <div className="section__Jobs-styledTab">
+              <ul className="section__Jobs-styledTabList">
+                {props.data.map((job, index) => (
+                  <VTlist
+                    key={index}
+                    onClick={btnClick}
+                    data={job}
+                    index={index}
+                    activeTabId={activeTabId}
+                  />
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div
+            ref={wrapperRef}
+            className="h-[70vh] snap-y snap-mandatory overflow-y-scroll w-full"
+          >
+            <Box setTab={setActiveTabId} tabId={0} wrapper={wrapperRef} />
+            <Box setTab={setActiveTabId} tabId={1} wrapper={wrapperRef} />
+            <Box setTab={setActiveTabId} tabId={2} wrapper={wrapperRef} />
+            <Box setTab={setActiveTabId} tabId={3} wrapper={wrapperRef} />
+            <Box setTab={setActiveTabId} tabId={4} wrapper={wrapperRef} />
+            <Box setTab={setActiveTabId} tabId={5} wrapper={wrapperRef} />
           </div>
         </div>
-        <div
-          ref={wrapperRef}
-          className="h-[70vh] snap-y snap-mandatory overflow-y-scroll w-full"
+        <span
+          className={(() => {
+            let clas = "";
+            if (activeTabId === 0) {
+              clas += "index1-chosen";
+            } else if (activeTabId === 1) {
+              clas += "index2-chosen";
+            } else if (activeTabId === 2) {
+              clas += "index3-chosen";
+            } else if (activeTabId === 3) {
+              clas += "index4-chosen";
+            } else if (activeTabId === 4) {
+              clas += "index5-chosen";
+            } else if (activeTabId === 5) {
+              clas += "index6-chosen";
+            }
+            return clas;
+          })()}
         >
-          <Box setTab={setActiveTabId} tabId={0} wrapper={wrapperRef} />
-          <Box setTab={setActiveTabId} tabId={1} wrapper={wrapperRef} />
-          <Box setTab={setActiveTabId} tabId={2} wrapper={wrapperRef} />
-          <Box setTab={setActiveTabId} tabId={3} wrapper={wrapperRef} />
-          <Box setTab={setActiveTabId} tabId={4} wrapper={wrapperRef} />
-          <Box setTab={setActiveTabId} tabId={5} wrapper={wrapperRef} />
-        </div>
+          &nbsp;
+        </span>
       </div>
-      <span
-        className={(() => {
-          let clas = "";
-          if (activeTabId === 0) {
-            clas += "index1-chosen";
-          } else if (activeTabId === 1) {
-            clas += "index2-chosen";
-          } else if (activeTabId === 2) {
-            clas += "index3-chosen";
-          } else if (activeTabId === 3) {
-            clas += "index4-chosen";
-          } else if (activeTabId === 4) {
-            clas += "index5-chosen";
-          } else if (activeTabId === 5) {
-            clas += "index6-chosen";
-          }
-          return clas;
-        })()}
-      >
-        &nbsp;
-      </span>
-    </div>
+    </>
   );
 }
 
