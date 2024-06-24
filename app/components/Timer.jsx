@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Timer = ({ deadline, showButton, alreadyOver = false }) => {
   const [days, setDays] = useState(0);
@@ -40,7 +41,12 @@ const Timer = ({ deadline, showButton, alreadyOver = false }) => {
     return () => clearInterval(interval);
   }, [deadline]);
   return (
-    <div className="text-sm py-3 bg-accent2 text-white font-medium flex flex-col items-center">
+    <motion.div
+      initial={{ translateX: "-100%" }}
+      whileInView={{ translateX: 0, transition: { duration: 0.5 } }}
+      // viewport={{ once: true }}
+      className="text-sm py-3 bg-accent2 text-white font-medium flex flex-col items-center"
+    >
       {(() => {
         if (!alreadyOver) {
           return !regOver ? (
@@ -57,7 +63,7 @@ const Timer = ({ deadline, showButton, alreadyOver = false }) => {
               </p>
               {showButton ? (
                 <Link
-                  href={"#"}
+                  href={"/registration"}
                   className="text-sm underline underline-offset-1 flex items-center justify-self-center"
                 >
                   Register Now{" "}
@@ -76,15 +82,37 @@ const Timer = ({ deadline, showButton, alreadyOver = false }) => {
               )}
             </>
           ) : (
-            <p className="text-center">The registrations are now closed!</p>
+            <motion.p
+              initial={{ translateY: 3, opacity: 0 }}
+              whileInView={{
+                translateY: 0,
+                opacity: 1,
+
+                transition: { duration: 0.25, delay: 0.5 },
+              }}
+              className="text-center"
+            >
+              The registrations are now closed!
+            </motion.p>
           );
         } else {
           return (
-            <p className="text-center">The registrations are now closed!</p>
+            <motion.p
+              initial={{ translateY: 3, opacity: 0 }}
+              whileInView={{
+                translateY: 0,
+                opacity: 1,
+
+                transition: { duration: 0.25, delay: 0.5 },
+              }}
+              className="text-center"
+            >
+              The registrations are now closed!
+            </motion.p>
           );
         }
       })()}
-    </div>
+    </motion.div>
   );
 };
 

@@ -34,7 +34,7 @@ const Nav = () => {
         </div>
         <div className="flex items-center gap-3 mr-4">
           <Link
-            href={"#"}
+            href={"/registration"}
             className="text-xs font-bold text-accent underline underline-offset-1"
           >
             Register Now!

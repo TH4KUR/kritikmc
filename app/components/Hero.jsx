@@ -17,7 +17,7 @@ const Hero = async () => {
       </h1>
       <div className="flex justify-end gap-3 mr-4 mb-4 -translate-y-3">
         <Link
-          href={"#"}
+          href={"/registration"}
           className="bg-accent hover:scale-105 transition-all px-4 py-2 grid place-items-center hover focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-sm"
         >
           Register Now!

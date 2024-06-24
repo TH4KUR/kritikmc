@@ -12,7 +12,7 @@ const Box = ({ wrapper, tabId, setTab }) => {
     hidden: { opacity: 0, scale: 0.8 },
   };
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0.5,
     root: wrapper.current,

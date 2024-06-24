@@ -17,7 +17,7 @@ async function page() {
   const deadline = await getDeadline();
   const target = new Date(deadline).getTime();
   const now = new Date().getTime();
-  await fetch("https://reqres.in/api/users?delay=2", { cache: "no-cache" });
+  await fetch("https://reqres.in/api/users?delay=1.5", { cache: "no-cache" });
 
   return (
     <>

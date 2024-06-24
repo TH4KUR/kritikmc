@@ -9,7 +9,8 @@ const Credits = () => {
         Made with ❤️ by{" "}
         <Link
           className=" underline underline-offset-2 flex items-center"
-          href={"#"}
+          href={"https://portfolio-eashaan.vercel.app/"}
+          target="_blank"
         >
           Eashaan <Arrow size={10} color={"#eee"} />
         </Link>{" "}
