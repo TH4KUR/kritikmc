@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export const Pill = ({ pillNo }) => {
+const Pill = ({ pillNo }) => {
   return (
     <motion.div
       viewport={{ once: true }}
@@ -70,7 +70,7 @@ export const Pill = ({ pillNo }) => {
   );
 };
 
-const Sponsors = () => {
+const Stats = () => {
   return (
     <section className="bg-bg flex flex-col items-center py-14 px-1 text-black">
       <h1 className=" text-accent uppercase font-bold text-base">Stats</h1>
@@ -84,4 +84,4 @@ const Sponsors = () => {
   );
 };
 
-export default Sponsors;
+export default Stats;

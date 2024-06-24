@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Link from "next/link";
 import { myClient } from "@/sanity";
 import Arrow from "./components/icons/Arrow";
-import Sponsors from "./components/Sponsors";
+import Stats from "./components/Stats";
 import Archive from "./components/Archive";
 import Credits from "./components/Credits";
 
@@ -43,7 +43,7 @@ export default async function Home() {
         <Timer deadline={deadline} alreadyOver={target < now ? true : false} />
 
         <Speaker speakerdata={speakerdata} />
-        <Sponsors />
+        <Stats />
         <Timeline />
         <Archive />
       </main>
