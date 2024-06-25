@@ -31,16 +31,16 @@ const Box = ({ wrapper, tabId, setTab }) => {
       animate={control}
       variants={boxVariant}
       ref={ref}
-      className="snap-center bg-[#16040F] h-[70vh] flex flex-col"
+      className="snap-center snap-always bg-[#16040F] flex flex-col"
     >
-      <div className="">
+      <div className="w-full object-cover">
         <img className="event-img" src="/event1.webp" alt="event 1" />
       </div>
       <div className="flex flex-col items-center justify-center">
         <h3 className="flex justify-center px-4 py-3 bg-[#370a1e] text-[#FF4E4E] font-semibold -translate-y-6 -rotate-2">
           Paper and poster presentation
         </h3>
-        <p className="px-3 text-sm text-gray-100">
+        <p className="p-3 text-sm text-gray-100">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam
           deleniti amet, obcaecati dolore inventore perferendis sunt! Quaerat
           itaque culpa nesciunt aperiam modi eum consequuntur eius nulla neque
@@ -63,13 +63,13 @@ function VerticalTab(props) {
   const wrapperRef = useRef(null);
   return (
     <>
-      <div className="flex items-center flex-col my-12">
+      <div className="flex items-center flex-col my-16">
         <h2 className="text-sm text-accent2 uppercase font-bold">Events</h2>
         <h4 className="text-lg font-semibold text-gray-100">
           Explore All Events Taking Place
         </h4>
       </div>
-      <div className="section__Jobs-container">
+      <div className="section__Jobs-container  sm:w-4/5 sm:mx-auto">
         <div className="flex gap-2">
           <div>
             <div className="section__Jobs-styledTab">
@@ -88,7 +88,7 @@ function VerticalTab(props) {
           </div>
           <div
             ref={wrapperRef}
-            className="h-[70vh] snap-y snap-mandatory overflow-y-scroll w-full"
+            className="h-[472px] sm:h-[485px] snap-y snap-mandatory overflow-y-scroll w-full"
           >
             <Box setTab={setActiveTabId} tabId={0} wrapper={wrapperRef} />
             <Box setTab={setActiveTabId} tabId={1} wrapper={wrapperRef} />

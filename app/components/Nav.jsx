@@ -14,7 +14,7 @@ import {
 } from "@headlessui/react";
 import Cancel from "./icons/Cancel";
 
-const Nav = () => {
+const Nav = ({ bg }) => {
   let [isOpen, setIsOpen] = useState(false);
 
   function open() {
@@ -26,7 +26,9 @@ const Nav = () => {
   }
   return (
     <>
-      <div className="flex items-center justify-between bg-bgNav">
+      <div
+        className={`flex items-center justify-between bg-bgNav shadow-bgSecondary drop-shadow`}
+      >
         <div className="text-2xl font-bold px-4 py-2">
           <Link href={"/"}>
             kriti<span className="text-accent">.</span>
@@ -84,7 +86,7 @@ const Nav = () => {
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
-                              <Link href={"#"}>about us.</Link>
+                              <Link href={"/about"}>about us.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
@@ -92,7 +94,7 @@ const Nav = () => {
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
-                              <Link href={"#"}>archives.</Link>
+                              <Link href={"/archives"}>archives.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />

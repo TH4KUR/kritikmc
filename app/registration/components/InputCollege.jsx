@@ -3,9 +3,7 @@ import { useState } from "react";
 import { Input, Checkbox, Field, Label, Description } from "@headlessui/react";
 import Checkmark from "./icons/Checkmark";
 
-function InputCollege() {
-  const [enabled, setEnabled] = useState(false);
-
+function InputCollege({ enabled, setEnabled }) {
   return (
     <>
       <Field className="flex items-center gap-2">
@@ -51,7 +49,7 @@ function InputCollege() {
               name="college_name"
               minLength={5}
               className={
-                "peer relative block w-full rounded-lg  py-1.5 px-3 text-sm/6 border-2 border-black disabled:border-2 disabled:border-black text-black focus:outline-none focus:ring focus:valid:border-green-500 focus:valid:ring-green-500/20 valid:border-green-500/80 invalid:border-red-600/80 invalid:ring-red-500/20 focus:border-blue-800/45 focus:ring-blue-500/20"
+                "peer autofill:bg-inherit relative block w-full bg-bgInput rounded-lg  py-1.5 px-3 text-sm/6 border-2 border-black disabled:border-2 disabled:border-black text-black focus:outline-none focus:ring focus:valid:border-green-500 focus:valid:ring-green-500/20 valid:border-green-500/80 invalid:border-red-600/80 invalid:ring-red-500/20 focus:border-blue-800/45 focus:ring-blue-500/20"
               }
             />
             <div className="absolute right-0 inset-y-0 pe-2 invisible peer-valid:visible">

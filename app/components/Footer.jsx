@@ -1,4 +1,3 @@
- 
 import Caret from "./icons/Caret";
 import Link from "next/link";
 
@@ -20,27 +19,31 @@ const Footer = () => {
           <ul className="font-normal text-gray-300 text-[0.8rem] ml-2">
             <li className="flex items-center gap-1">
               <Caret color={"#ddd"} />
-              <Link href={"#"}>home.</Link>
+              <Link href={"/"}>home.</Link>
             </li>
             <li className="flex items-center gap-1">
               <Caret color={"#ddd"} />
-              <Link href={"#"}>about us.</Link>
+              <Link href={"/about"}>about us.</Link>
             </li>
             <li className="flex items-center gap-1">
               <Caret color={"#ddd"} />
-              <Link href={"#"}>events.</Link>
+              <Link href={"/events"}>events.</Link>
             </li>
             <li className="flex items-center gap-1">
               <Caret color={"#ddd"} />
-              <Link href={"#"}>archives.</Link>
+              <Link href={"/events-plan"}>events plan.</Link>
             </li>
             <li className="flex items-center gap-1">
               <Caret color={"#ddd"} />
-              <Link href={"#"}>alumini.</Link>
+              <Link href={"/archives"}>archives.</Link>
             </li>
             <li className="flex items-center gap-1">
               <Caret color={"#ddd"} />
-              <Link href={"#"}>KC Chronicles.</Link>
+              <Link href={"/alumini"}>alumini.</Link>
+            </li>
+            <li className="flex items-center gap-1">
+              <Caret color={"#ddd"} />
+              <Link href={"/chronicles"}>KC Chronicles.</Link>
             </li>
           </ul>
         </div>

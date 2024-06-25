@@ -1,14 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-import { useState } from "react";
 import VerticalTab from "./VerticalTab";
 const Event = () => {
-  const [currentTab, setCurrentTab] = useState(1);
-  const [previousTab, setPreviousTab] = useState(1);
-  const [fadeTabIn, setFadeTabIn] = useState(2);
-  const [fadeTabOut, setFadeTabOut] = useState(2);
-  let resumeData = {
-    jobs: [
+  let eventData = {
+    events: [
       {
         expData: {
           company: "1.",
@@ -65,7 +59,7 @@ const Event = () => {
     ],
   };
 
-  return <VerticalTab data={resumeData.jobs} />;
+  return <VerticalTab data={eventData.events} />;
 };
 
 export default Event;

@@ -16,8 +16,9 @@ const InputEmail = () => {
           type="email"
           name="student_email"
           id="student_email"
+          autoComplete="email"
           className={
-            "peer relative block w-full rounded-lg  py-1.5 px-3 text-sm/6 border-2  text-black focus:outline-none focus:ring focus:ring-black/15 focus:border-black/45 valid:border-green-500/80 default:border-black invalid:border-red-600/80 focus:invalid:border-red-600/80 focus:invalid:ring-red-500/20 focus:valid:border-green-500 focus:valid:ring-green-500/20"
+            "peer relative block w-full bg-bgInput rounded-lg  py-1.5 px-3 text-sm/6 border-2  text-black focus:outline-none focus:ring focus:ring-black/15 focus:border-black/45 valid:border-green-500/80 default:border-black invalid:border-red-600/80 focus:invalid:border-red-600/80 focus:invalid:ring-red-500/20 focus:valid:border-green-500 focus:valid:ring-green-500/20"
           }
           required
           pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"

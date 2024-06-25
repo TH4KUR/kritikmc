@@ -7,8 +7,8 @@ export default async function Home() {
 
   return (
     <>
-      <Nav />
-      <main className=" bg-white">
+      <Nav bg={"#eee"} />
+      <main className="bg-[#fff6e4]">
         <section className=" flex flex-col items-center justify-center px-3 gap-1 py-10">
           <h1 className="font-semibold text-lg">
             Registration form for kriti.
