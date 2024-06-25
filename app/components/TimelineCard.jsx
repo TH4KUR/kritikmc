@@ -1,4 +1,3 @@
-import React from "react";
 import Bullet from "./icons/Bullet";
 import { Cutive } from "next/font/google";
 const cutive = Cutive({

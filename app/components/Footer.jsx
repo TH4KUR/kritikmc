@@ -1,4 +1,4 @@
-import React from "react";
+ 
 import Caret from "./icons/Caret";
 import Link from "next/link";
 

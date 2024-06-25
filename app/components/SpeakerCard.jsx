@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+ 
 import { myClient } from "@/sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import { motion } from "framer-motion";
@@ -16,7 +16,11 @@ const SpeakerCard = ({ data }) => {
       <motion.div
         viewport={{ once: true }}
         initial={{ translateY: 50, scale: 0.5, opacity: 0.7 }}
-        whileInView={{ translateY: 0, opacity: 1, scale: 1 }}
+        whileInView={{
+          translateY: 0,
+          opacity: 1,
+          scale: 1,
+        }}
         className="grid grid-cols-12 mt-8"
       >
         <div
@@ -39,7 +43,11 @@ const SpeakerCard = ({ data }) => {
       <motion.div
         viewport={{ once: true }}
         initial={{ translateY: 50, scale: 0.5, opacity: 0.7 }}
-        whileInView={{ translateY: 0, opacity: 1, scale: 1 }}
+        whileInView={{
+          translateY: 0,
+          opacity: 1,
+          scale: 1,
+        }}
         className="grid grid-cols-12 mt-8"
       >
         <div

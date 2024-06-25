@@ -1,4 +1,4 @@
-import React from "react";
+ 
 import SecondaryHero from "../components/SecondaryHero";
 import Nav from "../components/Nav";
 import TimelineCard from "../components/TimelineCard";

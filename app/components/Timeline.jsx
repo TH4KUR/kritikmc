@@ -1,4 +1,4 @@
-import React from "react";
+ 
 import TimelineCard from "./TimelineCard";
 import Arrow from "./icons/Arrow";
 import Link from "next/link";

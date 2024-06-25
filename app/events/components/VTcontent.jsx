@@ -1,4 +1,3 @@
-import React from "react";
 import "./VTStyles.css";
 
 function VTcontent(props) {

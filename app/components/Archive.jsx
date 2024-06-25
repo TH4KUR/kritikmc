@@ -1,4 +1,3 @@
-import React from "react";
 import Arrow from "./icons/Arrow";
 import Link from "next/link";
 

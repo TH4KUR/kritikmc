@@ -2,7 +2,7 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
-import React from "react";
+ 
 
 const Tabx = () => {
   return (

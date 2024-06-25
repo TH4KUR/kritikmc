@@ -1,13 +1,27 @@
-import { Suspense } from "react";
-
-import Timer from "../components/Timer";
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+import Form from "./components/Form";
 
-export default function Home() {
+export default async function Home() {
+  await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
+
   return (
     <>
       <Nav />
-      <main></main>{" "}
+      <main className=" bg-white">
+        <section className=" flex flex-col items-center justify-center px-3 gap-1 py-10">
+          <h1 className="font-semibold text-lg">
+            Registration form for kriti.
+          </h1>
+          <p className="text-sm text-center w-80">
+            Fill in the required details below and pay the applicable fee to
+            register for the event!{" "}
+          </p>
+          <hr className="border-black border w-40 mt-5" />
+        </section>
+        <Form />
+      </main>{" "}
+      <Footer />
     </>
   );
 }
