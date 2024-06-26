@@ -31,7 +31,7 @@ const Box = ({ wrapper, tabId, setTab, eventDetails }) => {
       animate={control}
       variants={boxVariant}
       ref={ref}
-      className="snap-center snap-always bg-[#16040F] flex flex-col justify-start h-full"
+      className="snap-center snap-always bg-[#16040F] flex flex-col justify-start"
     >
       <div className="w-full object-cover">
         <img className="event-img" src={eventDetails.eventImg} alt="event 1" />
@@ -73,7 +73,7 @@ function VerticalTab({ data }) {
         </h4>
       </div>
       <div className="section__Jobs-container  sm:w-4/5 sm:mx-auto">
-        <div className=" h-[70svh] sm:h-[50svh] flex gap-2">
+        <div className=" h-[80svh] sm:h-[60svh] flex gap-2">
           <div className="">
             <div className="section__Jobs-styledTab">
               <ul className="section__Jobs-styledTabList">
