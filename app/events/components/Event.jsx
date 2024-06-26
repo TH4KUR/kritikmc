@@ -4,56 +4,65 @@ const Event = () => {
   let eventData = {
     events: [
       {
-        expData: {
-          company: "1.",
-          eventname: "Paper and poster presentation",
-          img: "event1.webp",
-          desc: `Submission Process: Abstracts are to be submitted, either individually or as a pair (author and co-author). Following the screening process:
-          
-          > Podium presentation
-          > Poster Presentation
-          
-          Abstracts not selected for podium presentation will be given the opportunity to present posters. This includes case reports, research not chosen for podium presentation, and topics of significance.`,
+        event: {
+          eventNumber: "1.",
+          eventName: "Jeopardy",
+          eventImg: "/jeopardy.jpg",
+          eventDesc:
+            "Modeled after the popular game show, Jeopardy challenges participants knowledge of medical trivia across various categories. Teams compete against each other, answering questions ranging from anatomy and physiology to medical history and current trends",
+          slogan: "Unleash Your Inner Genius",
         },
       },
       {
-        expData: {
-          company: "2.",
-          eventname: "Med-Exibition",
-          img: "event1.webp",
-          desc: "goo goo ga ga",
+        event: {
+          eventNumber: "2.",
+          eventName: "Med-Exibition",
+          eventImg: "exhibition.jpg",
+          eventDesc:
+            "The medical exhibition is a vibrant hub of activity, featuring a variety of small games, workshops, and interactive displays. From hands-on demonstrations of medical procedures to informative sessions on healthcare innovations, attendees can immerse themselves in a diverse range of educational experiences.",
+          slogan:
+            "Where Science Meets Healing: Exploring Innovations in Medicine",
         },
       },
       {
-        expData: {
-          company: "3.",
-          eventname: "Symposium",
-          img: "event2.jpg",
-          desc: "hello world",
+        event: {
+          eventNumber: "3.",
+          eventName: "Debate",
+          eventImg: "debate.jpg",
+          eventDesc:
+            "Participants engage in lively debates on contemporary medical topics, presenting arguments and counterarguments in a structured format.",
+          slogan: "Debate the Issues, Defend Your Stance: Challenge Accepted?",
         },
       },
       {
-        expData: {
-          company: "4.",
-          eventname: "Symposium",
-          img: "event2.jpg",
-          desc: "hello world",
+        event: {
+          eventNumber: "4.",
+          eventName: "Hackathon",
+          eventImg: "debate.jpg",
+          eventDesc:
+            "The hackathon is a collaborative event where participants work in teams to develop innovative solutions to specific medical challenges within a limited time frame. It encourages creativity, teamwork, and rapid prototyping, fostering a culture of innovation and problem-solving in healthcare.",
+          slogan:
+            "Invent theFuture: Hackathon - Where Ideas Transform into Reality",
         },
       },
       {
-        expData: {
-          company: "5.",
-          eventname: "Ok boomer",
-          img: "event2.jpg",
-          desc: "hello world",
+        event: {
+          eventNumber: "5.",
+          eventName: "Paper Presentation",
+          eventImg: "paperpresentation.jpg",
+          eventDesc:
+            "Participants present their research findings and studies on various medical topics. Each presentation is followed by a Q&A session, allowing for a deeper discussion and analysis of the research presented.",
+          slogan: "From Theory to Reality: Present your paper, Inspire Change",
         },
       },
       {
-        expData: {
-          company: "6.",
-          eventname: "super stong man",
-          img: "event2.jpg",
-          desc: "hello world",
+        event: {
+          eventNumber: "6.",
+          eventName: "Symposium",
+          eventImg: "symposium.jpg",
+          eventDesc:
+            "The symposium brings together experts and professionals from various fields of medicine for in-depth discussions and presentations.",
+          slogan: "Fueling Minds, Igniting Innovation: Symposium",
         },
       },
     ],

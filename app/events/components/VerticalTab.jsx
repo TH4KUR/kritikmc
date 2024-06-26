@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import VTlist from "./VTlist";
 import "./VTStyles.css";
 
-const Box = ({ wrapper, tabId, setTab }) => {
+const Box = ({ wrapper, tabId, setTab, eventDetails }) => {
   const boxVariant = {
     visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
     hidden: { opacity: 0, scale: 0.8 },
@@ -34,28 +34,22 @@ const Box = ({ wrapper, tabId, setTab }) => {
       className="snap-center snap-always bg-[#16040F] flex flex-col"
     >
       <div className="w-full object-cover">
-        <img className="event-img" src="/event1.webp" alt="event 1" />
+        <img className="event-img" src={eventDetails.eventImg} alt="event 1" />
       </div>
       <div className="flex flex-col items-center justify-center">
         <h3 className="flex justify-center px-4 py-3 bg-[#370a1e] text-[#FF4E4E] font-semibold -translate-y-6 -rotate-2">
-          Paper and poster presentation
+          {eventDetails.eventName}
         </h3>
-        <p className="p-3 text-sm text-gray-100">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam
-          deleniti amet, obcaecati dolore inventore perferendis sunt! Quaerat
-          itaque culpa nesciunt aperiam modi eum consequuntur eius nulla neque
-          temporibus! Fugiat, libero!
-          <br />
-          <br />
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati
-          deserunt expedita reiciendis animi tempore eius, veritatis
+        <p className="p-3 text-sm text-gray-100">{eventDetails.eventDesc}</p>
+        <p className="p-3 bg-red-400/10 text-sm text-gray-100">
+          {eventDetails.slogan}
         </p>
       </div>
     </motion.div>
   );
 };
 
-function VerticalTab(props) {
+function VerticalTab({ data }) {
   const [activeTabId, setActiveTabId] = useState(0);
   function btnClick(id) {
     setActiveTabId(id);
@@ -74,11 +68,10 @@ function VerticalTab(props) {
           <div>
             <div className="section__Jobs-styledTab">
               <ul className="section__Jobs-styledTabList">
-                {props.data.map((job, index) => (
+                {data.map((el, index) => (
                   <VTlist
                     key={index}
                     onClick={btnClick}
-                    data={job}
                     index={index}
                     activeTabId={activeTabId}
                   />
@@ -90,12 +83,17 @@ function VerticalTab(props) {
             ref={wrapperRef}
             className="h-[472px] sm:h-[485px] snap-y snap-mandatory overflow-y-scroll w-full"
           >
-            <Box setTab={setActiveTabId} tabId={0} wrapper={wrapperRef} />
-            <Box setTab={setActiveTabId} tabId={1} wrapper={wrapperRef} />
-            <Box setTab={setActiveTabId} tabId={2} wrapper={wrapperRef} />
-            <Box setTab={setActiveTabId} tabId={3} wrapper={wrapperRef} />
-            <Box setTab={setActiveTabId} tabId={4} wrapper={wrapperRef} />
-            <Box setTab={setActiveTabId} tabId={5} wrapper={wrapperRef} />
+            {data.map(({ event }, i) => {
+              return (
+                <Box
+                  key={i}
+                  setTab={setActiveTabId}
+                  tabId={i}
+                  wrapper={wrapperRef}
+                  eventDetails={event}
+                />
+              );
+            })}
           </div>
         </div>
         <span
