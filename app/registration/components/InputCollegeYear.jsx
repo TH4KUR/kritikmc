@@ -23,7 +23,7 @@ const InputCollegeYear = () => {
           name="college_year"
           onChange={setValid}
           className={
-            "mt-3 block w-full appearance-none rounded-lg border-2 border-black/50 bg-bgInput py-1.5 px-3 text-sm/6 focus:outline-none focus:ring  invalid:border-red-600/80 focus:invalid:border-red-600/80 focus:invalid:ring-red-500/20 focus:border-blue-800/45 focus:ring-blue-500/20 text-black *:text-black "
+            "mt-1 block w-full appearance-none rounded-lg border-2 border-black/50 bg-bgInput py-1.5 px-3 text-sm/6 focus:outline-none focus:ring  invalid:border-red-600/80 focus:invalid:border-red-600/80 focus:invalid:ring-red-500/20 focus:border-blue-800/45 focus:ring-blue-500/20 text-black *:text-black "
           }
           aria-placeholder="Choose the year of college you're in"
           defaultValue={0}

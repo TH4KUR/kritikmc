@@ -11,7 +11,7 @@ const InputNumber = () => {
         Needed to send confirmation.
       </Description>
       <div className="relative mt-1 flex">
-        <span className="flex items-center justify-center min-h-full rounded-tl-lg rounded-bl-lg border-l-2 border-t-2 border-b-2 border-gray-400 py-2 px-3 bg-gray-300">
+        <span className="flex items-center justify-center min-h-full rounded-tl-lg rounded-bl-lg border-l-2 border-t-2 border-b-2 border-gray-400/40x py-2 px-3 bg-gray-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="size-5 fill-green-800/90 h-full"
