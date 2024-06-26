@@ -1,31 +1,34 @@
- 
-
 import "./VTStyles.css";
 
-function VTlist(props) {
+function VTlist({ index, activeTabId, onClick }) {
   const Clicked = () => {
-    props.onClick(props.index);
+    onClick(index);
   };
 
   return (
-    <li key={props.index} className=" list-none">
+    <li key={index} className=" list-none">
       <button
+        disabled
         className="section__Jobs-buttonCompany w-full"
         onClick={Clicked}
         style={(() => {
-          if (props.activeTabId === props.index) {
-            if (props.index === 0) {
+          if (activeTabId === index) {
+            if (index === 0) {
               return { color: "#FC6D6D" };
-            } else if (props.index === 1) {
+            } else if (index === 1) {
               return { color: "#4EB5FF" };
-            } else if (props.index === 2) {
+            } else if (index === 2) {
               return { color: "#70FF87" };
-            } else if (props.index === 3) {
+            } else if (index === 3) {
               return { color: "#FFF170" };
-            } else if (props.index === 4) {
+            } else if (index === 4) {
               return { color: "#EB70FF" };
-            } else if (props.index === 5) {
+            } else if (index === 5) {
               return { color: "#FF8F50" };
+            } else if (index === 6) {
+              return { color: "#FC8C50" };
+            } else if (index === 7) {
+              return { color: "#FB2F50" };
             }
           } else {
             return {
@@ -34,7 +37,7 @@ function VTlist(props) {
           }
         })()}
       >
-        {props.data.expData.company}
+        {index + 1}.
       </button>
     </li>
   );

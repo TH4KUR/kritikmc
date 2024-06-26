@@ -9,8 +9,11 @@ const Footer = () => {
           kriti<span className=" text-[#e94552]">.</span>
         </h4>
         <p className="text-gray-400 text-xs">
-          The official webiste of kakatiya research day - kriti <br /> (formerly
-          krd)
+          The official webiste of{" "}
+          <span className="font-bold text-gray-400">
+            Kakatiya Research Initiative for Transformative Innovations
+          </span>{" "}
+          - kriti <br /> (formerly krd)
         </p>
       </div>
       <div>

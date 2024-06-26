@@ -1,5 +1,5 @@
 "use client";
-
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import Menu from "./icons/Menu";
@@ -24,6 +24,7 @@ const Nav = ({ bg }) => {
   function close() {
     setIsOpen(false);
   }
+  const path = usePathname();
   return (
     <>
       <div
@@ -66,7 +67,14 @@ const Nav = ({ bg }) => {
                           as="div"
                           className="text-base/7 font-medium text-black flex justify-between items-center"
                         >
-                          <Link href={"/"}>
+                          <Link
+                            href={"/"}
+                            onClick={() => {
+                              if (path === "/") {
+                                close();
+                              }
+                            }}
+                          >
                             <h3 className="text-4xl font-bold h3x-4 py-2">
                               kriti<span className="text-accent">.</span>
                             </h3>{" "}
@@ -82,7 +90,16 @@ const Nav = ({ bg }) => {
                           <ul className="font-semibold text-black ml-3 mt-3 text-lg">
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
-                              <Link href={"/"}>home.</Link>
+                              <Link
+                                href={"/"}
+                                onClick={() => {
+                                  if (path === "/") {
+                                    close();
+                                  }
+                                }}
+                              >
+                                home.
+                              </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />

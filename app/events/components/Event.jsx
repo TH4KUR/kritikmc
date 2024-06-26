@@ -38,7 +38,7 @@ const Event = () => {
         event: {
           eventNumber: "4.",
           eventName: "Hackathon",
-          eventImg: "debate.jpg",
+          eventImg: "hackathon.jpg",
           eventDesc:
             "The hackathon is a collaborative event where participants work in teams to develop innovative solutions to specific medical challenges within a limited time frame. It encourages creativity, teamwork, and rapid prototyping, fostering a culture of innovation and problem-solving in healthcare.",
           slogan:

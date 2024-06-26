@@ -1,4 +1,3 @@
- 
 import SecondaryHero from "../components/SecondaryHero";
 import Nav from "../components/Nav";
 import TimelineCard from "../components/TimelineCard";
@@ -10,24 +9,32 @@ async function page() {
       day: "Day 1",
       date: "27 July 20xx",
       schedule: [
-        { time: "9:30am - 12:00pm", events: ["Podium and Paper presentation"] },
+        { time: "09:30 - 12:30", events: ["Jeopardy", "Working Lunch"] },
+        { time: "Post Working Lunch in NRI Hall", events: ["Med-Exhibition"] },
         {
-          time: "9:00am - 12:00pm",
-          events: ["Poster presentation", "Working Lunch"],
+          time: "13:30 - 15:00",
+          events: ["Debate"],
         },
-        { time: "1:30pm - 3:00pm", events: ["Debate"] },
-        { time: "3:30pm - 4:15pm", events: ["Guest lecture"] },
-        { time: "4:45pm - 6:15pm", events: ["Hackahthon"] },
+        { time: "15:30 - 16:15", events: ["Guest Lecture - 1"] },
+        { time: "16:45 - 18:15", events: ["Hackathon"] },
       ],
     },
     {
       day: "Day 2",
       date: "28 July 20xx",
       schedule: [
-        { time: "9:30am - 10:30am", events: ["Guest lecture"] },
-        { time: "11:00am - 12:30pm", events: ["Inauguration Working Lunch"] },
-        { time: "1:15pm - 4:00pm", events: ["Jeopardy"] },
-        { time: "4:30pm - 6:00pm", events: ["Symposium"] },
+        {
+          time: "09:30 - 11:30",
+          events: ["Podium Paper Presentation", "Poster Presentation"],
+        },
+        {
+          time: "11:45 - 12:45",
+          events: ["Inauguration Ceremony", "Working Lunch"],
+        },
+        { time: "Post Working Lunch in NRI Hall", events: ["Med-Exhibition"] },
+
+        { time: "14:00 - 14:45", events: ["Guest Lecture - 2"] },
+        { time: "15:30 - 17:00", events: ["Symposium"] },
         { time: "6:30pm - 8:00pm", events: ["Prize Distribution"] },
       ],
     },
