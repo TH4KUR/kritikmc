@@ -65,6 +65,16 @@ const Event = () => {
           slogan: "Fueling Minds, Igniting Innovation: Symposium",
         },
       },
+      {
+        event: {
+          eventNumber: "7.",
+          eventName: "Poster Presentation",
+          eventImg: "posterpresentation.jpg",
+          eventDesc:
+            "Participants present their research findings and studies on various medical topics. Each presentation is followed by a Q&A session, allowing for a deeper discussion and analysis of the research presented.",
+          slogan: "From Theory to Reality: Present your paper, Inspire Change",
+        },
+      },
     ],
   };
 

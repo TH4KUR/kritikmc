@@ -4,7 +4,6 @@ import Form from "./components/Form";
 
 export default async function Home() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
-
   return (
     <>
       <Nav bg={"#eee"} />

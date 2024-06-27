@@ -31,7 +31,7 @@ const Box = ({ wrapper, tabId, setTab, eventDetails }) => {
       animate={control}
       variants={boxVariant}
       ref={ref}
-      className="snap-center snap-always bg-[#16040F] flex flex-col justify-start"
+      className="snap-center snap-always bg-[#16040F] flex flex-col justify-start h-[90%]"
     >
       <div className="w-full object-cover">
         <img className="event-img" src={eventDetails.eventImg} alt="event 1" />
