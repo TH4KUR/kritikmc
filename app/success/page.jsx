@@ -5,7 +5,6 @@ const page = () => {
   const registrationData = JSON.parse(
     atob(cookies().get("registrationData").value)
   );
-  console.log(registrationData);
   return (
     <main className="bg-green-600">
       <div className="grid place-items-center h-screen">

@@ -2,6 +2,9 @@ import { cookies } from "next/headers";
 import Cancel from "@/app/components/icons/Cancel";
 
 const page = () => {
+  const registrationData = JSON.parse(
+    atob(cookies().get("registrationData").value)
+  );
   return (
     <main className="bg-red-600">
       <div className="grid place-items-center h-screen">
