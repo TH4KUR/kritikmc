@@ -3,16 +3,19 @@ import { v4 as uuidv4 } from "uuid";
 import { SHA256 } from "crypto-js";
 import axios from "axios";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 export async function formSubmit(formData) {
+  cookies().has("registrationData") ? cookies().delete("registrationData") : "";
   const transactionId = "ET-" + uuidv4().toString(36).slice(-26);
   const rawFormData = {
+    transactionId,
     studentName: formData.get("student_name"),
     studentNumber: formData.get("student_number"),
     studentEmail: formData.get("student_email"),
     collegeYear: formData.get("college_year"),
-    isKmcStudent: formData.get("kmc_student"),
-    studentCollege: formData?.get("college_name") || "Kakatiya Medical College",
+    isKmcStudent: formData.get("kmc_student") === "true" ? "true" : "false",
+    studentCollege: formData?.get("college_name") || "  ",
     events: [
       ...(formData.get("debate") ? ["debate"] : []),
       ...(formData.get("jeopardy") ? ["jeopardy"] : []),
@@ -23,13 +26,17 @@ export async function formSubmit(formData) {
       ...(formData.get("hackathon") ? ["hackathon"] : []),
     ],
   };
+  const rawFormDataBase64 = Buffer.from(JSON.stringify(rawFormData)).toString(
+    "base64"
+  );
+  console.log(rawFormDataBase64);
   const reqData = {
     merchantId: "PGTESTPAYUAT86",
-    merchantTransactionId: "MT7850590068188104",
+    merchantTransactionId: transactionId,
     merchantUserId: "MUID123",
     amount: formData.get("kmc_student") !== null ? 30000 : 40000,
-    redirectUrl: "http://localhost:3000/api/redirect",
-    redirectMode: "REDIRECT",
+    redirectUrl: `http://localhost:3000/api/redirect`,
+    redirectMode: "POST",
     callbackUrl: "http://localhost:3000/api/redirect",
     mobileNumber: "9999999999",
     paymentInstrument: {
@@ -60,10 +67,12 @@ export async function formSubmit(formData) {
   );
 
   const redirectUrl = response.data.data.instrumentResponse.redirectInfo.url;
-  // return { url: redirect };
 
-  // console.log(reqData);
-  console.log(response);
-  console.log(redirect);
+  cookies().set({
+    name: "registrationData",
+    value: rawFormDataBase64,
+    secure: true,
+    maxAge: 15 * 60 * 100,
+  });
   redirect(redirectUrl);
 }
