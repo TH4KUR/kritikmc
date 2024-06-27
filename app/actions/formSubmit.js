@@ -6,7 +6,6 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 export async function formSubmit(formData) {
-  cookies().has("registrationData") ? cookies().delete("registrationData") : "";
   const transactionId = "ET-" + uuidv4().toString(36).slice(-26);
   const rawFormData = {
     transactionId,
@@ -15,7 +14,7 @@ export async function formSubmit(formData) {
     studentEmail: formData.get("student_email"),
     collegeYear: formData.get("college_year"),
     isKmcStudent: formData.get("kmc_student") === "true" ? "true" : "false",
-    studentCollege: formData?.get("college_name") || "  ",
+    studentCollege: formData?.get("college_name") || "Kakatiya Medical College",
     events: [
       ...(formData.get("debate") ? ["debate"] : []),
       ...(formData.get("jeopardy") ? ["jeopardy"] : []),
@@ -67,12 +66,12 @@ export async function formSubmit(formData) {
   );
 
   const redirectUrl = response.data.data.instrumentResponse.redirectInfo.url;
-
+  cookies().delete("registrationData");
   cookies().set({
     name: "registrationData",
     value: rawFormDataBase64,
     secure: true,
-    maxAge: 15 * 60 * 100,
+    maxAge: 15 * 60 * 1000,
   });
   redirect(redirectUrl);
 }

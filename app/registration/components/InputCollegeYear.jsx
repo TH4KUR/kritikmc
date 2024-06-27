@@ -1,5 +1,4 @@
 import { Description, Field, Label, Select } from "@headlessui/react";
-import { useState } from "react";
 
 const InputCollegeYear = () => {
   function setValid(e) {
@@ -36,7 +35,7 @@ const InputCollegeYear = () => {
           <option value="2">2nd Year</option>
           <option value="3">3rd Year</option>
           <option value="4">4th Year</option>
-          <option value="intern">Interns & Post Interns</option>
+          <option value="5">Interns & Post Interns</option>
         </Select>
         <svg
           className="group pointer-events-none absolute top-2.5 right-2.5 size-4 fill-black/60"
