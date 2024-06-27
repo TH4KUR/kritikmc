@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import axios from "axios";
 import student from "@/models/Student";
 import connectDB from "@/app/lib/connectDB";
+import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 
 export async function POST(req, res) {
@@ -44,10 +45,13 @@ export async function POST(req, res) {
         events: regData.events,
       });
       let resMongo = await studentData.save();
-      redirect(`https://kritikmc.com/success/`);
+      return NextResponse.redirect("https://kritikmc.com/success", {
+        status: 301,
+      });
     } else if (response.code === `PAYMENT_FAILED`) {
-      console.log(`payment FAILED`);
-      redirect(`https://kritikmc.com/failed/`);
+      return NextResponse.redirect("https://kritikmc.com/failed", {
+        status: 301,
+      });
     } else {
       console.log(response.data);
       return NextResponse.json(response.data);
