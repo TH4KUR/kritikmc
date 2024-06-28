@@ -27,7 +27,7 @@ const EventsCheckbox = ({ eventName, eventSlug }) => {
           />
         </svg>
       </Checkbox>
-      <Label className={"text-sm"}>{eventName}</Label>
+      <Label className={"text-sm md:text-base font-medium"}>{eventName}</Label>
     </Field>
   );
 };
