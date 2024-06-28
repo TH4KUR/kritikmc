@@ -45,7 +45,7 @@ const Timer = ({ deadline, showButton, alreadyOver = false }) => {
       initial={{ translateX: "-100%" }}
       whileInView={{ translateX: 0, transition: { duration: 0.5 } }}
       viewport={{ once: true }}
-      className="text-sm py-3 bg-accent2 text-white font-medium flex flex-col items-center"
+      className="text-sm py-3 bg-accent2 text-white font-medium flex flex-col items-center md:text-lg"
     >
       {(() => {
         if (!alreadyOver) {

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-bg text-black;
+  @apply bg-bg text-black max-w-[1600px] mx-auto;
 }
 
 /* @layer utilities {
@@ -81,4 +81,9 @@ body {
   clip-path: polygon(0 0, 100% 0%, 100% 80%, 0 100%);
 
   @apply bg-cover w-full;
+}
+
+/* Hero Section */
+.hero_container {
+  clip-path: polygon(56% 0, 100% 26%, 73% 100%, 0 100%, 0 0);
 }

@@ -13,6 +13,7 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import Cancel from "./icons/Cancel";
+import { motion } from "framer-motion";
 
 const Nav = ({ bg }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -27,10 +28,23 @@ const Nav = ({ bg }) => {
   const path = usePathname();
   return (
     <>
-      <div
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: -20,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.5,
+            bounce: 0,
+          },
+        }}
+        viewport={{ once: true }}
         className={`flex items-center justify-between bg-bgNav shadow-bgSecondary drop-shadow`}
       >
-        <div className="text-2xl font-bold px-4 py-2">
+        <div className="text-2xl font-bold px-4 py-2 lg:py-3 lg:text-3xl">
           <Link href={"/"}>
             kriti<span className="text-accent">.</span>
           </Link>
@@ -38,11 +52,39 @@ const Nav = ({ bg }) => {
         <div className="flex items-center gap-3 mr-4">
           <Link
             href={"/registration"}
-            className="text-xs font-bold text-accent underline underline-offset-1"
+            className="text-xs font-bold text-accent underline underline-offset-1 block lg:hidden"
           >
             Register Now!
           </Link>
-          <div className="flex items-center">
+          <div className="hidden lg:block">
+            <ul className="font-semibold text-black text-lg flex h-full items-center gap-6">
+              <li>
+                <Link href={"/"}>home.</Link>
+              </li>
+              <li>
+                <Link href={"/about"}>about us.</Link>
+              </li>
+              <li>
+                <Link href={"/events"}>events.</Link>
+              </li>
+              <li>
+                <Link href={"/archives"}>archives.</Link>
+              </li>
+              <li>
+                <Link href={"#"}>alumini.</Link>
+              </li>
+              <li>
+                {" "}
+                <Link
+                  href={"/registration"}
+                  className="text-sm font-bold text-accent hover:bg-accent hover:text-white transition-colors py-2 px-4 bg-accent2/10 rounded-lg hidden lg:block"
+                >
+                  Register Now!
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="flex items-center lg:hidden">
             <button onClick={open}>
               <Menu />
             </button>
@@ -136,7 +178,7 @@ const Nav = ({ bg }) => {
             </Transition>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

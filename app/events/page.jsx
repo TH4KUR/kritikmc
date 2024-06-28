@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import Nav from "../components/Nav";
 import SecondaryHero from "../components/SecondaryHero";
 import Timer from "../components/Timer";
@@ -6,7 +5,6 @@ import { myClient } from "@/sanity";
 import Footer from "../components/Footer";
 import Event from "./components/Event";
 import Timeline from "../components/Timeline";
-// import "./events.css";
 async function getDeadline() {
   const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
   return res[0].deadline;

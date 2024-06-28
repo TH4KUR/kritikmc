@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "anaylsebuild": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
+    "@next/bundle-analyzer": "^14.2.4",
     "@sanity/client": "^6.20.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.45.0",

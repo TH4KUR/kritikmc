@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import Nav from "../components/Nav";
 import SecondaryHero from "../components/SecondaryHero";
 import Timer from "../components/Timer";

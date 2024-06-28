@@ -1,5 +1,5 @@
 "use client";
- 
+
 import { myClient } from "@/sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import { motion } from "framer-motion";
@@ -28,11 +28,11 @@ const SpeakerCard = ({ data }) => {
           className="bg-[image:var(--image-url)] bg-cover col-span-4 rounded-l-lg saturate-50"
         ></div>
         <div className=" bg-[#F4E3D4] col-span-8 rounded-r-lg px-3 py-3">
-          <h3 className="font-bold text-lg">{data.speakername}</h3>
-          <h4 className=" text-xs text-red-800 font-semibold">
+          <h3 className="font-bold text-lg md:text-xl">{data.speakername}</h3>
+          <h4 className=" text-xs text-red-800 font-semibold md:text-sm">
             {data.speakertype}
           </h4>
-          <p className="mt-3 text-[0.75rem] leading-4 font-medium">
+          <p className="mt-3 text-[0.75rem] md:text-[0.8rem] md:leading-5 leading-4 font-medium">
             {data.speakerdesc}
           </p>
         </div>
@@ -61,11 +61,11 @@ const SpeakerCard = ({ data }) => {
         /> */}
         </div>
         <div className=" bg-[#F1F5DA] col-span-8 rounded-r-lg px-3 py-4">
-          <h3 className="font-bold text-lg">{data.speakername}</h3>
-          <h4 className=" text-xs text-[#327D18] font-semibold">
+          <h3 className="font-bold text-lg md:text-xl">{data.speakername}</h3>
+          <h4 className=" text-xs text-[#327D18] font-semibold md:text-sm">
             {data.speakertype}
           </h4>
-          <p className="mt-3 text-[0.75rem] leading-4 font-medium">
+          <p className="mt-3 text-[0.75rem] leading-4 font-medium md:text-[0.8rem] md:leading-5">
             {data.speakerdesc}
           </p>
         </div>

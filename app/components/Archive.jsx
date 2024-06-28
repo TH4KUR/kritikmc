@@ -5,7 +5,7 @@ const Archive = () => {
   return (
     <section className="bg-bg flex flex-col items-center py-6 px-1 text-black">
       <h1 className=" text-accent uppercase font-bold text-xl">Archive</h1>
-      <h3 className="text-lg font-semibold mb-7">
+      <h3 className="text-lg font-semibold mb-7  md:text-2xl">
         {" "}
         Discover previous editions of kriti
         <span className="text-accent">.</span>
