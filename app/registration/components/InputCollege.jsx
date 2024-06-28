@@ -27,17 +27,17 @@ function InputCollege({ enabled, setEnabled }) {
             />
           </svg>
         </Checkbox>
-        <Label className={"text-sm"}>
+        <Label className={"text-sm md:text-base font-medium py-4"}>
           Yes, I am a student of KMC Warangal{" "}
           <span className=" text-red-600">*</span>
         </Label>
       </Field>
       {!enabled ? (
         <Field className="flex flex-col">
-          <Label className="text-sm/6 font-medium text-black">
+          <Label className="text-sm/6 md:text-lg font-semibold text-black">
             College Name <span className=" text-red-600">*</span>
           </Label>
-          <Description className="text-sm/6 text-black/50">
+          <Description className="text-sm/6 md:text-base  text-black/70">
             Please enter your College&apos;s name.
           </Description>
           <div className="relative mt-1">

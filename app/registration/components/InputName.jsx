@@ -4,10 +4,10 @@ import Checkmark from "./icons/Checkmark";
 const InputName = () => {
   return (
     <Field className="flex flex-col">
-      <Label className="text-base font-medium text-black">
+      <Label className="text-base md:text-lg font-semibold text-black">
         Full Name <span className=" text-red-600">*</span>
       </Label>
-      <Description className="text-sm text-black/75">
+      <Description className="text-sm md:text-base text-black/75">
         Please enter your full name.
       </Description>
       <div className="relative mt-1">

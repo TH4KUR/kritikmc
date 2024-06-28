@@ -11,10 +11,10 @@ const InputCollegeYear = () => {
   }
   return (
     <Field>
-      <Label className="text-sm font-medium text-black">
+      <Label className="text-sm md:text-lg font-semibold text-black">
         Year Of Study <span className=" text-red-600">*</span>
       </Label>
-      <Description className="text-sm text-black/50">
+      <Description className="text-sm md:text-base  text-black/70">
         Choose and option below.
       </Description>
       <div className="relative">

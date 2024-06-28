@@ -21,7 +21,7 @@ const Form = () => {
   const [isStudentOfKmc, setIsStudentOfKmc] = useState(false);
 
   return (
-    <form action={formSubmit} className=" *:mb-6 px-5">
+    <form action={formSubmit} className=" *:mb-6 px-5 max-w-xl mx-auto">
       <InputName />
       <InputEmail />
       <InputCollege enabled={isStudentOfKmc} setEnabled={setIsStudentOfKmc} />
