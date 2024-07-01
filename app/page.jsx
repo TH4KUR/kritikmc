@@ -22,8 +22,6 @@ export default async function Home() {
   const speakerdata = await getSpeakerData();
 
   // Need to remove this
-  const target = new Date(deadline).getTime();
-  const now = new Date().getTime();
 
   // FORCING Loading Screen
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
@@ -35,7 +33,7 @@ export default async function Home() {
       </header>
       <main className="bg-bg">
         <Hero />
-        <Timer deadline={deadline} alreadyOver={target < now ? true : false} />
+        <Timer deadline={deadline}    />
 
         <Speaker speakerdata={speakerdata} />
         <Stats />

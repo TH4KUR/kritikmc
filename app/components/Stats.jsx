@@ -74,11 +74,11 @@ const Pill = ({ pillNo }) => {
 const Stats = () => {
   return (
     <section className="bg-bg flex flex-col items-center py-16 px-1 text-black">
-      <h2 className=" text-accent uppercase font-bold text-sm md:text-lg">
+      <h2 className=" text-accent uppercase font-bold text-base md:text-lg lg:text-lg">
         Stats
       </h2>
       <h3 className="text-2xl font-bold md:text-3xl mb-10">Event Statistics</h3>
-      <div className="flex items-center gap-3 max-w-md md:gap-6 min-h-32">
+      <div className="flex items-center gap-3 max-w-md md:max-w-lg md:gap-10 min-h-32">
         <Pill pillNo={1} />
         <Pill pillNo={2} />
         <Pill pillNo={3} />

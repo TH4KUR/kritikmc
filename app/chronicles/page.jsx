@@ -14,8 +14,6 @@ async function getDeadline() {
 
 async function page() {
   const deadline = await getDeadline();
-  const target = new Date(deadline).getTime();
-  const now = new Date().getTime();
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
 
   return (
@@ -32,11 +30,7 @@ async function page() {
           </>
         }
       />
-      <Timer
-        deadline={deadline}
-        showButton={true}
-        alreadyOver={target < now ? true : false}
-      />
+      <Timer deadline={deadline} showButton={true} />
 
       <MagazineSlider />
       <hr className="border-black bg-bg w-1/4 mx-auto" />

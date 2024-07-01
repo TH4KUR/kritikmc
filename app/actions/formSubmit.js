@@ -34,9 +34,9 @@ export async function formSubmit(formData) {
     merchantTransactionId: transactionId,
     merchantUserId: "MUID123",
     amount: formData.get("kmc_student") !== null ? 30000 : 40000,
-    redirectUrl: `https://kritikmc.com/api/redirect`,
+    redirectUrl: `${process.env.HOST_URL}/api/redirect`,
     redirectMode: "POST",
-    callbackUrl: "https://kritikmc.com/api/redirect",
+    callbackUrl: `${process.env.HOST_URL}/api/redirect`,
     mobileNumber: "9999999999",
     paymentInstrument: {
       type: "PAY_PAGE",
@@ -71,7 +71,7 @@ export async function formSubmit(formData) {
     name: "registrationData",
     value: rawFormDataBase64,
     secure: true,
-    maxAge: 15 * 60 * 1000,
+    expires: Date.now() + 15 * 60 * 1000,
   });
   redirect(redirectUrl);
 }

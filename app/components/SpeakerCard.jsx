@@ -27,12 +27,14 @@ const SpeakerCard = ({ data }) => {
           style={{ "--image-url": `url(${retrieveImageUrl(data.speakerimg)})` }}
           className="bg-[image:var(--image-url)] bg-cover col-span-4 rounded-l-lg saturate-50"
         ></div>
-        <div className=" bg-[#F4E3D4] col-span-8 rounded-r-lg px-3 py-3">
-          <h3 className="font-bold text-lg md:text-xl">{data.speakername}</h3>
-          <h4 className=" text-xs text-red-800 font-semibold md:text-sm">
+        <div className=" bg-[#F4E3D4] col-span-8 rounded-r-lg px-3 py-5">
+          <h3 className="font-bold text-lg md:text-xl lg:text-2xl">
+            {data.speakername}
+          </h3>
+          <h4 className=" text-sm text-red-800 font-semibold lg:text-base">
             {data.speakertype}
           </h4>
-          <p className="mt-3 text-[0.75rem] md:text-[0.8rem] md:leading-5 leading-4 font-medium">
+          <p className="mt-3 text-sm sm:text-base font-medium">
             {data.speakerdesc}
           </p>
         </div>
@@ -61,11 +63,13 @@ const SpeakerCard = ({ data }) => {
         /> */}
         </div>
         <div className=" bg-[#F1F5DA] col-span-8 rounded-r-lg px-3 py-4">
-          <h3 className="font-bold text-lg md:text-xl">{data.speakername}</h3>
-          <h4 className=" text-xs text-[#327D18] font-semibold md:text-sm">
+          <h3 className="font-bold text-lg md:text-xl lg:text-2xl">
+            {data.speakername}
+          </h3>
+          <h4 className=" text-sm text-[#327D18] font-semibold lg:text-base">
             {data.speakertype}
           </h4>
-          <p className="mt-3 text-[0.75rem] leading-4 font-medium md:text-[0.8rem] md:leading-5">
+          <p className="mt-3 text-sm sm:text-base font-medium">
             {data.speakerdesc}
           </p>
         </div>

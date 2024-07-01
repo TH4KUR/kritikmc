@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const Timer = ({ deadline, showButton, alreadyOver = false }) => {
+const Timer = ({ deadline, showButton }) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [regOver, setRegOver] = useState(false);
+  const alreadyOver =
+    new Date(deadline).getTime() < new Date().getTime() ? true : false;
 
   useEffect(() => {
     const target = new Date(deadline);
@@ -45,7 +47,7 @@ const Timer = ({ deadline, showButton, alreadyOver = false }) => {
       initial={{ translateX: "-100%" }}
       whileInView={{ translateX: 0, transition: { duration: 0.5 } }}
       viewport={{ once: true }}
-      className="text-sm py-3 bg-accent2 text-white font-medium flex flex-col items-center md:text-lg"
+      className="text-sm py-3 bg-accent2 text-white font-medium flex flex-col items-center md:text-base"
     >
       {(() => {
         if (!alreadyOver) {

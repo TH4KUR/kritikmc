@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-bg text-black max-w-[1600px] mx-auto;
+  @apply bg-bg text-black max-w-[1600px] mx-auto shadow-lg shadow-black/20;
 }
 
 /* @layer utilities {

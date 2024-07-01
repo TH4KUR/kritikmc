@@ -29,7 +29,6 @@ export async function POST(req, res) {
       },
     };
     const response = await axios.request(options);
-    console.log("r===", response.data);
     if (
       response.data.code === "PAYMENT_SUCCESS" &&
       response.data.data.merchantTransactionId === regData.transactionId
@@ -45,11 +44,11 @@ export async function POST(req, res) {
         events: regData.events,
       });
       let resMongo = await studentData.save();
-      return NextResponse.redirect("https://kritikmc.com/success", {
+      return NextResponse.redirect(`${process.env.HOST_URL}/success`, {
         status: 301,
       });
     } else if (response.code === `PAYMENT_FAILED`) {
-      return NextResponse.redirect("https://kritikmc.com/failed", {
+      return NextResponse.redirect(`${process.env.HOST_URL}/failed`, {
         status: 301,
       });
     } else {
