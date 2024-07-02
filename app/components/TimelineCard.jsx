@@ -7,7 +7,7 @@ const cutive = Cutive({
 
 const TimelineCard = ({ data }) => {
   return (
-    <div className="font-medium rounded-lg text-bg">
+    <div className="font-medium rounded-lg text-bg shadow-lg shadow-black/10 md:mb-2">
       <div className="bg-[#b732770f] border-y-2 border-accent border-opacity-30 flex justify-between items-center py-3 px-4">
         <h4 className="text-black uppercase underline underline-offset-4 text-lg font-bold ">
           {data.day}

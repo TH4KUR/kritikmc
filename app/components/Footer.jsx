@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" bg-bgSecondary text-white px-4 py-10">
+    <footer className=" bg-bgSecondary text-white px-4 py-10 border-t-2 border-bg/10">
       <div>
         <h4 className=" font-medium text-4xl">
           kriti<span className=" text-[#e94552]">.</span>

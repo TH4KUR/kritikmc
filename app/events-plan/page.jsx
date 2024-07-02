@@ -52,16 +52,16 @@ async function page() {
           }
         />
         <div className={""}>
-          <div className="pt-10">
-            <h2 className=" text-accent font-bold text-sm text-center uppercase">
+          <div className="py-10 flex flex-col items-center">
+            <h2 className=" text-accent uppercase font-bold text-base md:text-lg mt-5">
               Timeline
             </h2>
-            <h3 className={" text-center text-2xl font-bold mb-6"}>
-              Event Breakdown
+            <h3 className="text-black text-2xl font-bold md:text-3xl">
+              Events Timing Breakdown
             </h3>
             {/* <hr className=" w-1/5 mx-auto border-black mb-4" /> */}
           </div>
-          <div className={" w-full "}>
+          <div className={" w-full max-w-screen-md mx-auto"}>
             {data.map((dat, i) => {
               return <TimelineCard key={i} data={dat} />;
             })}

@@ -12,7 +12,7 @@ const Pill = ({ pillNo }) => {
           transition: {
             delay: 0.05,
             repeat: 10,
-            duration: 0.1,
+            duration: 0.075,
             staggerChildren: 1,
           },
         })}
@@ -27,7 +27,7 @@ const Pill = ({ pillNo }) => {
             rotate: 10,
             transition: {
               duration: 0.75,
-              delay: 1.5,
+              delay: 0.75,
             },
           }}
           src="/pill2.svg"
@@ -45,7 +45,7 @@ const Pill = ({ pillNo }) => {
             rotate: -10,
             transition: {
               duration: 0.75,
-              delay: 1.5,
+              delay: 0.75,
             },
           }}
           src="/pill1.svg"
@@ -59,8 +59,7 @@ const Pill = ({ pillNo }) => {
           opacity: 1,
           translateY: 15,
           transition: {
-            delay: 2,
-            // duration: 0.5,
+            delay: 1.25,
           },
         }}
         initial={{ opacity: 0, translateX: 20 }}

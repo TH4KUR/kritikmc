@@ -2,11 +2,14 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import DesktopHero from "./DesktopHero";
+import Image from "next/image";
 const Hero = async () => {
   return (
     <section className="relative md:h-[95vh]">
-      <div className="min-h-[24vh] md:hidden">
-        <img
+      <div className=" md:hidden">
+        <Image
+          width={400}
+          height={400}
           src="/hero.webp"
           alt="a picture of kakatiya medical college"
           className=" min-w-[100%]"

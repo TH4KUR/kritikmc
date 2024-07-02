@@ -77,7 +77,7 @@ const Nav = ({ bg }) => {
                 {" "}
                 <Link
                   href={"/registration"}
-                  className="text-sm font-bold text-accent hover:bg-accent hover:text-white transition-colors py-2 px-4 bg-accent2/10 rounded-lg hidden lg:block"
+                  className="text-sm font-bold text-accent hover:bg-accent hover:text-white transition-colors py-2 px-4 bg-accent2/10 rounded-lg hidden lg:block lg:text-base"
                 >
                   Register Now!
                 </Link>

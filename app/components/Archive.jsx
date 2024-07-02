@@ -10,10 +10,10 @@ const Archive = () => {
         Discover previous editions of kriti
         <span className="text-accent">.</span>
       </h3>
-      <div className="bg-[url('/archive.png')] flex items-center justify-center w-[219px] min-h-[196px] bg-cover">
+      <div className="bg-[url('/archive.webp')] flex items-center justify-center size-96 bg-cover -translate-x-4">
         <Link
           href={"/archives"}
-          className="flex items-center justify-between gap-3 bg-accent hover:scale-105 transition-all px-4 py-2 hover focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-sm"
+          className="flex items-center justify-between gap-3 bg-accent hover:scale-105 transition-all px-4 py-2 hover focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-base lg:text-lg translate-x-2 -translate-y-4"
         >
           Archive <Arrow color={"#eee"} size={12} />
         </Link>
