@@ -30,7 +30,7 @@ const Box = ({ eventDetails, index }) => {
     >
       <motion.div
         style={{ top: imgTop }}
-        className="sticky overflow-x-hidden flex gap-3"
+        className="sticky overflow-x-hidden flex gap-1  "
       >
         <motion.div
           className="event_images_container flex flex-col justify-center items-center w-full h-full text-gray-50 animate-pulse"
@@ -51,15 +51,26 @@ const Box = ({ eventDetails, index }) => {
       </motion.div>
       <motion.div
         style={{ opacity: textOpacity, scale: textScale }}
-        className="text-white sticky top-[18rem]"
+        className="text-white sticky top-[18rem] flex flex-col gap-10"
       >
-        <h2 className=" px-3 py-2 bg-accent2 font-semibold text-xl mb-2">
-          {eventDetails.eventName}{" "}
-        </h2>
-        {/* <span className="text-base font-medium">{eventDetails.slogan}</span> */}
-        <p className="text-base md:text-lg border-l-4 pl-3 border-accent2">
-          {eventDetails.eventDesc}
-        </p>
+        <div className="">
+          <h2 className=" px-3 py-2 bg-accent2 font-semibold text-xl mb-2">
+            {eventDetails.eventName}{" "}
+          </h2>
+          {/* <span className="text-base font-medium">{eventDetails.slogan}</span> */}
+          <p className="text-base md:text-lg border-l-4 pl-3 border-accent2">
+            {eventDetails.eventDesc}
+          </p>
+          <ul className="mt-5 py-3 px-4 bg-accent2/5">
+            <li>Event Coordinator: Mohanram Reddy</li>
+            <li>Contact info: +91 8700621534</li>
+          </ul>
+        </div>
+        <div className="flex flex-col items-center self-center pb-10 relative after:w-20 after:h-1 after:bg-accent2/50 after:absolute after:bottom-0">
+          <p>
+            {eventDetails.eventName} - {eventDetails.slogan}
+          </p>
+        </div>
       </motion.div>
     </motion.div>
   );
