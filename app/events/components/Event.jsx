@@ -5,7 +5,7 @@ const Event = () => {
     events: [
       {
         event: {
-          eventNumber: "1.",
+          eventNumber: "1",
           eventName: "Jeopardy",
           eventImg: "/jeopardy.jpg",
           eventDesc:
@@ -15,7 +15,7 @@ const Event = () => {
       },
       {
         event: {
-          eventNumber: "2.",
+          eventNumber: "2",
           eventName: "Med-Exibition",
           eventImg: "/exhibition.jpg",
           eventDesc:
@@ -26,7 +26,7 @@ const Event = () => {
       },
       {
         event: {
-          eventNumber: "3.",
+          eventNumber: "3",
           eventName: "Debate",
           eventImg: "/debate.jpg",
           eventDesc:
@@ -36,7 +36,7 @@ const Event = () => {
       },
       {
         event: {
-          eventNumber: "4.",
+          eventNumber: "4",
           eventName: "Hackathon",
           eventImg: "/hackathon.jpg",
           eventDesc:
@@ -47,7 +47,7 @@ const Event = () => {
       },
       {
         event: {
-          eventNumber: "5.",
+          eventNumber: "5",
           eventName: "Paper Presentation",
           eventImg: "/paperpresentation.jpg",
           eventDesc:
@@ -57,7 +57,7 @@ const Event = () => {
       },
       {
         event: {
-          eventNumber: "6.",
+          eventNumber: "6",
           eventName: "Symposium",
           eventImg: "/symposium.jpg",
           eventDesc:
@@ -67,7 +67,7 @@ const Event = () => {
       },
       {
         event: {
-          eventNumber: "7.",
+          eventNumber: "7",
           eventName: "Poster Presentation",
           eventImg: "/posterpresentation.jpg",
           eventDesc:

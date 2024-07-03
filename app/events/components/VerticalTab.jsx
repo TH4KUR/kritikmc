@@ -1,42 +1,66 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import VTlist from "./VTlist";
 import "./VTStyles.css";
 import Image from "next/image";
 
-const Box = ({ eventDetails }) => {
+const Box = ({ eventDetails, index }) => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start end", "end start"],
   });
   const scale = useTransform(scrollYProgress, [0, 0.5, 0.7, 1], [0.8, 1, 1, 0]);
-  const opacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const x = useTransform(scrollYProgress, [0.4, 0.6], ["0%", "-100%"]);
+  const imgTop = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.4, 1],
+    ["0vh", "30vh", "1vh", "0vh"]
+  );
+
+  const textOpacity = useTransform(scrollYProgress, [0.4, 0.45], [0, 1]);
+  const textScale = useTransform(scrollYProgress, [0.4, 0.45], [0.7, 1]);
+
   return (
     <motion.div
       style={{ scale, opacity }}
       ref={targetRef}
-      className="sm:w-3/5 sm:mx-auto h-[250vh] overflow-visible p-5"
+      className="sm:w-3/5 sm:mx-auto h-[300vh] overflow-visible p-5 flex flex-col items-center max-w-screen-md"
     >
-      <div className="sticky top-0">
-        <Image
-          height={300}
-          width={400}
-          className="event-img  max-h-80"
-          src={eventDetails.eventImg}
-          alt="event 1"
-        />
-      </div>
-      <div className="text-white sticky top-80">
-        <h2>Event Name</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-          repudiandae numquam assumenda atque quas error corrupti dolorum in
-          provident, officia culpa fuga voluptate odit! Aut odit quas sunt
-          placeat eaque.
+      <motion.div
+        style={{ top: imgTop }}
+        className="sticky overflow-x-hidden flex gap-3"
+      >
+        <motion.div
+          className="event_images_container flex flex-col justify-center items-center w-full h-full text-gray-50 animate-pulse"
+          style={{ x }}
+        >
+          <h3 className="text-3xl uppercase">Event</h3>
+          <p className="text-6xl font-bold">{index + 1}</p>
+        </motion.div>
+        <motion.div className="event_images_container" style={{ x }}>
+          <Image
+            height={300}
+            width={400}
+            className="relative top-5 w-full"
+            src={eventDetails.eventImg}
+            alt="event 1"
+          />
+        </motion.div>
+      </motion.div>
+      <motion.div
+        style={{ opacity: textOpacity, scale: textScale }}
+        className="text-white sticky top-[18rem]"
+      >
+        <h2 className=" px-3 py-2 bg-accent2 font-semibold text-xl mb-2">
+          {eventDetails.eventName}{" "}
+        </h2>
+        {/* <span className="text-base font-medium">{eventDetails.slogan}</span> */}
+        <p className="text-base md:text-lg border-l-4 pl-3 border-accent2">
+          {eventDetails.eventDesc}
         </p>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -56,7 +80,7 @@ function VerticalTab({ data }) {
         </h4>
       </div>
       {data.map((el, i) => {
-        return <Box key={i} eventDetails={el.event} />;
+        return <Box key={i} eventDetails={el.event} index={i} />;
       })}
     </motion.section>
   );
