@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Arrow from "./icons/Arrow";
 import Link from "next/link";
 
@@ -10,10 +11,17 @@ const Archive = () => {
         Discover previous editions of kriti
         <span className="text-accent">.</span>
       </h3>
-      <div className="bg-[url('/archive.webp')] flex items-center justify-center size-96 bg-cover -translate-x-4">
+      <div className="relative">
+        <Image
+          height={400}
+          width={300}
+          src={"/archive.png"}
+          alt="A polaroid of Kakatiya research day."
+          className=" filter brightness-90"
+        />
         <Link
           href={"/archives"}
-          className="flex items-center justify-between gap-3 bg-accent hover:scale-105 transition-all px-4 py-2 hover focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-base lg:text-lg translate-x-2 -translate-y-4"
+          className="flex items-center justify-between gap-3 bg-accent absolute top-0 left-[5.75rem] translate-y-[15rem] my-auto -rotate-[10deg] hover:scale-105 transition-all px-4 py-2 hover focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-base lg:text-lg"
         >
           Archive <Arrow color={"#eee"} size={12} />
         </Link>
