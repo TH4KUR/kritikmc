@@ -32,7 +32,8 @@ export default defineConfig({
                   .documentId("siteSettings")
               ),
             ...S.documentTypeListItems().filter(
-              (listItem) => !["siteSettings"].includes(listItem.getId())
+              (listItem) =>
+                !["siteSettings", "eventPlan"].includes(listItem.getId())
             ),
           ]),
     }),

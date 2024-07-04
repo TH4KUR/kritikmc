@@ -1,14 +1,6 @@
 "use client";
-
-import { myClient } from "@/sanity";
-import imageUrlBuilder from "@sanity/image-url";
+import { urlForImage } from "@/sanity/lib/image";
 import { motion } from "framer-motion";
-
-const builder = imageUrlBuilder(myClient);
-
-function retrieveImageUrl(source) {
-  return builder.image(source);
-}
 
 const SpeakerCard = ({ data }) => {
   if (data.speakertype === "Chief Guest") {
@@ -24,7 +16,7 @@ const SpeakerCard = ({ data }) => {
         className="grid grid-cols-12 mt-8"
       >
         <div
-          style={{ "--image-url": `url(${retrieveImageUrl(data.speakerimg)})` }}
+          style={{ "--image-url": `url(${urlForImage(data.speakerimg)})` }}
           className="bg-[image:var(--image-url)] bg-cover col-span-4 rounded-l-lg saturate-50"
         ></div>
         <div className=" bg-[#F4E3D4] col-span-8 rounded-r-lg px-3 py-5">

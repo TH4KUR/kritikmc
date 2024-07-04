@@ -1,4 +1,4 @@
-import TimelineCard from "./TimelineCard";
+import TimelineCard from "../events-plan/components/TimelineCard";
 import Arrow from "./icons/Arrow";
 import Link from "next/link";
 

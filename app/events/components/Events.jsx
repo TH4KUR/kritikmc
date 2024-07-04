@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import "./VTStyles.css";
 import Image from "next/image";
+import { urlForImage } from "@/sanity/lib/image";
 
-const Box = ({ eventDetails, index }) => {
+const Box = async ({ eventDetails, index }) => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -29,7 +29,6 @@ const Box = ({ eventDetails, index }) => {
 
   const textOpacity = useTransform(scrollYProgress, [0.4, 0.45], [0, 1]);
   const textScale = useTransform(scrollYProgress, [0.4, 0.45], [0.7, 1]);
-
   return (
     <motion.div
       style={{ scale: containerScale, opacity: containerOpacity }}
@@ -52,7 +51,7 @@ const Box = ({ eventDetails, index }) => {
             height={300}
             width={400}
             className="relative top-5 w-full"
-            src={eventDetails.eventImg}
+            src={urlForImage(eventDetails.eventImg)}
             alt="event 1"
           />
         </motion.div>
@@ -70,8 +69,8 @@ const Box = ({ eventDetails, index }) => {
             {eventDetails.eventDesc}
           </p>
           <ul className="mt-5 py-3 px-4 bg-accent2/5">
-            <li>Event Coordinator: Mohanram Reddy</li>
-            <li>Contact info: +91 8700621534</li>
+            <li>Event Coordinator: {eventDetails.eventCoordinator}</li>
+            <li>Contact info: +91 {eventDetails.eventCoordinatorContact}</li>
           </ul>
         </div>
         <div className="flex flex-col items-center self-center pb-10 relative after:w-20 after:h-1 after:bg-accent2/50 after:absolute after:bottom-0">
@@ -84,7 +83,7 @@ const Box = ({ eventDetails, index }) => {
               );
             }}
           >
-            {eventDetails.eventName} - {eventDetails.slogan}
+            {eventDetails.eventName} - {eventDetails.eventSlogan}
           </motion.p>
         </div>
       </motion.div>
@@ -107,7 +106,7 @@ function VerticalTab({ data }) {
         </h4>
       </div>
       {data.map((el, i) => {
-        return <Box key={i} eventDetails={el.event} index={i} />;
+        return <Box key={i} eventDetails={el} index={i} />;
       })}
     </motion.section>
   );

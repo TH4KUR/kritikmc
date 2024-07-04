@@ -1,8 +1,10 @@
 import SecondaryHero from "../components/SecondaryHero";
 import Nav from "../components/Nav";
-import TimelineCard from "../components/TimelineCard";
+import TimelineCard from "./components/TimelineCard";
 import Footer from "../components/Footer";
-
+export const metadata = {
+  title: "Events Plan",
+};
 async function page() {
   let data = [
     {

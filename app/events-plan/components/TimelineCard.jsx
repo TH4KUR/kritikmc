@@ -1,4 +1,4 @@
-import Bullet from "./icons/Bullet";
+import Bullet from "../../components/icons/Bullet";
 import { Cutive } from "next/font/google";
 const cutive = Cutive({
   subsets: ["latin"],

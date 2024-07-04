@@ -10,7 +10,7 @@ const poppins = Poppins({
 export const metadata = {
   title: {
     template: "%s - kriti. | Kakatiya Medical College",
-    default: "Homepage",
+    default: "Homepage - kriti. | Kakatiya Medical College",
   },
   description:
     "The premier medical conference hosted by Kakatiya Medical College, Warangal. Join events or seminars by top medical experts.",
