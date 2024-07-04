@@ -10,9 +10,17 @@ const Box = ({ eventDetails, index }) => {
     target: targetRef,
     offset: ["start end", "end start"],
   });
-  const scale = useTransform(scrollYProgress, [0, 0.5, 0.7, 1], [0.8, 1, 1, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const x = useTransform(scrollYProgress, [0.4, 0.6], ["0%", "-100%"]);
+  const containerScale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 0.7, 1],
+    [0.8, 1, 1, 0]
+  );
+  const containerOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+  const imgX = useTransform(scrollYProgress, [0.4, 0.6], ["0%", "-100%"]);
   const imgTop = useTransform(
     scrollYProgress,
     [0, 0.3, 0.4, 1],
@@ -24,9 +32,9 @@ const Box = ({ eventDetails, index }) => {
 
   return (
     <motion.div
-      style={{ scale, opacity }}
+      style={{ scale: containerScale, opacity: containerOpacity }}
       ref={targetRef}
-      className="sm:w-3/5 sm:mx-auto h-[300vh] overflow-visible p-5 flex flex-col items-center max-w-screen-md"
+      className="sm:w-3/5 sm:mx-auto h-[300vh] overflow-visible p-5 flex flex-col items-center max-w-screen-md relative"
     >
       <motion.div
         style={{ top: imgTop }}
@@ -34,12 +42,12 @@ const Box = ({ eventDetails, index }) => {
       >
         <motion.div
           className="event_images_container flex flex-col justify-center items-center w-full h-full text-gray-50 animate-pulse"
-          style={{ x }}
+          style={{ x: imgX }}
         >
           <h3 className="text-3xl uppercase">Event</h3>
           <p className="text-6xl font-bold">{index + 1}</p>
         </motion.div>
-        <motion.div className="event_images_container" style={{ x }}>
+        <motion.div className="event_images_container" style={{ x: imgX }}>
           <Image
             height={300}
             width={400}
@@ -67,9 +75,17 @@ const Box = ({ eventDetails, index }) => {
           </ul>
         </div>
         <div className="flex flex-col items-center self-center pb-10 relative after:w-20 after:h-1 after:bg-accent2/50 after:absolute after:bottom-0">
-          <p>
+          <motion.p
+            whileInView={() => {
+              window.history.pushState(
+                {},
+                "Title",
+                `/events#${eventDetails.eventName}-${index + 1}`
+              );
+            }}
+          >
             {eventDetails.eventName} - {eventDetails.slogan}
-          </p>
+          </motion.p>
         </div>
       </motion.div>
     </motion.div>

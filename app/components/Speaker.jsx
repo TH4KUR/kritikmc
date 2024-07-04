@@ -5,7 +5,7 @@ async function Speaker({ speakerdata }) {
   const calcRows = Math.round(speakerdata.length / 2);
   return (
     <section className="bg-bgSecondary flex flex-col items-center pt-8 pb-20 px-6 min-h-[600px] justify-center">
-      <h2 className=" text-[#DA5867] uppercase font-semibold text-sm md:text-lg mt-5">
+      <h2 className=" text-[#DA5867] uppercase font-semibold text-base md:text-lg mt-5">
         Speakers
       </h2>
       <h3 className="text-gray-100 text-2xl font-semibold md:text-3xl">

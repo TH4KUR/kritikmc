@@ -34,7 +34,7 @@ const SpeakerCard = ({ data }) => {
           <h4 className=" text-sm text-red-800 font-semibold lg:text-base">
             {data.speakertype}
           </h4>
-          <p className="mt-3 text-sm sm:text-base font-medium">
+          <p className="mt-3 text-xs sm:text-base font-medium">
             {data.speakerdesc}
           </p>
         </div>
@@ -69,7 +69,7 @@ const SpeakerCard = ({ data }) => {
           <h4 className=" text-sm text-[#327D18] font-semibold lg:text-base">
             {data.speakertype}
           </h4>
-          <p className="mt-3 text-sm sm:text-base font-medium">
+          <p className="mt-3 text-xs sm:text-base font-medium">
             {data.speakerdesc}
           </p>
         </div>

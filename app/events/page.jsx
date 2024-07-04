@@ -5,6 +5,11 @@ import { myClient } from "@/sanity";
 import Footer from "../components/Footer";
 import Event from "./components/Event";
 import Timeline from "../components/Timeline";
+
+export const metadata = {
+  title: "Events",
+};
+
 async function getDeadline() {
   const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
   return res[0].deadline;

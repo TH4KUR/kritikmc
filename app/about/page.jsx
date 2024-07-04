@@ -6,6 +6,10 @@ import KritiInfo from "./components/KritiInfo";
 import { myClient } from "@/sanity";
 import Stats from "../components/Stats";
 
+export const metadata = {
+  title: "About Us",
+};
+
 export const AboutCard = ({ imgSrc, title, body }) => {
   return (
     <div className="w-full bg-bgSecondary flex flex-col  overflow-hidden rounded-lg min-h-full">

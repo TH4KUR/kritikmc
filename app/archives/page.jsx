@@ -5,6 +5,10 @@ import Footer from "../components/Footer";
 import Image from "next/image";
 import ImageCarousel from "./components/ImageCarousel";
 
+export const metadata = {
+  title: "Archives",
+};
+
 const page = () => {
   return (
     <>

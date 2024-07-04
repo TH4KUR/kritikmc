@@ -2,6 +2,10 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Form from "./components/Form";
 
+export const metadata = {
+  title: "Registration Form",
+};
+
 export default async function Home() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
   return (

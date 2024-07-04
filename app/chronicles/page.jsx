@@ -7,6 +7,10 @@ import MagazineSlider from "./components/MagazineSlider";
 import Footer from "../components/Footer";
 import Articles from "./components/Articles";
 
+export const metadata = {
+  title: "Magazine",
+};
+
 async function getDeadline() {
   const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
   return res[0].deadline;
