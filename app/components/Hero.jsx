@@ -5,7 +5,7 @@ import DesktopHero from "./DesktopHero";
 import Image from "next/image";
 const Hero = async () => {
   return (
-    <section className="relative md:h-[95vh]">
+    <section className="relative md:h-[95vh] md:bg-[#090909]">
       <div className=" md:hidden">
         <Image
           width={400}
