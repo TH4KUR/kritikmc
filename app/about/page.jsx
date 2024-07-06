@@ -6,6 +6,7 @@ import KritiInfo from "./components/KritiInfo";
 
 import Stats from "../components/Stats";
 import getDeadlineData from "../lib/getDeadlineData";
+import Image from "next/image";
 
 export const metadata = {
   title: "About Us",
@@ -15,10 +16,16 @@ export const AboutCard = ({ imgSrc, title, body }) => {
   return (
     <div className="w-full bg-bgSecondary flex flex-col  overflow-hidden rounded-lg min-h-full">
       <div className="max-h-[1/2] overflow-hidden">
-        <img
+        <Image
+          height={400}
+          width={300}
+          style={{
+            height: "100%",
+            width: "100%",
+          }}
           src={imgSrc}
           alt="About Us Image"
-          className="block h-full w-full filter brightness-[0.80] object-cover"
+          className="block filter brightness-[0.80] object-cover"
         />
       </div>
       <div className="max-h-[1/2] px-5 py-6 md:py-8 flex flex-col justify-center self-center">
