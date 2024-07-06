@@ -3,7 +3,7 @@ import { siteSettings } from "./schemaTypes/siteSettings";
 import { speakers } from "./schemaTypes/speakers";
 import { events } from "./schemaTypes/events";
 import { eventPlan } from "./schemaTypes/eventPlan";
-import { eventBreakdown } from "./schemaTypes/eventBreakdown";
+import { conferenceBreakdown } from "./schemaTypes/conferenceBreakdown";
 
 export const schema = {
   types: [
@@ -12,6 +12,6 @@ export const schema = {
     speakers,
     events,
     eventPlan,
-    eventBreakdown,
+    conferenceBreakdown,
   ],
 };

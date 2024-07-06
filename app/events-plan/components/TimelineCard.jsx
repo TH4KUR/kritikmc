@@ -12,14 +12,20 @@ const TimelineCard = ({ data }) => {
         <h4 className="text-black uppercase underline underline-offset-4 text-lg font-bold ">
           {data.day}
         </h4>
-        <h5 className="text-black text-sm ">{data.date}</h5>
+        <h5 className="text-black text-base ">
+          {new Date(data.date).toLocaleString("default", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </h5>
       </div>
-      <div className="relative before:absolute before:bg-[url('/papertexture.jpg')] before:h-full before:w-full before:block before:z-[-1] before:opacity-30 before:bg-cover before:left-0 before:top-0 px-4 py-8">
-        <ul className={cutive.className + " text-xs"}>
+      <div className="relative before:absolute before:bg-[url('/papertexture.jpg')] before:h-full before:w-full before:block before:z-[-1] before:opacity-25 before:bg-cover before:left-0 before:top-0 px-4 py-8">
+        <ul className={cutive.className + " text-sm"}>
           {data.schedule.map((el, i) => {
             return (
               <li key={i} className="mt-4 font-bold text-gray-800">
-                {el.time}
+                {!el.postNriLunch ? el.time : "Post NRI Lunch in NRI Hall"}
                 <br />
                 {el.events.map((eventName, j) => {
                   return (

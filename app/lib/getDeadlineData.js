@@ -1,7 +1,9 @@
-import { myClient } from "@/sanity";
+import { sanityFetch } from "@/sanity";
 
 async function getDeadlineData() {
-  const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
+  const res = await sanityFetch({
+    query: `*[_type=='siteSettings']{deadline}`,
+  });
   return res[0].deadline;
 }
 

@@ -3,7 +3,7 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import SecondaryHero from "../components/SecondaryHero";
 import KritiInfo from "./components/KritiInfo";
-import { myClient } from "@/sanity";
+
 import Stats from "../components/Stats";
 
 export const metadata = {

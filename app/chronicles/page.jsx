@@ -1,23 +1,17 @@
 import Nav from "../components/Nav";
 import SecondaryHero from "../components/SecondaryHero";
 import Timer from "../components/Timer";
-import { myClient } from "@/sanity";
-
 import MagazineSlider from "./components/MagazineSlider";
 import Footer from "../components/Footer";
 import Articles from "./components/Articles";
+import getDeadlineData from "../lib/getDeadlineData";
 
 export const metadata = {
   title: "Magazine",
 };
 
-async function getDeadline() {
-  const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
-  return res[0].deadline;
-}
-
 async function page() {
-  const deadline = await getDeadline();
+  const deadline = await getDeadlineData();
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
 
   return (

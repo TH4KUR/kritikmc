@@ -12,14 +12,30 @@ export const siteSettings = defineType({
       readOnly: true,
     }),
     defineField({
+      title: "Timer Countdown DateTime",
       name: "deadline",
       type: "datetime",
-      description:
-        "Add the date,time the timer should count to. NOTE: Make sure only 1 Timer is active.",
+      description: "Add the date,time the timer should count to.",
       validation: (rule) =>
         rule
           .required()
           .error("Required to display timer countdown on the website!"),
+    }),
+    defineField({
+      title: "Registrations Start Date",
+      name: "registrationStart",
+      type: "date",
+      description: "Add the registration start date.",
+      validation: (rule) =>
+        rule.required().error("Required to display data on the website!"),
+    }),
+    defineField({
+      title: "Registrations End Date",
+      name: "registrationEnd",
+      type: "date",
+      description: "Add the registration end date.",
+      validation: (rule) =>
+        rule.required().error("Required to display data on the website!"),
     }),
   ],
 });

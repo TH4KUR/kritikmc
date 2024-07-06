@@ -2,46 +2,13 @@ import SecondaryHero from "../components/SecondaryHero";
 import Nav from "../components/Nav";
 import TimelineCard from "./components/TimelineCard";
 import Footer from "../components/Footer";
+import getConvertedEventsData from "../lib/getConvertedEventsData";
 export const metadata = {
   title: "Events Plan",
 };
 async function page() {
-  let data = [
-    {
-      day: "Day 1",
-      date: "27 July 20xx",
-      schedule: [
-        { time: "09:30 - 12:30", events: ["Jeopardy", "Working Lunch"] },
-        { time: "Post Working Lunch in NRI Hall", events: ["Med-Exhibition"] },
-        {
-          time: "13:30 - 15:00",
-          events: ["Debate"],
-        },
-        { time: "15:30 - 16:15", events: ["Guest Lecture - 1"] },
-        { time: "16:45 - 18:15", events: ["Hackathon"] },
-      ],
-    },
-    {
-      day: "Day 2",
-      date: "28 July 20xx",
-      schedule: [
-        {
-          time: "09:30 - 11:30",
-          events: ["Podium Paper Presentation", "Poster Presentation"],
-        },
-        {
-          time: "11:45 - 12:45",
-          events: ["Inauguration Ceremony", "Working Lunch"],
-        },
-        { time: "Post Working Lunch in NRI Hall", events: ["Med-Exhibition"] },
-
-        { time: "14:00 - 14:45", events: ["Guest Lecture - 2"] },
-        { time: "15:30 - 17:00", events: ["Symposium"] },
-        { time: "6:30pm - 8:00pm", events: ["Prize Distribution"] },
-      ],
-    },
-  ];
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const data = await getConvertedEventsData();
+  await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
 
   return (
     <>

@@ -74,6 +74,9 @@ const Nav = ({ bg }) => {
                 <Link href={"#"}>alumini.</Link>
               </li>
               <li>
+                <Link href={"/contact"}>contact us.</Link>
+              </li>
+              <li>
                 {" "}
                 <Link
                   href={"/registration"}
@@ -153,11 +156,19 @@ const Nav = ({ bg }) => {
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
+                              <Link href={"/events-plan"}>events plan.</Link>
+                            </li>
+                            <li className="flex items-center gap-1 mt-1">
+                              <Caret color={"#000"} />
                               <Link href={"/archives"}>archives.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
                               <Link href={"#"}>alumini.</Link>
+                            </li>
+                            <li className="flex items-center gap-1 mt-1">
+                              <Caret color={"#000"} />
+                              <Link href={"/contact"}>contact us.</Link>
                             </li>
                           </ul>
                           <div className="mt-4">

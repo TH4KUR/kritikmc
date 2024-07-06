@@ -1,8 +1,9 @@
-import TimelineCard from "../events-plan/components/TimelineCard";
+import getResgistrationDates from "../lib/getRegistrationDates";
 import Arrow from "./icons/Arrow";
 import Link from "next/link";
 
-const Timeline = ({ light = false }) => {
+const Timeline = async ({ light = false }) => {
+  const { registrationStart, registrationEnd } = await getResgistrationDates();
   if (!light) {
     return (
       <section className="bg-[url('/timelinebg.png')] bg-contains bg-origin-border flex flex-col items-center py-20 px-1 text-gray-200">
@@ -15,13 +16,25 @@ const Timeline = ({ light = false }) => {
         <div className="flex flex-col gap-4 w-11/12 mx-auto max-w-3xl mt-10 text-gray-200">
           <div className="flex justify-between mx-auto w-3/4 text-sm md:text-base  lg:text-lg font-medium">
             <p>Registration Open</p>
-            <span className="before:content-[''] before:absolute  before:w-[50px] md:before:w-[100px] before:h-[1px] md:before:h-[2px] before:bg-gray-100 relative flex items-center justify-center "></span>
-            <p>27 July 20xx</p>
+            <span className="before:content-[''] before:absolute  before:w-[30px] md:before:w-[100px] before:h-[1px] md:before:h-[2px] before:bg-gray-100 relative flex items-center justify-center "></span>
+            <p>
+              {new Date(registrationStart).toLocaleString("default", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
           </div>
           <div className="flex justify-between mx-auto w-3/4 text-sm md:text-base lg:text-lg font-medium">
             <p>Registration Close</p>
-            <span className="before:content-[''] before:absolute  before:w-[50px] md:before:w-[100px] before:h-[1px] md:before:h-[2px] before:bg-gray-100 relative flex items-center justify-center "></span>
-            <p>27 Sept 20xx</p>
+            <span className="before:content-[''] before:absolute  before:w-[30px] md:before:w-[100px] before:h-[1px] md:before:h-[2px] before:bg-gray-100 relative flex items-center justify-center "></span>
+            <p>
+              {new Date(registrationEnd).toLocaleString("default", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
           </div>
           <Link
             href={"/events-plan"}
@@ -64,11 +77,6 @@ const Timeline = ({ light = false }) => {
             <span>Events Plan</span> <Arrow size={10} color={"#074802"} />
           </Link>
         </div>
-        {/* <div className="mt-5 w-full grid grid-cols-2 gap-1">
-    {data.map((dat, i) => {
-      return <TimelineCard key={i} data={dat} />;
-    })}
-  </div> */}
       </section>
     );
   }

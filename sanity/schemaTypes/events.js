@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-
+// *[_type == 'conferenceBreakdown']{timeslots,"eventsRef":timeslots[].events[]->}
 export const events = defineType({
   name: "events",
   title: "Events",

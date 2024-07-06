@@ -4,21 +4,13 @@ import Speaker from "./components/Speaker";
 import Timeline from "./components/Timeline";
 import Timer from "./components/Timer";
 import Footer from "./components/Footer";
-import { myClient } from "@/sanity";
 import Stats from "./components/Stats";
 import Archive from "./components/Archive";
+import getDeadlineData from "./lib/getDeadlineData";
+import getSpeakerData from "./lib/getSpeakerData";
 
 export default async function Home() {
-  async function getDeadline() {
-    const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
-    return res[0].deadline;
-  }
-  async function getSpeakerData() {
-    const speakerQuery = `*[_type=='speakers']{speakername,speakertype,speakerimg,speakerdesc} | order(speakertype asc)`;
-    const data = await myClient.fetch(speakerQuery);
-    return data;
-  }
-  const deadline = await getDeadline();
+  const deadline = await getDeadlineData();
   const speakerdata = await getSpeakerData();
 
   // FORCING Loading Screen
