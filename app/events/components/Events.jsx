@@ -58,7 +58,7 @@ const Box = async ({ eventDetails, index }) => {
       </motion.div>
       <motion.div
         style={{ opacity: textOpacity, scale: textScale }}
-        className="text-white sticky top-[18rem] flex flex-col gap-10"
+        className="text-white bg-[#090909] sticky top-[18rem] lg:top-[30rem] flex flex-col gap-10"
       >
         <div className="">
           <h2 className=" px-3 py-2 bg-accent2 font-semibold text-xl mb-2">
