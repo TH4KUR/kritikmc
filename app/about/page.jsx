@@ -5,6 +5,7 @@ import SecondaryHero from "../components/SecondaryHero";
 import KritiInfo from "./components/KritiInfo";
 
 import Stats from "../components/Stats";
+import getDeadlineData from "../lib/getDeadlineData";
 
 export const metadata = {
   title: "About Us",
@@ -43,11 +44,8 @@ const page = async () => {
       body: `The First Kakatiya Research Day began with an online Alumni Committee meeting on July 16, 2022, to enhance research at KMC and foster academic excellence. After a year of planning, the event took place on July 22, 2023, with the theme "Today's research, tomorrow's practice." Guided by the Principal, faculty, and KMC USA NRI alumni, the event featured submissions from nearly 100 medical colleges across India. Sixty students presented their research through papers, posters, debates, and a unique Jeopardy quiz. Keynote lectures on cutting-edge medical topics further enriched the event. The inaugural Kakatiya Research Day provided a platform for students to showcase their research and engage with peers and professionals, highlighting KMC's commitment to academic excellence and nurturing future medical researchers.`,
     },
   ];
-  async function getDeadline() {
-    const res = await myClient.fetch(`*[_type=='siteSettings']{deadline}`);
-    return res[0].deadline;
-  }
-  const deadline = await getDeadline();
+
+  const deadline = await getDeadlineData();
   return (
     <>
       <Nav />

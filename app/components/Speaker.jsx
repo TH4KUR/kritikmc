@@ -1,8 +1,6 @@
 import SpeakerCard from "./SpeakerCard";
-import { myClient } from "@/sanity";
 
 async function Speaker({ speakerdata }) {
-  const calcRows = Math.round(speakerdata.length / 2);
   return (
     <section className="bg-bgSecondary flex flex-col items-center pt-8 pb-20 px-6 min-h-[600px] justify-center">
       <h2 className=" text-[#DA5867] uppercase font-semibold text-base md:text-lg mt-5">
