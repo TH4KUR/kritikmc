@@ -59,23 +59,62 @@ const Nav = ({ bg }) => {
           <div className="hidden lg:block">
             <ul className="font-semibold text-black text-lg flex h-full items-center gap-6">
               <li>
-                <Link href={"/"}>home.</Link>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
+                  href={"/"}
+                >
+                  home.
+                </Link>
               </li>
               <li>
-                <Link href={"/about"}>about us.</Link>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
+                  href={"/about"}
+                >
+                  about us.
+                </Link>
               </li>
               <li>
-                <Link href={"/events"}>events.</Link>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
+                  href={"/events"}
+                >
+                  events.
+                </Link>
               </li>
               <li>
-                <Link href={"/archives"}>archives.</Link>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
+                  href={"/events-iternary"}
+                >
+                  events-iternary.
+                </Link>
               </li>
               <li>
-                <Link href={"#"}>alumini.</Link>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
+                  href={"/archives"}
+                >
+                  archives.
+                </Link>
               </li>
               <li>
-                <Link href={"/contact"}>contact us.</Link>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
+                  href={"/alumni"}
+                >
+                  alumni.
+                </Link>
               </li>
+              <li>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
+                  href={"/contact"}
+                >
+                  contact us.
+                </Link>
+              </li>
+
               <li>
                 {" "}
                 <Link
@@ -156,7 +195,9 @@ const Nav = ({ bg }) => {
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
-                              <Link href={"/events-plan"}>events plan.</Link>
+                              <Link href={"/events-iternary"}>
+                                Events Iternary.
+                              </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
@@ -164,7 +205,7 @@ const Nav = ({ bg }) => {
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
-                              <Link href={"#"}>alumini.</Link>
+                              <Link href={"/alumni"}>alumni.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />

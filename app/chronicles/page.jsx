@@ -30,9 +30,11 @@ async function page() {
       />
       <Timer deadline={deadline} showButton={true} />
 
-      <MagazineSlider />
-      <hr className="border-black bg-bg w-1/4 mx-auto" />
-      <Articles />
+      <div className="max-w-screen-md mx-auto">
+        <MagazineSlider />
+        <hr className="border-black bg-bg w-1/4 mx-auto" />
+        <Articles />
+      </div>
       <Footer />
     </>
   );

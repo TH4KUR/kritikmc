@@ -7,6 +7,7 @@ import KritiInfo from "./components/KritiInfo";
 import Stats from "../components/Stats";
 import getDeadlineData from "../lib/getDeadlineData";
 import Image from "next/image";
+import Timer from "../components/Timer";
 
 export const metadata = {
   title: "About Us",
@@ -52,6 +53,8 @@ const page = async () => {
     },
   ];
 
+  // FORCING Loading Screen
+  await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
   const deadline = await getDeadlineData();
   return (
     <>
@@ -63,7 +66,7 @@ const page = async () => {
             "Kriti. celebrates groundbreaking research and innovation, fostering collaboration and knowledge sharing among academics, scientists, and industry leaders to drive progress and address global challenges."
           }
         />
-        {/* <Timer deadline={deadline} />  */}
+        <Timer deadline={deadline} />
         <section className="bg-bg py-10">
           <h2 className=" text-accent uppercase font-bold text-base md:text-lg lg:text-lg text-center">
             About

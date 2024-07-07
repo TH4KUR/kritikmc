@@ -61,10 +61,7 @@ const Timer = ({ deadline, showButton }) => {
             }}
           >
             <p className="flex justify-center gap-3">
-              <span className="font-semibold">
-                {" "}
-                Hurry Up! Registrations Close in:
-              </span>
+              <span className="font-semibold"> Registrations Close in:</span>
               <span>
                 {days != 0 ? <>{days} day(s)</> : ""}{" "}
                 {`${hours}:${minutes}:${seconds} `} hrs
@@ -73,18 +70,20 @@ const Timer = ({ deadline, showButton }) => {
             {showButton ? (
               <Link
                 href={"/registration"}
-                className="text-sm underline underline-offset-1 flex items-center justify-self-center"
+                className="text-base underline underline-offset-1 flex items-center justify-center"
               >
-                Register Now{" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="10"
-                  height="10"
-                  fill="#eee"
-                  viewBox="0 0 256 256"
-                >
-                  <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
-                </svg>
+                <p className=" flex gap-1 items-center">
+                  Register Now{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    fill="#eee"
+                    viewBox="0 0 256 256"
+                  >
+                    <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
+                  </svg>
+                </p>
               </Link>
             ) : (
               ""

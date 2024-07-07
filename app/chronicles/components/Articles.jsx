@@ -114,7 +114,7 @@ function EmblaCarousel() {
 
 const Articles = () => {
   return (
-    <section className="text-black  bg-bg py-10 px-1">
+    <section className="text-black  bg-bg py-10 px-1 max-w-[500px] mx-auto">
       <h1 className="text-lg font-semibold mb-2 px-2 ">Must read articles</h1>
       <p className="text-sm mb-7 px-2 font-medium text-black/80">
         Explore our magazine&apos;s must-read articles: captivating stories,

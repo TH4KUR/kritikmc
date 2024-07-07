@@ -37,10 +37,10 @@ const Timeline = async ({ light = false }) => {
             </p>
           </div>
           <Link
-            href={"/events-plan"}
+            href={"/events-iternary"}
             className="flex justify-center gap-1 items-center w-1/2 mx-auto bg-[#cbe896] px-4 py-2 rounded-lg text-[#074802] font-semibold text-base md:text-base mt-10 hover:bg-[#d2fc85] hover:w-full hover:scale-105 transition-all focus:outline-none hover:gap-3 focus:ring focus:ring-[#7ea03e] "
           >
-            <span>Events Plan</span> <Arrow size={10} color={"#074802"} />
+            <span>Events Iternary</span> <Arrow size={10} color={"#074802"} />
           </Link>
         </div>
         {/* <div className="mt-5 w-full grid grid-cols-2 gap-1">
@@ -71,10 +71,10 @@ const Timeline = async ({ light = false }) => {
             <p>27 Sept 20xx</p>
           </div>
           <Link
-            href={"/events-plan"}
+            href={"/events-iternary"}
             className="flex justify-center gap-1 items-center w-1/2 mx-auto bg-[#cbe896] px-4 py-2 rounded-lg text-[#074802] font-semibold text-base md:text-base mt-10 hover:bg-[#d2fc85] hover:w-full hover:scale-105 transition-all focus:outline-none hover:gap-3 focus:ring focus:ring-[#7ea03e] "
           >
-            <span>Events Plan</span> <Arrow size={10} color={"#074802"} />
+            <span>Events Iternary</span> <Arrow size={10} color={"#074802"} />
           </Link>
         </div>
       </section>

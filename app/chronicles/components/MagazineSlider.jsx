@@ -2,6 +2,7 @@
 "use client";
 import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Link from "next/link";
 
 function EmblaCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -28,36 +29,37 @@ function EmblaCarousel() {
         </button>
         <div className="embla" ref={emblaRef}>
           <div className="embla__container">
-            <button
+            <Link
               className="embla__slide"
-              onClick={() => {
-                console.log("Clicked");
-              }}
+              href={"/kc_chronicles_1st_edition.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <img className="rounded-xl" src="/v1.webp" alt="magazine cover" />
               <span className="mt-3 font-semibold">Issue 1</span>
               <span className="text-xs">July 2023</span>
-            </button>
-            <button
+            </Link>
+            <Link
               className="embla__slide"
-              onClick={() => {
-                console.log("Clicked");
-              }}
+              href={"/kc_chronicles_2nd_edition.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <img className="rounded-xl" src="/v2.webp" alt="magazine cover" />
               <span className="mt-3 font-semibold">Issue 2</span>
               <span className="text-xs">November 2023</span>
-            </button>
-            <button
+            </Link>
+            <Link
               className="embla__slide"
-              onClick={() => {
-                console.log("Clicked");
-              }}
+              href={"/kc_chronicles_3rd_edition.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+              // locale={true}
             >
               <img className="rounded-xl" src="/v3.webp" alt="magazine cover" />
               <span className="mt-3 font-semibold">Issue 3</span>
               <span className="text-xs">May 2024</span>
-            </button>
+            </Link>
           </div>
         </div>
         <button className="embla__next relative z-[100]" onClick={scrollNext}>
@@ -82,7 +84,7 @@ const MagazineSlider = () => {
       <h1 className=" text-accent font-semibold">
         All Volumes issued to date.
       </h1>
-      <p className="text-sm">Click on a coverPage to read</p>
+      <p className="text-sm">Click on a coverPage to download the pdf</p>
       <EmblaCarousel />
     </section>
   );

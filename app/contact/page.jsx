@@ -17,11 +17,11 @@ async function page() {
       <Nav />
       <SecondaryHero
         title={"Contact Us"}
-        body={"Below are the details to required needed for you to each us."}
+        body={"Below are the details to required needed for you to reach us."}
       />
       <section className="bg-bg py-10">
         <h2 className=" text-accent uppercase font-bold text-base md:text-lg lg:text-lg text-center">
-          About
+          Contact Us
         </h2>
         <h3 className="text-2xl font-bold md:text-3xl mb-10 text-center">
           Information about kriti.

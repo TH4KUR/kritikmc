@@ -38,7 +38,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
                   <Caret color={"#ddd"} />
-                  <Link href={"/events-plan"}>events plan.</Link>
+                  <Link href={"/events-iternary"}>Events Iternary.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
                   <Caret color={"#ddd"} />
@@ -46,7 +46,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
                   <Caret color={"#ddd"} />
-                  <Link href={"/alumini"}>alumini.</Link>
+                  <Link href={"/alumni"}>alumni.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
                   <Caret color={"#ddd"} />
