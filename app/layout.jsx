@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Credits from "./components/Credits";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -54,6 +55,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleTagManager gtmId="G-M6JXRZWCZC" />
+      <Script strategy="afterInteractive" id="script">
+        {`  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M6JXRZWCZC');`}
+      </Script>
       <body className={poppins.className}>
         {children}
 
