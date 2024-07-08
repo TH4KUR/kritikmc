@@ -1,15 +1,12 @@
 import Nav from "../components/Nav";
 import SecondaryHero from "../components/SecondaryHero";
-import Timer from "../components/Timer";
 import Footer from "../components/Footer";
-import getDeadlineData from "../lib/getDeadlineData";
 
 export const metadata = {
-  title: "Magazine",
+  title: "Contact Us",
 };
 
 async function page() {
-  const deadline = await getDeadlineData();
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
 
   return (

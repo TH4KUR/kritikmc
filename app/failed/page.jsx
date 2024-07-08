@@ -1,6 +1,10 @@
 import { cookies } from "next/headers";
 import Cancel from "@/app/components/icons/Cancel";
 
+export const metadata = {
+  title: "Payment Failed",
+};
+
 const page = () => {
   const registrationData = JSON.parse(
     atob(cookies().get("registrationData").value)

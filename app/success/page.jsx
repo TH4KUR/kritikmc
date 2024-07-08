@@ -1,6 +1,10 @@
 import { cookies } from "next/headers";
 import Checkmark from "../registration/components/icons/Checkmark";
 
+export const metadata = {
+  title: "Registration Successfull",
+};
+
 const page = () => {
   const registrationData = JSON.parse(
     atob(cookies().get("registrationData").value)

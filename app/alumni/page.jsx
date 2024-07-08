@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
-import Timer from "../components/Timer";
-import getDeadlineData from "../lib/getDeadlineData";
-
+export const metadata = {
+  title: "Alumni",
+};
 export default async function Home() {
-  const deadline = await getDeadlineData();
-
   // FORCING Loading Screen
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
 
@@ -79,7 +77,6 @@ export default async function Home() {
         </div>
       </main>
       <Footer />
-      {/* <Credits /> */}
     </>
   );
 }

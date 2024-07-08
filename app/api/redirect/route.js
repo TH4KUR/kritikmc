@@ -4,7 +4,6 @@ import axios from "axios";
 import student from "@/models/Student";
 import connectDB from "@/app/lib/connectDB";
 import { NextResponse } from "next/server";
-import { redirect } from "next/navigation";
 
 export async function POST(req, res) {
   try {
@@ -25,7 +24,7 @@ export async function POST(req, res) {
         accept: "application/json",
         "Content-Type": "application/json",
         "X-VERIFY": checksum,
-        "X-MERCHANT-ID": `${"PGTESTPAYUAT86"}`,
+        "X-MERCHANT-ID": "PGTESTPAYUAT86",
       },
     };
     const response = await axios.request(options);
@@ -52,7 +51,6 @@ export async function POST(req, res) {
         status: 301,
       });
     } else {
-      console.log(response.data);
       return NextResponse.json(response.data);
     }
   } catch (err) {
@@ -71,8 +69,3 @@ export async function POST(req, res) {
     }
   }
 }
-// export async function GET(req, res) {
-//   const { rows } = await sql`SELECT * FROM registeredstudents;`;
-//   console.log(rows);
-//   return new Response("BAD REQUEST", { status: 400 });
-// }
