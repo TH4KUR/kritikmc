@@ -92,10 +92,10 @@ export default async function Home() {
                 attempts, we are trying to expose KMC students to happenings
                 around the country, which will in turn set them up for more
                 interest in the research during the college days itself. This
-                will strengthen their CV's, harness their writing skills, team
-                building skills and leadership skills. World is changing and we
-                need our students to be competitive and prepare themselves for
-                those academic changes in the field of medicine.
+                will strengthen their CV&quot; s, harness their writing skills,
+                team building skills and leadership skills. World is changing
+                and we need our students to be competitive and prepare
+                themselves for those academic changes in the field of medicine.
               </li>
             </ul>
           </div>
