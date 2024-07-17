@@ -196,7 +196,7 @@ const Nav = ({ bg }) => {
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
                               <Link href={"/events-iternary"}>
-                                Events Iternary.
+                                events iternary.
                               </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
