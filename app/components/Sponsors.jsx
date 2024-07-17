@@ -12,8 +12,9 @@ const Sponsors = () => {
         kriti<span className="text-accent">.</span> is sponsored by
       </h3>
 
-      <div className=" grid place-items-center object-cover p-5">
+      <div>
         <Link
+          className=" flex items-center gap-5 object-cover p-5"
           href={"https://www.marrow.com/"}
           target="_blank"
           rel="noopener noreferrer"
@@ -25,6 +26,7 @@ const Sponsors = () => {
             src="/marrow.png"
             alt="Marrow"
           />
+          <span className="text-3xl font-medium">Marrow</span>
         </Link>
       </div>
     </section>

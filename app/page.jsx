@@ -9,6 +9,7 @@ import Archive from "./components/Archive";
 import getDeadlineData from "./lib/getDeadlineData";
 import getSpeakerData from "./lib/getSpeakerData";
 import Sponsors from "./components/Sponsors";
+import Brochure from "./components/Brochure";
 
 export default async function Home() {
   const deadline = await getDeadlineData();
@@ -27,9 +28,11 @@ export default async function Home() {
         <Timer deadline={deadline} />
 
         <Speaker speakerdata={speakerdata} />
+
         <Stats />
         <Timeline />
         <Sponsors />
+        <Brochure />
         <Archive />
       </main>
       <Footer />

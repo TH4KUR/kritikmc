@@ -14,7 +14,7 @@ const SpeakerCard = ({ data }) => {
           opacity: 1,
           scale: 1,
         }}
-        className="grid grid-rows-2 md:grid-rows-1 md:grid-cols-12 mt-8"
+        className="grid md:grid-rows-1 md:grid-cols-12 mt-8"
       >
         <div className="md:col-span-5 sm:h-full self-end">
           <img
@@ -46,7 +46,7 @@ const SpeakerCard = ({ data }) => {
           opacity: 1,
           scale: 1,
         }}
-        className="grid grid-rows-2 md:grid-rows-1 md:grid-cols-12 mt-8"
+        className="grid md:grid-rows-1 md:grid-cols-12 mt-8"
       >
         <div className="md:col-span-5 sm:h-full self-end">
           <img
