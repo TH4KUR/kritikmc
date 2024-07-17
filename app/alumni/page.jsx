@@ -29,8 +29,8 @@ export default async function Home() {
         <div className="grid max-w-screen-md mx-auto mt-10 text-white gap-10 px-2 text-sm md:text-base">
           <div className="flex gap-3">
             <ul className="p-3">
-              <li className="grid grid-rows-2 md:grid-rows-1 md:grid-cols-10 items-center mb-4">
-                <div className="mb-2 rounded grid place-items-center p-2 bg-white/5 col-span-3">
+              <li className="items-center mb-4">
+                <div className="size-60 mb-5 rounded grid place-items-center p-2 bg-white/5 col-span-3">
                   <img
                     className=" object-cover h-full w-full aspect-square"
                     src="/dr_sujeeth.webp"
@@ -111,8 +111,8 @@ export default async function Home() {
           </div>
           <div className="flex gap-3">
             <ul className="p-3">
-              <li className="grid grid-rows-2 md:grid-rows-1 md:grid-cols-10 items-center mb-4">
-                <div className="mb-2 rounded grid place-items-center p-2 bg-white/5 col-span-3">
+              <li className="items-center mb-4">
+                <div className="size-60 mb-5 rounded grid place-items-center p-2 bg-white/5 col-span-3">
                   <img
                     className=" object-cover h-full w-full aspect-square"
                     src="/dr_anupama.jpeg"
@@ -181,8 +181,8 @@ export default async function Home() {
           </div>
           <div className="flex gap-3">
             <ul className="p-3">
-              <li className="grid grid-rows-2 md:grid-rows-1 md:grid-cols-10 items-center mb-4">
-                <div className="mb-2 rounded grid place-items-center p-2 bg-white/5 col-span-3">
+              <li className="items-center mb-4">
+                <div className="size-60 mb-5 rounded grid place-items-center p-2 bg-white/5 col-span-3">
                   <img
                     className=" object-cover h-full w-full aspect-square"
                     src="/dr_venu.jpeg"

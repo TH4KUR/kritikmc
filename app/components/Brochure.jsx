@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Arrow from "./icons/Arrow";
+import Image from "next/image";
 
 const Brochure = () => {
   return (
@@ -12,6 +13,20 @@ const Brochure = () => {
         Download our brochure below
       </h3>
 
+      <Link
+        href={"/brochure.pdf"}
+        target="_blank"
+        rel="noopener noreferer"
+        className="rounded-lg hover:scale-105 transition-all focus:outline-none  focus:ring focus:ring-[#7ea03e]"
+      >
+        <Image
+          height={500}
+          width={200}
+          src={"/brochure_page1.jpg"}
+          alt="Kriti Brochure Front Page"
+          className="rounded-lg"
+        />
+      </Link>
       <div className=" grid place-items-center object-cover p-5">
         <Link
           href={"/brochure.pdf"}

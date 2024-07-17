@@ -13,7 +13,7 @@ const Archive = () => {
       </h3>
       <Link
         href={"/archives"}
-        className="flex items-center justify-between gap-3 bg-accent hover:scale-105 transition-all px-4 py-2 hover focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-base lg:text-lg"
+        className="flex items-center justify-between gap-3 bg-accent hover:scale-105 transition-all px-4 py-2 hover focus:outline-none focus:ring focus:ring-[#e3616c] rounded-lg text-white font-semibold text-base lg:text-lg"
       >
         Archive <Arrow color={"#eee"} size={12} />
       </Link>
