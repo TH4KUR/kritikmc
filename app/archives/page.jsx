@@ -15,12 +15,6 @@ const page = () => {
       <Nav />
       <main className="bg-bgSecondary">
         <h1 className="hidden">archives.</h1>
-        {/* <SecondaryHero
-          title={"Archive - Dive Into Our Time Capsule"}
-          body={
-            ""
-          }
-        /> */}
         <div className="px-5 py-7 relative lg:min-h-full">
           <img
             src="/archives_waves.svg"
@@ -31,9 +25,20 @@ const page = () => {
             height={100}
             width={200}
             src="/archives_heading.svg"
-            className="w-3/5 lg:w-1/5 mx-auto lg:border-b-2 mb-10 border-bg"
+            className="w-3/5 lg:w-1/5 mx-auto "
             alt="An image containing text archives."
           />
+
+          <p className="text-base text-yellow-50 md:text-lg mx-5 md:w-4/5 sm:mx-auto max-w-screen-md mb-10 lg:border-b-2 pb-10 border-bg/35">
+            Welcome to our archives. Here, you can delve into the trailblazing,
+            avant-garde, innovative, and cutting-edge medical research studies,
+            posters, articles, and insights from the previous edition of KRD.
+            <br />
+            <br />
+            Let these pioneering works inspire you to showcase your expertise
+            and create something truly extraordinary and monumental.
+          </p>
+
           <img
             src="/archives_threedots.svg"
             className=" h-[50svh] opacity-50 absolute top-0 right-0"
@@ -72,8 +77,8 @@ const page = () => {
         <section className="px-1 relative pb-10 max-w-screen-sm mx-auto">
           <ImageCarousel />
         </section>
-        <div className="p-5 bg-bgSecondary">
-          <img className="" src="/archiveHeading.gif" />
+        <div className="p-5 bg-bgSecondary ">
+          <img className="mx-auto" src="/archiveHeading.gif" />
         </div>
       </main>
       <Footer />

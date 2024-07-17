@@ -13,7 +13,7 @@ const eventsData = [
   { eventName: "Med Exhibition", eventSlug: "medExhibition" },
   { eventName: "Paper Presentation", eventSlug: "paperPresentation" },
   { eventName: "Poster Presentation", eventSlug: "posterPresentation" },
-  { eventName: "Jeopary", eventSlug: "jeopardy" },
+  { eventName: "Marrow's Jeopary", eventSlug: "jeopardy" },
   { eventName: "Hackathon", eventSlug: "hackathon" },
   { eventName: "Symposium", eventSlug: "symposium" },
 ];
@@ -27,7 +27,7 @@ const Form = () => {
       <InputCollege enabled={isStudentOfKmc} setEnabled={setIsStudentOfKmc} />
       <InputCollegeYear />
       <InputNumber />
-      <InputEvents events={eventsData} />
+      <InputEvents events={eventsData} isStudentOfKmc={isStudentOfKmc} />
 
       <div className="w-full flex justify-center items-center mb-[0!important] pb-5">
         <button

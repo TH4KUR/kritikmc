@@ -9,7 +9,7 @@ async function Speaker({ speakerdata }) {
       <h3 className="text-gray-100 text-2xl font-semibold md:text-3xl">
         Know the Speakers
       </h3>
-      <div className={`md:w-9/12 lg:w-2/5 mt-5`}>
+      <div className={`md:w-9/12 lg:w-3/5 mt-5 `}>
         {speakerdata.map((el, i) => {
           return <SpeakerCard data={el} key={i} />;
         })}

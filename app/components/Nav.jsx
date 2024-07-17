@@ -69,14 +69,6 @@ const Nav = ({ bg }) => {
               <li>
                 <Link
                   className="hover:underline underline-offset-2 transition-all"
-                  href={"/about"}
-                >
-                  about us.
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:underline underline-offset-2 transition-all"
                   href={"/events"}
                 >
                   events.
@@ -104,6 +96,14 @@ const Nav = ({ bg }) => {
                   href={"/alumni"}
                 >
                   alumni.
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
+                  href={"/about"}
+                >
+                  about us.
                 </Link>
               </li>
               <li>

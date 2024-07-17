@@ -25,12 +25,15 @@ async function page() {
           title={"Explore upcoming Events."}
           body={
             <>
-              Dive into our conference events for cutting-edge workshops,
-              seminars, and networking! Join experts, students, and
-              professionals in shaping the future of healthcare innovation.
+              Discover upcoming events featuring cutting-edge medical research
+              delivering innovative solutions to contemporary medical
+              challenges. Experience immersive symposiums, workshops and
+              seminars.
               <br />
               <br />
-              Don&apos;t miss out — be a part of the action!
+              Participate in dynamic competitions such as Med-E-Bate and Medical
+              Jeopardy, and foster a culture of curiosity and enthusiasm among
+              students.
             </>
           }
         />

@@ -3,6 +3,8 @@ import React, { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/image";
+import Link from "next/link";
+import Arrow from "@/app/components/icons/Arrow";
 
 const Box = async ({ eventDetails, index }) => {
   const targetRef = useRef(null);
@@ -68,9 +70,23 @@ const Box = async ({ eventDetails, index }) => {
           <p className="text-base md:text-lg border-l-4 pl-3 border-accent2">
             {eventDetails.eventDesc}
           </p>
+          <Link
+            href={`/events/${eventDetails.eventName.toLowerCase().replaceAll(" ", "-")}`}
+            className="px-4 py-2 bg-accent mt-5 font-medium inline-flex rounded hover:scale-105 hover:brightness-110 transition-all focus:outline-none focus:ring-4 focus:ring-accent2/40"
+          >
+            Prizes & Rules <Arrow size={20} color={"#fff"} />{" "}
+          </Link>
           <ul className="mt-5 py-3 px-4 bg-accent2/5">
             <li>Event Coordinator: {eventDetails.eventCoordinator}</li>
             <li>Contact info: +91 {eventDetails.eventCoordinatorContact}</li>
+            {eventDetails.eventName === "Marrow's Jeopardy" ? (
+              <>
+                <li className="mt-2">Event Coordinator 2: Dr. B Roshni</li>
+                <li>Contact info: +91 9515681977</li>
+              </>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <div className="flex flex-col items-center self-center pb-10 relative after:w-20 after:h-1 after:bg-accent2/50 after:absolute after:bottom-0">
