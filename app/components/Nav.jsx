@@ -45,11 +45,11 @@ const Nav = ({ bg }) => {
         viewport={{ once: true }}
         className={`flex items-center justify-between bg-bgNav shadow-bgSecondary drop-shadow`}
       >
-        <div className="text-2xl font-bold px-4 py-2 lg:py-3 lg:text-3xl">
+        <div className="px-4 py-2 lg:py-3 -translate-x-2">
           <Link href={"/"}>
             <Image
               height={45}
-              width={100}
+              width={90}
               src={"/kriti_logo.png"}
               alt="kritikmc logo"
               className="aspect-video"
