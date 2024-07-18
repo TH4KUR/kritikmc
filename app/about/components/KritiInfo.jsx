@@ -2,7 +2,7 @@ const KritiInfo = () => {
   const kriti2024Data = [
     {
       heading: "Cutting-Edge Research Presentations",
-      body: "Building on last year's success, students from across India will present their latest research findings through papers and prayers. From artificial intelligence in healthcare to the latest in medical technology, attendees can expect to be inspired by innovative solutions to contemporary medical challenges.",
+      body: "Building on last year's success, students from across India will present their latest research findings through papers and posters. From artificial intelligence in healthcare to the latest in medical technology, attendees can expect to be inspired by innovative solutions to contemporary medical challenges.",
     },
     {
       heading: "Immersive Symposiums",
