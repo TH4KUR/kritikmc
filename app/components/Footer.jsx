@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Caret from "./icons/Caret";
 import Link from "next/link";
 
@@ -5,10 +6,17 @@ const Footer = () => {
   return (
     <footer className=" bg-bgSecondary text-white px-4 lg:px-44 py-10 border-t-2 border-bg/10 ">
       <div className="">
-        <div>
-          <h4 className=" font-medium text-4xl lg:text-5xl lg:font-semibold">
-            kriti<span className=" text-[#e94552]">.</span>
-          </h4>
+        <div className="grid">
+          <Link href={"/"} className="w-fit">
+            <Image
+              height={90}
+              width={160}
+              src={"/kriti_logo_dark.png"}
+              alt="kritikmc logo"
+              className=" -translate-x-5"
+            />
+          </Link>
+
           <p className="text-gray-400 text-xs lg:text-sm">
             The official webiste of{" "}
             <span className="font-bold text-gray-300">

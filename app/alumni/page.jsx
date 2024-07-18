@@ -115,7 +115,7 @@ export default async function Home() {
                 <div className="size-60 mb-5 rounded grid place-items-center p-2 bg-white/5 col-span-3">
                   <img
                     className=" object-cover h-full w-full aspect-square"
-                    src="/dr_anupama.jpeg"
+                    src="/dr_anupama.webp"
                     alt="alumni dr anupama"
                   />
                 </div>
@@ -185,7 +185,7 @@ export default async function Home() {
                 <div className="size-60 mb-5 rounded grid place-items-center p-2 bg-white/5 col-span-3">
                   <img
                     className=" object-cover h-full w-full aspect-square"
-                    src="/dr_venu.jpeg"
+                    src="/dr_venu.webp"
                     alt="alumni dr venu"
                   />
                 </div>

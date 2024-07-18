@@ -14,6 +14,7 @@ import {
 } from "@headlessui/react";
 import Cancel from "./icons/Cancel";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Nav = ({ bg }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,13 @@ const Nav = ({ bg }) => {
       >
         <div className="text-2xl font-bold px-4 py-2 lg:py-3 lg:text-3xl">
           <Link href={"/"}>
-            kriti<span className="text-accent">.</span>
+            <Image
+              height={45}
+              width={100}
+              src={"/kriti_logo.png"}
+              alt="kritikmc logo"
+              className="aspect-video"
+            />
           </Link>
         </div>
         <div className="flex items-center gap-3 mr-4">
@@ -160,7 +167,13 @@ const Nav = ({ bg }) => {
                             }}
                           >
                             <h3 className="text-4xl font-bold h3x-4 py-2">
-                              kriti<span className="text-accent">.</span>
+                              <Image
+                                height={180}
+                                width={160}
+                                src={"/kriti_logo.png"}
+                                alt="kritikmc logo"
+                                className="h-full w-full object-cover"
+                              />
                             </h3>{" "}
                           </Link>
                           <Button
