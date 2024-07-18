@@ -45,7 +45,7 @@ const Nav = ({ bg }) => {
         viewport={{ once: true }}
         className={`flex items-center justify-between bg-bgNav shadow-bgSecondary drop-shadow`}
       >
-        <div className="px-4 py-2 lg:py-3 -translate-x-2">
+        <div className="px-4 py-2 lg:py-3 -translate-x-3">
           <Link href={"/"}>
             <Image
               height={45}
@@ -166,15 +166,15 @@ const Nav = ({ bg }) => {
                               }
                             }}
                           >
-                            <h3 className="text-4xl font-bold h3x-4 py-2">
+                            <div className="-translate-x-2 py-2">
                               <Image
-                                height={180}
-                                width={160}
+                                height={90}
+                                width={90}
                                 src={"/kriti_logo.png"}
                                 alt="kritikmc logo"
                                 className="h-full w-full object-cover"
                               />
-                            </h3>{" "}
+                            </div>{" "}
                           </Link>
                           <Button
                             className={" self-start py-1"}
@@ -183,7 +183,7 @@ const Nav = ({ bg }) => {
                             <Cancel size={28} />
                           </Button>
                         </DialogTitle>
-                        <div>
+                        <div className="ml-2">
                           <ul className="font-semibold text-black ml-3 mt-3 text-lg">
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
