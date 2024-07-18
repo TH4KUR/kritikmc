@@ -84,9 +84,9 @@ const Nav = ({ bg }) => {
               <li>
                 <Link
                   className="hover:underline underline-offset-2 transition-all"
-                  href={"/events-iternary"}
+                  href={"/events-itinerary"}
                 >
-                  events-iternary.
+                  events-itinerary.
                 </Link>
               </li>
               <li>
@@ -208,8 +208,8 @@ const Nav = ({ bg }) => {
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret color={"#000"} />
-                              <Link href={"/events-iternary"}>
-                                events iternary.
+                              <Link href={"/events-itinerary"}>
+                                events itinerary.
                               </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">

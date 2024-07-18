@@ -4,7 +4,7 @@ import TimelineCard from "./components/TimelineCard";
 import Footer from "../components/Footer";
 import getConvertedEventsData from "../lib/getConvertedEventsData";
 export const metadata = {
-  title: "Events Iternary",
+  title: "Events itinerary",
 };
 async function page() {
   const data = await getConvertedEventsData();
@@ -15,7 +15,7 @@ async function page() {
       <Nav />
       <main className="mb-7">
         <SecondaryHero
-          title={"Compete and Conquer: Events Iternary Page."}
+          title={"Compete and Conquer: Events itinerary Page."}
           body={
             "Discover upcoming competitions catering to all skill levels. Plan your strategy and join us for thrilling events that test your skills and passion for competition."
           }
