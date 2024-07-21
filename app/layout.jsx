@@ -53,7 +53,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" rel="canonical">
       <GoogleTagManager gtmId="G-M6JXRZWCZC" />
       <Script strategy="afterInteractive" id="script">
         {`  window.dataLayer = window.dataLayer || [];

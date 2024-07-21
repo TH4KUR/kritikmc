@@ -134,7 +134,7 @@ const Nav = ({ bg }) => {
             </ul>
           </div>
           <div className="flex items-center lg:hidden">
-            <button onClick={open}>
+            <button aria-label="menu button" onClick={open}>
               <Menu />
             </button>
             <Transition appear show={isOpen}>

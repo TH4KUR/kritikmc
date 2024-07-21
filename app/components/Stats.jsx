@@ -32,7 +32,7 @@ const Pill = ({ pillNo }) => {
           }}
           src="/pill2.svg"
           className="child"
-          alt="half pill"
+          alt="right half of pill animation"
         />
 
         <motion.img
@@ -50,7 +50,7 @@ const Pill = ({ pillNo }) => {
           }}
           src="/pill1.svg"
           className="child"
-          alt="half pill"
+          alt="left half of pill animation"
         />
       </motion.div>
       <motion.img
@@ -64,6 +64,7 @@ const Pill = ({ pillNo }) => {
         }}
         initial={{ opacity: 0, translateX: 20 }}
         src={`stat${pillNo}.svg`}
+        alt={`An image containing stat${pillNo} text`}
         className="absolute top-0 w-24 sm:w-9/12"
       />
     </div>

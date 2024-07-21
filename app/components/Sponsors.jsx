@@ -24,7 +24,7 @@ const Sponsors = () => {
             height={120}
             width={120}
             src="/marrow.png"
-            alt="Marrow"
+            alt="The logo of company Marrow"
           />
           <span className="text-3xl font-medium">Marrow</span>
         </Link>

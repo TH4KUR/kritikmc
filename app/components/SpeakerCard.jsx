@@ -2,6 +2,7 @@
 "use client";
 import { urlForImage } from "@/sanity/lib/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const SpeakerCard = ({ data }) => {
   if (data.speakertype === "Chief Guest") {
@@ -17,7 +18,9 @@ const SpeakerCard = ({ data }) => {
         className="grid md:grid-rows-1 md:grid-cols-12 mt-8"
       >
         <div className="md:col-span-5 sm:h-full self-end">
-          <img
+          <Image
+            height={180}
+            width={320}
             src={urlForImage(data.speakerimg)}
             alt={"an image of" + data.speakername}
             className=" object-cover h-full w-full md:rounded-l-lg md:rounded-tr-none rounded-t-lg saturate-50 aspect-video"
@@ -49,7 +52,9 @@ const SpeakerCard = ({ data }) => {
         className="grid md:grid-rows-1 md:grid-cols-12 mt-8"
       >
         <div className="md:col-span-5 sm:h-full self-end">
-          <img
+          <Image
+            height={180}
+            width={320}
             src={urlForImage(data.speakerimg)}
             alt={"an image of" + data.speakername}
             className=" object-cover h-full w-full md:rounded-l-lg md:rounded-tr-none rounded-t-lg saturate-50 aspect-video"
