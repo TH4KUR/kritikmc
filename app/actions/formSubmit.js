@@ -14,6 +14,7 @@ export async function formSubmit(formData) {
     studentEmail: formData.get("student_email"),
     collegeYear: formData.get("college_year"),
     isKmcStudent: formData.get("kmc_student") === "true" ? "true" : "false",
+    kmcRollNo: formData.get("kmc_rollno"),
     studentCollege: formData?.get("college_name") || "Kakatiya Medical College",
     events: [
       ...(formData.get("debate") ? ["debate"] : []),

@@ -70,7 +70,7 @@ function InputCollege({ enabled, setEnabled }) {
               type="text"
               placeholder="Kakatiya Medical College"
               required
-              name="kmc_roll_number"
+              name="kmc_rollno"
               minLength={5}
               className={
                 "peer autofill:bg-inherit relative block w-full bg-bgInput rounded-lg  py-1.5 px-3 text-sm/6 border-2 border-black disabled:border-2 disabled:border-black text-black focus:outline-none focus:ring focus:valid:border-green-500 focus:valid:ring-green-500/20 valid:border-green-500/80 invalid:border-red-600/80 invalid:ring-red-500/20 focus:border-blue-800/45 focus:ring-blue-500/20"

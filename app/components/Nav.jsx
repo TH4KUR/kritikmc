@@ -100,6 +100,14 @@ const Nav = ({ bg }) => {
               <li>
                 <Link
                   className="hover:underline underline-offset-2 transition-all"
+                  href={"/chronicles"}
+                >
+                  kakatiya chronicles.
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="hover:underline underline-offset-2 transition-all"
                   href={"/alumni"}
                 >
                   alumni.
@@ -230,7 +238,9 @@ const Nav = ({ bg }) => {
                             <ul className="font-semibold text-black ml-3 mt-3 text-lg">
                               <li className="flex items-center gap-1 mt-1">
                                 <Caret color={"#000"} />
-                                <Link href={"/chronicles"}>KC Chronicles.</Link>
+                                <Link href={"/chronicles"}>
+                                  kakatiya chronicles.
+                                </Link>
                               </li>
                             </ul>
                           </div>

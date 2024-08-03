@@ -11,6 +11,10 @@ const Student = mongoose.Schema(
       type: Number,
       unique: true,
     },
+    kmcRollNo: {
+      type: Number,
+      unique: true,
+    },
     collegeYear: Number,
     isKmcStudent: Boolean,
     collegeName: String,

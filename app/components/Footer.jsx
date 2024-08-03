@@ -58,7 +58,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
                   <Caret color={"#ddd"} />
-                  <Link href={"/chronicles"}>KC Chronicles.</Link>
+                  <Link href={"/chronicles"}>Kakatiya Chronicles.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
                   <Caret color={"#ddd"} />
