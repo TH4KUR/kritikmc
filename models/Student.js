@@ -17,8 +17,9 @@ const Student = mongoose.Schema(
     },
     collegeYear: Number,
     isKmcStudent: Boolean,
+    isPgStudent: Boolean,
     collegeName: String,
-    transactionId: {
+    delegateId: {
       type: String,
       unique: true,
     },

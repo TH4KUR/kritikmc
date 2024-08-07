@@ -7,6 +7,7 @@ import InputCollegeYear from "./InputCollegeYear";
 import InputNumber from "./InputNumber";
 import InputEvents from "./InputEvents";
 import { formSubmit } from "@/app/actions/formSubmit";
+import InputUgPg from "./InputUgPg";
 
 const eventsData = [
   { eventName: "Debate", eventSlug: "debate" },
@@ -19,13 +20,19 @@ const eventsData = [
 ];
 const Form = () => {
   const [isStudentOfKmc, setIsStudentOfKmc] = useState(false);
+  const [isPgStudent, setIsPgStudent] = useState(false);
 
   return (
     <form action={formSubmit} className=" *:mb-6 px-5 max-w-xl mx-auto">
       <InputName />
       <InputEmail />
-      <InputCollege enabled={isStudentOfKmc} setEnabled={setIsStudentOfKmc} />
-      <InputCollegeYear />
+      <InputUgPg enabled={isPgStudent} setEnabled={setIsPgStudent} />
+
+      {!isPgStudent ? (
+        <InputCollege enabled={isStudentOfKmc} setEnabled={setIsStudentOfKmc} />
+      ) : (
+        ""
+      )}
       <InputNumber />
       <InputEvents events={eventsData} isStudentOfKmc={isStudentOfKmc} />
 
