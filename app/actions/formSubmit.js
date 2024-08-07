@@ -74,19 +74,19 @@ export async function formSubmit(formData) {
     name: "delegateId",
     value: delegateId,
     secure: true,
-    expires: Date.now() + 15 * 60 * 1000,
+    expires: Date.now() + 30 * 60 * 1000,
   });
   cookies().set({
     name: "username",
     value: formData.get("student_name").split(" ")[0],
     secure: true,
-    expires: Date.now() + 15 * 60 * 1000,
+    expires: Date.now() + 30 * 60 * 1000,
   });
   cookies().set({
     name: "registrationData",
     value: rawFormDataBase64,
     secure: true,
-    expires: Date.now() + 15 * 60 * 1000,
+    expires: Date.now() + 30 * 60 * 1000,
   });
   if (formData.get("kmc_student") === "true") {
   }

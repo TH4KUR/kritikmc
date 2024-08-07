@@ -3,6 +3,7 @@ import { UploadThingError } from "uploadthing/server";
 import { cookies } from "next/headers";
 import { renameFiles } from "./renameFiles";
 import student from "@/models/Student";
+import connectDB from "@/app/lib/connectDB";
 
 const f = createUploadthing();
 // Fake auth function
@@ -26,21 +27,29 @@ export const FileRouter = {
       console.log("Upload complete for userId:", metadata.userId);
       console.log("file ", file);
 
+      /////////////////////////////////////////////////////
+      // TODO: Upload all data to server
+      /////////////////////////////////////////////////////
+
+      await connectDB();
       const regCookie = cookies().get("registrationData").value;
       const regData = JSON.parse(Buffer.from(regCookie, "base64").toString());
-      console.log(regData);
       const studentData = new student({
         name: regData.studentName,
         email: regData.studentEmail,
         mobileno: Number(regData.studentNumber),
-        collegeYear: Number(regData.collegeYear),
+        collegeYear: !regData.isPgStudent ? Number(regData.collegeYear) : "",
         collegeName: regData.studentCollege,
         isKmcStudent: regData.isKmcStudent === "true" ? true : false,
         delegateId: regData.delegateId,
         isPgStudent: regData.isPgStudent,
+        kmcRollNo: regData.kmcRollNo,
         events: regData.events,
       });
+      console.log(studentData);
       let resMongo = await studentData.save();
+      console.log(resMongo);
+
       /////////////////////////////////////////////////////
       // TODO: RENAME FUNCTIONALITY
       /////////////////////////////////////////////////////

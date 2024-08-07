@@ -6,8 +6,9 @@ const utapi = new UTApi({
 });
 
 export const renameFiles = async (oldname, newname) => {
-  return utapi.renameFiles({
+  let res = utapi.renameFiles({
     keyey: oldname,
     newName: `${newname}.jpg`,
   });
+  return res;
 };
