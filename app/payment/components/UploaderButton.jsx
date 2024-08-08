@@ -9,7 +9,6 @@ const UploaderButton = ({ setResponse, setUploaded }) => {
       endpoint="imageUploader"
       onClientUploadComplete={(res) => {
         console.log("Files: ", res);
-        alert("Upload Completed");
         setUploaded(true);
         setResponse(res);
         console.log(res);

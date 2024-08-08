@@ -24,6 +24,7 @@ const Student = mongoose.Schema(
       unique: true,
     },
     events: Array,
+    screenshotLink: { type: String, select: false },
   },
   {
     timestamps: true,

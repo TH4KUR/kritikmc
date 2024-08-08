@@ -1,9 +1,9 @@
 import { createUploadthing } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { cookies } from "next/headers";
-import { renameFiles } from "./renameFiles";
-import student from "@/models/Student";
-import connectDB from "@/app/lib/connectDB";
+// import student from "@/models/Student";
+// import connectDB from "@/app/lib/connectDB";
+import { UploadRegistrationData } from "@/app/lib/UploadRegistrationData";
 
 const f = createUploadthing();
 // Fake auth function
@@ -14,58 +14,53 @@ export const FileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
       // This code runs on your server before upload
-      const user = cookies().get("delegateId");
+      const delegateId = cookies().get("delegateId");
 
       // If you throw, the user will not be able to upload
-      if (!user) throw new UploadThingError("No delegate ID found!!");
+      if (!delegateId) throw new UploadThingError("No delegate ID found!!");
 
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: user };
+      const regCookie = cookies().get("registrationData").value;
+      return { delegateId, regCookie };
     })
     .onUploadComplete(async ({ metadata, file }) => {
-      // This code RUNS ON YOUR SERVER after upload
-      console.log("Upload complete for userId:", metadata.userId);
-      console.log("file ", file);
+      try {
+        console.log("Upload complete for userId:", metadata.delegateId);
+        console.log("file ", file);
 
-      /////////////////////////////////////////////////////
-      // TODO: Upload all data to server
-      /////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////
+        // Upload all data to server
+        /////////////////////////////////////////////////////
+        const dataUploaded = await UploadRegistrationData(
+          metadata.regCookie,
+          file.url
+        );
 
-      await connectDB();
-      const regCookie = cookies().get("registrationData").value;
-      const regData = JSON.parse(Buffer.from(regCookie, "base64").toString());
-      const studentData = new student({
-        name: regData.studentName,
-        email: regData.studentEmail,
-        mobileno: Number(regData.studentNumber),
-        collegeYear: !regData.isPgStudent ? Number(regData.collegeYear) : "",
-        collegeName: regData.studentCollege,
-        isKmcStudent: regData.isKmcStudent === "true" ? true : false,
-        delegateId: regData.delegateId,
-        isPgStudent: regData.isPgStudent,
-        kmcRollNo: regData.kmcRollNo,
-        events: regData.events,
-      });
-      console.log(studentData);
-      let resMongo = await studentData.save();
-      console.log(resMongo);
+        ////////////////////////////////////////////////////
+        // TODO: RENAME FUNCTIONALITY
+        /////////////////////////////////////////////////////
 
-      /////////////////////////////////////////////////////
-      // TODO: RENAME FUNCTIONALITY
-      /////////////////////////////////////////////////////
+        // const oldname = file.key;
+        // const newFileName =
+        //   cookies().get("username") + "__" + cookies().get("delegateId");
 
-      // const oldname = file.key;
-      // const newFileName =
-      //   cookies().get("username") + "__" + cookies().get("delegateId");
+        // await renameFiles(oldname, newFileName);
+        // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
 
-      // await renameFiles(oldname, newFileName);
-      // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-
-      return {
-        uploadedBy: metadata.userId,
-        dataUploaded: regData,
-        url: file.url,
-      };
+        return {
+          dataUploaded,
+        };
+      } catch (err) {
+        if (
+          err.includes(
+            "E11000 duplicate key error collection: test.students index: email_1 dup key:"
+          )
+        ) {
+          throw new UploadThingError(
+            "Duplicate Email Address Used, contact management for refund if amount paid."
+          );
+        }
+      }
     }),
 };
 

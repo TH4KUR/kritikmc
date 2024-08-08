@@ -41,7 +41,8 @@ const Form = () => {
           className="text-center py-2 px-4 bg-accent w-full text-white font-semibold rounded-lg"
           type="submit"
         >
-          Proceed to Pay {isStudentOfKmc ? "₹300" : "₹400"}
+          Proceed to Pay{" "}
+          {isStudentOfKmc ? "₹300" : isPgStudent ? "₹600" : "₹400"}
         </button>
       </div>
     </form>

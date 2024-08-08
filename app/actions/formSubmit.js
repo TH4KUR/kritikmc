@@ -88,7 +88,6 @@ export async function formSubmit(formData) {
     secure: true,
     expires: Date.now() + 30 * 60 * 1000,
   });
-  if (formData.get("kmc_student") === "true") {
-  }
+
   redirect(`${process.env.HOST_URL}/payment`);
 }
