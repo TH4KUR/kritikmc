@@ -21,18 +21,7 @@ const Gateway = ({ regData }) => {
                 You will receive a confirmation email once our team has
                 confirmed the payment.
               </p>
-              <pre className="mt-5 bg-[#111] text-gray-50 w-full px-5 py-3">
-                {JSON.stringify(response, null, 2)}
-                {/*{JSON.stringify(
-                  JSON.parse(
-                    atob(
-                      "eyJkZWxlZ2F0ZUlkIjoiRC0xMDQxYWJhNSIsInN0dWRlbnROYW1lIjoiRWFzaGFhbiBUaGFrdXIiLCJzdHVkZW50TnVtYmVyIjoiODcwMDYyMTUzNCIsInN0dWRlbnRFbWFpbCI6InBheW5lQGdtYWlsLmNvbSIsImNvbGxlZ2VZZWFyIjpudWxsLCJpc0ttY1N0dWRlbnQiOiJmYWxzZSIsImttY1JvbGxObyI6bnVsbCwiaXNQZ1N0dWRlbnQiOiJ0cnVlIiwic3R1ZGVudENvbGxlZ2UiOiJLYWthdGl5YSBNZWRpY2FsIENvbGxlZ2UiLCJldmVudHMiOlsiZGViYXRlIiwicG9zdGVyUHJlc2VudGF0aW9uIl19"
-                    )
-                  ),
-                  null,
-                  2
-                )} */}
-              </pre>
+              <pre className="mt-5 bg-[#111] text-gray-50 w-full px-5 py-3"></pre>
             </div>
           </section>
         </>
@@ -57,13 +46,23 @@ const Gateway = ({ regData }) => {
               </p>
             </div>
           </section>
-          <Image
-            src={"/Payment_Image_1.jpg"}
-            height={500}
-            width={500}
-            alt="Payment QR code"
-            className="my-5"
-          />
+          {regData.isKmcStudent === "true" ? (
+            <Image
+              src={"/kmc_payment_qr.jpeg"}
+              height={500}
+              width={500}
+              alt="Payment QR code"
+              className="my-5"
+            />
+          ) : (
+            <Image
+              src={"/Payment_Image_1.jpg"}
+              height={500}
+              width={500}
+              alt="Payment QR code"
+              className="my-5"
+            />
+          )}
           <div className="my-5">
             <UploadButton
               endpoint="imageUploader"

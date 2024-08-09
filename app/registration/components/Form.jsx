@@ -34,7 +34,11 @@ const Form = () => {
         ""
       )}
       <InputNumber />
-      <InputEvents events={eventsData} isStudentOfKmc={isStudentOfKmc} />
+      <InputEvents
+        events={eventsData}
+        isStudentOfKmc={isStudentOfKmc}
+        isPgStudent={isPgStudent}
+      />
 
       <div className="w-full flex justify-center items-center mb-[0!important] pb-5">
         <button
