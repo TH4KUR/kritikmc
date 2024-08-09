@@ -3,29 +3,16 @@ import Checkmark from "@/app/registration/components/icons/Checkmark";
 import Image from "next/image";
 import React, { useState } from "react";
 import { UploadButton } from "@/utils/uploadthing";
+import Cancel from "@/app/components/icons/Cancel";
 
 const Gateway = ({ regData }) => {
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const [response, setResponse] = useState({});
+  const [initialLoad, setInitialLoad] = useState(true);
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      {success ? (
-        <>
-          <section className="py-2">
-            <div className="flex flex-col items-center">
-              <Checkmark className=" size-32 mx-auto bg-green-500 rounded-full p-7" />
-              <h1 className="font-semibold text-xl mt-5">
-                Registration Request Successfull!!
-              </h1>
-              <p className="text-center">
-                You will receive a confirmation email once our team has
-                confirmed the payment.
-              </p>
-              <pre className="mt-5 bg-[#111] text-gray-50 w-full px-5 py-3"></pre>
-            </div>
-          </section>
-        </>
-      ) : (
+      {initialLoad ? (
         <>
           <section className="text-[#fdf8e2] bg-bgSecondary py-12 px-4">
             <h1 className="text-xl md:text-2xl font-semibold mb-4 md:w-4/5 sm:mx-auto mx-5 max-w-screen-md">
@@ -67,9 +54,15 @@ const Gateway = ({ regData }) => {
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
+                if (res[0].serverData?.error) {
+                  setError(res[0].serverData?.error);
+                  setSuccess(false);
+                } else {
+                  setSuccess(true);
+                }
                 console.log("Files: ", res);
-                setSuccess(true);
                 setResponse(res);
+                setInitialLoad(false);
                 console.log(res);
               }}
               onUploadError={(error) => {
@@ -79,6 +72,42 @@ const Gateway = ({ regData }) => {
             />
           </div>{" "}
         </>
+      ) : success ? (
+        <section className="py-2">
+          <div className="flex flex-col items-center">
+            <Checkmark className=" size-32 mx-auto bg-green-500 rounded-full p-7" />
+            <h1 className="font-semibold text-xl mt-5 text-center">
+              Registration Request Successfull!!
+            </h1>
+            <p className="text-center">
+              You will receive a confirmation email once our team has confirmed
+              the payment.
+            </p>
+            <pre className="mt-5 bg-[#111] text-gray-50 w-full text-wrap px-5 py-3 rounded">
+              {JSON.stringify(response, null, 2)}
+            </pre>
+          </div>
+        </section>
+      ) : error ? (
+        <section className="py-2">
+          <div className="flex flex-col items-center">
+            <div className="bg-red-500 rounded-full p-6">
+              <Cancel size={128} fill="#000" />
+            </div>
+            <h1 className="font-semibold text-2xl my-5 text-center">
+              An Error Occurred!!
+            </h1>
+            <p className="text-center  md:text-lg bg-black text-white p-2 rounded">
+              <strong>Error Code: </strong> {error}
+            </p>
+            <p className="text-center mt-5">More Info below</p>
+            <pre className="mt-5 bg-[#111] text-gray-50 w-full text-wrap px-5 py-3 rounded">
+              {JSON.stringify(response, null, 2)}
+            </pre>
+          </div>
+        </section>
+      ) : (
+        ""
       )}
     </main>
   );

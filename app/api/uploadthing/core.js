@@ -1,8 +1,6 @@
 import { createUploadthing } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { cookies } from "next/headers";
-// import student from "@/models/Student";
-// import connectDB from "@/app/lib/connectDB";
 import { UploadRegistrationData } from "@/app/lib/UploadRegistrationData";
 
 const f = createUploadthing();
@@ -51,14 +49,20 @@ export const FileRouter = {
           dataUploaded,
         };
       } catch (err) {
-        if (
-          err.includes(
-            "E11000 duplicate key error collection: test.students index: email_1 dup key:"
-          )
-        ) {
-          throw new UploadThingError(
-            "Duplicate Email Address Used, contact management for refund if amount paid."
-          );
+        if (err.message.includes("email_1 dup key")) {
+          return {
+            error:
+              "Duplicate Email Address Used, email at kmckriti@gmail.com for refund if amount paid.",
+          };
+        } else if (err.message.includes("mobileno_1 dup key")) {
+          return {
+            error:
+              "Duplicate Mobile Number Used, email at kmckriti@gmail.com for refund if amount paid.",
+          };
+        } else {
+          return {
+            error: err.message,
+          };
         }
       }
     }),
