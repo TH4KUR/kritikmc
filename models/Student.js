@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const Student = mongoose.Schema(
   {
+    delegateId: {
+      type: String,
+      unique: true,
+    },
     name: String,
     email: {
       type: String,
@@ -19,10 +23,6 @@ const Student = mongoose.Schema(
     isKmcStudent: Boolean,
     isPgStudent: Boolean,
     collegeName: String,
-    delegateId: {
-      type: String,
-      unique: true,
-    },
     events: Array,
     screenshotLink: { type: String, select: false },
   },
