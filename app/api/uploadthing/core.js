@@ -22,6 +22,9 @@ export const FileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       try {
+        /////////////////////////////////////////////////////
+        // Generate a id on the visitor number
+        /////////////////////////////////////////////////////
         const counterRes = await counter.up("kritikmc", "delegatesFinal");
         const delegateId = `K-${String(counterRes.Count).padStart(4, "0")}`;
         metadata.regData.delegateId = delegateId;

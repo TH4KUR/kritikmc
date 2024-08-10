@@ -17,7 +17,6 @@ const Student = mongoose.Schema(
     },
     kmcRollNo: {
       type: Number,
-      unique: true,
     },
     collegeYear: Number,
     isKmcStudent: Boolean,
