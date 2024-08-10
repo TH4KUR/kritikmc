@@ -63,12 +63,20 @@ const Timeline = async ({ light = false }) => {
           <div className="flex justify-between mx-auto w-3/4 text-sm md:text-base  lg:text-lg font-medium">
             <p>Registration Open</p>
             <span className="before:content-[''] before:absolute  before:w-[50px] md:before:w-[100px] md:before:h-[2px] before:bg-black before:h-[1px] relative flex items-center justify-center "></span>
-            <p>27 July 20xx</p>
+            <p>{new Date(registrationStart).toLocaleString("default", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}</p>
           </div>
           <div className="flex justify-between mx-auto w-3/4 text-sm md:text-base lg:text-lg font-medium">
             <p>Registration Close</p>
             <span className="before:content-[''] before:absolute  before:w-[50px] md:before:w-[100px] md:before:h-[2px] before:bg-black before:h-[1px] relative flex items-center justify-center "></span>
-            <p>27 Sept 20xx</p>
+            <p>{new Date(registrationEnd).toLocaleString("default", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}</p>
           </div>
           <Link
             href={"/events-itinerary"}
