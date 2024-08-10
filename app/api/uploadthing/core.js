@@ -56,7 +56,7 @@ export const FileRouter = {
         const data = await resend.emails.send({
           from: `registrations@kritikmc.com`,
           to: `${studentEmail}`,
-          subject: "🎉 Thanks for Registering for kriti by KMC Waragal!",
+          subject: "🎉 Thanks for Registering for kriti by KMC Warangal!",
           html: `<!DOCTYPE HTML
           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
@@ -237,7 +237,7 @@ export const FileRouter = {
                                         <tr>
                                           <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
 
-                                            <img align="center" border="0" src="https://www.kritikmc.com/kriti_logo_dark.png"
+                                            <img align="center" border="0" src="https://www.kritikmc.com/kmc_mail_logo.jpeg"
                                               alt="Logo" title="Logo"
                                               style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 47%;max-width: 272.6px;"
                                               width="272.6" class="v-src-width v-src-max-width" />
