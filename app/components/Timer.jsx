@@ -48,7 +48,7 @@ const Timer = ({ deadline, showButton }) => {
       viewport={{ once: true }}
       className="text-sm py-3 bg-accent2 text-white font-medium flex flex-col items-center md:text-base"
     >
-      {regOver ? (
+      {!regOver ? (
         <>
           <motion.div
             initial={{ translateY: 3, opacity: 0 }}
