@@ -14,7 +14,7 @@ const eventsData = [
   { eventName: "Med Exhibition", eventSlug: "medExhibition" },
   { eventName: "Paper Presentation", eventSlug: "paperPresentation" },
   { eventName: "Poster Presentation", eventSlug: "posterPresentation" },
-  { eventName: "Marrow's Jeopary", eventSlug: "jeopardy" },
+  { eventName: "Marrow's Jeopardy", eventSlug: "jeopardy" },
   { eventName: "Hackathon", eventSlug: "hackathon" },
   { eventName: "Symposium", eventSlug: "symposium" },
 ];
