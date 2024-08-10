@@ -12,6 +12,19 @@ const data = {
       `All abstracts will be screened.`,
       `Presentation is expected to be in the form of power point presentation (.ppt or .pptx file) not exceeding 18 slides that is to be submitted by 16th of October.`,
       `Each presenter will be given a total of 6 minutes ~4 minutes for presenting the case and 2 minutes for answering the questions from judges and audience.`,
+      <>
+        (Paper) Make sure you structure your abstract in the following headings:
+        <br /> <strong>TITLE:</strong>
+        <br /> <strong>PRESENTING AUTHOR:</strong>
+        <br /> <strong>COLLEGE NAME OF PRESENTING AUTHOR:</strong>
+        <br /> <strong>INTRODUCTION:</strong>
+        <br /> <strong>AIMS AND OBJECTIVES:</strong>
+        <br /> <strong>METHODOLOGY:</strong>
+        <br /> <strong>RESULTS:</strong>
+        <br /> <strong>DISCUSSION:</strong>
+        <br /> <strong>CONCLUSION:</strong>
+        <br /> <strong>No need of references</strong>
+      </>,
     ],
     prizes: [15000, 10000],
   },
@@ -22,6 +35,50 @@ const data = {
       `Only e- posters in landscape orientation with a resolution of 1920*1080 pixels will be accepted.`,
       `Abstracts to be sent via email by 15th of September following which finalists will be announced by 2nd of October.`,
       `Finalists will be allotef a total of 5 minutes (3 minutes to present and 2 minutes for questions by the jury.)`,
+      <>
+        (Poster) Make sure you structure your abstract in the following
+        headings:
+        <div>
+          <br />
+          (Original articles) <br /> <strong>TITLE:</strong> <br />
+          <strong>PRESENTING AUTHOR:</strong>
+          <br />
+          <strong>COLLEGE NAME OF PRESENTING AUTHOR:</strong>
+          <br />
+          <strong>INTRODUCTION:</strong>
+          <br />
+          <strong>AIMS AND OBJECTIVES:</strong>
+          <br />
+          <strong>METHODOLOGY:</strong>
+          <br />
+          <strong>RESULTS:</strong>
+          <br />
+          <strong>DISCUSSION:</strong>
+          <br />
+          <strong>CONCLUSION:</strong>
+          <br />
+          <strong>No need of references</strong>
+          <br />
+          <br />
+          (Case Reports)
+          <br />
+          <strong>TITLE:</strong>
+          <br />
+          <strong>PRESENTING AUTHOR:</strong>
+          <br />
+          <strong>COLLEGE NAME OF PRESENTING AUTHOR:</strong>
+          <br />
+          <strong>INTRODUCTION:</strong>
+          <br />
+          <strong>CASE DESCRIPTION:</strong>
+          <br />
+          <strong>DISCUSSION:</strong>
+          <br />
+          <strong>CONCLUSION:</strong>
+          <br />
+          <strong>No Need of References</strong>
+        </div>
+      </>,
     ],
     prizes: [15000, 10000],
   },
