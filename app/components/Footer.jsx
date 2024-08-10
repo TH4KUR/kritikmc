@@ -70,9 +70,7 @@ const Footer = () => {
                   <li className="">
                     <strong>Address: </strong>
                     <p className="w-[30ch] !text-gray-300">
-                      Kakatiya Medical College - South North V P Road,
-                      Nizampura, Rangampet Street, Warangal 506007, Telangana,
-                      India
+                      Kakatiya Medical College - SVP Road. NH 563, Nizampura, Rangampet, Warangal
                     </p>
                   </li>
                   <li className="">
@@ -81,7 +79,7 @@ const Footer = () => {
                   </li>
                   <li className="">
                     <strong>Email ID:</strong>{" "}
-                    <p className="!text-gray-300">pwarangal@gmail.com</p>
+                    <p className="!text-gray-300">kmckriti@gmail.com</p>
                   </li>
                 </ul>
               </div>
