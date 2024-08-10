@@ -1,21 +1,14 @@
 "use server";
-import { v4 as uuidv4 } from "uuid";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { CounterAPI } from "counterapi";
-
-const counter = new CounterAPI();
 
 export async function formSubmit(formData) {
   // Deleting existing cookie
   cookies().delete("registrationData");
-  cookies().delete("delegateId");
   cookies().delete("username");
   // const counterRes = await counter.up("kritikmc", "delegates");
-  const counterRes = await counter.up("kritikmc", "delegatesFinal");
-  const delegateId = `K-${String(counterRes.Count).padStart(4, "0")}`;
+
   const rawFormData = {
-    delegateId,
     studentName: formData.get("student_name"),
     studentNumber: formData.get("student_number"),
     studentEmail: formData.get("student_email"),
@@ -74,12 +67,7 @@ export async function formSubmit(formData) {
   //   }
   // );
   // const redirectUrl = response.data.data.instrumentResponse.redirectInfo.url;
-  cookies().set({
-    name: "delegateId",
-    value: delegateId,
-    secure: true,
-    expires: Date.now() + 30 * 60 * 1000,
-  });
+
   cookies().set({
     name: "username",
     value: formData.get("student_name").split(" ")[0],

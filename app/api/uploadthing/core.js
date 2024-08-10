@@ -3,6 +3,8 @@ import { UploadThingError } from "uploadthing/server";
 import { cookies } from "next/headers";
 import { UploadRegistrationData } from "@/app/lib/UploadRegistrationData";
 import { Resend } from "resend";
+import { CounterAPI } from "counterapi";
+const counter = new CounterAPI();
 
 const f = createUploadthing();
 // Fake auth function
@@ -13,26 +15,22 @@ export const FileRouter = {
   imageUploader: f({ image: { maxFileSize: "3MB" } })
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
-      // This code runs on your server before upload
-      const delegateId = cookies().get("delegateId");
-
-      // If you throw, the user will not be able to upload
-      if (!delegateId) throw new UploadThingError("No delegate ID found!!");
       const regCookie = cookies().get("registrationData").value;
       const regData = JSON.parse(Buffer.from(regCookie, "base64").toString());
 
-      return { delegateId, regCookie, regData };
+      return { regCookie, regData };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       try {
-        console.log("Upload complete for userId:", metadata.delegateId);
-        console.log("file ", file);
-
+        const counterRes = await counter.up("kritikmc", "delegatesFinal");
+        const delegateId = `K-${String(counterRes.Count).padStart(4, "0")}`;
+        metadata.regData.delegateId = delegateId;
+        console.log("Uploaded File:  ", file);
         /////////////////////////////////////////////////////
         // Upload all data to server
         /////////////////////////////////////////////////////
         const dataUploaded = await UploadRegistrationData(
-          metadata.regCookie,
+          metadata.regData,
           file.url
         );
         // regData.isKmcStudent === "true"
@@ -41,7 +39,6 @@ export const FileRouter = {
         //   ? "600"
         //   : "400"
         const {
-          delegateId,
           studentEmail,
           studentName,
           studentNumber,
@@ -321,7 +318,7 @@ export const FileRouter = {
                                             you for registering for kriti.</span></p>
                                         <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Your
                                             registering request was recieved and you will be informed when confirmed.</span></p>
-                                        <p style="line-height: 170%;"> </p>
+                                        <p style="line-height: 170%;">  </p>
                                         <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Till
                                             then keep the info below handy!</span></p>
                                       </div>
@@ -596,7 +593,6 @@ export const FileRouter = {
 
         </html>`,
         });
-        console.log(data);
         return {
           dataUploaded,
         };

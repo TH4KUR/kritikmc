@@ -1,10 +1,9 @@
 import student from "@/models/Student";
 import connectDB from "@/app/lib/connectDB";
 
-export async function UploadRegistrationData(regCookie, imgurl) {
+export async function UploadRegistrationData(regData, imgurl) {
   await connectDB();
   console.log(imgurl);
-  const regData = JSON.parse(Buffer.from(regCookie, "base64").toString());
   const studentData = new student({
     name: regData.studentName,
     email: regData.studentEmail,

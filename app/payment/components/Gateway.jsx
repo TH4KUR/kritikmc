@@ -84,7 +84,8 @@ const Gateway = ({ regData }) => {
               the payment.
             </p>
             <p className=" flex px-3 py-2 bg-bgSecondary text-bg font-semibold text-xl">
-              Your Delegate Id is {regData.delegateId} ✨
+              Your Delegate ID is{" "}
+              {response[0]?.serverData.dataUploaded.delegateId} ✨
             </p>
             <pre className="mt-5 bg-[#111] text-gray-50 w-full text-wrap px-5 py-3 rounded">
               {JSON.stringify(response, null, 2)}
