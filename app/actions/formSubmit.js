@@ -2,14 +2,17 @@
 import { v4 as uuidv4 } from "uuid";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { CounterAPI } from "counterapi";
+
+const counter = new CounterAPI();
 
 export async function formSubmit(formData) {
   // Deleting existing cookie
   cookies().delete("registrationData");
   cookies().delete("delegateId");
   cookies().delete("username");
-
-  const delegateId = "D-" + uuidv4().toString(5).slice(-8);
+  const counterRes = await counter.up("kritikmc", "delegates");
+  const delegateId = `K-${String(counterRes.Count).padStart(4, "0")}`;
   const rawFormData = {
     delegateId,
     studentName: formData.get("student_name"),
