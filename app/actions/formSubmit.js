@@ -11,7 +11,8 @@ export async function formSubmit(formData) {
   cookies().delete("registrationData");
   cookies().delete("delegateId");
   cookies().delete("username");
-  const counterRes = await counter.up("kritikmc", "delegates");
+  // const counterRes = await counter.up("kritikmc", "delegates");
+  const counterRes = await counter.up("kritikmc", "delegatesFinal");
   const delegateId = `K-${String(counterRes.Count).padStart(4, "0")}`;
   const rawFormData = {
     delegateId,
