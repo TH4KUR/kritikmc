@@ -59,7 +59,7 @@ function InputCollege({ enabled, setEnabled }) {
       ) : (
         <Field className="flex flex-col">
           <Label className="text-sm/6 md:text-lg font-semibold text-black">
-            KMC Roll Number <span className=" text-red-600">*</span>
+            KMC Hall Ticket Number <span className=" text-red-600">*</span>
           </Label>
           <Description className="text-sm/6 md:text-base  text-black/70">
             Please enter the roll number alloted to you.
@@ -67,11 +67,11 @@ function InputCollege({ enabled, setEnabled }) {
           <div className="relative mt-1">
             <Input
               data-typing={false}
-              type="text"
+              type="number"
               placeholder="Kakatiya Medical College"
               required
               name="kmc_rollno"
-              minLength={5}
+              minLength={4}
               className={
                 "peer autofill:bg-inherit relative block w-full bg-bgInput rounded-lg  py-1.5 px-3 text-sm/6 border-2 border-black disabled:border-2 disabled:border-black text-black focus:outline-none focus:ring focus:valid:border-green-500 focus:valid:ring-green-500/20 valid:border-green-500/80 invalid:border-red-600/80 invalid:ring-red-500/20 focus:border-blue-800/45 focus:ring-blue-500/20"
               }
