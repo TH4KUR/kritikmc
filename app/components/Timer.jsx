@@ -11,7 +11,7 @@ const Timer = ({ deadline, showButton }) => {
   const [regOver, setRegOver] = useState(false);
 
   useEffect(() => {
-    if (regOver) {
+    if (!regOver) {
       const target = new Date(deadline);
       const interval = setInterval(() => {
         const now = new Date();
