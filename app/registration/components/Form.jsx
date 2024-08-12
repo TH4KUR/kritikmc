@@ -26,10 +26,10 @@ const Form = () => {
     <form action={formSubmit} className=" *:mb-6 px-5 max-w-xl mx-auto">
       <InputName />
       <InputEmail />
-      <InputUgPg enabled={isPgStudent} setEnabled={setIsPgStudent} />
+      <InputUgPg enabled={isPgStudent} setEnabled={setIsPgStudent} setDisabled={setIsPgStudent} />
 
       {!isPgStudent ? (
-        <InputCollege enabled={isStudentOfKmc} setEnabled={setIsStudentOfKmc} />
+        <InputCollege enabled={isStudentOfKmc} setEnabled={setIsStudentOfKmc} setDisabled={setIsStudentOfKMC} />
       ) : (
         ""
       )}
@@ -46,7 +46,7 @@ const Form = () => {
           type="submit"
         >
           Proceed to Pay{" "}
-          {isStudentOfKmc ? "₹300" : isPgStudent ? "₹600" : "₹400"}
+          {isPgSrudent ? "₹600" : isStudentOfKMC? "₹300" : "₹400"}
         </button>
       </div>
     </form>
