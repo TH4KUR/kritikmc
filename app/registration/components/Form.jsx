@@ -33,11 +33,14 @@ const Form = () => {
       />
 
       {!isPgStudent ? (
-        <InputCollege
-          enabled={isStudentOfKmc}
-          setEnabled={setIsStudentOfKmc}
-          setDisabled={setIsStudentOfKmc}
-        />
+        <>
+          <InputCollegeYear />
+          <InputCollege
+            enabled={isStudentOfKmc}
+            setEnabled={setIsStudentOfKmc}
+            setDisabled={setIsStudentOfKmc}
+          />
+        </>
       ) : (
         ""
       )}
