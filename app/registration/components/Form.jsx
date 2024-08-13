@@ -21,46 +21,51 @@ const eventsData = [
 const Form = () => {
   const [isStudentOfKmc, setIsStudentOfKmc] = useState(false);
   const [isPgStudent, setIsPgStudent] = useState(false);
+  const setCount = async () => {
+    await counter.set("kritikmc", "delegatesFinal", 536);
+  };
 
   return (
-    <form action={formSubmit} className=" *:mb-6 px-5 max-w-xl mx-auto">
-      <InputName />
-      <InputEmail />
-      <InputUgPg
-        enabled={isPgStudent}
-        setEnabled={setIsPgStudent}
-        setDisabled={setIsPgStudent}
-      />
+    <>
+      <form action={formSubmit} className=" *:mb-6 px-5 max-w-xl mx-auto">
+        <InputName />
+        <InputEmail />
+        <InputUgPg
+          enabled={isPgStudent}
+          setEnabled={setIsPgStudent}
+          setDisabled={setIsPgStudent}
+        />
 
-      {!isPgStudent ? (
-        <>
-          <InputCollegeYear />
-          <InputCollege
-            enabled={isStudentOfKmc}
-            setEnabled={setIsStudentOfKmc}
-            setDisabled={setIsStudentOfKmc}
-          />
-        </>
-      ) : (
-        ""
-      )}
-      <InputNumber />
-      <InputEvents
-        events={eventsData}
-        isStudentOfKmc={isStudentOfKmc}
-        isPgStudent={isPgStudent}
-      />
+        {!isPgStudent ? (
+          <>
+            <InputCollegeYear />
+            <InputCollege
+              enabled={isStudentOfKmc}
+              setEnabled={setIsStudentOfKmc}
+              setDisabled={setIsStudentOfKmc}
+            />
+          </>
+        ) : (
+          ""
+        )}
+        <InputNumber />
+        <InputEvents
+          events={eventsData}
+          isStudentOfKmc={isStudentOfKmc}
+          isPgStudent={isPgStudent}
+        />
 
-      <div className="w-full flex justify-center items-center mb-[0!important] pb-5">
-        <button
-          className="text-center py-2 px-4 bg-accent w-full text-white font-semibold rounded-lg"
-          type="submit"
-        >
-          Proceed to Pay{" "}
-          {isPgStudent ? "₹600" : isStudentOfKmc ? "₹300" : "₹400"}
-        </button>
-      </div>
-    </form>
+        <div className="w-full flex justify-center items-center mb-[0!important] pb-5">
+          <button
+            className="text-center py-2 px-4 bg-accent w-full text-white font-semibold rounded-lg"
+            type="submit"
+          >
+            Proceed to Pay{" "}
+            {isPgStudent ? "₹600" : isStudentOfKmc ? "₹300" : "₹400"}
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

@@ -958,17 +958,9 @@ export const FileRouter = {
                                               }</p>
                                           <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>Payment
                                               Screenshot Link: </strong>${file.url}</p>
-                                          <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>}</strong></p>
-                                          <p style="font-size: 14px; line-height: 170%; text-align: left;">Events Participated in ${(
-                                            <>
-                                              {events.map((el, i) => {
-                                                return (
-                                                  <span key={i}>{el}</span>
-                                                );
-                                              })}
-                                            </>
-                                          )} </p>
-                                          <p style="font-size: 14px; line-height: 170%; text-align: left;"> </p>
+                                          <p style="font-size: 14px; line-height: 170%; text-align: left;"></p>
+                                          <p style="font-size: 14px; line-height: 170%; text-align: left;"> <strong> Events Participated in:</strong> ${events.reduce((sum, el) => sum + ", " + el)} </p>
+                                          <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>}</strong> </p>
                                         </div>
   
                                       </td>
