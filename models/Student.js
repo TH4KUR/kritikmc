@@ -9,11 +9,9 @@ const Student = mongoose.Schema(
     name: String,
     email: {
       type: String,
-      unique: true,
     },
     mobileno: {
       type: Number,
-      unique: true,
     },
     kmcRollNo: {
       type: Number,
