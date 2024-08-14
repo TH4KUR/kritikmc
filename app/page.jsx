@@ -10,6 +10,7 @@ import getDeadlineData from "./lib/getDeadlineData";
 import getSpeakerData from "./lib/getSpeakerData";
 import Sponsors from "./components/Sponsors";
 import Brochure from "./components/Brochure";
+import Announcements from "./components/Announcements";
 
 export default async function Home() {
   const deadline = await getDeadlineData();
@@ -26,7 +27,7 @@ export default async function Home() {
       <main className="bg-bg">
         <Hero />
         <Timer deadline={deadline} />
-
+        <Announcements />
         <Speaker speakerdata={speakerdata} />
 
         <Stats />

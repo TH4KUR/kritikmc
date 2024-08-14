@@ -14,3 +14,11 @@ export async function sanityFetch({ query, params = {}, tags }) {
     },
   });
 }
+export async function sanityAnnouncementFetch({ query, params = {}, tags }) {
+  return myClient.fetch(query, params, {
+    next: {
+      revalidate: 60,
+      tags,
+    },
+  });
+}
