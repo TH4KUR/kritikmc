@@ -11,7 +11,17 @@ import getSpeakerData from "./lib/getSpeakerData";
 import Sponsors from "./components/Sponsors";
 import Brochure from "./components/Brochure";
 import Announcements from "./components/Announcements";
-
+export const metadata = {
+  description:
+    "The premier medical conference hosted by Kakatiya Medical College, Warangal. Join events or seminars by top medical experts.",
+  keywords: [
+    "medical conference in Telangana",
+    "medical competitions in Telangana",
+    "kriti kmc",
+    "kmc warangal",
+    "medical conference in warangal",
+  ],
+}
 export default async function Home() {
   const deadline = await getDeadlineData();
   const speakerdata = await getSpeakerData();

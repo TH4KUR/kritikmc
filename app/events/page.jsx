@@ -9,6 +9,7 @@ import getEventsData from "../lib/getEventsData";
 
 export const metadata = {
   title: "Events",
+  description: `Discover upcoming events featuring cutting-edge medical research delivering innovative solutions to contemporary medical challenges. Experience immersive symposiums, workshops and seminars.`,
 };
 
 async function page() {

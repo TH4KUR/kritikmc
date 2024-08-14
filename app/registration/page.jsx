@@ -6,6 +6,8 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Registration Form",
+  description:
+    "Registration form for kriti kmc. Limited Seats Left! Hurry Up now register now!",
 };
 
 export default async function Home() {

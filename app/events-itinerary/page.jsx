@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import getConvertedEventsData from "../lib/getConvertedEventsData";
 export const metadata = {
   title: "Events itinerary",
+  description: `Find out the timings of each and every event taking place in kriti.`,
 };
 async function page() {
   const data = await getConvertedEventsData();

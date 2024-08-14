@@ -21,6 +21,7 @@ export const metadata = {
     "medical competitions in Telangana",
     "kriti kmc",
     "kmc warangal",
+    "medical conference in warangal",
   ],
   creator: "E.",
   icons: {
