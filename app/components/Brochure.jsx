@@ -14,7 +14,7 @@ const Brochure = () => {
       </h3>
 
       <Link
-        href={"/brochure.pdf"}
+        href={"/brochure_compressed.pdf"}
         target="_blank"
         rel="noopener noreferer"
         className="rounded-lg hover:scale-105 transition-all focus:outline-none  focus:ring focus:ring-[#7ea03e]"
