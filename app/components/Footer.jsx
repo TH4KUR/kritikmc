@@ -33,35 +33,35 @@ const Footer = () => {
                   Quick Links
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
-                  <Caret color={"#ddd"} />
+                  <Caret className="size-[10px]" color={"#ddd"} />
                   <Link href={"/"}>home.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
-                  <Caret color={"#ddd"} />
+                  <Caret  className="size-[10px]" color={"#ddd"} />
                   <Link href={"/about"}>about us.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
-                  <Caret color={"#ddd"} />
+                  <Caret className="size-[10px]"  color={"#ddd"} />
                   <Link href={"/events"}>events.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
-                  <Caret color={"#ddd"} />
+                  <Caret  className="size-[10px]"  color={"#ddd"} />
                   <Link href={"/events-itinerary"}>events itinerary.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
-                  <Caret color={"#ddd"} />
+                  <Caret className="size-[10px]"  color={"#ddd"} />
                   <Link href={"/archives"}>archives.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
-                  <Caret color={"#ddd"} />
+                  <Caret  className="size-[10px]" color={"#ddd"} />
                   <Link href={"/alumni"}>alumni.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
-                  <Caret color={"#ddd"} />
+                  <Caret className="size-[10px]"  color={"#ddd"} />
                   <Link href={"/chronicles"}>Kakatiya Chronicles.</Link>
                 </li>
                 <li className="flex items-center gap-1 hover:text-gray-50 transition-colors">
-                  <Caret color={"#ddd"} />
+                  <Caret className="size-[10px]"  color={"#ddd"} />
                   <Link href={"/contact"}>contact us.</Link>
                 </li>
               </ul>
