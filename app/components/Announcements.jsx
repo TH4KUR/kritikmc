@@ -8,6 +8,11 @@ import getAnnouncements from "../lib/getAnnouncements";
 const Announcements = () => {
   const [hidden, setHidden] = useState(true);
   const [announcements, setAnnouncements] = useState(false);
+  const [buttonText, setButtonText] = useState(
+    <>
+      Show Updates <Caret className={"rotate-90 size-4"} />
+    </>
+  );
 
   return (
     <section className="bg-[#f2c7cc63] py-4 px-3">
@@ -39,13 +44,16 @@ const Announcements = () => {
           >
             <button
               onClick={async () => {
+                setTimeout(() => {
+                  setButtonText("Loading....");
+                }, 1500);
                 const res = await getAnnouncements();
                 setAnnouncements(res);
                 setHidden(false);
               }}
-              className="flex font-medium items-center gap-1 px-2 py-2 bg-accent/30 text-sm mx-auto rounded-md"
+              className="flex font-medium items-center gap-1 px-2 py-2 bg-accent/25 text-sm mx-auto rounded-md active:bg-accent/30 focus:outline-none focus:ring focus:ring-accent2"
             >
-              Show Updates <Caret className={"rotate-90 size-4"} />
+              {buttonText}
             </button>
           </Suspense>
         ) : (
@@ -59,7 +67,7 @@ const Announcements = () => {
                   <Bullet size={7} className={"shrink-0"} />
                   <p>{el.text}</p>
                   <Link
-                    className="text-base self-start"
+                    className="text-base self-start text-blue-700"
                     href={el.link}
                     target="_blank"
                   >
