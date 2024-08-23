@@ -29,7 +29,7 @@ const Brochure = () => {
       </Link>
       <div className=" grid place-items-center object-cover p-5">
         <Link
-          href={"/brochure.pdf"}
+          href={"/brochure_compressed.pdf"}
           target="_blank"
           rel="noopener noreferer"
           className="flex justify-center gap-1 items-center mx-auto bg-[#cbe896] px-4 py-2 rounded-lg text-[#074802] font-semibold text-base md:text-basehover:bg-[#d2fc85] hover:w-full hover:scale-105 transition-all focus:outline-none hover:gap-3 focus:ring focus:ring-[#7ea03e] "
