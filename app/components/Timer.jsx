@@ -61,7 +61,7 @@ const Timer = ({ deadline, showButton }) => {
             }}
           >
             <p className="flex justify-center gap-3">
-              <span className="font-semibold"> Registrations Close in:</span>
+              <span className="font-semibold">Registrations Close in ✨:</span>
               <span>
                 {days != 0 ? <>{days} day(s)</> : ""}{" "}
                 {`${hours}:${minutes}:${seconds} `} hrs
