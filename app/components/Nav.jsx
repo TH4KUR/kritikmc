@@ -194,7 +194,7 @@ const Nav = ({ bg }) => {
                         <div className="ml-2">
                           <ul className="font-semibold text-black ml-3 mt-3 text-lg">
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret color={"#000"} />
+                              <Caret className="size-[10px]" color={"#ddd"} />
                               <Link
                                 href={"/"}
                                 onClick={() => {
@@ -207,29 +207,29 @@ const Nav = ({ bg }) => {
                               </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret color={"#000"} />
+                              <Caret className="size-[10px]" color={"#ddd"} />
                               <Link href={"/about"}>about us.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret color={"#000"} />
+                              <Caret className="size-[10px]" color={"#ddd"} />
                               <Link href={"/events"}>events.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret color={"#000"} />
+                              <Caret className="size-[10px]" color={"#ddd"} />
                               <Link href={"/events-itinerary"}>
                                 events itinerary.
                               </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret color={"#000"} />
+                              <Caret className="size-[10px]" color={"#ddd"} />
                               <Link href={"/archives"}>archives.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret color={"#000"} />
+                              <Caret className="size-[10px]" color={"#ddd"} />
                               <Link href={"/alumni"}>alumni.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret color={"#000"} />
+                              <Caret className="size-[10px]" color={"#ddd"} />
                               <Link href={"/contact"}>contact us.</Link>
                             </li>
                           </ul>
@@ -237,7 +237,7 @@ const Nav = ({ bg }) => {
                             <h5>Magazine</h5>
                             <ul className="font-semibold text-black ml-3 mt-3 text-lg">
                               <li className="flex items-center gap-1 mt-1">
-                                <Caret color={"#000"} />
+                                <Caret className="size-[10px]" color={"#ddd"} />
                                 <Link href={"/chronicles"}>
                                   kakatiya chronicles.
                                 </Link>
