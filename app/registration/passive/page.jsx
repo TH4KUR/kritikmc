@@ -14,7 +14,7 @@ export default async function Home() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
   const deadlineRes = await getDeadlineData();
   const deadline = new Date(deadlineRes);
-  if (Date.now() > 0) {
+  if (Date.now() > deadline.getTime()) {
     return (
       <>
         <Nav bg={"#eee"} />
