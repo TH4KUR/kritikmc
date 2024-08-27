@@ -23,7 +23,7 @@ const SpeakerCard = ({ data }) => {
             width={320}
             src={urlForImage(data.speakerimg)}
             alt={"an image of" + data.speakername}
-            className=" object-cover h-full w-full md:rounded-l-lg md:rounded-tr-none rounded-t-lg saturate-50 aspect-video"
+            className="object-cover h-full w-full max-h-[60vh] lg:max-h-full md:rounded-l-lg md:rounded-tr-none rounded-t-lg saturate-50 aspect-square"
           />
         </div>
         <div className="bg-[#F4E3D4] md:col-span-7 md:rounded-r-lg md:rounded-bl-none rounded-b-lg px-3 py-5">
@@ -57,7 +57,7 @@ const SpeakerCard = ({ data }) => {
             width={320}
             src={urlForImage(data.speakerimg)}
             alt={"an image of" + data.speakername}
-            className=" object-cover h-full w-full md:rounded-l-lg md:rounded-tr-none rounded-t-lg saturate-50 aspect-video"
+            className=" object-cover h-full w-full max-h-[60vh] lg:max-h-full md:rounded-l-lg md:rounded-tr-none rounded-t-lg saturate-50 aspect-square"
           />
         </div>
         <div className=" bg-[#F1F5DA] md:col-span-7 md:rounded-r-lg md:rounded-bl-none rounded-b-lg px-3 py-5 flex flex-col justify-center">
