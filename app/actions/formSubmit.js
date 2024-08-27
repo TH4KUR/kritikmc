@@ -9,14 +9,15 @@ export async function formSubmit(formData) {
   // const counterRes = await counter.up("kritikmc", "delegates");
 
   const rawFormData = {
-    studentName: formData.get("student_name"),
-    studentNumber: formData.get("student_number"),
-    studentEmail: formData.get("student_email"),
-    collegeYear: formData.get("college_year"),
+    studentName: formData.get("student_name").trim(),
+    studentNumber: formData.get("student_number").trim(),
+    studentEmail: formData.get("student_email").trim(),
+    collegeYear: formData.get("college_year").trim(),
     isKmcStudent: formData.get("kmc_student") === "true" ? "true" : "false",
-    kmcRollNo: formData.get("kmc_rollno"),
-    isPgStudent: formData.get("is_pg_student"),
-    studentCollege: formData?.get("college_name") || "Kakatiya Medical College",
+    kmcRollNo: formData.get("kmc_rollno").trim(),
+    isPgStudent: formData.get("is_pg_student").trim(),
+    studentCollege:
+      formData?.get("college_name").trim() || "Kakatiya Medical College",
     events: [
       ...(formData.get("debate") ? ["debate"] : []),
       ...(formData.get("jeopardy") ? ["jeopardy"] : []),
