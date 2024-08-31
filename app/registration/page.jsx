@@ -32,9 +32,13 @@ export default async function Home() {
               ></path>
               <path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Z"></path>
             </svg>
-            <h1 className="text-2xl font-semibold text-center text-gray-100">
-              Registrations for Kritikmc are now over!
+            <h1 className="text-2xl font-semibold text-center text-gray-200">
+              Registrations for Kritikmc are now over! 😭
             </h1>
+            <p className="text-gray-400 text-lg max-w-[45ch] text-center mt-3 ">
+              But Hey, you can always participate the next time in the most
+              awaited medical conference of Telengana with amazing prize pools!
+            </p>
           </section>
         </main>{" "}
         <Footer />
