@@ -40,7 +40,6 @@ export default async function Home() {
         <Timer deadline={deadline} />
         <Announcements />
         <Speaker speakerdata={speakerdata} />
-
         <Stats />
         <Timeline />
         <Sponsors />

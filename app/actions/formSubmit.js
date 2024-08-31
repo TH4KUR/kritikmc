@@ -9,23 +9,23 @@ export async function formSubmit(formData) {
   // const counterRes = await counter.up("kritikmc", "delegates");
 
   const rawFormData = {
-    studentName: formData.get("student_name").trim(),
-    studentNumber: formData.get("student_number").trim(),
-    studentEmail: formData.get("student_email").trim(),
-    collegeYear: formData.get("college_year").trim(),
-    isKmcStudent: formData.get("kmc_student") === "true" ? "true" : "false",
-    kmcRollNo: formData.get("kmc_rollno").trim(),
-    isPgStudent: formData.get("is_pg_student").trim(),
+    studentName: formData?.get("student_name")?.trim(),
+    studentNumber: formData?.get("student_number")?.trim(),
+    studentEmail: formData?.get("student_email")?.trim(),
+    collegeYear: formData?.get("college_year")?.trim(),
+    isKmcStudent: formData?.get("kmc_student") === "true" ? "true" : "false",
+    kmcRollNo: formData?.get("kmc_rollno")?.trim(),
+    isPgStudent: formData?.get("is_pg_student")?.trim(),
     studentCollege:
-      formData?.get("college_name").trim() || "Kakatiya Medical College",
+      formData?.get("college_name")?.trim() || "Kakatiya Medical College",
     events: [
-      ...(formData.get("debate") ? ["debate"] : []),
-      ...(formData.get("jeopardy") ? ["jeopardy"] : []),
-      ...(formData.get("medExhibition") ? ["medExhibition"] : []),
-      ...(formData.get("paperPresentation") ? ["paperPresentation"] : []),
-      ...(formData.get("posterPresentation") ? ["posterPresentation"] : []),
-      ...(formData.get("symposium") ? ["symposium"] : []),
-      ...(formData.get("hackathon") ? ["hackathon"] : []),
+      ...(formData?.get("debate") ? ["debate"] : []),
+      ...(formData?.get("jeopardy") ? ["jeopardy"] : []),
+      ...(formData?.get("medExhibition") ? ["medExhibition"] : []),
+      ...(formData?.get("paperPresentation") ? ["paperPresentation"] : []),
+      ...(formData?.get("posterPresentation") ? ["posterPresentation"] : []),
+      ...(formData?.get("symposium") ? ["symposium"] : []),
+      ...(formData?.get("hackathon") ? ["hackathon"] : []),
     ],
   };
   const rawFormDataBase64 = Buffer.from(JSON.stringify(rawFormData)).toString(
