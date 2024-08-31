@@ -1,7 +1,7 @@
-import { sanityFetch } from "@/sanity";
+import { sanityAnnouncementFetch } from "@/sanity";
 
 async function getDeadlineData() {
-  const res = await sanityFetch({
+  const res = await sanityAnnouncementFetch({
     query: `*[_type=='siteSettings']{deadline}`,
   });
   return res[0].deadline;

@@ -76,14 +76,24 @@ const Gateway = ({ regData }) => {
         <section className="py-2">
           <div className="flex flex-col items-center">
             <Checkmark className=" size-32 mx-auto bg-green-500 rounded-full p-7" />
-            <h1 className="font-semibold text-xl mt-5 text-center">
+            <h1 className="font-semibold text-2xl mt-5 text-center">
               Registration Request Successfull!!
             </h1>
-            <p className="text-center">
-              You will receive a confirmation email once our team has confirmed
-              the payment.
-            </p>
-            <p className=" flex px-3 py-2 bg-bgSecondary text-bg font-semibold text-xl">
+            <div className="text-center">
+              <p>
+                You will receive a confirmation email once our team has
+                confirmed the payment.
+              </p>
+              <div className=" text-base p-2 bg-orange-300 font-medium">
+                <strong>DONT PANIC if you dont get the mail:</strong>
+                <br />
+                <p className="text-left mx-auto inline-block">
+                  1. Check your spam. <br />
+                  2. Due to high demand the mails may get delayed.{" "}
+                </p>
+              </div>
+            </div>
+            <p className=" flex px-3 py-2 bg-bgSecondary text-bg font-semibold text-xl mt-3 rounded-sm">
               Your Delegate ID is{" "}
               {response[0]?.serverData.dataUploaded.delegateId} ✨
             </p>

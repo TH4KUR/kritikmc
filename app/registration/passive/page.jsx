@@ -59,7 +59,7 @@ export default async function Home() {
 
             <hr className="border-black border w-40 mt-5" />
             <p className="bg-accent/10 px-3 py-2 text-base mt-2 font-medium">
-              Contact for any queries:{" "}
+              For any queries, contact:{" "}
               <Link
                 href={"tel:+918700621534"}
                 className=" underline text-blue-700"
