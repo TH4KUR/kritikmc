@@ -1516,13 +1516,18 @@ export const FileRouter = {
                                           <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>Mobile No. :
                                             </strong>${studentNumber}</p>
                                           <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>Registration
-                                              Fee: </strong>₹200</p>
+                                              Fee: </strong>₹${
+                                                isKmcStudent === "true"
+                                                  ? "300"
+                                                  : isPgStudent
+                                                    ? "600"
+                                                    : "400"
+                                              }</p>
                                           <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>Payment
                                               Screenshot Link: </strong>${file.url}</p>
                                           <p style="font-size: 14px; line-height: 170%; text-align: left;"></p>
-                                          <p style="font-size: 14px; line-height: 170%; text-align: left;">Events: Can watch all events ✨✨ <strong>}</strong></p>
-                                          <p style="font-size: 14px; line-height: 170%; text-align: left;"> </p>
-                                        </div>
+                                          <p style="font-size: 14px; line-height: 170%; text-align: left;"> <strong> Events Participated in:</strong> ${events.reduce((sum, el) => sum + ", " + el)} </p>
+                                          <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>}</strong> </p></div>
   
                                       </td>
                                     </tr>
