@@ -16,7 +16,7 @@ const RegistrationLanding = ({ deadline }) => {
           <main className="min-h-[70vh] flex items-center justify-center max-w-screen-xl mx-auto my-5">
             <div className=" grid lg:grid-cols-3 gap-5 mx-5">
               <div
-                className="p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden"
+                className="p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500"
                 onClick={() => {
                   setInitialLoad(false);
                   setActiveParticipation(true);
@@ -33,9 +33,9 @@ const RegistrationLanding = ({ deadline }) => {
               </div>
               <Link
                 href={"/registration/passive"}
-                className="bg-[url('/posterpresentation.jpg')] p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden"
+                className="bg-[url('/posterpresentation.jpg')] p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500"
               >
-                <div className="bg-[url('/posterPresentation.jpg')] h-full w-full z-0 bottom-0 absolute bg-cover brightness-[0.30] "></div>
+                <div className="bg-[url('/posterPresentation.jpg')] h-full w-full z-0 bottom-0 absolute bg-cover brightness-[0.29]"></div>
                 <h3 className=" text-xl font-semibold text-gray-100 z-10">
                   Passive Delegate Registration
                 </h3>
@@ -46,7 +46,7 @@ const RegistrationLanding = ({ deadline }) => {
               </Link>
               <Link
                 href={"/registration/amboss"}
-                className=" p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden"
+                className=" p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500"
               >
                 <div className="bg-[url('/workshop.webp')] h-full w-full z-0 bottom-0 absolute bg-cover brightness-[0.30] "></div>
                 <h3 className=" text-xl font-semibold text-gray-100 z-10">
