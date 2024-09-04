@@ -1732,12 +1732,12 @@ export const FileRouter = {
         if (err.message.includes("email_1 dup key")) {
           return {
             error:
-              "Duplicate Email Address Used, email at kmckriti@gmail.com for refund if amount paid.",
+              "This email is already registered! If you didn't register contact: +91 8700621534.",
           };
         } else if (err.message.includes("mobileno_1 dup key")) {
           return {
             error:
-              "Duplicate Mobile Number Used, email at kmckriti@gmail.com for refund if amount paid.",
+              "This mobile number is already registered! If you didn't register contact: +91 8700621534.",
           };
         } else {
           return {
