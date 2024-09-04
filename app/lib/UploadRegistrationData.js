@@ -9,7 +9,7 @@ export async function UploadRegistrationData(regData, imgurl) {
     name: regData.studentName,
     email: regData.studentEmail,
     mobileno: Number(regData.studentNumber),
-    collegeYear: Number(regData.collegeYear),
+    collegeYear: regData.collegeYear ? Number(regData.collegeYear) : 0,
     collegeName: regData.studentCollege,
     isKmcStudent: regData.isKmcStudent === "true" ? true : false,
     isPgStudent: regData.isPgStudent === "true" ? true : false,
