@@ -10,12 +10,12 @@ export async function formSubmit(formData) {
 
   const rawFormData = {
     studentName: formData?.get("student_name")?.trim(),
-    studentNumber: formData?.get("student_number")?.trim(),
+    studentNumber: formData?.get("student_number"),
     studentEmail: formData?.get("student_email")?.trim(),
-    collegeYear: formData?.get("college_year")?.trim(),
+    collegeYear: formData?.get("college_year") || 0,
     isKmcStudent: formData?.get("kmc_student") === "true" ? "true" : "false",
     kmcRollNo: formData?.get("kmc_rollno")?.trim(),
-    isPgStudent: formData?.get("is_pg_student")?.trim(),
+    isPgStudent: formData?.get("is_pg_student"),
     studentCollege:
       formData?.get("college_name")?.trim() || "Kakatiya Medical College",
     events: [
@@ -27,6 +27,7 @@ export async function formSubmit(formData) {
       ...(formData?.get("symposium") ? ["symposium"] : []),
       ...(formData?.get("hackathon") ? ["hackathon"] : []),
     ],
+    activeParticipant: true,
   };
   const rawFormDataBase64 = Buffer.from(JSON.stringify(rawFormData)).toString(
     "base64"

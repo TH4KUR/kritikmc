@@ -12,7 +12,7 @@ export async function formSubmitPassiveDelegates(formData) {
     studentName: formData.get("student_name"),
     studentNumber: formData.get("student_number"),
     studentEmail: formData.get("student_email"),
-    collegeYear: formData.get("college_year"),
+    collegeYear: formData.get("college_year") || 0,
     isKmcStudent: formData.get("kmc_student") === "true" ? true : false,
     isPgStudent: formData.get("is_pg_student"),
     studentCollege: formData?.get("college_name") || "Kakatiya Medical College",

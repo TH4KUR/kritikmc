@@ -1155,7 +1155,7 @@ export const FileRouter = {
           return {
             dataUploaded,
           };
-        } else {
+        } else if (metadata.regData?.activeParticipant) {
           /////////////////////////////////////////////////////
           // Generate a id on the visitor number
           /////////////////////////////////////////////////////
