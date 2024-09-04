@@ -26,20 +26,20 @@ const RegistrationLanding = ({ deadline }) => {
                 <h3 className=" text-xl font-semibold text-gray-100 z-10">
                   Active Participant Registration
                 </h3>
-                <p className=" z-10 text-gray-200">
+                <p className=" z-10 text-gray-300 font-medium">
                   Be an active participate and contest against other delegates.
                   The winners return with amazing prizes in hand 😎.
                 </p>
               </div>
               <Link
                 href={"/registration/passive"}
-                className="bg-[url('/posterpresentation.jpg')] p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500"
+                className="p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500"
               >
-                <div className="bg-[url('/posterPresentation.jpg')] h-full w-full z-0 bottom-0 absolute bg-cover brightness-[0.29]"></div>
+                <div className="bg-[url('/posterpresentation.jpg')] h-full w-full z-0 bottom-0 absolute bg-cover brightness-[0.30]"></div>
                 <h3 className=" text-xl font-semibold text-gray-100 z-10">
                   Passive Delegate Registration
                 </h3>
-                <p className="z-10 text-gray-200">
+                <p className="z-10 text-gray-300 font-medium">
                   Be an passive participate and watch and learn from the active
                   delegates. Or just support your friends participating 😉.
                 </p>
@@ -52,7 +52,7 @@ const RegistrationLanding = ({ deadline }) => {
                 <h3 className=" text-xl font-semibold text-gray-100 z-10">
                   Amboss Workshop Registration
                 </h3>
-                <p className="z-10 text-gray-200">
+                <p className="z-10 text-gray-300 font-medium">
                   Master medical knowledge fast—join our AMBOSS Workshop for
                   essential exam insights! ✨.
                 </p>
