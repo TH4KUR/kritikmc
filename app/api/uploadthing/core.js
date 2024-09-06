@@ -1518,10 +1518,10 @@ export const FileRouter = {
                                           <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>Registration
                                               Fee: </strong>₹${
                                                 isKmcStudent === "true"
-                                                  ? "300"
+                                                  ? "400"
                                                   : isPgStudent
                                                     ? "600"
-                                                    : "400"
+                                                    : "600"
                                               }</p>
                                           <p style="font-size: 14px; line-height: 170%; text-align: left;"><strong>Payment
                                               Screenshot Link: </strong>${file.url}</p>

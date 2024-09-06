@@ -26,10 +26,10 @@ const Gateway = ({ regData }) => {
               <p className="bg-white/5 text-white text-xl font-semibold px-5 py-3 rounded-md ">
                 ₹
                 {regData.isKmcStudent === "true"
-                  ? "300"
+                  ? "400"
                   : regData.isPgStudent
                     ? "600"
-                    : "400"}
+                    : "600"}
               </p>
             </div>
           </section>
