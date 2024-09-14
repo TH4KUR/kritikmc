@@ -316,7 +316,7 @@ export const FileRouter = {
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Thank
                                               you for registering for kriti.</span></p>
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Your
-                                              registering request was recieved and you will be informed when confirmed.</span></p>
+                                              registering request was received and you will be informed when confirmed.</span></p>
                                           <p style="line-height: 170%;">  </p>
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Till
                                               then keep the info below handy!</span></p>
@@ -881,7 +881,7 @@ export const FileRouter = {
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Thank
                                               you for registering for the - <br/> <strong>AMBOSS Workshop.</strong></span></p>
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Your
-                                              registering request was recieved and you will be informed when confirmed.</span></p>
+                                              registering request was received and you will be informed when confirmed.</span></p>
                                           <p style="line-height: 170%;">  </p>
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Till
                                               then keep the info below handy!</span></p>
@@ -1449,7 +1449,7 @@ export const FileRouter = {
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Thank
                                               you for registering for kriti.</span></p>
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Your
-                                              registering request was recieved and you will be informed when confirmed.</span></p>
+                                              registering request was received and you will be informed when confirmed.</span></p>
                                           <p style="line-height: 170%;">  </p>
                                           <p style="line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Till
                                               then keep the info below handy!</span></p>
