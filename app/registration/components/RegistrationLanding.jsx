@@ -46,9 +46,9 @@ const RegistrationLanding = ({ deadline }) => {
               </Link>
               <Link
                 href={"/registration/amboss"}
-                className=" p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500"
+                className=" p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500 bg-black"
               >
-                <div className="bg-[url('/workshop.webp')] h-full w-full z-0 bottom-0 absolute bg-cover brightness-[0.30] "></div>
+                <div className="bg-[url('/Logo-teal-vertical.webp')] h-full w-[138%] z-0 bottom-0 absolute bg-cover brightness-[70] "></div>
                 <h3 className=" text-xl font-semibold text-gray-100 z-10">
                   Amboss Workshop Registration
                 </h3>

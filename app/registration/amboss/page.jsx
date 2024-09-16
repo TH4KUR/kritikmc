@@ -4,6 +4,7 @@ import Link from "next/link";
 import Form from "./components/Form";
 import Arrow from "@/app/components/icons/Arrow";
 import getDeadlineData from "@/app/lib/getDeadlineData";
+import Image from "next/image";
 
 export const metadata = {
   title: "Registration Form",
@@ -49,6 +50,13 @@ export default async function Home() {
       <>
         <Nav bg={"#eee"} />
         <main className=" bg-gradient-to-br from-[#F7D4D4ba] to-[#F6ECC4] py-10">
+          <Image
+            height={350}
+            width={325}
+            className=" aspect-video mx-auto"
+            src="/Logo-teal-vertical.webp"
+            alt="kmc amboss logo"
+          />
           <section className=" flex flex-col items-center justify-center px-3 gap-1 py-10">
             <h1 className="font-semibold text-lg md:text-2xl">
               Registration form for AMBOSS Workshop.
