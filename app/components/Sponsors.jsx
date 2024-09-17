@@ -28,6 +28,12 @@ const Sponsors = () => {
           />
           <span className="text-3xl font-medium">Marrow</span>
         </Link>
+        <Link
+          className=" flex items-center gap-5 object-cover p-5"
+          href={"https://www.amboss.com/"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
         <Image
           height={350}
           width={325}
@@ -35,6 +41,8 @@ const Sponsors = () => {
           src="/Logo-teal-vertical.webp"
           alt="kmc amboss logo"
         />
+        <span className="text-3xl font-medium">Amboss</span>
+        </Link>
       </div>
     </section>
   );
