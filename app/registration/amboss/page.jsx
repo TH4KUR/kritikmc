@@ -53,7 +53,7 @@ export default async function Home() {
           <Image
             height={350}
             width={325}
-            className=" aspect-video mx-auto"
+            className="mx-auto"
             src="/Logo-teal-vertical.webp"
             alt="kmc amboss logo"
           />

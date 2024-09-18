@@ -28,15 +28,30 @@ const TimelineCard = ({ data }) => {
                 {!el.postNriLunch ? el.time : "Post NRI Lunch in NRI Hall"}
                 <br />
                 {el.events.map((eventName, j) => {
-                  return (
-                    <p
-                      key={j}
-                      className="ml-3 text-black flex items-center gap-2 font-normal"
-                    >
-                      <Bullet />
-                      {eventName}
-                    </p>
-                  );
+                  if (
+                    eventName === "Amboss WorkShop" ||
+                    eventName === "Marrow's Jeopardy"
+                  ) {
+                    return (
+                      <p
+                        key={j}
+                        className="ml-3 text-accent2/90 font-bold flex items-center gap-2"
+                      >
+                        <Bullet />
+                        {eventName}
+                      </p>
+                    );
+                  } else {
+                    return (
+                      <p
+                        key={j}
+                        className="ml-3 text-black flex items-center gap-2 font-normal"
+                      >
+                        <Bullet />
+                        {eventName}
+                      </p>
+                    );
+                  }
                 })}
               </li>
             );

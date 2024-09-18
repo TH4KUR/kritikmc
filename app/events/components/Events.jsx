@@ -53,7 +53,7 @@ const Box = async ({ eventDetails, index }) => {
             height={300}
             width={400}
             className="relative top-5 w-full"
-            src={urlForImage(eventDetails.eventImg)}
+            src={urlForImage(eventDetails?.eventImg)}
             alt="event 1"
           />
         </motion.div>
@@ -64,22 +64,22 @@ const Box = async ({ eventDetails, index }) => {
       >
         <div className="">
           <h2 className=" px-3 py-2 bg-accent2 font-semibold text-xl mb-2">
-            {eventDetails.eventName}{" "}
+            {eventDetails?.eventName}{" "}
           </h2>
-          {/* <span className="text-base font-medium">{eventDetails.slogan}</span> */}
+          {/* <span className="text-base font-medium">{eventDetails?.slogan}</span> */}
           <p className="text-base md:text-lg border-l-4 pl-3 border-accent2">
-            {eventDetails.eventDesc}
+            {eventDetails?.eventDesc}
           </p>
           <Link
-            href={`/events/${eventDetails.eventName.toLowerCase().replaceAll(" ", "-")}`}
+            href={`/events/${eventDetails?.eventName.toLowerCase().replaceAll(" ", "-")}`}
             className="px-4 py-2 bg-accent mt-5 font-medium inline-flex rounded hover:scale-105 hover:brightness-110 transition-all focus:outline-none focus:ring-4 focus:ring-accent2/40"
           >
             Prizes & Rules <Arrow size={20} color={"#fff"} />{" "}
           </Link>
           <ul className="mt-5 py-3 px-4 bg-accent2/5">
-            <li>Event Coordinator: {eventDetails.eventCoordinator}</li>
-            <li>Contact info: +91 {eventDetails.eventCoordinatorContact}</li>
-            {eventDetails.eventName === "Marrow's Jeopardy" ? (
+            <li>Event Coordinator: {eventDetails?.eventCoordinator}</li>
+            <li>Contact info: +91 {eventDetails?.eventCoordinatorContact}</li>
+            {eventDetails?.eventName === "Marrow's Jeopardy" ? (
               <>
                 <li className="mt-2">Event Coordinator 2: Dr. B Roshni</li>
                 <li>Contact info: +91 9515681977</li>
@@ -95,11 +95,11 @@ const Box = async ({ eventDetails, index }) => {
               window.history.pushState(
                 {},
                 "Title",
-                `/events#${eventDetails.eventName}-${index + 1}`
+                `/events#${eventDetails?.eventName}-${index + 1}`
               );
             }}
           >
-            {eventDetails.eventName} - {eventDetails.eventSlogan}
+            {eventDetails?.eventName} - {eventDetails?.eventSlogan}
           </motion.p>
         </div>
       </motion.div>

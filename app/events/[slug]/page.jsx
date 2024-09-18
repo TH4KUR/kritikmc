@@ -186,7 +186,7 @@ async function page({ params }) {
           </h1>
           <h3 className="text-lg font-semibold text-[#ffeedd]">Rules</h3>
           <ul>
-            {data[params.slug].rules.map((rule, i) => (
+            {data[params.slug]?.rules.map((rule, i) => (
               <li className="flex items-start justify-start  mt-2" key={i}>
                 <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
                 <p>{rule}</p>
@@ -199,7 +199,7 @@ async function page({ params }) {
                 Prelims Rules
               </h3>
               <ul>
-                {data[params.slug].prelimRules.map((rule, i) => (
+                {data[params.slug]?.prelimRules.map((rule, i) => (
                   <li className="flex items-start justify-start  mt-2" key={i}>
                     <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
                     <p>{rule}</p>
@@ -216,7 +216,7 @@ async function page({ params }) {
                 Final Round Rules
               </h3>
               <ul>
-                {data[params.slug].finalsRules.map((rule, i) => (
+                {data[params.slug]?.finalsRules.map((rule, i) => (
                   <li className="flex items-start justify-start  mt-2" key={i}>
                     <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
                     <p>{rule}</p>
@@ -234,26 +234,28 @@ async function page({ params }) {
               <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
               <p>
                 <strong>Winner:</strong>{" "}
-                {typeof data[params.slug].prizes[0] === "string"
-                  ? data[params.slug].prizes[0]
-                  : `₹${data[params.slug].prizes[0]}`}
+                {typeof data[params.slug]?.prizes[0] === "string"
+                  ? data[params.slug]?.prizes[0]
+                  : `₹${data[params.slug]?.prizes[0]}`}
               </p>
             </li>
-            {data[params.slug].prizes[1] ? (
+            {data[params.slug]?.prizes[1] ? (
               <li className="flex mt-1">
                 <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
                 <p>
-                  <strong>1st Runner Up:</strong> ₹{data[params.slug].prizes[1]}
+                  <strong>1st Runner Up:</strong> ₹
+                  {data[params.slug]?.prizes[1]}
                 </p>
               </li>
             ) : (
               ""
             )}
-            {data[params.slug].prizes[2] ? (
+            {data[params.slug]?.prizes[2] ? (
               <li className="flex mt-1">
                 <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
                 <p>
-                  <strong>2nd Runner Up:</strong> ₹{data[params.slug].prizes[2]}
+                  <strong>2nd Runner Up:</strong> ₹
+                  {data[params.slug]?.prizes[2]}
                 </p>
               </li>
             ) : (

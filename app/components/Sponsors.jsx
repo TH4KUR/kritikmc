@@ -28,13 +28,21 @@ const Sponsors = () => {
           />
           <span className="text-3xl font-medium">Marrow</span>
         </Link>
-        <Image
-          height={350}
-          width={325}
-          className=" aspect-video mx-auto"
-          src="/Logo-teal-vertical.webp"
-          alt="kmc amboss logo"
-        />
+
+        <Link
+          className=" flex items-center gap-5 object-cover p-5"
+          href={"https://www.amboss.com/"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            // height={350}
+            width={325}
+            className=" mx-auto"
+            src="/Logo-teal-vertical.webp"
+            alt="kmc amboss logo"
+          />
+        </Link>
       </div>
     </section>
   );
