@@ -14,7 +14,7 @@ const Sponsors = () => {
 
       <div>
         <Link
-          className=" flex items-center gap-5 object-cover p-5"
+          className=" flex items-center flex-col md:flex-row gap-5 object-cover p-5"
           href={"https://www.marrow.com/"}
           target="_blank"
           rel="noopener noreferrer"
