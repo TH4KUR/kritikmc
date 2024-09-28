@@ -65,6 +65,13 @@ export default async function Home() {
               Fill in the required details below and pay the applicable fee to
               register for the event!{" "}
             </p>
+            <Link
+              href={`/events/amboss-workshop`}
+              className="px-4 py-2 bg-accent mt-5 font-medium inline-flex rounded hover:scale-105 hover:brightness-110 transition-all focus:outline-none focus:ring-4 focus:ring-accent2/40 text-white"
+            >
+              More Info here
+              <Arrow size={20} color={"#fff"} />{" "}
+            </Link>
 
             <hr className="border-black border w-40 mt-5" />
             <p className="bg-accent/10 px-3 py-2 text-base mt-2 font-medium">
