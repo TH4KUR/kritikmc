@@ -5,6 +5,42 @@ export const metadata = {
   title: "Events",
 };
 const data = {
+  "amboss-workshop": {
+    rules: [
+      <>
+        <p>
+          In 2023, more than 50,000 students took the USMLE Step 1. Even more
+          appeared for the USMLE Step 2. These students are not only from US,
+          Canada and India, but around the world.
+        </p>
+        <br />
+        <p>
+          Which is why, with experience from 180+ countries, AMBOSS is hosting a
+          USMLE Bootcamp for you!
+        </p>
+        <p className="my-4">
+          <strong>Highlights</strong>
+        </p>
+        <ul className="ml-3 *:mb-2">
+          <li>Intro to USMLE: What? Why? How? Of USMLE</li>
+          <li>
+            Insights into proven USMLE strategy: Understand what works and why,
+            and -more importantly- what mistakes should IMGs avoid.
+          </li>
+          <li>Expert Guidance: Learn from an AMBOSS doctor and Q-writer</li>
+          <li>
+            Critical considerations: How an Indian MBBS student should adjust
+            their everyday studying, to do well at local exams AND
+            simultaneously increase their USMLE score-yield.
+          </li>
+        </ul>
+        Speakers - 2024 Match Residents - Students who have passed Step 1 and
+        Step 2 - NBME Experts - WHO, UN Delegates But most importantly, we will
+        be solving YOUR doubts.
+      </>,
+    ],
+    prizes: "NA",
+  },
   "paper-presentation": {
     rules: [
       `Team should comprise of a maximum of 2 members , one delegate is allowed to present the paper , questions can be answered by either team members .`,
@@ -184,7 +220,9 @@ async function page({ params }) {
           <h1 className=" text-3xl font-semibold mb-4 border-l-4 pl-3 border-accent2">
             {makeTitle(params.slug)}
           </h1>
-          <h3 className="text-lg font-semibold text-[#ffeedd]">Rules</h3>
+          <h3 className="text-lg font-semibold text-[#ffeedd]">
+            {params.slug != "amboss-workshop" ? "Rules" : "Information"}
+          </h3>
           <ul>
             {data[params.slug]?.rules.map((rule, i) => (
               <li className="flex items-start justify-start  mt-2" key={i}>
@@ -228,40 +266,46 @@ async function page({ params }) {
             ""
           )}
 
-          <h3 className="text-lg font-semibold mt-5">Prizes</h3>
-          <ul>
-            <li className="flex mt-1">
-              <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
-              <p>
-                <strong>Winner:</strong>{" "}
-                {typeof data[params.slug]?.prizes[0] === "string"
-                  ? data[params.slug]?.prizes[0]
-                  : `₹${data[params.slug]?.prizes[0]}`}
-              </p>
-            </li>
-            {data[params.slug]?.prizes[1] ? (
-              <li className="flex mt-1">
-                <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
-                <p>
-                  <strong>1st Runner Up:</strong> ₹
-                  {data[params.slug]?.prizes[1]}
-                </p>
-              </li>
-            ) : (
-              ""
-            )}
-            {data[params.slug]?.prizes[2] ? (
-              <li className="flex mt-1">
-                <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
-                <p>
-                  <strong>2nd Runner Up:</strong> ₹
-                  {data[params.slug]?.prizes[2]}
-                </p>
-              </li>
-            ) : (
-              ""
-            )}
-          </ul>
+          {params.slug != "amboss-workshop" ? (
+            <>
+              <h3 className="text-lg font-semibold mt-5">Prizes</h3>
+              <ul>
+                <li className="flex mt-1">
+                  <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
+                  <p>
+                    <strong>Winner:</strong>{" "}
+                    {typeof data[params.slug]?.prizes[0] === "string"
+                      ? data[params.slug]?.prizes[0]
+                      : `₹${data[params.slug]?.prizes[0]}`}
+                  </p>
+                </li>
+                {data[params.slug]?.prizes[1] ? (
+                  <li className="flex mt-1">
+                    <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
+                    <p>
+                      <strong>1st Runner Up:</strong> ₹
+                      {data[params.slug]?.prizes[1]}
+                    </p>
+                  </li>
+                ) : (
+                  ""
+                )}
+                {data[params.slug]?.prizes[2] ? (
+                  <li className="flex mt-1">
+                    <i className="before:size-2 before:bg-slate-50 before:rounded-full before:inline-block mr-2"></i>
+                    <p>
+                      <strong>2nd Runner Up:</strong> ₹
+                      {data[params.slug]?.prizes[2]}
+                    </p>
+                  </li>
+                ) : (
+                  ""
+                )}
+              </ul>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </main>
       <Footer />

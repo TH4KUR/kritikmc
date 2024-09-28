@@ -74,7 +74,10 @@ const Box = async ({ eventDetails, index }) => {
             href={`/events/${eventDetails?.eventName.toLowerCase().replaceAll(" ", "-")}`}
             className="px-4 py-2 bg-accent mt-5 font-medium inline-flex rounded hover:scale-105 hover:brightness-110 transition-all focus:outline-none focus:ring-4 focus:ring-accent2/40"
           >
-            Prizes & Rules <Arrow size={20} color={"#fff"} />{" "}
+            {eventDetails.eventName != "Amboss WorkShop"
+              ? "Prizes & Rules"
+              : "More information"}{" "}
+            <Arrow size={20} color={"#fff"} />{" "}
           </Link>
           <ul className="mt-5 py-3 px-4 bg-accent2/5">
             <li>Event Coordinator: {eventDetails?.eventCoordinator}</li>
