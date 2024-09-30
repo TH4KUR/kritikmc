@@ -8,35 +8,77 @@ const data = {
   "amboss-workshop": {
     rules: [
       <>
-        <p>
-          In 2023, more than 50,000 students took the USMLE Step 1. Even more
-          appeared for the USMLE Step 2. These students are not only from US,
-          Canada and India, but around the world.
+        <p className="mb-4">
+          At the AMBOSS workshop, we offer a range of personalized services to
+          enhance your USMLE preparation:
         </p>
-        <br />
-        <p>
-          Which is why, with experience from 180+ countries, AMBOSS is hosting a
-          USMLE Bootcamp for you!
-        </p>
-        <p className="my-4">
-          <strong>Highlights</strong>
-        </p>
-        <ul className="ml-3 *:mb-2">
-          <li>Intro to USMLE: What? Why? How? Of USMLE</li>
+        <ul className=" *:mb-2 !text-gray-200">
           <li>
-            Insights into proven USMLE strategy: Understand what works and why,
-            and -more importantly- what mistakes should IMGs avoid.
+            <strong>1) one-on-one Guidance:</strong> Gain personalized insights
+            with an NBME expert who will provide tailored advice to support your
+            preparation.
           </li>
-          <li>Expert Guidance: Learn from an AMBOSS doctor and Q-writer</li>
           <li>
-            Critical considerations: How an Indian MBBS student should adjust
-            their everyday studying, to do well at local exams AND
-            simultaneously increase their USMLE score-yield.
+            <strong>2) Efficiency through Hacks</strong> : Just as we use life
+            hacks to simplify daily tasks, our experts will introduce strategies
+            like pattern recognition to streamline your study process.
+          </li>
+          <li>
+            <strong>3) Resume Enhancement</strong> : KRITI, in collaboration
+            with our USA NRI alumni, will significantly boost your resume,
+            providing you with a competitive edge.
+          </li>
+          <li>
+            <strong>4) Flexible Learning Options</strong> : To suit your
+            convenience, AMBOSS sessions are available both online and offline.
+          </li>
+          <li>
+            <strong>5) Global Perspective</strong> : Many candidates mistakenly
+            view fellow Indians as their only competition. Our sessions will
+            provide you with a broader, more accurate perspective on the global
+            landscape of USMLE.
+          </li>
+          <li>
+            <strong>6) Current Exam Insights</strong> : Unlike other platforms
+            that rely on past exam experiences, AMBOSS provides up-to-date
+            guidance tailored to the current USMLE format, ensuring you stay
+            ahead of the curve.
+          </li>
+          <li>
+            <strong>7) Time-Saving Strategies</strong> : No more wasting hours
+            researching preparation methods or seeking advice from various
+            forums and coaches. This workshop will help you develop an efficient
+            study plan, saving you valuable time.
+          </li>
+          <li>
+            <strong>8) Balancing University and USMLE Prep</strong> : Struggling
+            to balance your university workload with USMLE preparation? Our
+            sessions will help you create a seamless schedule to manage all your
+            commitments effectively.
+          </li>
+          <li>
+            <strong>9) Time-Limited Preparation</strong> : Worried about
+            preparing in a short timeframe? Our experts will help you craft a
+            realistic and achievable study plan, even if your exam date is only
+            a few months away.
+          </li>
+          <li>
+            <strong>10) Maximizing Exam Day</strong> : You{"'"}ve prepared well,
+            but are you ready to fully utilize the 8-hour exam duration? AMBOSS
+            will teach you strategies to ensure you perform at your best on the
+            big day.
+          </li>
+          <li>
+            <strong>11) Cost-Effective</strong> : Instead of spending $40 on
+            generic counseling sessions, join our AMBOSS workshop for just ₹550.
+            Get personalized, actionable strategies designed to meet your unique
+            needs without breaking the bank.
           </li>
         </ul>
-        Speakers - 2024 Match Residents - Students who have passed Step 1 and
-        Step 2 - NBME Experts - WHO, UN Delegates But most importantly, we will
-        be solving YOUR doubts.
+        <p className="mt-4">
+          Let AMBOSS help you achieve your goals with expert guidance and an
+          approach that{"'"}s tailored for success!
+        </p>
       </>,
     ],
     prizes: "NA",
