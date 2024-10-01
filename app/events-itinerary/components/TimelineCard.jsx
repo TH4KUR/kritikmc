@@ -29,7 +29,7 @@ const TimelineCard = ({ data }) => {
                 <br />
                 {el.events.map((eventName, j) => {
                   if (
-                    eventName === "Amboss WorkShop" ||
+                    eventName.toLowerCase() === "amboss workshop" ||
                     eventName === "Marrow's Jeopardy"
                   ) {
                     return (

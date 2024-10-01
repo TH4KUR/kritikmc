@@ -116,7 +116,7 @@ const data = {
       <>
         (Poster) Make sure you structure your abstract in the following
         headings:
-        <div>
+        <>
           <br />
           (Original articles) <br /> <strong>TITLE:</strong> <br />
           <strong>PRESENTING AUTHOR:</strong>
@@ -155,7 +155,7 @@ const data = {
           <strong>CONCLUSION:</strong>
           <br />
           <strong>No Need of References</strong>
-        </div>
+        </>
       </>,
     ],
     prizes: [15000, 10000],
@@ -260,7 +260,11 @@ async function page({ params }) {
       <main className="bg-[#090909] relative text-gray-50 px-2 py-10">
         <div className="max-w-screen-md mx-auto">
           <h1 className=" text-3xl font-semibold mb-4 border-l-4 pl-3 border-accent2">
-            {makeTitle(params.slug)}
+            {params.slug != "amboss-workshop"
+              ? makeTitle(params.slug)
+              : makeTitle(params.slug).split(" ")[0].toUpperCase() +
+                " " +
+                makeTitle(params.slug).split(" ")[1]}
           </h1>
           <h3 className="text-lg font-semibold text-[#ffeedd]">
             {params.slug != "amboss-workshop" ? "Rules" : "Information"}

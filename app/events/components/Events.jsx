@@ -74,7 +74,7 @@ const Box = async ({ eventDetails, index }) => {
             href={`/events/${eventDetails?.eventName.toLowerCase().replaceAll(" ", "-")}`}
             className="px-4 py-2 bg-accent mt-5 font-medium inline-flex rounded hover:scale-105 hover:brightness-110 transition-all focus:outline-none focus:ring-4 focus:ring-accent2/40"
           >
-            {eventDetails.eventName != "Amboss WorkShop"
+            {eventDetails.eventName.toLowerCase() != "amboss workshop"
               ? "Prizes & Rules"
               : "More information"}{" "}
             <Arrow size={20} color={"#fff"} />{" "}
