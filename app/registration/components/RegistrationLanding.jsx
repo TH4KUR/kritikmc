@@ -50,7 +50,7 @@ const RegistrationLanding = ({ deadline }) => {
               >
                 <div className="bg-[url('/Logo-teal-vertical.webp')] h-[60%] w-[100%] z-0 absolute top-[6] right-0  bg-cover bg-center"></div>
                 <h3 className=" text-xl font-semibold text-gray-100 z-10">
-                  Amboss Workshop Registration
+                  AMBOSS Workshop Registration
                 </h3>
                 <p className="z-10 text-gray-200 font-medium">
                   Master medical knowledge fast—join our AMBOSS Workshop for
