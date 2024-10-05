@@ -109,4 +109,4 @@ const Timer = ({ deadline, showButton }) => {
   );
 };
 
-export default Timer;
+export default <></>;
