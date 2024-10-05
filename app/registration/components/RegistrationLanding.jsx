@@ -15,7 +15,7 @@ const RegistrationLanding = ({ deadline }) => {
           <Nav />
           <main className="min-h-[70vh] flex items-center justify-center max-w-screen-xl mx-auto my-5">
             <div className=" grid lg:grid-cols-2 gap-5 mx-auto">
-              {/* <div
+               <div
                 className="p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500"
                 onClick={() => {
                   setInitialLoad(false);
@@ -30,7 +30,7 @@ const RegistrationLanding = ({ deadline }) => {
                   Be an active participate and contest against other delegates.
                   The winners return with amazing prizes in hand 😎.
                 </p>
-              </div> */}
+              </div> 
               <Link
                 href={"/registration/passive"}
                 className="p-4 size-[19rem] hover:shadow hover:-translate-x-1 hover:-translate-y-2 hover:scale-105 transition-all flex flex-col gap-3 items-center justify-center rounded-lg bg-cover relative cursor-pointer overflow-hidden focus:ring focus:ring-amber-500"
