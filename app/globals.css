@@ -114,3 +114,18 @@ main {
   flex: 0 0 100%;
   @apply h-full overflow-hidden;
 }
+
+/* Speakers */
+.speakers_carousel {
+  overflow: hidden;
+  @apply before:left-0 before:block before:w-[20px]  before:h-full before:z-10 before:absolute relative;
+  @apply after:top-0 after:right-0 after:block after:w-[20px]  after:h-full after:z-10 after:absolute;
+}
+
+.speakers_slide {
+  flex: 0 0 80%;
+  min-width: 0;
+  margin-right: 10px;
+  margin-left: 5px;
+  @apply w-1/2 overflow-hidden  flex flex-col items-center;
+}

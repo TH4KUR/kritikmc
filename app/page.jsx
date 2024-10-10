@@ -12,6 +12,10 @@ import Sponsors from "./components/Sponsors";
 import Brochure from "./components/Brochure";
 import Announcements from "./components/Announcements";
 import Testimonials from "./components/Testimonials";
+import Patreons from "./components/Patreons";
+import Judges from "./components/Judges";
+import getPatronData from "./lib/getPatronData";
+import getJudgeData from "./lib/getJudgeData";
 export const metadata = {
   description:
     "The premier medical conference hosted by Kakatiya Medical College, Warangal. Join events or seminars by top medical experts.",
@@ -26,8 +30,8 @@ export const metadata = {
 export default async function Home() {
   const deadline = await getDeadlineData();
   const speakerdata = await getSpeakerData();
-
-  // FORCING Loading Screen
+  const patrondata = await getPatronData();
+  const judgedata = await getJudgeData(); // FORCING Loading Screen
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
 
   return (
@@ -37,9 +41,11 @@ export default async function Home() {
       </header>
       <main className="bg-bg">
         <Hero />
-        <Timer deadline={deadline} />
+        {/* <Timer deadline={deadline} /> */}
         <Announcements />
+        <Patreons patrondata={patrondata} />
         <Speaker speakerdata={speakerdata} />
+        <Judges judgedata={judgedata} />
         <Stats />
         <Timeline />
         <Sponsors />

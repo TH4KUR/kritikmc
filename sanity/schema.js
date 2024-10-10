@@ -6,6 +6,8 @@ import { eventPlan } from "./schemaTypes/eventPlan";
 import { conferenceBreakdown } from "./schemaTypes/conferenceBreakdown";
 import { announcements } from "./schemaTypes/announcements";
 import { testimonial } from "./schemaTypes/testimonial";
+import { patrons } from "./schemaTypes/patrons";
+import { judges } from "./schemaTypes/judges";
 
 export const schema = {
   types: [
@@ -17,5 +19,7 @@ export const schema = {
     conferenceBreakdown,
     announcements,
     testimonial,
+    patrons,
+    judges,
   ],
 };
