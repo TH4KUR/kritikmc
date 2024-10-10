@@ -2,20 +2,13 @@
 import { Input, Checkbox, Field, Label, Description } from "@headlessui/react";
 import Checkmark from "./icons/Checkmark";
 
-function InputCollege({ enabled, setEnabled, setDisabled }) {
+function InputCollege({ enabled, setEnabled }) {
   return (
     <>
       <Field className="flex items-center gap-2">
         <Checkbox
           checked={enabled}
-          onChange={() => {
-            if (enabled) {
-              setEnabled(false);
-              setDisabled(true);
-            } else if (!enabled) {
-              setEnabled(true);
-            }
-          }}
+          onChange={setEnabled}
           name="kmc_student"
           value={"true"}
           className="group block size-5 rounded border-2 border-black/50 bg-white data-[checked]:bg-blue-700 data-[checked]:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all"

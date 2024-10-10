@@ -30,7 +30,6 @@ const Form = () => {
           <InputCollege
             enabled={isStudentOfKmc}
             setEnabled={setIsStudentOfKmc}
-            setDisabled={setIsStudentOfKmc}
           />
           <InputCollegeYear />
         </>
