@@ -6,10 +6,10 @@ const Patreons = ({ patrondata }) => {
     <>
       <section className="bg-bgSecondary flex flex-col items-center pt-8 pb-12  min-h-[600px] justify-center ">
         <h2 className=" text-[#DA5867] uppercase font-semibold text-base md:text-lg mt-5 px-6">
-          Patreons
+          Patrons
         </h2>
         <h3 className="text-gray-100 text-2xl font-semibold md:text-3xl px-6">
-          More about our Patreons
+          More about our Patrons
         </h3>
         <div className={`w-full md:w-2/3 lg:h-4/5`}>
           <PatreonCarousel patrondata={patrondata} />
