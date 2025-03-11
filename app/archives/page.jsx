@@ -4,12 +4,17 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Image from "next/image";
 import ImageCarousel from "./components/ImageCarousel";
+import getArchivesData from "../lib/getArchivesData";
+import ArchivesGrid from "./components/ArchivesGrid";
 
 export const metadata = {
   title: "Archives",
 };
 
-const page = () => {
+const page = async () => {
+  const archiveData = await getArchivesData();
+  console.log(archiveData);
+
   return (
     <>
       <Nav />
@@ -38,45 +43,11 @@ const page = () => {
             Let these pioneering works inspire you to showcase your expertise
             and create something truly extraordinary and monumental.
           </p>
-
-          <img
-            src="/archives_threedots.svg"
-            className=" h-[50svh] opacity-50 absolute top-0 right-0"
-            alt="An image of three colorful dots"
-          />
-          <img
-            src="/archives_threedots.svg"
-            className=" h-[50svh] opacity-50 absolute bottom-0 left-0 rotate-180"
-            alt="An image of three colorful dots"
-          />
-          <div className="mx-auto relative z-20 lg:grid lg:grid-cols-2 lg:justify-items-center max-w-screen-md">
-            <Image
-              height={400}
-              width={800}
-              src="/archives_collage1.png"
-              className="block object-contain"
-              alt="An image of three colorful dots"
-            />
-
-            <Image
-              height={400}
-              width={800}
-              src="/archives_collage2.png"
-              className="block object-contain -translate-y-10 lg:translate-y-0"
-              alt="An image of three colorful dots"
-            />
-            <Image
-              height={400}
-              width={800}
-              src="/archives_collage3.png"
-              className="block  object-contain -translate-y-12 lg:translate-y-0 col-span-2"
-              alt="An image of three colorful dots"
-            />
-          </div>
         </div>
-        <section className="px-1 relative pb-10 max-w-screen-sm mx-auto">
+        <ArchivesGrid archivesData={archiveData} />
+        {/* <section className="px-1 relative pb-10 max-w-screen-sm mx-auto">
           <ImageCarousel />
-        </section>
+        </section> */}
         <div className="p-5 bg-bgSecondary ">
           <img className="mx-auto" src="/archiveHeading.gif" />
         </div>

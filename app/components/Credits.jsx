@@ -23,8 +23,7 @@ const Credits = () => {
           Aarush Thakur <Arrow size={10} color={"#eee"} />
         </Link>
       </p>
-      <br/>
-      <div><a href="https://www.siis.in" target="_blank">SiiS</a></div>
+      <br />
     </div>
   );
 };
