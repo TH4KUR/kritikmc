@@ -55,10 +55,10 @@ const GatewayPassive = ({ regData }) => {
                 } else {
                   setSuccess(true);
                 }
-                console.log("Files: ", res);
+                // console.log("Files: ", res);
                 setResponse(res);
                 setInitialLoad(false);
-                console.log(res);
+                // console.log(res);
               }}
               onUploadError={(error) => {
                 // Do something with the error.

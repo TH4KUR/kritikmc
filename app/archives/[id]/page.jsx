@@ -7,7 +7,7 @@ import Image from "next/image";
 const page = async ({ params }) => {
   const archivesData = await getSpecificArchive(params.id);
   const { archivesName, archivesDesc, archivesImgs } = await archivesData[0];
-  console.log({ archivesName, archivesDesc, archivesImgs });
+  // console.log({ archivesName, archivesDesc, archivesImgs });
   return (
     <>
       <Nav />

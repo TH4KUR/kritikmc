@@ -31,7 +31,7 @@ function EmblaCarousel() {
             <button
               className="embla__slide-2"
               onClick={() => {
-                console.log("Clicked");
+                // // console.log("Clicked");
               }}
             >
               <div className="rounded bg-bgSecondary text-white overflow-hidden w-full min-h-[14rem] grid grid-rows-5">
@@ -53,7 +53,7 @@ function EmblaCarousel() {
             <button
               className="embla__slide-2"
               onClick={() => {
-                console.log("Clicked");
+                // console.log("Clicked");
               }}
             >
               <div className="rounded bg-bgSecondary text-white overflow-hidden w-full min-h-[14rem] grid grid-rows-5">
@@ -75,7 +75,7 @@ function EmblaCarousel() {
             <button
               className="embla__slide-2"
               onClick={() => {
-                console.log("Clicked");
+                // console.log("Clicked");
               }}
             >
               <div className="rounded bg-bgSecondary text-white overflow-hidden w-full min-h-[14rem] grid grid-rows-5">

@@ -16,7 +16,7 @@ const page = () => {
           <Checkmark className={"fill-white size-8"} /> SUCCESS
           <ul className="bg-black w-full text-[#fde2a4] p-5  mt-5 font-semibold">
             {Object.keys(registrationData).map((key, i) => {
-              console.log(key, registrationData[key]);
+              // console.log(key, registrationData[key]);
               if (key === "events") {
                 return (
                   <li key={i}>

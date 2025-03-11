@@ -13,7 +13,7 @@ export const metadata = {
 
 const page = async () => {
   const archiveData = await getArchivesData();
-  console.log(archiveData);
+  // console.log(archiveData);
 
   return (
     <>

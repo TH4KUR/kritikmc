@@ -8,10 +8,10 @@ const UploaderButton = ({ setResponse, setUploaded }) => {
     <UploadButton
       endpoint="imageUploader"
       onClientUploadComplete={(res) => {
-        console.log("Files: ", res);
+        // console.log("Files: ", res);
         setUploaded(true);
         setResponse(res);
-        console.log(res);
+        // console.log(res);
       }}
       onUploadError={(error) => {
         // Do something with the error.
