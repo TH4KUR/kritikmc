@@ -5,10 +5,11 @@ import Form from "./Form";
 import Footer from "@/app/components/Footer";
 import Arrow from "@/app/components/icons/Arrow";
 
-const MainRegistration = ({ deadline }) => {
-  if (Date.now() > deadline.getTime()) {
+const MainRegistration = ({ deadline, start }) => {
+  if (Date.now() > deadline.getTime() || Date.now() < start.getTime()) {
     return (
       <>
+        <Nav />
         <main className=" bg-gradient-to-br from-[#1e0b0b] to-[#1b1701] py-10">
           <section className=" flex flex-col items-center justify-center px-3 gap-1 py-10">
             <svg

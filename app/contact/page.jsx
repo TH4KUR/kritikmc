@@ -42,7 +42,7 @@ async function page() {
           </ul>
         </div>
       </section>
-      {/* <Timer deadline={deadline} showButton={true} /> */}
+      {/* {showTimer ? <Timer deadline={deadline} /> : <></>} */}
       <Footer />
     </>
   );

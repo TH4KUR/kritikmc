@@ -55,7 +55,7 @@ const page = async () => {
 
   // FORCING Loading Screen
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
-  const deadline = await getDeadlineData();
+  const { deadline, showTimer, registrationStart } = await getDeadlineData();
   return (
     <>
       <Nav />
@@ -66,7 +66,12 @@ const page = async () => {
             "Kriti. celebrates groundbreaking research and innovation, fostering collaboration and knowledge sharing among academics, scientists, and industry leaders to drive progress and address global challenges."
           }
         />
-        <Timer deadline={deadline} />
+        {showTimer ? (
+          <Timer deadline={deadline} start={registrationStart} />
+        ) : (
+          <></>
+        )}
+
         <section className="bg-bg py-10">
           <h2 className=" text-accent uppercase font-bold text-base md:text-lg lg:text-lg text-center">
             About

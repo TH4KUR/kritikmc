@@ -28,7 +28,7 @@ export const metadata = {
   ],
 };
 export default async function Home() {
-  const deadline = await getDeadlineData();
+  const { deadline, showTimer, registrationStart } = await getDeadlineData();
   const speakerdata = await getSpeakerData();
   const patrondata = await getPatronData();
   const judgedata = await getJudgeData(); // FORCING Loading Screen
@@ -41,7 +41,12 @@ export default async function Home() {
       </header>
       <main className="bg-bg">
         <Hero />
-        {/* <Timer deadline={deadline} /> */}
+        {showTimer ? (
+          <Timer deadline={deadline} start={registrationStart} />
+        ) : (
+          <></>
+        )}
+
         <Announcements />
         <Patreons patrondata={patrondata} />
         <Speaker speakerdata={speakerdata} />

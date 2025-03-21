@@ -15,7 +15,8 @@ export const metadata = {
 async function page() {
   const deadlineData = getDeadlineData();
   const eventsData = getEventsData();
-  const [deadline, events] = await Promise.all([deadlineData, eventsData]);
+  const [{ deadline, showTimer, registrationStart }, events] =
+    await Promise.all([deadlineData, eventsData]);
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
   return (
     <>
@@ -38,7 +39,12 @@ async function page() {
             </>
           }
         />
-        <Timer deadline={deadline} showButton={true} />
+        {showTimer ? (
+          <Timer deadline={deadline} start={registrationStart} />
+        ) : (
+          <></>
+        )}
+
         <Events data={events} />
         <Timeline light={true} />
         <hr className=" bg-bg" />

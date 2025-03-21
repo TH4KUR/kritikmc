@@ -12,6 +12,14 @@ export const siteSettings = defineType({
       readOnly: true,
     }),
     defineField({
+      name: "showTimer",
+      title: "Show the timer on website?",
+      description:
+        "The functionality of opening/closing registration, on start/end datetime wont be affected.",
+      type: "string",
+      options: { list: ["true", "false"], layout: "radio" },
+    }),
+    defineField({
       title: "Timer Countdown DateTime",
       name: "deadline",
       type: "datetime",
