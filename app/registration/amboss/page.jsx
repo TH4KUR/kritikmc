@@ -14,7 +14,11 @@ export const metadata = {
 
 export default async function Home() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
-  const { start, deadline } = await getDeadlineData();
+  const {
+    showTimer,
+    deadline,
+    registrationStart: start,
+  } = await getDeadlineData();
   if (Date.now() > deadline.getTime() || Date.now() < start.getTime()) {
     return (
       <>

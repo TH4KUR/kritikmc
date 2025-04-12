@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 async function page() {
-  const { deadline, start, registrationStart } = await getDeadlineData();
+  const { deadline, showTimer, registrationStart } = await getDeadlineData();
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
 
   return (
@@ -29,7 +29,11 @@ async function page() {
         }
       />
       {showTimer ? (
-        <Timer deadline={deadline} start={registrationStart} />
+        <Timer
+          deadline={deadline}
+          start={registrationStart}
+          showButton={true}
+        />
       ) : (
         <></>
       )}
