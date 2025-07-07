@@ -10,6 +10,7 @@ const nextConfig = {
       },
     ],
   },
-};
+  reactStrictMode: false, // ✅ This is default
+}; // next.config.js
 
 module.exports = nextConfig;

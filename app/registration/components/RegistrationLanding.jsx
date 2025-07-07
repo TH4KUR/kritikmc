@@ -8,7 +8,7 @@ import Link from "next/link";
 const RegistrationLanding = ({ deadline, start }) => {
   const [activeParticipation, setActiveParticipation] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
-  console.log(deadline);
+  // console.log(deadline);
   return (
     <>
       {initialLoad ? (

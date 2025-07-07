@@ -64,7 +64,7 @@ export default function RootLayout({ children }) {
 
   gtag('config', 'G-M6JXRZWCZC');`}
       </Script>
-      <body className={poppins.className}>
+      <body className={`${poppins.className}`}>
         {children}
 
         <Credits />
