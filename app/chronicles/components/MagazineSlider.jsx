@@ -31,23 +31,15 @@ function EmblaCarousel() {
           <div className="embla__container">
             <Link
               className="embla__slide"
-              href={"/kc_chronicles_1st_edition.pdf"}
+              wv
+              href={"/kc_chronicles_4th_edition.pdf"}
               target="_blank"
               rel="noopener noreferrer"
+              // locale={true}
             >
-              <img className="rounded-xl" src="/v1.webp" alt="magazine cover" />
-              <span className="mt-3 font-semibold">Issue 1</span>
-              <span className="text-xs">July 2023</span>
-            </Link>
-            <Link
-              className="embla__slide"
-              href={"/kc_chronicles_2nd_edition.pdf"}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img className="rounded-xl" src="/v2.webp" alt="magazine cover" />
-              <span className="mt-3 font-semibold">Issue 2</span>
-              <span className="text-xs">November 2023</span>
+              <img className="rounded-xl" src="/v4.webp" alt="magazine cover" />
+              <span className="mt-3 font-semibold">Issue 4</span>
+              <span className="text-xs">October 2024</span>
             </Link>
             <Link
               className="embla__slide"
@@ -59,6 +51,27 @@ function EmblaCarousel() {
               <img className="rounded-xl" src="/v3.webp" alt="magazine cover" />
               <span className="mt-3 font-semibold">Issue 3</span>
               <span className="text-xs">May 2024</span>
+            </Link>
+            <Link
+              className="embla__slide"
+              href={"/kc_chronicles_2nd_edition.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="rounded-xl" src="/v2.webp" alt="magazine cover" />
+              <span className="mt-3 font-semibold">Issue 2</span>
+              <span className="text-xs">November 2023</span>
+            </Link>
+
+            <Link
+              className="embla__slide"
+              href={"/kc_chronicles_1st_edition.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="rounded-xl" src="/v1.webp" alt="magazine cover" />
+              <span className="mt-3 font-semibold">Issue 1</span>
+              <span className="text-xs">July 2023</span>
             </Link>
           </div>
         </div>
