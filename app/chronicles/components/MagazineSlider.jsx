@@ -15,7 +15,7 @@ function EmblaCarousel() {
   }, [emblaApi]);
   return (
     <>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-5 max-w-screen-sm">
         <button className="embla__prev relative z-[100]" onClick={scrollPrev}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,6 +29,18 @@ function EmblaCarousel() {
         </button>
         <div className="embla" ref={emblaRef}>
           <div className="embla__container">
+            <Link
+              className="embla__slide"
+              wv
+              href={"/kc_chronicles_5th_edition.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+              // locale={true}
+            >
+              <img className="rounded-xl" src="/v5.jpg" alt="magazine cover" />
+              <span className="mt-3 font-semibold">Issue 5</span>
+              <span className="text-xs">July 2025</span>
+            </Link>
             <Link
               className="embla__slide"
               wv
