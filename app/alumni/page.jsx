@@ -85,7 +85,7 @@ export default async function Home() {
                 academic students we have, will be a good combination. As
                 innovation is the recipe for sure shot success of any country,
                 we decided to focus our efforts towards that direction. We had
-                series of meetings with KMC Principal, Dr Mohan Das, and other
+                series of meetings with KMC Principal, Dr. S. Sandhya, and other
                 key people on the ground.
                 <br />
                 <br />
@@ -151,7 +151,7 @@ export default async function Home() {
                 was a wake-up call and the catalyst for our mission. Over the
                 past year, through countless meetings and strategic planning
                 sessions with the university leadership, including our dynamic
-                Principal, Dr. Priya Sinha, we formulated a comprehensive plan
+                Principal, Dr. S. Sandhya, we formulated a comprehensive plan
                 to make research an integral part of the student experience.
                 <br />
                 <br />
@@ -223,8 +223,7 @@ export default async function Home() {
                 medical colleges in our home state were listed among the top 10
                 in India. This realization ignited a determination to change the
                 status quo. We collaborated closely with the university
-                administration, including our esteemed Principal, Dr. Kavita
-                Rao, to lay down a strategic plan that places research at the
+                administration, including our esteemed Principal, Dr. S. Sandhya, to lay down a strategic plan that places research at the
                 heart of our educational ethos.
                 <br />
                 <br />
