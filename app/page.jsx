@@ -16,6 +16,7 @@ import Patreons from "./components/Patreons";
 import Judges from "./components/Judges";
 import getPatronData from "./lib/getPatronData";
 import getJudgeData from "./lib/getJudgeData";
+import Image from "next/image";
 export const metadata = {
   description:
     "The premier medical conference hosted by Kakatiya Medical College, Warangal. Join events or seminars by top medical experts.",
@@ -32,7 +33,7 @@ export default async function Home() {
   const speakerdata = await getSpeakerData();
   const patrondata = await getPatronData();
   const judgedata = await getJudgeData(); // FORCING Loading Screen
-  await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
+  await fetch("https://reqres.in/api/users?delay=100", { cache: "no-cache" });
 
   return (
     <>

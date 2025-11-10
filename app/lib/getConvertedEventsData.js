@@ -14,7 +14,7 @@ export default async function getConvertedEventsData() {
   });
 
   const parsedRes = res.map((obj, i) => {
-    console.log(obj);
+    // console.log(obj);
     // const startDatetime = new Date(obj.)
     return {
       day: obj.conferenceDay,

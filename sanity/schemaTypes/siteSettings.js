@@ -23,25 +23,40 @@ export const siteSettings = defineType({
       title: "Timer Countdown DateTime",
       name: "deadline",
       type: "datetime",
-      description: "Add the date,time the timer should count to.",
+      description:
+        "Add the datetime the timer should count to (save in IST / Asia-Kolkata).",
+      options: {
+        timeStep: 15,
+        timeZone: "Asia/Kolkata",
+      },
       validation: (rule) =>
         rule
           .required()
           .error("Required to display timer countdown on the website!"),
     }),
     defineField({
-      title: "Registrations Start Date",
+      title: "Registrations Start DateTime",
       name: "registrationStart",
-      type: "date",
-      description: "Add the registration start date.",
+      type: "datetime",
+      description:
+        "Add the registration start date and time in IST (Asia-Kolkata).",
+      options: {
+        timeStep: 15,
+        timeZone: "Asia/Kolkata",
+      },
       validation: (rule) =>
         rule.required().error("Required to display data on the website!"),
     }),
     defineField({
-      title: "Registrations End Date",
+      title: "Registrations End DateTime",
       name: "registrationEnd",
-      type: "date",
-      description: "Add the registration end date.",
+      type: "datetime",
+      description:
+        "Add the registration end date and time in IST (Asia-Kolkata).",
+      options: {
+        timeStep: 15,
+        timeZone: "Asia/Kolkata",
+      },
       validation: (rule) =>
         rule.required().error("Required to display data on the website!"),
     }),

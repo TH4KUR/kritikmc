@@ -5,6 +5,7 @@
 @media (min-width: 1280px) {
   html {
     zoom: 0.81;
+    min-height: 100vh;
   }
 }
 

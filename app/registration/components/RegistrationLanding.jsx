@@ -1,12 +1,78 @@
 "use client";
 import Footer from "@/app/components/Footer";
 import Nav from "@/app/components/Nav";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import getDeadlineData from "@/app/lib/getDeadlineData";
 
 const RegistrationLanding = () => {
   const [showModal, setShowModal] = useState(false);
+  const [deadlineInfo, setDeadlineInfo] = useState(null);
+  const [deadlineError, setDeadlineError] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    (async () => {
+      try {
+        const data = await getDeadlineData();
+        if (!isMounted) return;
+        setDeadlineInfo(data);
+      } catch (error) {
+        console.error("Failed to load deadline data", error);
+        if (!isMounted) return;
+        setDeadlineError(error);
+      }
+    })();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const { registrationLocked, lockReason, statusLabel } = useMemo(() => {
+    if (!deadlineInfo) {
+      return {
+        registrationLocked: false,
+        lockReason: null,
+        statusLabel: null,
+      };
+    }
+
+    const now = new Date();
+    const { registrationStart, deadline } = deadlineInfo;
+
+    if (registrationStart && now < registrationStart) {
+      return {
+        registrationLocked: true,
+        lockReason: `Registrations open on ${registrationStart.toLocaleString()}.`,
+        statusLabel: "Registrations Opening Soon",
+      };
+    }
+
+    if (deadline && now > deadline) {
+      return {
+        registrationLocked: true,
+        lockReason: `Registrations closed on ${deadline.toLocaleString()}.`,
+        statusLabel: "Registrations Closed",
+      };
+    }
+
+    return {
+      registrationLocked: false,
+      lockReason: null,
+      statusLabel: null,
+    };
+  }, [deadlineInfo]);
+
+  const disabledCardClasses = registrationLocked
+    ? "pointer-events-none opacity-50 grayscale"
+    : "";
+
+  const disabledLinkProps = registrationLocked
+    ? { tabIndex: -1, "aria-disabled": true }
+    : {};
 
   return (
     <>
@@ -45,17 +111,33 @@ const RegistrationLanding = () => {
             </button>
           </div>
 
+          {(registrationLocked || deadlineError) && (
+            <div className="mb-8 rounded-2xl border border-amber-700 bg-amber-100 px-6 py-5 text-base text-amber-800 shadow-sm">
+              <div className="font-semibold text-amber-900">
+                {deadlineError
+                  ? "We’re unable to confirm registration availability right now."
+                  : statusLabel}
+              </div>
+              <div className="mt-1 leading-relaxed">
+                {deadlineError
+                  ? "Please try again in a bit or contact the organising team for assistance."
+                  : lockReason}
+              </div>
+            </div>
+          )}
+
           {/* Registration Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
             <motion.div
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              className="rounded-2xl"
+              className={`rounded-2xl ${disabledCardClasses}`}
             >
               <Link
                 href={"/registration/active"}
                 className="group relative block h-full overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-accent/50"
+                {...disabledLinkProps}
               >
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 bg-[url('/active.webp')] bg-cover bg-center"></div>
@@ -111,11 +193,12 @@ const RegistrationLanding = () => {
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              className="rounded-2xl"
+              className={`rounded-2xl ${disabledCardClasses}`}
             >
               <Link
                 href={"/registration/passive"}
                 className="group relative block h-full overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-accent/50"
+                {...disabledLinkProps}
               >
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 bg-[url('/posterpresentation.jpg')] bg-cover bg-center"></div>
@@ -171,11 +254,12 @@ const RegistrationLanding = () => {
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              className="rounded-2xl md:col-span-2 lg:col-span-1"
+              className={`rounded-2xl md:col-span-2 lg:col-span-1 ${disabledCardClasses}`}
             >
               <Link
                 href={"/registration/workshop"}
                 className="group relative block h-full overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-accent/50"
+                {...disabledLinkProps}
               >
                 {/* Background with AMBOSS Logo */}
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800 to-teal-900"></div>
