@@ -29,12 +29,15 @@ const InputNumber = () => {
     setValue(nextValue);
   }, []);
 
-  const handleBlur = useCallback((event) => {
-    const nextValue = normaliseMobileInput(event.target.value);
-    if (nextValue !== value) {
-      setValue(nextValue);
-    }
-  }, [value]);
+  const handleBlur = useCallback(
+    (event) => {
+      const nextValue = normaliseMobileInput(event.target.value);
+      if (nextValue !== value) {
+        setValue(nextValue);
+      }
+    },
+    [value]
+  );
 
   return (
     <Field className="flex flex-col gap-1.5">
