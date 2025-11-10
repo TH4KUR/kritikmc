@@ -43,14 +43,14 @@ const Nav = ({ bg }) => {
           },
         }}
         viewport={{ once: true }}
-        className={`flex items-center justify-between bg-bgNav shadow-bgSecondary drop-shadow`}
+        className={`flex items-center justify-between bg-bgSecondary shadow-bgSecondary drop-shadow text-white`}
       >
         <div className="px-4 py-2 lg:py-3 -translate-x-3">
           <Link href={"/"}>
             <Image
               height={45}
               width={90}
-              src={"/kriti_logo.png"}
+              src={"/kriti_logo_dark.png"}
               alt="kritikmc logo"
               className="aspect-video"
             />
@@ -59,12 +59,12 @@ const Nav = ({ bg }) => {
         <div className="flex items-center gap-3 mr-4">
           <Link
             href={"/registration"}
-            className="text-xs font-bold text-accent underline underline-offset-1 block lg:hidden"
+            className="text-sm font-bold text-rose-400 underline underline-offset-1 block lg:hidden"
           >
             Register Now!
           </Link>
           <div className="hidden lg:block">
-            <ul className="font-semibold text-black text-lg flex h-full items-center gap-6">
+            <ul className="font-medium text-white text-lg flex h-full items-center gap-6">
               <li>
                 <Link
                   className="hover:underline underline-offset-2 transition-all"
@@ -134,7 +134,7 @@ const Nav = ({ bg }) => {
                 {" "}
                 <Link
                   href={"/registration"}
-                  className="text-sm font-bold text-accent hover:bg-accent hover:text-white transition-colors py-2 px-4 bg-accent2/10 rounded-lg hidden lg:block lg:text-base"
+                  className="text-sm font-bold text-white hover:bg-rose-950 hover:text-rose-100 transition-colors py-2 px-4 bg-rose-900 rounded-lg hidden lg:block lg:text-base"
                 >
                   Register Now!
                 </Link>
@@ -143,7 +143,7 @@ const Nav = ({ bg }) => {
           </div>
           <div className="flex items-center lg:hidden">
             <button aria-label="menu button" onClick={open}>
-              <Menu />
+              <Menu color={"#fff"} />
             </button>
             <Transition appear show={isOpen}>
               <Dialog
@@ -161,10 +161,10 @@ const Nav = ({ bg }) => {
                       leaveFrom="opacity-100 transform-[scale(100%)]"
                       leaveTo="opacity-0 transform-[scale(95%)]"
                     >
-                      <DialogPanel className="w-full rounded-xl px-4 py-2 bg-bgNav h-screen">
+                      <DialogPanel className="w-full rounded-xl px-4 py-2 bg-bgSecondary h-screen">
                         <DialogTitle
                           as="div"
-                          className="text-base/7 font-medium text-black flex justify-between items-center"
+                          className="text-base/7 font-medium text-white flex justify-between items-center"
                         >
                           <Link
                             href={"/"}
@@ -178,7 +178,7 @@ const Nav = ({ bg }) => {
                               <Image
                                 height={90}
                                 width={90}
-                                src={"/kriti_logo.png"}
+                                src={"/kriti_logo_dark.png"}
                                 alt="kritikmc logo"
                                 className="h-full w-full object-cover"
                               />
@@ -192,9 +192,9 @@ const Nav = ({ bg }) => {
                           </Button>
                         </DialogTitle>
                         <div className="ml-2">
-                          <ul className="font-semibold text-black ml-3 mt-3 text-lg">
+                          <ul className="font-medium text-[#eee] ml-3 mt-3 text-lg">
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#ddd"} />
+                              <Caret className="size-[10px]" color={"#eee"} />
                               <Link
                                 href={"/"}
                                 onClick={() => {
@@ -207,37 +207,37 @@ const Nav = ({ bg }) => {
                               </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#ddd"} />
+                              <Caret className="size-[10px]" color={"#eee"} />
                               <Link href={"/about"}>about us.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#ddd"} />
+                              <Caret className="size-[10px]" color={"#eee"} />
                               <Link href={"/events"}>events.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#ddd"} />
+                              <Caret className="size-[10px]" color={"#eee"} />
                               <Link href={"/events-itinerary"}>
                                 events itinerary.
                               </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#ddd"} />
+                              <Caret className="size-[10px]" color={"#eee"} />
                               <Link href={"/archives"}>archives.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#ddd"} />
+                              <Caret className="size-[10px]" color={"#eee"} />
                               <Link href={"/alumni"}>alumni.</Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#ddd"} />
+                              <Caret className="size-[10px]" color={"#eee"} />
                               <Link href={"/contact"}>contact us.</Link>
                             </li>
                           </ul>
                           <div className="mt-4">
-                            <h5>Magazine</h5>
-                            <ul className="font-semibold text-black ml-3 mt-3 text-lg">
+                            <h5 className="text-[#eee]">Magazine</h5>
+                            <ul className="font-medium text-[#eee] ml-3 mt-3 text-lg">
                               <li className="flex items-center gap-1 mt-1">
-                                <Caret className="size-[10px]" color={"#ddd"} />
+                                <Caret className="size-[10px]" color={"#eee"} />
                                 <Link href={"/chronicles"}>
                                   kakatiya chronicles.
                                 </Link>

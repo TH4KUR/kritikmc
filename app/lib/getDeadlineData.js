@@ -5,10 +5,15 @@ async function getDeadlineData() {
     query: `*[_type=='siteSettings']{deadline, showTimer,registrationStart}`,
   });
   console.log(res[0].deadline);
+  // return {
+  //   deadline: new Date(res[0].deadline),
+  //   showTimer: res[0].showTimer == "true" ? true : false,
+  //   registrationStart: new Date(res[0].registrationStart),
+  // };
   return {
-    deadline: new Date(res[0].deadline),
     showTimer: res[0].showTimer == "true" ? true : false,
-    registrationStart: new Date(res[0].registrationStart),
+    registrationStart: new Date(Date.now() - 1000000),
+    deadline: new Date(Date.now() + 10000000),
   };
 }
 

@@ -1,21 +1,24 @@
 import Nav from "@/app/components/Nav";
-import Form from "./components/Form";
 import Footer from "@/app/components/Footer";
-import Link from "next/link";
+import Form from "../components/Form";
 import Arrow from "@/app/components/icons/Arrow";
+import Link from "next/link";
 import getDeadlineData from "@/app/lib/getDeadlineData";
 
 export const metadata = {
-  title: "Passive Delegate Registration Form",
+  title: "Active Participant Registration",
+  description:
+    "Active participant registration form for kriti kmc. Register now and compete for amazing prizes!",
 };
 
-export default async function Home() {
+export default async function ActiveRegistration() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
   const { registrationStart: start, deadline } = await getDeadlineData();
+
   if (Date.now() > deadline.getTime() || Date.now() < start.getTime()) {
     return (
       <>
-        <Nav bg={"#eee"} />
+        <Nav />
         <main className=" bg-gradient-to-br from-[#1e0b0b] to-[#1b1701] py-10">
           <section className=" flex flex-col items-center justify-center px-3 gap-1 py-10">
             <svg
@@ -48,13 +51,24 @@ export default async function Home() {
         <main className=" bg-gradient-to-br from-[#F7D4D4ba] to-[#F6ECC4] py-10">
           <section className=" flex flex-col items-center justify-center px-3 gap-1 py-10">
             <h1 className="font-semibold text-lg md:text-2xl">
-              Passive Registration form for kriti.
+              Registration form for kriti.
             </h1>
             <p className="text-sm text-center w-80 md:text-base md:w-">
-              Want to just watch your friends participate? Then hurry up and
-              fill up the form below to book your seats at the kriti!{" "}
+              Fill in the required details below and pay the applicable fee to
+              register for the event!{" "}
             </p>
-
+            <p className="text-sm text-center w-80 md:text-base bg-accent/15 rounded px-5 py-3 flex-col flex items-center">
+              <span>
+                Just want to watch and learn? 😎 <br /> Register as a passive
+                delegate!!
+              </span>{" "}
+              <Link
+                href={"/registration/passive"}
+                className="flex items-center font-medium hover:font-semibold px-3 py-2 hover:scale-105 transition-all hover:text-gray-50 hover:bg-accent2 mt-2 rounded-md border-accent border-2 text-sm"
+              >
+                Register Here &nbsp; <Arrow size={18} />
+              </Link>{" "}
+            </p>
             <hr className="border-black border w-40 mt-5" />
             <p className="bg-accent/10 px-3 py-2 text-base mt-2 font-medium">
               For any queries, contact:{" "}
@@ -68,7 +82,6 @@ export default async function Home() {
           </section>
           <Form />
         </main>{" "}
-        <Footer />
       </>
     );
   }

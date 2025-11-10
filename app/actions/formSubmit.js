@@ -1,22 +1,39 @@
 "use server";
 import { cookies } from "next/headers";
+import { supabaseAdmin } from "../lib/supabase/supabaseAdmin";
 import { redirect } from "next/navigation";
+import { base64 } from "zod";
 
 export async function formSubmit(formData) {
-  // Deleting existing cookie
-  cookies().delete("registrationData");
-  cookies().delete("username");
-  // const counterRes = await counter.up("kritikmc", "delegates");
+  let rawFormData;
 
-  const rawFormData = {
-    studentName: formData?.get("student_name")?.trim(),
-    studentNumber: formData?.get("student_number"),
-    studentEmail: formData?.get("student_email")?.trim(),
-    collegeYear: formData?.get("college_year") || 0,
-    isKmcStudent: formData?.get("kmc_student") === "true" ? "true" : "false",
-    kmcRollNo: formData?.get("kmc_rollno")?.trim(),
-    isPgStudent: formData?.get("is_pg_student"),
-    studentCollege:
+  cookies().delete("delegateid");
+
+  let { data, error } = await supabaseAdmin
+    .from("counters")
+    .select("count")
+    .eq("name", "activedelegates");
+
+  console.log("count res:", data, error);
+  const count = data[0].count;
+
+  const updatRes = await supabaseAdmin
+    .from("counters")
+    .update({ count: count + 1 })
+    .eq("name", "activedelegates");
+
+  console.log("update count res:", updatRes);
+  const delegateid = `KAD-${String(count).padStart(4, "0")}`;
+  rawFormData = {
+    delegateid,
+    name: formData?.get("student_name")?.trim(),
+    mobileno: formData?.get("student_number"),
+    email: formData?.get("student_email")?.trim(),
+    collegeyear: formData?.get("college_year") || 0,
+    iskmcstudent: formData?.get("kmc_student") === "true",
+    kmcrollno: formData?.get("kmc_rollno")?.trim(),
+    ispgstudent: formData?.get("is_pg_student") === "true",
+    collegename:
       formData?.get("college_name")?.trim() || "Kakatiya Medical College",
     events: [
       ...(formData?.get("debate") ? ["debate"] : []),
@@ -27,61 +44,36 @@ export async function formSubmit(formData) {
       ...(formData?.get("symposium") ? ["symposium"] : []),
       ...(formData?.get("hackathon") ? ["hackathon"] : []),
     ],
-    activeParticipant: true,
   };
-  const rawFormDataBase64 = Buffer.from(JSON.stringify(rawFormData)).toString(
-    "base64"
-  );
-
-  // const reqData = {
-  //   merchantId: "PGTESTPAYUAT86",
-  //   merchantTransactionId: transactionId,
-  //   merchantUserId: "MUID123",
-  //   amount: formData.get("kmc_student") !== null ? 30000 : 40000,
-  //   redirectUrl: `${process.env.HOST_URL}/api/redirect`,
-  //   redirectMode: "POST",
-  //   callbackUrl: `${process.env.HOST_URL}/api/redirect`,
-  //   mobileNumber: "9999999999",
-  //   paymentInstrument: {
-  //     type: "PAY_PAGE",
-  //   },
-  // };
-
-  // const reqDataJSON = JSON.stringify(reqData);
-  // const reqDataBase64 = Buffer.from(reqDataJSON).toString("base64");
-  // const reqDataSha256 = SHA256(
-  //   reqDataBase64 + "/pg/v1/pay" + "96434309-7796-489d-8924-ab56988a6076"
-  // );
-  // const xVeriify = reqDataSha256 + "###" + "1";
-
-  // const response = await axios.post(
-  //   `https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay`,
-  //   {
-  //     request: reqDataBase64,
-  //     mydata: rawFormData,
-  //   },
-  //   {
-  //     headers: {
-  //       accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       "X-VERIFY": xVeriify,
-  //     },
-  //   }
-  // );
-  // const redirectUrl = response.data.data.instrumentResponse.redirectInfo.url;
 
   cookies().set({
-    name: "username",
-    value: formData.get("student_name").split(" ")[0],
+    name: "delegateid",
+    value: delegateid,
     secure: true,
     expires: Date.now() + 30 * 60 * 1000,
   });
-  cookies().set({
-    name: "registrationData",
-    value: rawFormDataBase64,
-    secure: true,
-    expires: Date.now() + 30 * 60 * 1000,
-  });
+  ({ data, error } = await supabaseAdmin
+    .from("activedelegates")
+    .insert(rawFormData));
 
-  redirect(`${process.env.HOST_URL}/payment`);
+  console.log("raw error:", error);
+  if (error) {
+    if (error.message.includes("duplicate")) {
+      const regex = /\((?<left>.*?)\)=\((?<right>.*?)\)/g;
+      const match = regex.exec(error.details);
+
+      console.error(`Error while processing active delegates: ${error}`);
+      redirect(
+        `${process.env.HOST_URL}/error?msg=duplicate&field=${match[1]}&value=${match[2]}`
+      );
+    }
+    await supabaseAdmin
+      .from("counters")
+      .update({ count })
+      .eq("name", "activedelegates");
+  } else {
+    redirect(`${process.env.HOST_URL}/payment/v2?delagateId=${delegateid}`);
+  }
+
+  // Deleting existing cookie
 }

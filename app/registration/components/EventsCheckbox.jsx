@@ -6,28 +6,26 @@ const EventsCheckbox = ({ eventName, eventSlug }) => {
   const [enabled, setEnabled] = useState(false);
 
   return (
-    <Field className="flex items-center gap-2">
+    <Field className="group flex items-center gap-3 rounded-2xl border border-slate-300 bg-white/80 px-4 py-3 shadow-sm transition hover:border-accent/50">
       <Checkbox
         checked={enabled}
         onChange={setEnabled}
         name={eventSlug}
         value={"true"}
-        className="group block size-5 rounded border-2 border-black/50 bg-white data-[checked]:bg-blue-700 data-[checked]:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all "
+        className="flex size-6 items-center justify-center rounded-lg border border-slate-400 bg-white text-white transition data-[checked]:border-transparent data-[checked]:bg-accent"
       >
-        <svg
-          className="stroke-white opacity-0 group-data-[checked]:opacity-100 transition-all"
-          viewBox="0 0 14 14"
-          fill="none"
-        >
+        <svg className="size-4 stroke-white" viewBox="0 0 14 14" fill="none">
           <path
-            d="M3 8L6 11L11 3.5"
+            d="M3 8l3 3 5-7.5"
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </svg>
       </Checkbox>
-      <Label className={"text-sm md:text-base font-medium"}>{eventName}</Label>
+      <Label className="text-sm font-medium text-slate-700 md:text-base">
+        {eventName}
+      </Label>
     </Field>
   );
 };

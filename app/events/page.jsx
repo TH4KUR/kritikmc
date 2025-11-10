@@ -22,7 +22,7 @@ async function page() {
     <>
       <Nav />
 
-      <main className="bg-[#090909] relative">
+      <main className="bg-[#111] relative">
         <SecondaryHero
           title={"Explore upcoming Events."}
           body={

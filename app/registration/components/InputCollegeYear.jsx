@@ -10,35 +10,33 @@ const InputCollegeYear = () => {
     e.target.classList.add(...classesToAdd);
   }
   return (
-    <Field>
-      <Label className="text-sm md:text-lg font-semibold text-black">
-        Year Of Study <span className=" text-red-600">*</span>
+    <Field className="flex flex-col gap-1.5">
+      <Label className="text-sm font-semibold text-slate-700">
+        Year of Study <span className="text-red-600">*</span>
       </Label>
-      <Description className="text-sm md:text-base  text-black/70">
-        Choose and option below.
+      <Description className="text-sm text-slate-500">
+        Choose the option that best matches your current year.
       </Description>
-      <div className="relative">
+      <div className="relative mt-1">
         <Select
           name="college_year"
           onChange={setValid}
-          className={
-            "mt-1 block w-full appearance-none rounded-lg border-2 border-black/50 bg-bgInput py-1.5 px-3 text-sm/6 focus:outline-none focus:ring  invalid:border-red-600/80 focus:invalid:border-red-600/80 focus:invalid:ring-red-500/20 focus:border-blue-800/45 focus:ring-blue-500/20 text-black *:text-black "
-          }
+          className="block w-full appearance-none rounded-2xl border border-slate-300 bg-white/90 py-3 px-4 text-sm text-slate-900 shadow-sm transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 invalid:border-rose-400 focus:invalid:border-rose-400 focus:invalid:ring-rose-200 *:text-slate-700"
           aria-placeholder="Choose the year of college you're in"
           defaultValue={0}
           required
         >
-          <option value="0" disabled hidden className="text-black/60">
+          <option value="0" disabled hidden>
             Choose one below
           </option>
           <option value="1">1st Year</option>
           <option value="2">2nd Year</option>
           <option value="3">3rd Year</option>
           <option value="4">4th Year</option>
-          <option value="5">Interns & Post Interns</option>
+          <option value="5">Interns &amp; Post Interns</option>
         </Select>
         <svg
-          className="group pointer-events-none absolute top-2.5 right-2.5 size-4 fill-black/60"
+          className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 fill-slate-500"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 256 256"
