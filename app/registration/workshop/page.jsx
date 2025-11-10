@@ -58,7 +58,7 @@ export default async function Home() {
             width={325}
             className="mx-auto"
             src="/Logo-teal-vertical.webp"
-            alt="kmc amboss logo"
+            alt="kmc workshop logo"
           />
           <section className=" flex flex-col items-center justify-center px-3 gap-1 py-10">
             <h1 className="font-semibold text-lg md:text-2xl">
@@ -69,7 +69,7 @@ export default async function Home() {
               register for the event!{" "}
             </p>
             <Link
-              href={`/events/amboss-workshop`}
+              href={`/events/workshop`}
               className="px-4 py-2 bg-accent mt-5 font-medium inline-flex rounded hover:scale-105 hover:brightness-110 transition-all focus:outline-none focus:ring-4 focus:ring-accent2/40 text-white"
             >
               More Info here

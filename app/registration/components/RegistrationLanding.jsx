@@ -174,7 +174,7 @@ const RegistrationLanding = () => {
               className="rounded-2xl md:col-span-2 lg:col-span-1"
             >
               <Link
-                href={"/registration/amboss"}
+                href={"/registration/workshop"}
                 className="group relative block h-full overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-accent/50"
               >
                 {/* Background with AMBOSS Logo */}
@@ -228,6 +228,30 @@ const RegistrationLanding = () => {
               </Link>
             </motion.div>
           </div>
+
+          {/* <div className="mt-12 text-center">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              Track Your Registration
+            </h2>
+            <p className="text-sm text-gray-600 mb-4">
+              Already signed up? View payment progress or download your
+              confirmation anytime.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/payment/status"
+                className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+              >
+                Check Registration Status
+              </Link>
+              <Link
+                href="/payment/v2"
+                className="inline-flex items-center rounded-full border border-blue-200 px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
+              >
+                Go to Payment Portal
+              </Link>
+            </div>
+          </div> */}
 
           {/* Modal */}
           {showModal && (
@@ -289,11 +313,11 @@ const RegistrationLanding = () => {
                     Go to Payment Portal
                   </Link>
                   <Link
-                    href="/error?msg=Please enter your details to retrieve your registration"
-                    className="block w-full py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-lg transition-all text-center"
+                    href="/payment/status"
+                    className="block w-full py-3 px-4 bg-blue-50 hover:bg-blue-100 text-blue-900 font-semibold rounded-lg transition-all text-center"
                     onClick={() => setShowModal(false)}
                   >
-                    Retrieve Registration Details
+                    Check Registration Status
                   </Link>
                 </div>
 

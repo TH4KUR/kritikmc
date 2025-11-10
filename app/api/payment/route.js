@@ -1,51 +1,51 @@
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import { NextResponse } from "next/server";
+import { formatInr } from "@/app/lib/paymentConfig";
 
-const COOKIE_MAX_AGE = 30 * 60; // 30 minutes
-
-function encodeRegistrationCookie(payload = {}) {
-  try {
-    return Buffer.from(JSON.stringify(payload)).toString("base64");
-  } catch (error) {
-    console.error("Failed to encode registration cookie", error);
-    return "";
+function normaliseAmount(value) {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value : null;
   }
+  if (typeof value === "string") {
+    const cleaned = value.replace(/[^0-9.]/g, "");
+    if (!cleaned) return null;
+    const parsed = Number(cleaned);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+function amountsClose(a, b, tolerance = 0.5) {
+  if (a === null || b === null) return false;
+  return Math.abs(Number(a) - Number(b)) <= tolerance;
 }
 
 export async function POST(req) {
   let unclaimedCount = null;
-  try {
-    const resdata = await req.json();
-    console.log("rres data:", resdata);
-    const trid = resdata.upiTransactionId;
-    const delegateId = resdata.delegateId;
 
-    if (!delegateId || delegateId === "unknown") {
+  try {
+    const payload = await req.json();
+    const rawTrid = payload?.upiTransactionId;
+    const trid = String(rawTrid ?? "").trim();
+    const delegateId = String(payload?.delegateId || "")
+      .trim()
+      .toUpperCase();
+
+    if (!trid) {
       return NextResponse.json(
         {
           success: false,
-          error: "No delegate id found!",
+          error: "UPI reference ID is required.",
         },
         { status: 400 }
       );
     }
 
-    if (String(trid).length < 12 && String(trid) !== "1")
-      return NextResponse.json(
-        {
-          success: false,
-          error: "A Upi Ref Id must be 12 digits!",
-        },
-        { status: 400 }
-      );
-    const { data, error } = await supabaseAdmin
-      .from("transactions")
-      .select("*")
-      .eq("txn_id", trid);
-
+    // Always return the latest unclaimed count so the UI can surface it.
     const { count, error: unclaimedError } = await supabaseAdmin
       .from("transactions")
-      .select("*", { count: "exact" })
+      .select("id", { count: "exact" })
       .eq("isused", false);
 
     if (unclaimedError) {
@@ -57,115 +57,240 @@ export async function POST(req) {
 
     unclaimedCount = typeof count === "number" ? count : null;
 
-    // console.log("trid data:", data, "err", error, unclaimedTrxns);
-    if (error) throw new Error(error.message);
+    // Allow lightweight refresh calls (used by the UI) without a delegate ID.
+    if (trid === "1") {
+      return NextResponse.json(
+        {
+          success: true,
+          unclaimedCount,
+        },
+        { status: 200 }
+      );
+    }
 
-    if (data.length === 0 || !data[0]) {
-      if (trid === 1) {
-        return NextResponse.json(
-          {
-            success: true,
-            unclaimedCount,
-          },
-          { status: 200 }
-        );
-      }
+    if (!delegateId || delegateId === "UNKNOWN") {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Delegate ID is required to verify a transaction.",
+          unclaimedCount,
+        },
+        { status: 400 }
+      );
+    }
+
+    if (trid.length < 12) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "A UPI reference ID must be at least 12 characters.",
+          unclaimedCount,
+        },
+        { status: 400 }
+      );
+    }
+
+    const { data: transactionRows, error: transactionError } =
+      await supabaseAdmin
+        .from("transactions")
+        .select("txn_id,isused,sender,amount,raw")
+        .eq("txn_id", trid)
+        .limit(1);
+
+    if (transactionError) {
+      throw new Error(transactionError.message);
+    }
+
+    const transaction = transactionRows?.[0] || null;
+
+    if (!transaction) {
       return NextResponse.json(
         {
           success: false,
           error:
-            "Transaction id not found, if youre sure this is the correct one, try in sometime!!",
+            "Transaction ID not found. Please confirm the reference ID and try again shortly.",
           unclaimedCount,
         },
         { status: 404 }
       );
     }
 
-    if (data[0]?.isused === true) {
+    if (transaction.isused) {
       return NextResponse.json(
         {
           success: false,
-          error: "This transaction Id has already been claimed!!!",
+          error: "This transaction ID has already been claimed.",
           unclaimedCount,
         },
-        { status: 403 }
+        { status: 409 }
       );
     }
 
-    // update delegtes table
-    await supabaseAdmin
+    const { data: delegateRows, error: delegateError } = await supabaseAdmin
       .from("activedelegates")
-      .update({ upitransactionid: trid, paymentconfirmed: true })
-      .eq("delegateid", delegateId);
-    const { data: delegateData, error: delegateError } = await supabaseAdmin
-      .from("activedelegates")
-      .select("delegateid,name,email,mobileno,events")
-      .eq("delegateid", delegateId);
+      .select(
+        "delegateid,name,email,mobileno,collegename,collegeyear,events,paymentconfirmed,upitransactionid,screenshotbucketpath,hastopay"
+      )
+      .eq("delegateid", delegateId)
+      .limit(1);
 
-    console.log("updatedRows", delegateData, delegateError);
-    if (delegateError || !delegateData) {
-      console.error(
-        "Failed to fetch delegate details",
-        delegateError || "No record returned"
+    if (delegateError) {
+      throw new Error(delegateError.message);
+    }
+
+    const delegate = delegateRows?.[0] || null;
+
+    if (!delegate) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "Delegate record not found. Please register before attempting payment verification.",
+          unclaimedCount,
+        },
+        { status: 404 }
       );
     }
 
-    const delegate = delegateData?.[0] || null;
-    // update transactions table
-    await supabaseAdmin
+    if (delegate.paymentconfirmed) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Payment has already been confirmed for this delegate.",
+          unclaimedCount,
+          delegate,
+        },
+        { status: 409 }
+      );
+    }
+
+    if (delegate.upitransactionid && delegate.upitransactionid !== trid) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "This delegate is already linked to a different transaction ID. Please contact support if you need assistance.",
+          unclaimedCount,
+          delegate,
+        },
+        { status: 409 }
+      );
+    }
+
+    const expectedAmount = normaliseAmount(delegate.hastopay);
+    const transactionAmount = normaliseAmount(transaction.amount);
+
+    if (expectedAmount !== null && transactionAmount !== null) {
+      const matchesDirect = amountsClose(expectedAmount, transactionAmount);
+      const matchesPaise = amountsClose(expectedAmount, transactionAmount / 100);
+      const matchesScaled = amountsClose(expectedAmount / 100, transactionAmount);
+
+      if (!matchesDirect && !matchesPaise && !matchesScaled) {
+        const formattedExpected = formatInr(expectedAmount);
+        const normalisedReceived =
+          transactionAmount > expectedAmount * 5
+            ? transactionAmount / 100
+            : transactionAmount;
+        const formattedReceived = formatInr(normalisedReceived);
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: `Amount mismatch. Expected ${formattedExpected}, but the transaction shows ${formattedReceived}. Please verify and try again or contact support for assistance.`,
+            unclaimedCount,
+            delegate,
+          },
+          { status: 422 }
+        );
+      }
+    }
+
+    const { data: lockedTxnRows, error: lockError } = await supabaseAdmin
       .from("transactions")
       .update({ isused: true })
-      .eq("txn_id", trid);
+      .eq("txn_id", trid)
+      .eq("isused", false)
+      .select("txn_id");
 
-    console.log(`successfully fetched transaction ref: ${data}`);
+    if (lockError) {
+      throw new Error(lockError.message);
+    }
 
-    const registrationPayload = delegate
-      ? {
-          delegateId: delegate.delegateid,
-          name: delegate.name,
-          email: delegate.email,
-          mobileNumber: delegate.mobileno,
-          college: delegate.collegename,
-          collegeYear: delegate.collegeyear,
-          events: delegate.events || [],
-        }
-      : null;
+    if (!lockedTxnRows?.length) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "This transaction ID was claimed moments ago. Please refresh and try a different reference ID.",
+          unclaimedCount,
+        },
+        { status: 409 }
+      );
+    }
 
-    const response = NextResponse.json(
+    const delegateUpdatePayload = {
+      upitransactionid: trid,
+      paymentconfirmed: true,
+      updatedat: new Date().toISOString(),
+    };
+
+    const { error: delegateUpdateError } = await supabaseAdmin
+      .from("activedelegates")
+      .update(delegateUpdatePayload)
+      .eq("delegateid", delegateId);
+
+    if (delegateUpdateError) {
+      console.error(
+        "Failed to update delegate with payment confirmation",
+        delegateUpdateError
+      );
+      await supabaseAdmin
+        .from("transactions")
+        .update({ isused: false })
+        .eq("txn_id", trid);
+
+      throw new Error(
+        "Failed to mark delegate payment as confirmed. Please try again."
+      );
+    }
+
+    const registrationPayload = {
+      delegateId: delegate.delegateid,
+      name: delegate.name,
+      email: delegate.email,
+      mobileNumber: delegate.mobileno,
+      college: delegate.collegename,
+      collegeYear: delegate.collegeyear,
+      events: Array.isArray(delegate.events)
+        ? delegate.events
+        : delegate.events
+          ? [delegate.events]
+          : [],
+    };
+
+    const adjustedUnclaimedCount =
+      typeof unclaimedCount === "number"
+        ? Math.max(unclaimedCount - 1, 0)
+        : unclaimedCount;
+
+    return NextResponse.json(
       {
         success: true,
         message: "Payment verified successfully.",
-        unclaimedCount,
+        unclaimedCount: adjustedUnclaimedCount,
         delegate: registrationPayload,
       },
       { status: 200 }
     );
-
-    if (registrationPayload) {
-      response.cookies.set({
-        name: "registrationData",
-        value: encodeRegistrationCookie(registrationPayload),
-        maxAge: COOKIE_MAX_AGE,
-        sameSite: "lax",
-        path: "/",
-      });
-    }
-
-    response.cookies.set({
-      name: "paymentStatus",
-      value: "confirmed",
-      maxAge: COOKIE_MAX_AGE,
-      sameSite: "lax",
-      path: "/",
-    });
-
-    return response;
   } catch (error) {
-    console.error("Server error:", error.message);
+    console.error("Server error:", error);
+
     return NextResponse.json(
       {
         success: false,
-        error: error.message || "An exception occured",
+        error:
+          error?.message ||
+          "An unexpected error occurred while verifying the transaction.",
         unclaimedCount,
       },
       { status: 500 }

@@ -40,7 +40,8 @@ export default async function Home({ searchParams }) {
     headerDescription = "We found an existing registration with your details";
   } else if (shouldShowLookupPrompt || !hasLookupParams) {
     headerTitle = "Find Your Registration";
-    headerDescription = "Use the forms below to retrieve your delegate ID.";
+    headerDescription =
+      "Use the payment status dashboard to look up your delegate ID by email or mobile number.";
   } else if (delegateError) {
     headerTitle = "Lookup Temporarily Unavailable";
     headerDescription =
@@ -252,107 +253,38 @@ export default async function Home({ searchParams }) {
                   );
                 } else if (shouldShowLookupPrompt || !field || !value) {
                   return (
-                    <div className="space-y-8">
+                    <div className="space-y-6 text-center">
                       <div className="bg-blue-900/40 border border-blue-700/50 rounded-lg p-6">
                         <h2 className="text-xl font-semibold text-blue-100 mb-2">
-                          Retrieve Your Delegate ID
+                          Check Registration Status
                         </h2>
                         <p className="text-sm text-blue-200">
-                          Enter the email address or mobile number you used
-                          during registration. We will locate your delegate ID
-                          so you can continue with payment.
+                          We have consolidated registration lookups into the
+                          payment status dashboard. Search using your delegate
+                          ID, registered email, or mobile number to view your
+                          latest status instantly.
                         </p>
                       </div>
-
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <form
-                          className="bg-gray-900/60 rounded-lg p-6 border border-gray-700 space-y-4"
-                          method="get"
-                          action="/error"
+                      <Link
+                        href="/payment/status"
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-white font-semibold px-5 py-2.5 rounded-lg transition-all"
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
                         >
-                          <input type="hidden" name="field" value="email" />
-                          <div className="space-y-2">
-                            <label
-                              htmlFor="lookup-email"
-                              className="block text-sm font-medium text-gray-300"
-                            >
-                              Email Address
-                            </label>
-                            <input
-                              id="lookup-email"
-                              name="value"
-                              type="email"
-                              required
-                              placeholder="you@example.com"
-                              className="w-full rounded-lg border border-gray-700 bg-gray-800/70 px-4 py-2 text-sm text-gray-100 placeholder-gray-500 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/40"
-                            />
-                          </div>
-                          <button
-                            type="submit"
-                            className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-white font-semibold px-4 py-2.5 rounded-lg transition-all"
-                          >
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                            Find via Email
-                          </button>
-                        </form>
-
-                        <form
-                          className="bg-gray-900/60 rounded-lg p-6 border border-gray-700 space-y-4"
-                          method="get"
-                          action="/error"
-                        >
-                          <input type="hidden" name="field" value="mobileno" />
-                          <div className="space-y-2">
-                            <label
-                              htmlFor="lookup-mobile"
-                              className="block text-sm font-medium text-gray-300"
-                            >
-                              Mobile Number
-                            </label>
-                            <input
-                              id="lookup-mobile"
-                              name="value"
-                              type="tel"
-                              required
-                              placeholder="Enter mobile with country code"
-                              className="w-full rounded-lg border border-gray-700 bg-gray-800/70 px-4 py-2 text-sm text-gray-100 placeholder-gray-500 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/40"
-                            />
-                          </div>
-                          <button
-                            type="submit"
-                            className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-white font-semibold px-4 py-2.5 rounded-lg transition-all"
-                          >
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                            Find via Mobile
-                          </button>
-                        </form>
-                      </div>
-
-                      <div className="text-center text-sm text-gray-400">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                        Open Status Dashboard
+                      </Link>
+                      <div className="text-sm text-gray-400">
                         Trouble accessing your details?{" "}
                         <a
                           href="tel:+918700621534"
@@ -401,7 +333,7 @@ export default async function Home({ searchParams }) {
                         </p>
                       </div>
                       <Link
-                        href="/error?msg=Please%20enter%20your%20details%20to%20retrieve%20your%20registration"
+                        href="/payment/status"
                         className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-white font-semibold px-5 py-2.5 rounded-lg transition-all"
                       >
                         <svg
@@ -414,10 +346,10 @@ export default async function Home({ searchParams }) {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth={2}
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            d="M9 5l7 7-7 7"
                           />
                         </svg>
-                        Try Another Lookup
+                        Try Status Dashboard
                       </Link>
                     </div>
                   );

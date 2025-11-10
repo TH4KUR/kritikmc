@@ -1,13 +1,25 @@
 "use server";
-import { cookies } from "next/headers";
 import { supabaseAdmin } from "../lib/supabase/supabaseAdmin";
 import { redirect } from "next/navigation";
-import { base64 } from "zod";
+import {
+  calculateActiveDelegateFee,
+  PASSIVE_DELEGATE_FEE,
+  WORKSHOP_FEE,
+} from "@/app/lib/paymentConfig";
+
+const PARTICIPATION_TYPES = new Set(["active", "passive", "workshop"]);
 
 export async function formSubmit(formData) {
   let rawFormData;
 
-  cookies().delete("delegateid");
+  const rawParticipationType = (formData?.get("participation_type") || "")
+    .toString()
+    .trim()
+    .toLowerCase();
+
+  const participationtype = PARTICIPATION_TYPES.has(rawParticipationType)
+    ? rawParticipationType
+    : "active";
 
   let { data, error } = await supabaseAdmin
     .from("counters")
@@ -24,34 +36,52 @@ export async function formSubmit(formData) {
 
   console.log("update count res:", updatRes);
   const delegateid = `KAD-${String(count).padStart(4, "0")}`;
+  const isKmcStudent = formData?.get("kmc_student") === "true";
+  const isPgStudent = formData?.get("is_pg_student") === "true";
+
+  let dueAmount;
+  if (participationtype === "passive") {
+    dueAmount = PASSIVE_DELEGATE_FEE;
+  } else if (participationtype === "workshop") {
+    dueAmount = WORKSHOP_FEE;
+  } else {
+    dueAmount = calculateActiveDelegateFee({
+      isKmcStudent,
+      isPgStudent,
+    });
+  }
+
   rawFormData = {
     delegateid,
     name: formData?.get("student_name")?.trim(),
     mobileno: formData?.get("student_number"),
     email: formData?.get("student_email")?.trim(),
     collegeyear: formData?.get("college_year") || 0,
-    iskmcstudent: formData?.get("kmc_student") === "true",
+    iskmcstudent: isKmcStudent,
     kmcrollno: formData?.get("kmc_rollno")?.trim(),
-    ispgstudent: formData?.get("is_pg_student") === "true",
+    ispgstudent: isPgStudent,
     collegename:
       formData?.get("college_name")?.trim() || "Kakatiya Medical College",
-    events: [
-      ...(formData?.get("debate") ? ["debate"] : []),
-      ...(formData?.get("jeopardy") ? ["jeopardy"] : []),
-      ...(formData?.get("medExhibition") ? ["medExhibition"] : []),
-      ...(formData?.get("paperPresentation") ? ["paperPresentation"] : []),
-      ...(formData?.get("posterPresentation") ? ["posterPresentation"] : []),
-      ...(formData?.get("symposium") ? ["symposium"] : []),
-      ...(formData?.get("hackathon") ? ["hackathon"] : []),
-    ],
+    events:
+      participationtype === "active"
+        ? [
+            ...(formData?.get("debate") ? ["debate"] : []),
+            ...(formData?.get("jeopardy") ? ["jeopardy"] : []),
+            ...(formData?.get("medExhibition") ? ["medExhibition"] : []),
+            ...(formData?.get("paperPresentation")
+              ? ["paperPresentation"]
+              : []),
+            ...(formData?.get("posterPresentation")
+              ? ["posterPresentation"]
+              : []),
+            ...(formData?.get("symposium") ? ["symposium"] : []),
+            ...(formData?.get("hackathon") ? ["hackathon"] : []),
+          ]
+        : [],
+    participationtype,
+    hastopay: dueAmount,
   };
 
-  cookies().set({
-    name: "delegateid",
-    value: delegateid,
-    secure: true,
-    expires: Date.now() + 30 * 60 * 1000,
-  });
   ({ data, error } = await supabaseAdmin
     .from("activedelegates")
     .insert(rawFormData));
@@ -63,17 +93,26 @@ export async function formSubmit(formData) {
       const match = regex.exec(error.details);
 
       console.error(`Error while processing active delegates: ${error}`);
-      redirect(
-        `${process.env.HOST_URL}/error?msg=duplicate&field=${match[1]}&value=${match[2]}`
-      );
+      if (match?.groups?.left && match?.groups?.right) {
+        const lookupField = match.groups.left;
+        const lookupValue = match.groups.right;
+        const sanitizedValue =
+          lookupField === "email" ? lookupValue.toLowerCase() : lookupValue;
+
+        redirect(
+          `${process.env.HOST_URL}/payment/status?${lookupField}=${encodeURIComponent(
+            sanitizedValue
+          )}`
+        );
+      } else {
+        redirect(`${process.env.HOST_URL}/payment/status`);
+      }
     }
     await supabaseAdmin
       .from("counters")
       .update({ count })
       .eq("name", "activedelegates");
   } else {
-    redirect(`${process.env.HOST_URL}/payment/v2?delagateId=${delegateid}`);
+    redirect(`${process.env.HOST_URL}/payment/status?delegateId=${delegateid}`);
   }
-
-  // Deleting existing cookie
 }

@@ -1,8 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { formatInr } from "@/app/lib/paymentConfig";
 
-export default function SupabaseUploader({ delegateId, unclaimedCountx }) {
+export default function SupabaseUploader({
+  delegateId,
+  unclaimedCountx,
+  amountDue,
+}) {
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
   const [unclaimedCount, setUnclaimedCount] = useState(0);
@@ -15,6 +20,8 @@ export default function SupabaseUploader({ delegateId, unclaimedCountx }) {
   const [updatingCount, setUpdatingCount] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState(null); // 'upi' or 'upload'
   const [countStatus, setCountStatus] = useState(null);
+  const formattedDueAmount =
+    amountDue !== null && amountDue !== undefined ? formatInr(amountDue) : null;
 
   const statusColorMap = {
     success: "border-green-200 bg-green-50 text-green-700",
@@ -54,6 +61,13 @@ export default function SupabaseUploader({ delegateId, unclaimedCountx }) {
       return;
     }
 
+    if (!delegateId || delegateId === "unknown") {
+      setUpiError(
+        "Unable to verify without a valid delegate ID. Please reload the payment portal."
+      );
+      return;
+    }
+
     try {
       setSelectedMethod("upi");
       setUploading(true);
@@ -76,7 +90,9 @@ export default function SupabaseUploader({ delegateId, unclaimedCountx }) {
         return;
       }
 
-      router.push("/success?status=confirmed");
+      router.push(
+        `/payment/status?delegateId=${encodeURIComponent(delegateId)}&status=confirmed`
+      );
     } catch (error) {
       console.error("Error submitting UPI trxn ID:", error);
       setUpiError(error.message || "Failed to submit UPI Transaction ID");
@@ -153,6 +169,13 @@ export default function SupabaseUploader({ delegateId, unclaimedCountx }) {
       return;
     }
 
+    if (!delegateId || delegateId === "unknown") {
+      setError(
+        "Unable to upload without a valid delegate ID. Please reload the payment portal."
+      );
+      return;
+    }
+
     try {
       setSelectedMethod("upload");
       setUploading(true);
@@ -180,7 +203,9 @@ export default function SupabaseUploader({ delegateId, unclaimedCountx }) {
 
       setUploadedUrl(result.url);
       setUploadProgress(100);
-      router.push("/success?status=pending");
+      router.push(
+        `/payment/status?delegateId=${encodeURIComponent(delegateId)}&status=pending`
+      );
     } catch (error) {
       console.error("Error uploading file:", error);
       setError(error.message || "Failed to upload file");
@@ -218,6 +243,12 @@ export default function SupabaseUploader({ delegateId, unclaimedCountx }) {
               </span>
               <span className="text-sm text-gray-500">Recommended</span>
             </div>
+            <hr className="border my-5" />
+            {formattedDueAmount && (
+              <p className="mt-2 text-sm font-medium text-green-800">
+                Payable Amount: {formattedDueAmount}
+              </p>
+            )}
           </div>
         </div>
 
@@ -381,6 +412,13 @@ export default function SupabaseUploader({ delegateId, unclaimedCountx }) {
                 Takes longer to process
               </span>
             </div>
+            <hr className="border my-5" />
+
+            {formattedDueAmount && (
+              <p className="mt-2 text-sm font-medium text-amber-800">
+                Ensure your transfer is for {formattedDueAmount}
+              </p>
+            )}
           </div>
         </div>
 

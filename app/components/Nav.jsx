@@ -15,42 +15,66 @@ import {
 import Cancel from "./icons/Cancel";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { NavDropdown } from "./Nav-dropdown";
 
 const Nav = ({ bg }) => {
-  let [isOpen, setIsOpen] = useState(false);
-
-  function open() {
-    setIsOpen(true);
-  }
-
-  function close() {
-    setIsOpen(false);
-  }
+  const [isOpen, setIsOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null); // Add state for which dropdown is open
   const path = usePathname();
+
+  const eventLinks = [
+    { label: "Overview", href: "/events" },
+    { label: "Itinerary", href: "/events-itinerary" },
+    { label: "Kakatiya Chronicles", href: "/chronicles" },
+    { label: "Archives", href: "/archives" },
+  ];
+
+  const registrationLinks = [
+    { label: "Overview", href: "/registration" },
+    { label: "Active Delegates", href: "/registration/active" },
+    { label: "Passive Delegates", href: "/registration/passive" },
+    { label: "Workshop", href: "/registration/workshop" },
+    { label: "Check Status", href: "/payment/status" },
+    // { label: "Payment Portal", href: "/payment/v2" },
+    // { label: "Confirmation Summary", href: "/success" },
+  ];
+
+  const desktopLinks = [
+    { label: "home.", href: "/" },
+    { label: "events.", menu: eventLinks },
+    { label: "registration.", menu: registrationLinks },
+    { label: "alumni.", href: "/alumni" },
+    { label: "about us.", href: "/about" },
+    { label: "contact us.", href: "/contact" },
+  ];
+
+  const open = () => setIsOpen(true);
+  const close = () => setIsOpen(false);
+
+  const handleNavClose = () => {
+    close();
+  };
+
+  const containerClass = `relative z-[60] isolate flex w-full items-center justify-between overflow-visible shadow-bgSecondary drop-shadow text-white bg-bgSecondary`;
+
   return (
     <>
       <motion.div
-        initial={{
-          opacity: 0,
-          y: -20,
-        }}
+        initial={{ opacity: 0, y: -20 }}
         whileInView={{
           opacity: 1,
           y: 0,
-          transition: {
-            duration: 0.5,
-            bounce: 0,
-          },
+          transition: { duration: 0.5, bounce: 0 },
         }}
         viewport={{ once: true }}
-        className={`flex items-center justify-between bg-bgSecondary shadow-bgSecondary drop-shadow text-white`}
+        className={containerClass}
       >
         <div className="px-4 py-2 lg:py-3 -translate-x-3">
-          <Link href={"/"}>
+          <Link href="/">
             <Image
               height={45}
               width={90}
-              src={"/kriti_logo_dark.png"}
+              src="/kriti_logo_dark.png"
               alt="kritikmc logo"
               className="aspect-video"
             />
@@ -58,83 +82,31 @@ const Nav = ({ bg }) => {
         </div>
         <div className="flex items-center gap-3 mr-4">
           <Link
-            href={"/registration"}
+            href="/registration"
             className="text-sm font-bold text-rose-400 underline underline-offset-1 block lg:hidden"
           >
             Register Now!
           </Link>
-          <div className="hidden lg:block">
-            <ul className="font-medium text-white text-lg flex h-full items-center gap-6">
+          <div className="hidden lg:block overflow-visible">
+            <ul className="flex h-full items-center gap-6 text-lg font-medium text-white">
+              {desktopLinks.map((item) => (
+                <li key={item.label}>
+                  {item.menu ? (
+                    <NavDropdown label={item.label} items={item.menu} />
+                  ) : (
+                    <Link
+                      className="hover:underline underline-offset-2 transition-all"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
               <li>
                 <Link
-                  className="hover:underline underline-offset-2 transition-all"
-                  href={"/"}
-                >
-                  home.
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:underline underline-offset-2 transition-all"
-                  href={"/events"}
-                >
-                  events.
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:underline underline-offset-2 transition-all"
-                  href={"/events-itinerary"}
-                >
-                  events-itinerary.
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:underline underline-offset-2 transition-all"
-                  href={"/archives"}
-                >
-                  archives.
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:underline underline-offset-2 transition-all"
-                  href={"/chronicles"}
-                >
-                  kakatiya chronicles.
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:underline underline-offset-2 transition-all"
-                  href={"/alumni"}
-                >
-                  alumni.
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:underline underline-offset-2 transition-all"
-                  href={"/about"}
-                >
-                  about us.
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="hover:underline underline-offset-2 transition-all"
-                  href={"/contact"}
-                >
-                  contact us.
-                </Link>
-              </li>
-
-              <li>
-                {" "}
-                <Link
-                  href={"/registration"}
-                  className="text-sm font-bold text-white hover:bg-rose-950 hover:text-rose-100 transition-colors py-2 px-4 bg-rose-900 rounded-lg hidden lg:block lg:text-base"
+                  href="/registration"
+                  className="hidden rounded-lg bg-rose-900 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-rose-950 hover:text-rose-100 lg:block lg:text-base"
                 >
                   Register Now!
                 </Link>
@@ -143,7 +115,7 @@ const Nav = ({ bg }) => {
           </div>
           <div className="flex items-center lg:hidden">
             <button aria-label="menu button" onClick={open}>
-              <Menu color={"#fff"} />
+              <Menu color="#fff" />
             </button>
             <Transition appear show={isOpen}>
               <Dialog
@@ -208,29 +180,51 @@ const Nav = ({ bg }) => {
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/about"}>about us.</Link>
-                            </li>
-                            <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/events"}>events.</Link>
-                            </li>
-                            <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/events-itinerary"}>
-                                events itinerary.
+                              <Link href={"/about"} onClick={handleNavClose}>
+                                about us.
                               </Link>
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/archives"}>archives.</Link>
+                              <span>events.</span>
+                            </li>
+                            <li className="ml-5 flex flex-col gap-1 text-sm text-[#eee]/90">
+                              {eventLinks.map((event) => (
+                                <Link
+                                  key={event.href}
+                                  href={event.href}
+                                  onClick={handleNavClose}
+                                >
+                                  {event.label}
+                                </Link>
+                              ))}
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/alumni"}>alumni.</Link>
+                              <span>registration.</span>
+                            </li>
+                            <li className="ml-5 flex flex-col gap-1 text-sm text-[#eee]/90">
+                              {registrationLinks.map((reg) => (
+                                <Link
+                                  key={reg.href}
+                                  href={reg.href}
+                                  onClick={handleNavClose}
+                                >
+                                  {reg.label}
+                                </Link>
+                              ))}
                             </li>
                             <li className="flex items-center gap-1 mt-1">
                               <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/contact"}>contact us.</Link>
+                              <Link href={"/alumni"} onClick={handleNavClose}>
+                                alumni.
+                              </Link>
+                            </li>
+                            <li className="flex items-center gap-1 mt-1">
+                              <Caret className="size-[10px]" color={"#eee"} />
+                              <Link href={"/contact"} onClick={handleNavClose}>
+                                contact us.
+                              </Link>
                             </li>
                           </ul>
                           <div className="mt-4">
@@ -238,7 +232,10 @@ const Nav = ({ bg }) => {
                             <ul className="font-medium text-[#eee] ml-3 mt-3 text-lg">
                               <li className="flex items-center gap-1 mt-1">
                                 <Caret className="size-[10px]" color={"#eee"} />
-                                <Link href={"/chronicles"}>
+                                <Link
+                                  href={"/chronicles"}
+                                  onClick={handleNavClose}
+                                >
                                   kakatiya chronicles.
                                 </Link>
                               </li>

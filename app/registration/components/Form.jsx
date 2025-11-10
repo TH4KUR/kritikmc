@@ -29,6 +29,7 @@ const Form = () => {
       action={formSubmit}
       className="mx-auto mt-6 max-w-3xl space-y-8 px-4 sm:px-6"
     >
+      <input type="hidden" name="participation_type" value="active" />
       <section className="overflow-hidden rounded-3xl border border-white/30 bg-white/80 shadow-xl shadow-black/5 backdrop-blur-sm">
         <header className="flex items-center gap-3 border-b border-white/40 bg-gradient-to-r from-accent/10 via-transparent to-transparent px-6 py-4 sm:px-8">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-accent/15 text-base font-semibold text-accent">

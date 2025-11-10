@@ -6,18 +6,20 @@ import InputCollege from "./InputCollege";
 import InputCollegeYear from "./InputCollegeYear";
 import InputNumber from "./InputNumber";
 import InputUgPg from "./InputUgPg";
-import { formSubmitPassiveDelegates } from "@/app/actions/formSubmitPassiveDelegates";
+import { formSubmit } from "@/app/actions/formSubmit";
+import { PASSIVE_DELEGATE_FEE } from "@/app/lib/paymentConfig";
 
 const Form = () => {
   const [isStudentOfKmc, setIsStudentOfKmc] = useState(false);
   const [isPgStudent, setIsPgStudent] = useState(false);
-  const feeAmount = 200;
+  const feeAmount = PASSIVE_DELEGATE_FEE;
 
   return (
     <form
-      action={formSubmitPassiveDelegates}
+      action={formSubmit}
       className="mx-auto mt-6 max-w-3xl space-y-8 px-4 sm:px-6"
     >
+      <input type="hidden" name="participation_type" value="passive" />
       <section className="overflow-hidden rounded-3xl border border-white/30 bg-white/80 shadow-xl shadow-black/5 backdrop-blur-sm">
         <header className="flex items-center gap-3 border-b border-white/40 bg-gradient-to-r from-accent/10 via-transparent to-transparent px-6 py-4 sm:px-8">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-accent/15 text-base font-semibold text-accent">

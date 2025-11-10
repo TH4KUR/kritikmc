@@ -1,13 +1,12 @@
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { randomUUID } from "crypto";
 
 export async function POST(req) {
   try {
     const formData = await req.formData();
     const file = formData.get("file");
-    const delegateId =
-      cookies().get("delegateid").value || formData.get("delegateid");
+    const delegateId = formData.get("delegateId");
     console.log("delegate id:", delegateId);
     if (!file) {
       return NextResponse.json(
@@ -58,8 +57,25 @@ export async function POST(req) {
     const buffer = Buffer.from(bytes);
 
     // Create unique file name
-    const fileExt = file.name.split(".").pop();
-    const fileName = `${delegateId}-paymentSS.${fileExt}`;
+    const fileExt = (
+      file.name?.split(".").pop() ||
+      file.type.split("/")[1] ||
+      "png"
+    ).toLowerCase();
+
+    const existingPathRaw = delegateData?.[0]?.screenshotbucketpath || "";
+    const normalisedExistingPath = existingPathRaw.startsWith("http")
+      ? ""
+      : existingPathRaw.replace(/^paymentss\//, "").replace(/^\//, "");
+
+    const existingBase = normalisedExistingPath
+      ? normalisedExistingPath.replace(/\.[^/.]+$/, "")
+      : "";
+
+    const uniqueSuffix = randomUUID();
+    const fileName = existingBase
+      ? `${existingBase}.${fileExt}`
+      : `${delegateId}-paymentSS-${uniqueSuffix}.${fileExt}`;
     const filePath = `${fileName}`;
 
     // Upload to Supabase Storage using admin client
@@ -79,20 +95,24 @@ export async function POST(req) {
       );
     }
 
-    // upate bucket path in table
-
-    await supabaseAdmin
-      .from("activedelegates")
-      .update({
-        screenshotbucketpath: `paymentss/${filePath}`,
-        paymentss: `paymentss/${filePath}`,
-      })
-      .eq("delegateid", delegateId);
-
     // Get public URL
     const {
       data: { publicUrl },
     } = supabaseAdmin.storage.from("paymentss").getPublicUrl(filePath);
+
+    // update bucket path + permanent link in table
+    await supabaseAdmin
+      .from("activedelegates")
+      .update({
+        screenshotbucketpath: filePath,
+        paymentss: publicUrl,
+      })
+      .eq("delegateid", delegateId);
+
+    if (delegateData?.[0]) {
+      delegateData[0].screenshotbucketpath = filePath;
+      delegateData[0].paymentss = publicUrl;
+    }
 
     const delegate = delegateData?.[0]
       ? {
@@ -106,33 +126,13 @@ export async function POST(req) {
         }
       : null;
 
-    const response = NextResponse.json({
+    return NextResponse.json({
       success: true,
       url: publicUrl,
       path: filePath,
       delegate,
       paymentStatus: "pending",
     });
-
-    if (delegate) {
-      response.cookies.set({
-        name: "registrationData",
-        value: Buffer.from(JSON.stringify(delegate)).toString("base64"),
-        maxAge: 30 * 60,
-        sameSite: "lax",
-        path: "/",
-      });
-    }
-
-    response.cookies.set({
-      name: "paymentStatus",
-      value: "pending",
-      maxAge: 30 * 60,
-      sameSite: "lax",
-      path: "/",
-    });
-
-    return response;
   } catch (error) {
     console.error("Server error:", error);
     return NextResponse.json(

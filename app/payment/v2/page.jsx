@@ -1,22 +1,22 @@
-import { cookies } from "next/headers";
 import SupabaseUploader from "./components/SupabaseUploader";
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import Image from "next/image";
 import DelegateIdForm from "./components/DelegateIdForm";
 import Nav from "@/app/components/Nav";
+import { formatInr } from "@/app/lib/paymentConfig";
 
 export default async function Home({ searchParams: { delegateId } }) {
   let data, error, unclaimedCountx;
-  let delId = null;
+  const delId = delegateId ? delegateId.toUpperCase() : null;
 
   try {
-    delId = cookies()?.get("delegateid")?.value || delegateId;
-
     // Only fetch data if we have a delegate ID
     if (delId) {
       const res = await supabaseAdmin
         .from("activedelegates")
-        .select("delegateid,name,mobileno,email,collegename,collegeyear,events")
+        .select(
+          "delegateid,name,mobileno,email,collegename,collegeyear,events,paymentconfirmed,screenshotbucketpath,upitransactionid,hastopay"
+        )
         .eq("delegateid", delId);
 
       ({ count: unclaimedCountx } = await supabaseAdmin
@@ -24,8 +24,8 @@ export default async function Home({ searchParams: { delegateId } }) {
         .select("*", { count: "exact" })
         .eq("isused", false));
 
-      data = res.data[0];
-      error = res.error;
+      data = res?.data?.[0] || null;
+      error = res?.error;
       console.log(data, delId);
     }
   } catch (err) {
@@ -52,31 +52,123 @@ export default async function Home({ searchParams: { delegateId } }) {
           )}
 
           {/* Show payment content only if delegate ID exists */}
-          {delId && data && (
+          {delId && !data && !error && (
+            <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-red-700">
+              <h2 className="text-xl font-semibold mb-2">Delegate Not Found</h2>
+              <p className="text-sm mb-3">
+                We couldn&apos;t find a registration for the delegate ID
+                <span className="font-semibold"> {delId}</span>. Please
+                double-check the ID or visit the status page to review your
+                registration details.
+              </p>
+              <a
+                href={`/payment/status?delegateId=${encodeURIComponent(delId)}`}
+                className="inline-flex items-center rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+              >
+                Check Registration Status
+              </a>
+            </div>
+          )}
+
+          {delId && error && (
+            <div className="rounded-lg border border-amber-200 bg-amber-50 p-6 text-amber-800">
+              <h2 className="text-xl font-semibold mb-2">
+                Unable to load delegate details
+              </h2>
+              <p className="text-sm mb-3">
+                We ran into an issue while fetching your registration
+                information. Please refresh the page, or try again in a few
+                minutes.
+              </p>
+              <a
+                href={`/payment/status?delegateId=${encodeURIComponent(delId)}`}
+                className="inline-flex items-center rounded-full border border-amber-300 px-4 py-2 text-sm font-semibold text-amber-700 transition hover:bg-amber-100"
+              >
+                Go to Status Page
+              </a>
+            </div>
+          )}
+
+          {delId && data && !data.paymentconfirmed && (
             <div className="bg-white rounded-lg shadow-md p-6 mb-5">
               <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
                 Delegate Information
               </h2>
-              <div className="space-y-3">
-                {Object.keys(data).map((key, i) => {
-                  return (
-                    <div key={i} className="flex items-start gap-8">
-                      <span className="font-medium text-gray-600 min-w-[120px]">
-                        {key.toLocaleUpperCase()}
-                      </span>
-                      <span className="text-gray-800 font-mono">
-                        {Array.isArray(data[key])
-                          ? data[key].join(", ")
-                          : data[key] || "NA"}
-                      </span>
-                    </div>
-                  );
-                })}
+              {(() => {
+                const rows = [
+                  { label: "Delegate ID", value: data.delegateid },
+                  { label: "Name", value: data.name },
+                  { label: "Email", value: data.email },
+                  { label: "Mobile Number", value: data.mobileno },
+                  { label: "College", value: data.collegename },
+                  {
+                    label: "Academic Year",
+                    value:
+                      data.collegeyear === null ||
+                      data.collegeyear === undefined
+                        ? "NA"
+                        : data.collegeyear,
+                  },
+                  {
+                    label: "Events",
+                    value: Array.isArray(data.events)
+                      ? data.events.join(", ")
+                      : data.events || "NA",
+                  },
+                  {
+                    label: "Amount Due",
+                    value:
+                      data.hastopay !== null && data.hastopay !== undefined
+                        ? formatInr(data.hastopay)
+                        : "NA",
+                  },
+                ];
+
+                return (
+                  <div className="space-y-3">
+                    {rows.map(({ label, value }) => (
+                      <div key={label} className="flex items-start gap-8">
+                        <span className="font-medium text-gray-600 min-w-[120px]">
+                          {label}
+                        </span>
+                        <span className="text-gray-800 font-mono">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
+          )}
+
+          {delId && data && data.paymentconfirmed && (
+            <div className="border border-green-200 bg-green-50 rounded-lg p-6 text-green-800">
+              <h2 className="text-xl font-semibold mb-2">
+                Payment Already Confirmed
+              </h2>
+              <p className="text-sm mb-4">
+                Our records show that the payment for delegate ID
+                <span className="font-semibold"> {data.delegateid}</span> has
+                already been verified. If you believe this is an error, please
+                contact the organising team.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={`/payment/status?delegateId=${encodeURIComponent(data.delegateid)}`}
+                  className="inline-flex items-center rounded-full bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+                >
+                  View Registration Status
+                </a>
+                <a
+                  href="tel:+918700621534"
+                  className="inline-flex items-center rounded-full border border-green-200 px-4 py-2 text-sm font-semibold text-green-700 transition hover:bg-green-100"
+                >
+                  Contact Support
+                </a>
               </div>
             </div>
           )}
 
-          {delId && data && (
+          {delId && data && !data.paymentconfirmed && (
             <div className="grid lg:grid-cols-2 gap-6">
               <div className="bg-white rounded-lg shadow-md p-6 col-span-1 h-fit">
                 <h2 className="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
@@ -92,7 +184,7 @@ export default async function Home({ searchParams: { delegateId } }) {
                     <p>
                       <strong>Important:</strong> Add your Delegate ID{" "}
                       <span className="bg-yellow-100 px-1 py-0.5 rounded font-mono text-xs">
-                        {data?.[0] ? Object.values(data[0])[0] : ""}
+                        {data?.delegateid || ""}
                       </span>{" "}
                       in the UPI payment remarks/comments section
                     </p>
@@ -122,6 +214,9 @@ export default async function Home({ searchParams: { delegateId } }) {
                   <p className="text-sm font-medium text-gray-700 mb-3 text-center">
                     Scan to Pay
                   </p>
+                  <div className="bg-red-200 border border-red-500 text-red-900 px-3 py-1 rounded mx-auto w-fit">
+                    AMOUNT TO PAY: {data.hastopay}
+                  </div>
                   <div className="relative w-full aspect-square max-w-sm mx-auto">
                     <Image
                       src="/Payment_Image_1.jpg"
@@ -138,7 +233,15 @@ export default async function Home({ searchParams: { delegateId } }) {
                 <SupabaseUploader
                   delegateId={data.delegateid || "unknown"}
                   unclaimedCountx={unclaimedCountx}
+                  amountDue={data.hastopay}
                 />
+                {data.screenshotbucketpath && (
+                  <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+                    We&apos;ve already received a payment screenshot for this
+                    delegate. You can still verify instantly using your UPI
+                    reference ID above if you now have it handy.
+                  </div>
+                )}
               </div>
               {/* Payment Instructions */}
 
@@ -147,7 +250,7 @@ export default async function Home({ searchParams: { delegateId } }) {
           )}
 
           {/* Help Section */}
-          {delId && data && (
+          {delId && data && !data.paymentconfirmed && (
             <div className="mt-8 bg-amber-100 border border-amber-200 rounded-lg p-4">
               <div className="flex items-start gap-3">
                 <svg
