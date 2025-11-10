@@ -1,6 +1,5 @@
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import { NextResponse } from "next/server";
-import { formatInr } from "@/app/lib/paymentConfig";
 
 function normaliseAmount(value) {
   if (value === null || value === undefined) return null;
@@ -182,16 +181,22 @@ export async function POST(req) {
 
     if (expectedAmount !== null && transactionAmount !== null) {
       const matchesDirect = amountsClose(expectedAmount, transactionAmount);
-      const matchesPaise = amountsClose(expectedAmount, transactionAmount / 100);
-      const matchesScaled = amountsClose(expectedAmount / 100, transactionAmount);
+      const matchesPaise = amountsClose(
+        expectedAmount,
+        transactionAmount / 100
+      );
+      const matchesScaled = amountsClose(
+        expectedAmount / 100,
+        transactionAmount
+      );
 
       if (!matchesDirect && !matchesPaise && !matchesScaled) {
-        const formattedExpected = formatInr(expectedAmount);
         const normalisedReceived =
           transactionAmount > expectedAmount * 5
             ? transactionAmount / 100
             : transactionAmount;
-        const formattedReceived = formatInr(normalisedReceived);
+        const formattedExpected = `₹${Number(expectedAmount)}`;
+        const formattedReceived = `₹${Number(normalisedReceived)}`;
 
         return NextResponse.json(
           {

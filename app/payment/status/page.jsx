@@ -9,6 +9,9 @@ export const metadata = {
   title: "Check Registration Status",
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function StatusPage({ searchParams }) {
   const rawDelegateIdQuery = (searchParams?.delegateId || "").toString().trim();
   const emailQuery = (searchParams?.email || "")
@@ -54,16 +57,16 @@ export default async function StatusPage({ searchParams }) {
     let query = supabaseAdmin
       .from("activedelegates")
       .select(
-        "delegateid,name,email,mobileno,collegename,collegeyear,events,paymentconfirmed,screenshotbucketpath,paymentss,upitransactionid"
+        "delegateid,name,email,mobileno,collegename,collegeyear,events,participationtype,paymentconfirmed,screenshotbucketpath,paymentss,upitransactionid"
       )
       .limit(1);
-
     filters.forEach((applyFilter) => {
       query = applyFilter(query);
     });
 
     const { data, error } = await query;
 
+    console.log("status res:", data, error);
     delegate = data?.[0] || null;
     fetchError = error;
 

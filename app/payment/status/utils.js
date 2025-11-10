@@ -1,5 +1,3 @@
-import { formatInr } from "@/app/lib/paymentConfig";
-
 const STATUS_BADGES = {
   confirmed: { text: "Payment Confirmed", tone: "bg-emerald-500" },
   "under-review": { text: "Pending Verification", tone: "bg-amber-500" },
@@ -9,6 +7,25 @@ const STATUS_BADGES = {
 
 export function normaliseEntries(delegate) {
   if (!delegate) return [];
+
+  const formatRupees = (value) => {
+    if (value === null || value === undefined) return null;
+    const numeric = Number(value);
+    if (Number.isNaN(numeric)) return null;
+    return `₹${numeric}`;
+  };
+
+  const participationLabels = {
+    active: "Active Delegate",
+    passive: "Passive Delegate",
+    workshop: "Workshop Delegate",
+  };
+
+  const normaliseParticipation = (value) => {
+    if (!value) return null;
+    const key = String(value).trim().toLowerCase();
+    return participationLabels[key] || value;
+  };
 
   const eventsArray = Array.isArray(delegate.events)
     ? delegate.events
@@ -31,15 +48,23 @@ export function normaliseEntries(delegate) {
     },
   ];
 
+  const participation = normaliseParticipation(delegate.participationtype);
+  if (participation) {
+    rows.push({ label: "Participation Type", value: participation });
+  }
+
   if (eventsArray.length) {
     rows.push({ label: "Events", value: eventsArray, isList: true });
   }
 
   if (delegate.hastopay !== null && delegate.hastopay !== undefined) {
-    rows.push({
-      label: "Amount Due",
-      value: formatInr(delegate.hastopay),
-    });
+    const formattedAmount = formatRupees(delegate.hastopay);
+    if (formattedAmount) {
+      rows.push({
+        label: "Amount Due",
+        value: formattedAmount,
+      });
+    }
   }
 
   return rows.filter(
@@ -50,7 +75,8 @@ export function normaliseEntries(delegate) {
 export function determineStatus(delegate) {
   if (!delegate) return "not-found";
   if (delegate.paymentconfirmed) return "confirmed";
-  if (delegate.paymentss || delegate.screenshotbucketpath) return "under-review";
+  if (delegate.paymentss || delegate.screenshotbucketpath)
+    return "under-review";
   // else
   return "awaiting-payment";
 }
@@ -93,7 +119,7 @@ export function statusCopy(status, delegateId) {
         body: "We have your payment screenshot and it is currently being reviewed. If you now have the UPI reference ID, verify instantly from the payment portal.",
         actions: [
           {
-            label: "Verify with UPI Reference ID",
+            label: "Instant Verify with Upi Ref Id",
             href: payLink,
             style: "primary",
             external: false,

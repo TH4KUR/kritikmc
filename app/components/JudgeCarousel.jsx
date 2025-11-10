@@ -6,9 +6,16 @@ import Autoplay from "embla-carousel-autoplay";
 import JudgeCard from "./JudgeCard";
 
 function JudgeCarousel({ judgedata }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ playOnInit: true, delay: 2500 }),
-  ]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "center" },
+    [
+      Autoplay({
+        playOnInit: true,
+        delay: 5200,
+        stopOnInteraction: false,
+      }),
+    ]
+  );
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
@@ -20,7 +27,7 @@ function JudgeCarousel({ judgedata }) {
     <>
       <div className="flex items-center gap-3">
         <button
-          className="embla_imgCarousel__prev relative z-[100] hidden lg:block opacity-35"
+          className="embla_imgCarousel__prev relative z-[100] hidden rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10 lg:block"
           onClick={scrollPrev}
         >
           <svg
@@ -35,20 +42,18 @@ function JudgeCarousel({ judgedata }) {
         </button>
         <div className="speakers_carousel" ref={emblaRef}>
           <div className="flex">
-            {judgedata.map((el, i) => {
-              return (
-                <button
-                  key={i}
-                  className={`speakers_slide ${judgedata.length > 1 ? "" : "translate-x-[15%]"}`}
-                >
-                  <JudgeCard data={el} />
-                </button>
-              );
-            })}
+            {judgedata.map((el, i) => (
+              <div
+                key={i}
+                className={`speakers_slide pb-8 ${judgedata.length > 1 ? "" : "translate-x-[15%]"}`}
+              >
+                <JudgeCard data={el} />
+              </div>
+            ))}
           </div>
         </div>
         <button
-          className="embla_imgCarousel__next relative z-[100] hidden lg:block opacity-35"
+          className="embla_imgCarousel__next relative z-[100] hidden rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10 lg:block"
           onClick={scrollNext}
         >
           <svg

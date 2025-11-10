@@ -15,7 +15,7 @@ const InputCollegeYear = () => {
         Year Of Study <span className=" text-red-600">*</span>
       </Label>
       <Description className="text-sm md:text-base  text-black/70">
-        Choose and option below.
+        Choose an option below.
       </Description>
       <div className="relative">
         <Select
@@ -25,10 +25,10 @@ const InputCollegeYear = () => {
             "mt-1 block w-full appearance-none rounded-lg border-2 border-black/50 bg-bgInput py-1.5 px-3 text-sm/6 focus:outline-none focus:ring  invalid:border-red-600/80 focus:invalid:border-red-600/80 focus:invalid:ring-red-500/20 focus:border-blue-800/45 focus:ring-blue-500/20 text-black *:text-black "
           }
           aria-placeholder="Choose the year of college you're in"
-          defaultValue={0}
+          defaultValue=""
           required
         >
-          <option value="0" disabled hidden className="text-black/60">
+          <option value="" disabled hidden className="text-black/60">
             Choose one below
           </option>
           <option value="1">1st Year</option>

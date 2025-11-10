@@ -8,6 +8,7 @@ import InputNumber from "./InputNumber";
 import InputEvents from "./InputEvents";
 import InputUgPg from "./InputUgPg";
 import { formSubmit } from "@/app/actions/formSubmit";
+import { calculateActiveDelegateFee } from "@/app/lib/paymentConfig";
 
 const eventsData = [
   { eventName: "Debate", eventSlug: "debate" },
@@ -22,7 +23,17 @@ const Form = () => {
   const [isStudentOfKmc, setIsStudentOfKmc] = useState(false);
   const [isPgStudent, setIsPgStudent] = useState(false);
 
-  const feeAmount = isPgStudent ? 600 : isStudentOfKmc ? 300 : 400;
+  const handlePgToggle = (next) => {
+    setIsPgStudent(next);
+    if (next) {
+      setIsStudentOfKmc(false);
+    }
+  };
+
+  const feeAmount = calculateActiveDelegateFee({
+    isKmcStudent: isStudentOfKmc,
+    isPgStudent,
+  });
 
   return (
     <form
@@ -68,7 +79,7 @@ const Form = () => {
           </div>
         </header>
         <div className="space-y-6 px-6 py-6 sm:px-8 sm:py-8">
-          <InputUgPg enabled={isPgStudent} setEnabled={setIsPgStudent} />
+          <InputUgPg enabled={isPgStudent} setEnabled={handlePgToggle} />
           {!isPgStudent && (
             <>
               <InputCollegeYear />

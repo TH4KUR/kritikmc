@@ -14,6 +14,13 @@ const Form = () => {
   const [isPgStudent, setIsPgStudent] = useState(false);
   const feeAmount = PASSIVE_DELEGATE_FEE;
 
+  const handlePgToggle = (next) => {
+    setIsPgStudent(next);
+    if (next) {
+      setIsStudentOfKmc(false);
+    }
+  };
+
   return (
     <form
       action={formSubmit}
@@ -58,7 +65,7 @@ const Form = () => {
           </div>
         </header>
         <div className="space-y-6 px-6 py-6 sm:px-8 sm:py-8">
-          <InputUgPg enabled={isPgStudent} setEnabled={setIsPgStudent} />
+          <InputUgPg enabled={isPgStudent} setEnabled={handlePgToggle} />
           {!isPgStudent && (
             <>
               <InputCollege

@@ -5,39 +5,48 @@ import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 
 const PatreonCard = ({ data }) => {
-  //   console.log(data);
+  const description = data.patrondesc || "";
+
   return (
-    <motion.div
-      viewport={{ once: true }}
-      initial={{ translateY: 50, scale: 0.5, opacity: 0.7 }}
-      whileInView={{
-        translateY: 0,
-        opacity: 1,
-        scale: 1,
-      }}
-      className="grid lg:grid-rows-1 lg:grid-cols-12 mt-8 md:grid-rows-12 md:grid-cols-1"
+    <motion.article
+      viewport={{ once: true, amount: 0.4 }}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="group relative flex h-full max-w-5xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/70 via-slate-900/40 to-slate-900/20 shadow-xl shadow-black/20 backdrop-blur lg:flex-row"
     >
-      <div className="lg:col-span-5 md:row-span-5 sm:h-full">
+      <div className="relative aspect-[3/2] w-full overflow-hidden lg:aspect-square lg:h-full lg:max-w-[280px]">
         <Image
-          height={180}
-          width={320}
+          height={480}
+          width={720}
           src={urlForImage(data.patronimg)}
-          alt={"an image of"}
-          className="object-cover h-full w-full max-h-[75vh] lg:max-h-full lg:rounded-l-lg lg:rounded-tr-none rounded-t-lg saturate-50 aspect-square"
+          alt={`Portrait of ${data.patronname}`}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+        <span className="absolute bottom-4 left-4 inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-200 backdrop-blur">
+          Patron
+        </span>
       </div>
-      <div className="bg-[#defff3] lg:col-span-7 lg:rounded-r-lg lg:rounded-bl-none rounded-b-lg md:row-span-5 px-3 py-5">
-        <h3 className="font-bold text-lg md:text-xl lg:text-2xl">
-          {data.patronname}
-        </h3>
-        <h4 className="text-sm text-sky-800 font-semibold md:text-base lg:text-lg">
-          {`Patron`}
-        </h4>
-        <p className="mt-3 text-[0.825rem] leading-4 sm:text-base font-medium text-start">
-          {data.patrondesc.slice(0, 500) + "..."}
+      <div className="flex flex-1 flex-col gap-4 p-5 text-slate-100 lg:p-8">
+        <div className="space-y-1">
+          <h3 className="text-xl font-semibold leading-tight md:text-2xl">
+            {data.patronname}
+          </h3>
+          {data.patronrole ? (
+            <p className="text-sm font-medium text-emerald-200/80">
+              {data.patronrole}
+            </p>
+          ) : null}
+        </div>
+        <p className="text-sm leading-relaxed text-slate-200/80 md:text-[0.95rem]">
+          {description.length > 480
+            ? `${description.slice(0, 480)}…`
+            : description}
         </p>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };
 

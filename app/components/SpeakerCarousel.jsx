@@ -5,9 +5,16 @@ import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 function SpeakerCarousel({ speakerdata }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ playOnInit: true, delay: 2000 }),
-  ]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "center" },
+    [
+      Autoplay({
+        playOnInit: true,
+        delay: 4500,
+        stopOnInteraction: false,
+      }),
+    ]
+  );
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
@@ -19,7 +26,7 @@ function SpeakerCarousel({ speakerdata }) {
     <>
       <div className="flex items-center gap-3">
         <button
-          className="embla_imgCarousel__prev relative z-[100] hidden lg:block opacity-30"
+          className="embla_imgCarousel__prev relative z-[100] hidden rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10 lg:block"
           onClick={scrollPrev}
         >
           <svg
@@ -34,17 +41,15 @@ function SpeakerCarousel({ speakerdata }) {
         </button>
         <div className="speakers_carousel" ref={emblaRef}>
           <div className="flex">
-            {speakerdata.map((el, i) => {
-              return (
-                <button key={i} className="speakers_slide">
-                  <SpeakerCard data={el} key={i} />
-                </button>
-              );
-            })}
+            {speakerdata.map((el, i) => (
+              <div key={i} className="speakers_slide pb-8">
+                <SpeakerCard data={el} />
+              </div>
+            ))}
           </div>
         </div>
         <button
-          className="  embla_imgCarousel__next relative z-[100] hidden lg:block  opacity-30"
+          className="embla_imgCarousel__next relative z-[100] hidden rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10 lg:block"
           onClick={scrollNext}
         >
           <svg

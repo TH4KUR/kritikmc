@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (min-width: 1280px) {
+  html {
+    zoom: 0.81;
+  }
+}
+
 body {
   @apply bg-[#fdf9ea] text-black max-w-[1600px] !mx-auto shadow-lg shadow-black/20 scroll-smooth;
 }
@@ -128,5 +134,5 @@ main {
   min-width: 0;
   margin-right: 10px;
   margin-left: 5px;
-  @apply w-1/2 overflow-hidden  flex flex-col items-center;
+  @apply w-1/2 flex flex-col items-center;
 }

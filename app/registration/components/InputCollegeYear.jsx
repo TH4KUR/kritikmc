@@ -23,10 +23,10 @@ const InputCollegeYear = () => {
           onChange={setValid}
           className="block w-full appearance-none rounded-2xl border border-slate-300 bg-white/90 py-3 px-4 text-sm text-slate-900 shadow-sm transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 invalid:border-rose-400 focus:invalid:border-rose-400 focus:invalid:ring-rose-200 *:text-slate-700"
           aria-placeholder="Choose the year of college you're in"
-          defaultValue={0}
+          defaultValue=""
           required
         >
-          <option value="0" disabled hidden>
+          <option value="" disabled hidden>
             Choose one below
           </option>
           <option value="1">1st Year</option>

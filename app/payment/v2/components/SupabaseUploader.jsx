@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { formatInr } from "@/app/lib/paymentConfig";
 
 export default function SupabaseUploader({
   delegateId,
@@ -21,7 +20,11 @@ export default function SupabaseUploader({
   const [selectedMethod, setSelectedMethod] = useState(null); // 'upi' or 'upload'
   const [countStatus, setCountStatus] = useState(null);
   const formattedDueAmount =
-    amountDue !== null && amountDue !== undefined ? formatInr(amountDue) : null;
+    amountDue !== null &&
+    amountDue !== undefined &&
+    !Number.isNaN(Number(amountDue))
+      ? `₹${Number(amountDue)}`
+      : null;
 
   const statusColorMap = {
     success: "border-green-200 bg-green-50 text-green-700",

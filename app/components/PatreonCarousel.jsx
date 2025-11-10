@@ -6,9 +6,16 @@ import Autoplay from "embla-carousel-autoplay";
 import PatreonCard from "./PatreonCard";
 function PatreonCarousel({ patrondata }) {
   //   console.log(patrondata);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ playOnInit: true, delay: 1500 }),
-  ]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "center" },
+    [
+      Autoplay({
+        playOnInit: true,
+        delay: 5000,
+        stopOnInteraction: false,
+      }),
+    ]
+  );
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
@@ -20,7 +27,7 @@ function PatreonCarousel({ patrondata }) {
     <>
       <div className="flex items-center gap-3">
         <button
-          className="embla_imgCarousel__prev relative z-[100] hidden lg:block opacity-35"
+          className="embla_imgCarousel__prev relative z-[100] hidden rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10 lg:block"
           onClick={scrollPrev}
         >
           <svg
@@ -37,15 +44,15 @@ function PatreonCarousel({ patrondata }) {
           <div className="flex">
             {patrondata.map((el, i) => {
               return (
-                <button key={i} className="speakers_slide">
+                <div key={i} className="speakers_slide pb-8">
                   <PatreonCard data={el} />
-                </button>
+                </div>
               );
             })}
           </div>
         </div>
         <button
-          className="embla_imgCarousel__next relative z-[100] hidden lg:block opacity-35"
+          className="embla_imgCarousel__next relative z-[100] hidden rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10 lg:block"
           onClick={scrollNext}
         >
           <svg

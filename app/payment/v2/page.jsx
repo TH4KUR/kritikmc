@@ -3,11 +3,16 @@ import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import Image from "next/image";
 import DelegateIdForm from "./components/DelegateIdForm";
 import Nav from "@/app/components/Nav";
-import { formatInr } from "@/app/lib/paymentConfig";
 
 export default async function Home({ searchParams: { delegateId } }) {
   let data, error, unclaimedCountx;
   const delId = delegateId ? delegateId.toUpperCase() : null;
+  const formatRupees = (value, fallback = "NA") => {
+    if (value === null || value === undefined) return fallback;
+    const numeric = Number(value);
+    if (Number.isNaN(numeric)) return fallback;
+    return `₹${numeric}`;
+  };
 
   try {
     // Only fetch data if we have a delegate ID
@@ -117,10 +122,7 @@ export default async function Home({ searchParams: { delegateId } }) {
                   },
                   {
                     label: "Amount Due",
-                    value:
-                      data.hastopay !== null && data.hastopay !== undefined
-                        ? formatInr(data.hastopay)
-                        : "NA",
+                    value: formatRupees(data.hastopay),
                   },
                 ];
 
@@ -215,7 +217,7 @@ export default async function Home({ searchParams: { delegateId } }) {
                     Scan to Pay
                   </p>
                   <div className="bg-red-200 border border-red-500 text-red-900 px-3 py-1 rounded mx-auto w-fit">
-                    AMOUNT TO PAY: {data.hastopay}
+                    AMOUNT TO PAY: {formatRupees(data.hastopay, "₹0")}
                   </div>
                   <div className="relative w-full aspect-square max-w-sm mx-auto">
                     <Image
