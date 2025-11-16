@@ -28,10 +28,12 @@ export default async function Home({ searchParams: { delegateId } }) {
         .from("transactions")
         .select("*", { count: "exact" })
         .eq("isused", false));
-
+      console.log("supabase data:", data);
       data = res?.data?.[0] || null;
       error = res?.error;
+      if (error) throw new Error(error.message);
       console.log(data, delId);
+      if (!data) throw new Error("No data returned by supabase.. Check ID.");
     }
   } catch (err) {
     console.log("error occurred: ", err);
