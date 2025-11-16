@@ -6,7 +6,8 @@ import Nav from "@/app/components/Nav";
 
 export default async function Home({ searchParams: { delegateId } }) {
   let data, error, unclaimedCountx;
-  const delId = delegateId ? delegateId.toUpperCase() : null;
+  const rawDelegateId = (delegateId ?? "").toString().trim();
+  const delId = rawDelegateId ? rawDelegateId.toUpperCase() : null;
   const formatRupees = (value, fallback = "NA") => {
     if (value === null || value === undefined) return fallback;
     const numeric = Number(value);
