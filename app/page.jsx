@@ -14,6 +14,7 @@ import Announcements from "./components/Announcements";
 import Testimonials from "./components/Testimonials";
 import Patreons from "./components/Patreons";
 import Judges from "./components/Judges";
+import Updates from "./components/Updates";
 import getPatronData from "./lib/getPatronData";
 import getJudgeData from "./lib/getJudgeData";
 import Image from "next/image";
@@ -52,9 +53,12 @@ export default async function Home() {
         <Patreons patrondata={patrondata} />
         <Speaker speakerdata={speakerdata} />
         <Judges judgedata={judgedata} />
+        {/* <Sponsors /> */}
+
         <Stats />
+        <Updates />
         <Timeline />
-        <Sponsors />
+
         <Brochure />
         <Testimonials />
         <Archive />

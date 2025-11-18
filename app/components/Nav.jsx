@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Menu from "./icons/Menu";
 import Caret from "./icons/Caret";
@@ -50,6 +50,18 @@ const Nav = ({ bg }) => {
 
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const handleNavClose = () => {
     close();
@@ -123,128 +135,143 @@ const Nav = ({ bg }) => {
                 className="relative z-[100] focus:outline-none"
                 onClose={close}
               >
-                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                  <div className="flex min-h-full items-center justify-center ">
-                    <TransitionChild
-                      enter="ease-out duration-300"
-                      enterFrom="opacity-0 transform-[scale(95%)]"
-                      enterTo="opacity-100 transform-[scale(100%)]"
-                      leave="ease-in duration-200"
-                      leaveFrom="opacity-100 transform-[scale(100%)]"
-                      leaveTo="opacity-0 transform-[scale(95%)]"
-                    >
-                      <DialogPanel className="w-full rounded-xl px-4 py-2 bg-bgSecondary h-screen">
-                        <DialogTitle
-                          as="div"
-                          className="text-base/7 font-medium text-white flex justify-between items-center"
+                <div className="fixed inset-0 z-10">
+                  <TransitionChild
+                    enter="ease-out duration-200"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-150"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <div className="absolute inset-0 bg-black/70" aria-hidden />
+                  </TransitionChild>
+
+                  <TransitionChild
+                    enter="ease-out duration-200"
+                    enterFrom="translate-y-4 opacity-0"
+                    enterTo="translate-y-0 opacity-100"
+                    leave="ease-in duration-150"
+                    leaveFrom="translate-y-0 opacity-100"
+                    leaveTo="translate-y-4 opacity-0"
+                  >
+                    <DialogPanel className="absolute inset-0 flex h-full w-full flex-col overflow-y-auto bg-bgSecondary px-4 py-3">
+                      <DialogTitle
+                        as="div"
+                        className="flex items-center justify-between text-base/7 font-medium text-white"
+                      >
+                        <Link
+                          href={"/"}
+                          onClick={() => {
+                            if (path === "/") {
+                              close();
+                            }
+                          }}
                         >
-                          <Link
-                            href={"/"}
-                            onClick={() => {
-                              if (path === "/") {
-                                close();
-                              }
-                            }}
-                          >
-                            <div className="-translate-x-2 py-2">
-                              <Image
-                                height={90}
-                                width={90}
-                                src={"/kriti_logo_dark.png"}
-                                alt="kritikmc logo"
-                                className="h-full w-full object-cover"
-                              />
-                            </div>{" "}
-                          </Link>
-                          <Button
-                            className={" self-start py-1"}
-                            onClick={close}
-                          >
-                            <Cancel size={28} />
-                          </Button>
-                        </DialogTitle>
-                        <div className="ml-2">
-                          <ul className="font-medium text-[#eee] ml-3 mt-3 text-lg">
-                            <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#eee"} />
+                          <div className="-translate-x-2 py-2">
+                            <Image
+                              height={90}
+                              width={90}
+                              src={"/kriti_logo_dark.png"}
+                              alt="kritikmc logo"
+                              className="h-full w-full object-cover"
+                            />
+                          </div>{" "}
+                        </Link>
+                        <Button className="self-start py-1" onClick={close}>
+                          <Cancel size={28} />
+                        </Button>
+                      </DialogTitle>
+                      <div className="ml-2 flex-1 overflow-y-auto pb-16">
+                        <ul className="ml-3 mt-3 text-lg font-medium text-[#eee]">
+                          <li className="mt-1 flex items-center gap-1">
+                            <Caret className="size-[10px]" color={"#eee"} />
+                            <Link
+                              href={"/"}
+                              onClick={() => {
+                                if (path === "/") {
+                                  close();
+                                }
+                              }}
+                            >
+                              home.
+                            </Link>
+                          </li>
+                          <li className="mt-1 flex items-center gap-1">
+                            <Caret className="size-[10px]" color={"#eee"} />
+                            <Link href={"/about"} onClick={handleNavClose}>
+                              about us.
+                            </Link>
+                          </li>
+                          <li className="mt-1 flex items-center gap-1">
+                            <Caret className="size-[10px]" color={"#eee"} />
+                            <span>events.</span>
+                          </li>
+                          <li className="ml-5 flex flex-col gap-1 text-sm text-[#eee]/90">
+                            {eventLinks.map((event) => (
                               <Link
-                                href={"/"}
-                                onClick={() => {
-                                  if (path === "/") {
-                                    close();
-                                  }
-                                }}
+                                key={event.href}
+                                href={event.href}
+                                onClick={handleNavClose}
                               >
-                                home.
+                                {event.label}
                               </Link>
-                            </li>
-                            <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/about"} onClick={handleNavClose}>
-                                about us.
+                            ))}
+                          </li>
+                          <li className="mt-1 flex items-center gap-1">
+                            <Caret className="size-[10px]" color={"#eee"} />
+                            <span>registration.</span>
+                          </li>
+                          <li className="ml-5 flex flex-col gap-1 text-sm text-[#eee]/90">
+                            {registrationLinks.map((reg) => (
+                              <Link
+                                key={reg.href}
+                                href={reg.href}
+                                onClick={handleNavClose}
+                              >
+                                {reg.label}
                               </Link>
-                            </li>
-                            <li className="flex items-center gap-1 mt-1">
+                            ))}
+                          </li>
+                          <li className="mt-1 flex items-center gap-1">
+                            <Caret className="size-[10px]" color={"#eee"} />
+                            <Link href={"/alumni"} onClick={handleNavClose}>
+                              alumni.
+                            </Link>
+                          </li>
+                          <li className="mt-1 flex items-center gap-1">
+                            <Caret className="size-[10px]" color={"#eee"} />
+                            <Link href={"/contact"} onClick={handleNavClose}>
+                              contact us.
+                            </Link>
+                          </li>
+                        </ul>
+                        <div className="mt-6">
+                          <h5 className="text-[#eee]">Magazine</h5>
+                          <ul className="ml-3 mt-3 text-lg font-medium text-[#eee]">
+                            <li className="mt-1 flex items-center gap-1">
                               <Caret className="size-[10px]" color={"#eee"} />
-                              <span>events.</span>
-                            </li>
-                            <li className="ml-5 flex flex-col gap-1 text-sm text-[#eee]/90">
-                              {eventLinks.map((event) => (
-                                <Link
-                                  key={event.href}
-                                  href={event.href}
-                                  onClick={handleNavClose}
-                                >
-                                  {event.label}
-                                </Link>
-                              ))}
-                            </li>
-                            <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#eee"} />
-                              <span>registration.</span>
-                            </li>
-                            <li className="ml-5 flex flex-col gap-1 text-sm text-[#eee]/90">
-                              {registrationLinks.map((reg) => (
-                                <Link
-                                  key={reg.href}
-                                  href={reg.href}
-                                  onClick={handleNavClose}
-                                >
-                                  {reg.label}
-                                </Link>
-                              ))}
-                            </li>
-                            <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/alumni"} onClick={handleNavClose}>
-                                alumni.
-                              </Link>
-                            </li>
-                            <li className="flex items-center gap-1 mt-1">
-                              <Caret className="size-[10px]" color={"#eee"} />
-                              <Link href={"/contact"} onClick={handleNavClose}>
-                                contact us.
+                              <Link href={"/chronicles"} onClick={handleNavClose}>
+                                kakatiya chronicles.
                               </Link>
                             </li>
                           </ul>
-                          <div className="mt-4">
-                            <h5 className="text-[#eee]">Magazine</h5>
-                            <ul className="font-medium text-[#eee] ml-3 mt-3 text-lg">
-                              <li className="flex items-center gap-1 mt-1">
-                                <Caret className="size-[10px]" color={"#eee"} />
-                                <Link
-                                  href={"/chronicles"}
-                                  onClick={handleNavClose}
-                                >
-                                  kakatiya chronicles.
-                                </Link>
-                              </li>
-                            </ul>
-                          </div>
                         </div>
-                      </DialogPanel>
-                    </TransitionChild>
-                  </div>
+                      </div>
+                      <div className="mt-auto flex flex-col gap-3 pt-4">
+                        <Link
+                          href="/registration"
+                          className="rounded-2xl bg-rose-600 px-4 py-3 text-center text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-rose-900/40"
+                          onClick={handleNavClose}
+                        >
+                          Register now
+                        </Link>
+                        <p className="text-center text-xs uppercase tracking-[0.2em] text-white/60">
+                          Kriti · 2025
+                        </p>
+                      </div>
+                    </DialogPanel>
+                  </TransitionChild>
                 </div>
               </Dialog>
             </Transition>

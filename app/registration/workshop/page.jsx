@@ -53,28 +53,28 @@ export default async function Home() {
       <>
         <Nav bg={"#eee"} />
         <main className=" bg-gradient-to-br from-[#F7D4D4ba] to-[#F6ECC4] py-10">
-          <Image
+          {/* <Image
             height={350}
             width={325}
             className="mx-auto"
-            src="/Logo-teal-vertical.webp"
+            src="/workshop.jpg"
             alt="kmc workshop logo"
-          />
+          /> */}
           <section className=" flex flex-col items-center justify-center px-3 gap-1 py-10">
             <h1 className="font-semibold text-lg md:text-2xl">
-              Registration form for AMBOSS Workshop.
+              Registration form for Kriti. Workshop.
             </h1>
             <p className="text-sm text-center w-80 md:text-base md:w-">
               Fill in the required details below and pay the applicable fee to
               register for the event!{" "}
             </p>
-            <Link
+            {/* <Link
               href={`/events/workshop`}
               className="px-4 py-2 bg-accent mt-5 font-medium inline-flex rounded hover:scale-105 hover:brightness-110 transition-all focus:outline-none focus:ring-4 focus:ring-accent2/40 text-white"
             >
               More Info here
               <Arrow size={20} color={"#fff"} />{" "}
-            </Link>
+            </Link> */}
 
             <hr className="border-black border w-40 mt-5" />
             <p className="bg-accent/10 px-3 py-2 text-base mt-2 font-medium">

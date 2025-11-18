@@ -77,7 +77,7 @@ const RegistrationLanding = () => {
   return (
     <>
       <Nav />
-      <main className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <main className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-gradient-to-br from-red-100 via-white to-red-100">
         <div className="max-w-6xl mx-auto w-full">
           {/* Header Section */}
           <div className="text-center mb-12">
@@ -262,15 +262,15 @@ const RegistrationLanding = () => {
                 {...disabledLinkProps}
               >
                 {/* Background with AMBOSS Logo */}
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800 to-teal-900"></div>
-                <div className="absolute inset-0 bg-[url('/Logo-teal-vertical.webp')] bg-contain bg-center bg-no-repeat opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800/80 to-teal-900"></div>
+                <div className="absolute inset-0 bg-[url('/workshop.jpg')] bg-cover bg-center bg-no-repeat opacity-20"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/70 transition-all duration-200"></div>
 
                 {/* Content */}
                 <div className="relative z-10 p-8 min-h-[20rem] flex flex-col justify-between">
                   <div className="flex items-center justify-between mb-4">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-teal-400/90 text-teal-950">
-                      Workshop
+                      Kriti. Workshop
                     </span>
                     <svg
                       className="w-6 h-6 text-white/80 transition-all group-hover:text-white group-hover:translate-x-1"
@@ -289,7 +289,7 @@ const RegistrationLanding = () => {
 
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-3">
-                      AMBOSS Workshop
+                      Medical Workshop
                     </h3>
                     <p className="text-gray-100 text-sm leading-relaxed mb-4">
                       Master medical knowledge with expert-led sessions. Get
