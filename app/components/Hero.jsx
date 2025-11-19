@@ -3,7 +3,7 @@ import DesktopHero from "./DesktopHero";
 import Image from "next/image";
 
 const HERO_HIGHLIGHTS = [
-  { label: "20+ events", description: "Academic & cultural showcases" },
+  { label: "7+ events", description: "Academic & cultural showcases" },
   { label: "₹3L+ prizes", description: "Scholarships and awards" },
   { label: "National speakers", description: "Leaders in healthcare" },
 ];
