@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const FALLBACK_HIGHLIGHTS = [
-  { label: "20+ events", description: "Academic & cultural showcases" },
+  { label: "10+ events", description: "Academic & cultural showcases" },
   { label: "₹3L+ prizes", description: "Scholarships and awards" },
   { label: "National speakers", description: "Leaders in healthcare" },
 ];
