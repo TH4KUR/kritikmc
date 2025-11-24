@@ -59,7 +59,9 @@ export default async function Home() {
             <p className="bg-accent/10 px-3 py-2 text-base mt-2 font-medium">
               For any queries, contact:{" "}
               <Link
-                href={"tel:+918700621534"}
+                href={
+                  "https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
+                }
                 className=" underline text-blue-700"
               >
                 +91 8700621534

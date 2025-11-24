@@ -242,7 +242,7 @@ export default async function Home({ searchParams }) {
                         <p className="text-sm text-gray-400 text-center">
                           Need assistance?{" "}
                           <a
-                            href="tel:+918700621534"
+                            href="https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
                             className="text-rose-500 font-medium hover:underline"
                           >
                             Contact Support: +91 8700621534
@@ -287,7 +287,7 @@ export default async function Home({ searchParams }) {
                       <div className="text-sm text-gray-400">
                         Trouble accessing your details?{" "}
                         <a
-                          href="tel:+918700621534"
+                          href="https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
                           className="text-rose-500 font-medium hover:underline"
                         >
                           Contact Support: +91 8700621534
@@ -311,7 +311,7 @@ export default async function Home({ searchParams }) {
                       <div className="text-sm text-gray-400">
                         Need help?{" "}
                         <a
-                          href="tel:+918700621534"
+                          href="https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
                           className="text-rose-500 font-medium hover:underline"
                         >
                           Contact Support: +91 8700621534

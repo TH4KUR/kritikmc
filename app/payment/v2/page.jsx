@@ -40,6 +40,29 @@ export default async function Home({ searchParams: { delegateId } }) {
     console.log("error occurred: ", err);
   }
 
+  const amountDueNumber = Number(data?.hastopay ?? NaN);
+  const hasValidAmount =
+    Number.isFinite(amountDueNumber) && amountDueNumber > 0;
+  const upiLink = data?.delegateid
+    ? (() => {
+        const params = new URLSearchParams({
+          pa: "77878301@ubin",
+          pn: "KritiKMC",
+          cu: "INR",
+        });
+        if (hasValidAmount) {
+          params.set("am", amountDueNumber.toString());
+        }
+        params.set("tn", data.delegateid);
+        params.set("tr", data.delegateid);
+        return `upi://pay?${params.toString()}`;
+      })()
+    : null;
+  const qrDownloadHref = "/payment_qr.jpg";
+  const qrDownloadName = data?.delegateid
+    ? `${data.delegateid}-kriti-payment-qr.jpg`
+    : "kriti-payment-qr.jpg";
+
   return (
     <>
       <Nav />
@@ -164,7 +187,7 @@ export default async function Home({ searchParams: { delegateId } }) {
                   View Registration Status
                 </a>
                 <a
-                  href="tel:+918700621534"
+                  href="https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
                   className="inline-flex items-center rounded-full border border-green-200 px-4 py-2 text-sm font-semibold text-green-700 transition hover:bg-green-100"
                 >
                   Contact Support
@@ -224,12 +247,34 @@ export default async function Home({ searchParams: { delegateId } }) {
                   </div>
                   <div className="relative w-full aspect-square max-w-sm mx-auto">
                     <Image
-                      src="/Payment_Image_1.jpg"
-                      alt="Payment QR Code"
+                      src="/payment_qr.jpg"
+                      alt="Kriti Payment QR Code"
                       fill
                       className="object-contain rounded-lg"
                     />
                   </div>
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                    <a
+                      href={qrDownloadHref}
+                      download={qrDownloadName}
+                      className="inline-flex items-center justify-center rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+                    >
+                      Download QR
+                    </a>
+                    {upiLink && (
+                      <a
+                        href={upiLink}
+                        className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-accent/90"
+                      >
+                        Open UPI Link
+                      </a>
+                    )}
+                  </div>
+                  {upiLink && (
+                    <p className="mt-2 text-xs text-center text-gray-500 break-all">
+                      {upiLink}
+                    </p>
+                  )}
                 </div>
               </div>
               {/* Left Column - Delegate Info & Payment Instructions */}
@@ -278,7 +323,7 @@ export default async function Home({ searchParams: { delegateId } }) {
                   <p className="text-sm text-amber-800">
                     For any queries regarding payment or registration, contact:{" "}
                     <a
-                      href="tel:+918700621534"
+                      href="https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
                       className="font-medium underline hover:text-amber-900"
                     >
                       +91 8700621534

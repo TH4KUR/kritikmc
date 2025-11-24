@@ -126,7 +126,7 @@ export function statusCopy(status, delegateId) {
           },
           {
             label: "Contact Support",
-            href: "tel:+918700621534",
+            href: "https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in....",
             style: "outline",
             external: true,
           },
@@ -146,7 +146,7 @@ export function statusCopy(status, delegateId) {
           },
           {
             label: "Need Help?",
-            href: "tel:+918700621534",
+            href: "https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in....",
             style: "outline",
             external: true,
           },
@@ -160,7 +160,7 @@ export function statusCopy(status, delegateId) {
         actions: [
           {
             label: "Need Help?",
-            href: "tel:+918700621534",
+            href: "https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in....",
             style: "outline",
             external: true,
           },

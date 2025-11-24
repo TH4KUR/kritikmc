@@ -6,6 +6,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import getDeadlineData from "@/app/lib/getDeadlineData";
 
+// Toggle these to enable/disable individual registration paths
+// Set to `false` to temporarily turn off a registration type
+const ENABLE_ACTIVE = true;
+const ENABLE_PASSIVE = true;
+const ENABLE_WORKSHOP = false;
+
 const RegistrationLanding = () => {
   const [showModal, setShowModal] = useState(false);
   const [deadlineInfo, setDeadlineInfo] = useState(null);
@@ -74,6 +80,20 @@ const RegistrationLanding = () => {
     ? { tabIndex: -1, "aria-disabled": true }
     : {};
 
+  // Per-registration-type availability (toggle variables above)
+  const activeClosed = registrationLocked || !ENABLE_ACTIVE;
+  const passiveClosed = registrationLocked || !ENABLE_PASSIVE;
+  const workshopClosed = registrationLocked || !ENABLE_WORKSHOP;
+
+  const cardPropsFor = (isClosed) => ({
+    cardClasses: isClosed ? "pointer-events-none opacity-50 grayscale" : "",
+    linkProps: isClosed ? { tabIndex: -1, "aria-disabled": true } : {},
+  });
+
+  const activeProps = cardPropsFor(activeClosed);
+  const passiveProps = cardPropsFor(passiveClosed);
+  const workshopProps = cardPropsFor(workshopClosed);
+
   return (
     <>
       <Nav />
@@ -132,12 +152,12 @@ const RegistrationLanding = () => {
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              className={`rounded-2xl ${disabledCardClasses}`}
+              className={`rounded-2xl ${activeProps.cardClasses}`}
             >
               <Link
                 href={"/registration/active"}
                 className="group relative block h-full overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-accent/50"
-                {...disabledLinkProps}
+                {...activeProps.linkProps}
               >
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 bg-[url('/active.webp')] bg-cover bg-center"></div>
@@ -193,12 +213,12 @@ const RegistrationLanding = () => {
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              className={`rounded-2xl ${disabledCardClasses}`}
+              className={`rounded-2xl ${passiveProps.cardClasses}`}
             >
               <Link
                 href={"/registration/passive"}
                 className="group relative block h-full overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-accent/50"
-                {...disabledLinkProps}
+                {...passiveProps.linkProps}
               >
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 bg-[url('/posterpresentation.jpg')] bg-cover bg-center"></div>
@@ -254,12 +274,12 @@ const RegistrationLanding = () => {
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              className={`rounded-2xl md:col-span-2 lg:col-span-1 ${disabledCardClasses}`}
+              className={`rounded-2xl md:col-span-2 lg:col-span-1 ${workshopProps.cardClasses}`}
             >
               <Link
                 href={"/registration/workshop"}
                 className="group relative block h-full overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-accent/50"
-                {...disabledLinkProps}
+                {...workshopProps.linkProps}
               >
                 {/* Background with AMBOSS Logo */}
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800/80 to-teal-900"></div>
@@ -270,7 +290,7 @@ const RegistrationLanding = () => {
                 <div className="relative z-10 p-8 min-h-[20rem] flex flex-col justify-between">
                   <div className="flex items-center justify-between mb-4">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-teal-400/90 text-teal-950">
-                      Kriti. Workshop
+                      {ENABLE_WORKSHOP ? "kriti workshop" : "Coming Soon"}
                     </span>
                     <svg
                       className="w-6 h-6 text-white/80 transition-all group-hover:text-white group-hover:translate-x-1"
@@ -408,7 +428,7 @@ const RegistrationLanding = () => {
                 <p className="text-xs text-gray-500 text-center mt-6">
                   Lost your delegate ID? Contact support at{" "}
                   <a
-                    href="tel:+918700621534"
+                    href="https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
                     className="text-accent font-medium hover:underline"
                   >
                     +91 8700621534

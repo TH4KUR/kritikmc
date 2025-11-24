@@ -41,6 +41,17 @@ async function page() {
             </li>
           </ul>
         </div>
+        <p className="mt-6 text-center text-base px-3 py-2 rounded-lg bg-accent2/10 w-fit mx-auto text-gray-700">
+          For registration related queries contact us on WhatsApp:{" "}
+          <a
+            href="https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
+            className="text-accent font-semibold hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Message us.
+          </a>
+        </p>
       </section>
       {/* {showTimer ? <Timer deadline={deadline} /> : <></>} */}
       <Footer />
