@@ -11,7 +11,11 @@ export const metadata = buildMetadata({
   description:
     "Look up your Kriti registration, payment confirmation, and delegate details using your ID, email, or mobile number.",
   path: "/payment/status",
-  keywords: ["kriti payment status", "delegate ID lookup", "kmc registration status"],
+  keywords: [
+    "kriti payment status",
+    "delegate ID lookup",
+    "kmc registration status",
+  ],
 });
 
 export const dynamic = "force-dynamic";

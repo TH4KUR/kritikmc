@@ -6,7 +6,11 @@ export const metadata = buildMetadata({
   description:
     "Register for Kriti at Kakatiya Medical College. Choose between active, passive, or workshop participation and secure your delegate ID.",
   path: "/registration",
-  keywords: ["kriti registration", "kmc registration", "medical conference registration"],
+  keywords: [
+    "kriti registration",
+    "kmc registration",
+    "medical conference registration",
+  ],
 });
 
 export default async function Home() {

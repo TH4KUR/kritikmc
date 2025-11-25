@@ -10,7 +10,11 @@ export const metadata = buildMetadata({
   description:
     "Confirm your Kriti registration by uploading payment proof or submitting your UPI reference ID in the payment portal.",
   path: "/payment/v2",
-  keywords: ["kriti payment portal", "upload payment proof", "kmc registration payment"],
+  keywords: [
+    "kriti payment portal",
+    "upload payment proof",
+    "kmc registration payment",
+  ],
   robots: {
     index: false,
     follow: false,

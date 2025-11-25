@@ -8,11 +8,7 @@ export const metadata = buildMetadata({
   description:
     "Meet the global alumni community supporting Kriti at Kakatiya Medical College and discover their inspiring journeys.",
   path: "/alumni",
-  keywords: [
-    "kriti alumni",
-    "kmc alumni",
-    "kakatiya medical college alumni",
-  ],
+  keywords: ["kriti alumni", "kmc alumni", "kakatiya medical college alumni"],
 });
 export default async function Home() {
   // FORCING Loading Screen
@@ -161,8 +157,8 @@ export default async function Home() {
                 was a wake-up call and the catalyst for our mission. Over the
                 past year, through countless meetings and strategic planning
                 sessions with the university leadership, including our dynamic
-                Principal, Dr. S. Sandhya, we formulated a comprehensive plan
-                to make research an integral part of the student experience.
+                Principal, Dr. S. Sandhya, we formulated a comprehensive plan to
+                make research an integral part of the student experience.
                 <br />
                 <br />
                 Today marks the fruition of those efforts. The International
@@ -233,8 +229,9 @@ export default async function Home() {
                 medical colleges in our home state were listed among the top 10
                 in India. This realization ignited a determination to change the
                 status quo. We collaborated closely with the university
-                administration, including our esteemed Principal, Dr. S. Sandhya, to lay down a strategic plan that places research at the
-                heart of our educational ethos.
+                administration, including our esteemed Principal, Dr. S.
+                Sandhya, to lay down a strategic plan that places research at
+                the heart of our educational ethos.
                 <br />
                 <br />
                 Today, as we gather for the National Medical Innovation Summit,

@@ -10,7 +10,11 @@ export const metadata = buildMetadata({
   description:
     "Your Kriti registration has been received. Review your delegate details and next steps after payment verification.",
   path: "/success",
-  keywords: ["kriti registration success", "delegate confirmation", "kmc registration"],
+  keywords: [
+    "kriti registration success",
+    "delegate confirmation",
+    "kmc registration",
+  ],
 });
 
 function decodeRegistrationData(rawValue) {
