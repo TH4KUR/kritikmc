@@ -1,9 +1,7 @@
 import Nav from "@/app/components/Nav";
 import Footer from "@/app/components/Footer";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
-  title: "Events",
-};
 const data = {
   "amboss-workshop": {
     rules: [
@@ -245,13 +243,61 @@ A health problem statement will be released on 25th August to which the teams ar
     prizes: [`Prizes worth above Rs.1,00,000`],
   },
 };
-async function page({ params }) {
-  function makeTitle(name) {
-    return name
-      .split("-")
-      .map((el) => el[0].toUpperCase() + el.slice(1))
-      .join(" ");
+const eventSummaries = {
+  "amboss-workshop":
+    "Get personalised USMLE preparation strategies and one-on-one guidance through the AMBOSS workshop at Kriti.",
+  "paper-presentation":
+    "Guidelines, formats, and judging criteria for the scientific paper presentation competition at Kriti.",
+  "poster-presentation":
+    "Submission instructions and judging framework for Kriti's digital poster presentation challenge.",
+  debate:
+    "Prelims and finals structure, timelines, and judging for the flagship Kriti medical debate.",
+  symposium:
+    "Team-based symposium requirements covering research abstracts, presentations, and evaluation metrics.",
+  hackathon:
+    "Innovate around healthcare challenges in the Kriti hackathon with timelines, deliverables, and prizes.",
+  "med-exibition-(kmc-students-only)":
+    "Prototype guidelines and abstract submission details for the KMC students-only medical exhibition.",
+  "marrow's-jeopardy":
+    "Multi-round quiz format and eligibility for Marrow's Jeopardy, Kriti's signature medical quiz showdown.",
+};
+
+function makeTitle(name) {
+  return name
+    .split("-")
+    .map((el) => (el ? el[0].toUpperCase() + el.slice(1) : ""))
+    .join(" ");
+}
+
+function resolveEventTitle(slug) {
+  if (slug === "amboss-workshop") {
+    const words = makeTitle(slug).split(" ");
+    return `${words[0].toUpperCase()} ${words[1]}`;
   }
+  return makeTitle(slug);
+}
+
+export async function generateMetadata({ params }) {
+  const slug = params.slug;
+  const eventData = data[slug];
+  const eventTitle = resolveEventTitle(slug);
+  const description =
+    eventSummaries[slug] ||
+    `Rules, format, and prize details for ${eventTitle} at Kriti by Kakatiya Medical College.`;
+
+  return buildMetadata({
+    title: `${eventTitle} Event`,
+    description,
+    path: `/events/${slug}`,
+    keywords: [
+      `${eventTitle} Kriti`,
+      "Kakatiya Medical College events",
+      "medical competitions Telangana",
+    ],
+  });
+}
+
+async function page({ params }) {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
   return (
     <>
@@ -260,11 +306,7 @@ async function page({ params }) {
       <main className="bg-[#090909] relative text-gray-50 px-2 py-10">
         <div className="max-w-screen-md mx-auto">
           <h1 className=" text-3xl font-semibold mb-4 border-l-4 pl-3 border-accent2">
-            {params.slug != "amboss-workshop"
-              ? makeTitle(params.slug)
-              : makeTitle(params.slug).split(" ")[0].toUpperCase() +
-                " " +
-                makeTitle(params.slug).split(" ")[1]}
+            {resolveEventTitle(params.slug)}
           </h1>
           <h3 className="text-lg font-semibold text-[#ffeedd]">
             {params.slug != "amboss-workshop" ? "Rules" : "Information"}

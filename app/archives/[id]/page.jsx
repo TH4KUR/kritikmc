@@ -1,8 +1,50 @@
 import Footer from "@/app/components/Footer";
 import Nav from "@/app/components/Nav";
 import getSpecificArchive from "@/app/lib/getSpecificArchive";
-import { archives } from "@/sanity/schemaTypes/archives";
 import Image from "next/image";
+import { buildMetadata } from "@/app/lib/metadata";
+
+export async function generateMetadata({ params }) {
+  try {
+    const result = await getSpecificArchive(params.id);
+    const entry = Array.isArray(result) ? result[0] : null;
+
+    if (!entry) {
+      return buildMetadata({
+        title: "Archive Not Found",
+        description:
+          "The requested Kriti archive could not be located. Browse the main archives page for the latest collections.",
+        path: `/archives/${params.id}`,
+        robots: {
+          index: false,
+          follow: false,
+        },
+      });
+    }
+
+    const { archivesName, archivesDesc } = entry;
+    return buildMetadata({
+      title: `${archivesName} Archive`,
+      description:
+        archivesDesc ||
+        `Explore memories from ${archivesName} captured during Kriti at Kakatiya Medical College.`,
+      path: `/archives/${params.id}`,
+      keywords: [
+        `${archivesName} archive`,
+        "kriti archives",
+        "kakatiya medical college archive",
+      ],
+    });
+  } catch (error) {
+    console.error("Failed to load archive metadata", error);
+    return buildMetadata({
+      title: "Archive Details",
+      description:
+        "View photos and highlights from previous Kriti editions hosted by Kakatiya Medical College.",
+      path: `/archives/${params.id}`,
+    });
+  }
+}
 
 const page = async ({ params }) => {
   const archivesData = await getSpecificArchive(params.id);

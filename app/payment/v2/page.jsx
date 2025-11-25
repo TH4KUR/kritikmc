@@ -3,6 +3,19 @@ import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import Image from "next/image";
 import DelegateIdForm from "./components/DelegateIdForm";
 import Nav from "@/app/components/Nav";
+import { buildMetadata } from "@/app/lib/metadata";
+
+export const metadata = buildMetadata({
+  title: "Kriti Payment Portal",
+  description:
+    "Confirm your Kriti registration by uploading payment proof or submitting your UPI reference ID in the payment portal.",
+  path: "/payment/v2",
+  keywords: ["kriti payment portal", "upload payment proof", "kmc registration payment"],
+  robots: {
+    index: false,
+    follow: false,
+  },
+});
 
 export default async function Home({ searchParams: { delegateId } }) {
   let data, error, unclaimedCountx;

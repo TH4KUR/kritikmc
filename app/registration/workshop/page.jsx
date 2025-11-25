@@ -5,12 +5,19 @@ import Form from "./components/Form";
 import Arrow from "@/app/components/icons/Arrow";
 import getDeadlineData from "@/app/lib/getDeadlineData";
 import Image from "next/image";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
-  title: "Registration Form",
+export const metadata = buildMetadata({
+  title: "Workshop Registration",
   description:
-    "Registration form for kriti kmc. Limited Seats Left! Hurry Up now register now!",
-};
+    "Register for the AMBOSS workshop at Kriti to access guided USMLE preparation and mentorship sessions.",
+  path: "/registration/workshop",
+  keywords: [
+    "amboss workshop registration",
+    "kriti workshop",
+    "kmc workshop registration",
+  ],
+});
 
 export default async function Home() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });

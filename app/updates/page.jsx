@@ -2,6 +2,15 @@ import React from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import SecondaryHero from "../components/SecondaryHero";
+import { buildMetadata } from "@/app/lib/metadata";
+
+export const metadata = buildMetadata({
+  title: "Product Updates",
+  description:
+    "Track product and experience updates to Kriti, including registration improvements, payment verifications, and feature launches.",
+  path: "/updates",
+  keywords: ["kriti updates", "kmc product updates", "kriti changelog"],
+});
 
 const improvementHighlights = [
   {

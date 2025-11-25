@@ -4,12 +4,19 @@ import Form from "../components/Form";
 import Arrow from "@/app/components/icons/Arrow";
 import Link from "next/link";
 import getDeadlineData from "@/app/lib/getDeadlineData";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
-  title: "Active Participant Registration",
+export const metadata = buildMetadata({
+  title: "Active Delegate Registration",
   description:
-    "Active participant registration form for kriti kmc. Register now and compete for amazing prizes!",
-};
+    "Register as an active delegate for Kriti to participate in competitions, presentations, and workshops at Kakatiya Medical College.",
+  path: "/registration/active",
+  keywords: [
+    "kriti active registration",
+    "active delegate form",
+    "kmc competition registration",
+  ],
+});
 
 export default async function ActiveRegistration() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });

@@ -6,11 +6,20 @@ import Timeline from "../components/Timeline";
 import Events from "./components/Events";
 import getDeadlineData from "../lib/getDeadlineData";
 import getEventsData from "../lib/getEventsData";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
-  title: "Events",
-  description: `Discover upcoming events featuring cutting-edge medical research delivering innovative solutions to contemporary medical challenges. Experience immersive symposiums, workshops and seminars.`,
-};
+export const metadata = buildMetadata({
+  title: "Kriti Events",
+  description:
+    "Explore the latest events at Kriti, including symposiums, workshops, and competitions hosted by Kakatiya Medical College.",
+  path: "/events",
+  keywords: [
+    "kriti events",
+    "medical events telangana",
+    "kmc symposium",
+    "kriti competitions",
+  ],
+});
 
 async function page() {
   const deadlineData = getDeadlineData();

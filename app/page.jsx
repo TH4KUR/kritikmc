@@ -18,9 +18,12 @@ import Updates from "./components/Updates";
 import getPatronData from "./lib/getPatronData";
 import getJudgeData from "./lib/getJudgeData";
 import Image from "next/image";
-export const metadata = {
+import { buildMetadata } from "@/app/lib/metadata";
+
+export const metadata = buildMetadata({
+  title: "Homepage",
   description:
-    "The premier medical conference hosted by Kakatiya Medical College, Warangal. Join events or seminars by top medical experts.",
+    "Kriti is the flagship medical conference by Kakatiya Medical College featuring competitions, workshops, and research showcases.",
   keywords: [
     "medical conference in Telangana",
     "medical competitions in Telangana",
@@ -28,7 +31,8 @@ export const metadata = {
     "kmc warangal",
     "medical conference in warangal",
   ],
-};
+  path: "/",
+});
 export default async function Home() {
   const { deadline, showTimer, registrationStart } = await getDeadlineData();
   const speakerdata = await getSpeakerData();

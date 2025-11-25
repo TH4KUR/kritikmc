@@ -1,9 +1,14 @@
 import { cookies } from "next/headers";
 import Cancel from "@/app/components/icons/Cancel";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Payment Failed",
-};
+  description:
+    "Your Kriti payment was not processed. Review the registration details provided below and try again or contact support.",
+  path: "/failed",
+  keywords: ["kriti payment failed", "registration declined", "kmc payments"],
+});
 
 const page = () => {
   const registrationData = JSON.parse(

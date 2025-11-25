@@ -2,6 +2,15 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { supabaseAdmin } from "../lib/supabase/supabaseAdmin";
 import Link from "next/link";
+import { buildMetadata } from "@/app/lib/metadata";
+
+export const metadata = buildMetadata({
+  title: "Kriti Registration Assistance",
+  description:
+    "Resolve registration issues, find delegate IDs, and review troubleshooting guidance for Kriti at Kakatiya Medical College.",
+  path: "/error",
+  keywords: ["kriti registration help", "delegate lookup", "kriti error"],
+});
 
 export default async function Home({ searchParams }) {
   const msg = searchParams?.msg;

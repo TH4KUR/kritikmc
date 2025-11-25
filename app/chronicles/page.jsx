@@ -5,10 +5,15 @@ import MagazineSlider from "./components/MagazineSlider";
 import Footer from "../components/Footer";
 import Articles from "./components/Articles";
 import getDeadlineData from "../lib/getDeadlineData";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
-  title: "Magazine",
-};
+export const metadata = buildMetadata({
+  title: "Kriti Chronicles",
+  description:
+    "Read Kriti Chronicles, the signature magazine of Kakatiya Medical College featuring research, stories, and event highlights.",
+  path: "/chronicles",
+  keywords: ["kriti chronicles", "medical magazine", "kmc magazine"],
+});
 
 async function page() {
   const { deadline, showTimer, registrationStart } = await getDeadlineData();

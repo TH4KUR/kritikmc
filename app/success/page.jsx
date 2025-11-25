@@ -3,10 +3,15 @@ import { cookies } from "next/headers";
 import Checkmark from "../registration/components/icons/Checkmark";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Registration Successful",
-};
+  description:
+    "Your Kriti registration has been received. Review your delegate details and next steps after payment verification.",
+  path: "/success",
+  keywords: ["kriti registration success", "delegate confirmation", "kmc registration"],
+});
 
 function decodeRegistrationData(rawValue) {
   if (!rawValue) return null;

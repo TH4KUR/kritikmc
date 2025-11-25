@@ -8,10 +8,19 @@ import Stats from "../components/Stats";
 import getDeadlineData from "../lib/getDeadlineData";
 import Image from "next/image";
 import Timer from "../components/Timer";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
-  title: "About Us",
-};
+export const metadata = buildMetadata({
+  title: "About Kriti",
+  description:
+    "Discover Kriti by Kakatiya Medical College — our mission, vision, and the story behind Telangana's premier medical conference.",
+  path: "/about",
+  keywords: [
+    "about kriti",
+    "kakatiya medical college conference",
+    "kriti kmc overview",
+  ],
+});
 
 export const AboutCard = ({ imgSrc, title, body }) => {
   return (

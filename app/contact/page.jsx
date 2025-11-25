@@ -2,9 +2,15 @@ import Nav from "../components/Nav";
 import SecondaryHero from "../components/SecondaryHero";
 import Footer from "../components/Footer";
 
-export const metadata = {
-  title: "Contact Us",
-};
+import { buildMetadata } from "@/app/lib/metadata";
+
+export const metadata = buildMetadata({
+  title: "Contact Kriti",
+  description:
+    "Get in touch with the Kriti organising team at Kakatiya Medical College for registration and event support.",
+  path: "/contact",
+  keywords: ["kriti contact", "kmc contact", "kriti support"],
+});
 
 async function page() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });

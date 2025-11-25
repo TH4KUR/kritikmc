@@ -4,10 +4,15 @@ import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import StatusLookupForm from "./components/StatusLookupForm";
 import ResetLookupButton from "./components/ResetLookupButton";
 import { determineStatus, normaliseEntries, statusCopy } from "./utils";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Check Registration Status",
-};
+  description:
+    "Look up your Kriti registration, payment confirmation, and delegate details using your ID, email, or mobile number.",
+  path: "/payment/status",
+  keywords: ["kriti payment status", "delegate ID lookup", "kmc registration status"],
+});
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

@@ -4,10 +4,19 @@ import Footer from "@/app/components/Footer";
 import Link from "next/link";
 import Arrow from "@/app/components/icons/Arrow";
 import getDeadlineData from "@/app/lib/getDeadlineData";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
-  title: "Passive Delegate Registration Form",
-};
+export const metadata = buildMetadata({
+  title: "Passive Delegate Registration",
+  description:
+    "Secure your seat as a passive delegate at Kriti to observe sessions, competitions, and workshops at Kakatiya Medical College.",
+  path: "/registration/passive",
+  keywords: [
+    "kriti passive registration",
+    "passive delegate",
+    "kmc spectator registration",
+  ],
+});
 
 export default async function Home() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });

@@ -1,9 +1,19 @@
 import Image from "next/image";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
-export const metadata = {
-  title: "Alumni",
-};
+import { buildMetadata } from "@/app/lib/metadata";
+
+export const metadata = buildMetadata({
+  title: "Kriti Alumni",
+  description:
+    "Meet the global alumni community supporting Kriti at Kakatiya Medical College and discover their inspiring journeys.",
+  path: "/alumni",
+  keywords: [
+    "kriti alumni",
+    "kmc alumni",
+    "kakatiya medical college alumni",
+  ],
+});
 export default async function Home() {
   // FORCING Loading Screen
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });

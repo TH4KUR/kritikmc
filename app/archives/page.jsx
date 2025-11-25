@@ -6,10 +6,15 @@ import Image from "next/image";
 import ImageCarousel from "./components/ImageCarousel";
 import getArchivesData from "../lib/getArchivesData";
 import ArchivesGrid from "./components/ArchivesGrid";
+import { buildMetadata } from "@/app/lib/metadata";
 
-export const metadata = {
-  title: "Archives",
-};
+export const metadata = buildMetadata({
+  title: "Kriti Archives",
+  description:
+    "Browse past editions of Kriti to explore winning research, posters, and event highlights from Kakatiya Medical College.",
+  path: "/archives",
+  keywords: ["kriti archives", "medical research archives", "kmc archives"],
+});
 
 const page = async () => {
   const archiveData = await getArchivesData();
@@ -49,7 +54,11 @@ const page = async () => {
           <ImageCarousel />
         </section> */}
         <div className="p-5 bg-bgSecondary ">
-          <img className="mx-auto" src="/archiveHeading.gif" />
+          <img
+            className="mx-auto"
+            src="/archiveHeading.gif"
+            alt="Animated text reading Kriti archives"
+          />
         </div>
       </main>
       <Footer />

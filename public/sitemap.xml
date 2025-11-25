@@ -1,109 +1,197 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-  <loc>https://www.kritikmc.com/</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/registration</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events-itinerary</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/archives</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/alumni</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/about</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/contact</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/brochure.pdf</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/chronicles</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events/marrow&amp;#x27;s-jeopardy</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events/symposium</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events/debate</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events/hackathon</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events/poster-presentation</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events/med-exibition-(kmc-students-only)</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/events/paper-presentation</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/kc_chronicles_1st_edition.pdf</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/kc_chronicles_2nd_edition.pdf</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.kritikmc.com/kc_chronicles_3rd_edition.pdf</loc>
-  <lastmod>2024-07-18T14:53:18+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://www.kritikmc.com/</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/about</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/alumni</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/archives</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/chronicles</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/contact</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events-itinerary</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events/amboss-workshop</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events/debate</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events/hackathon</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events/marrow%27s-jeopardy</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events/med-exibition-%28kmc-students-only%29</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events/paper-presentation</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events/poster-presentation</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/events/symposium</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/failed</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/payment</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/payment/status</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/payment/v2</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/registration</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/registration/active</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/registration/passive</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/registration/workshop</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/success</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/updates</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/kriti_brochure.pdf</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/kc_chronicles_1st_edition.pdf</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/kc_chronicles_2nd_edition.pdf</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/kc_chronicles_3rd_edition.pdf</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/kc_chronicles_4th_edition.pdf</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://www.kritikmc.com/kc_chronicles_5th_edition.pdf</loc>
+    <lastmod>2025-11-25T00:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.55</priority>
+  </url>
 </urlset>

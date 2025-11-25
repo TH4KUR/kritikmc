@@ -3,10 +3,15 @@ import Nav from "../components/Nav";
 import TimelineCard from "./components/TimelineCard";
 import Footer from "../components/Footer";
 import getConvertedEventsData from "../lib/getConvertedEventsData";
-export const metadata = {
-  title: "Events itinerary",
-  description: `Find out the timings of each and every event taking place in kriti.`,
-};
+import { buildMetadata } from "@/app/lib/metadata";
+
+export const metadata = buildMetadata({
+  title: "Events Itinerary",
+  description:
+    "Review the complete Kriti events itinerary with daily schedules and session timings at Kakatiya Medical College.",
+  path: "/events-itinerary",
+  keywords: ["kriti itinerary", "event schedule", "kmc timeline"],
+});
 async function page() {
   const data = await getConvertedEventsData();
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
