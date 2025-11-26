@@ -20,6 +20,9 @@ export const metadata = buildMetadata({
     follow: false,
   },
 });
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store"; // optional, but helpful
+export const revalidate = 0;
 
 export default async function Home({ searchParams: { delegateId } }) {
   let data, error, unclaimedCountx;
