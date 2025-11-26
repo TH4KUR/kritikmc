@@ -231,9 +231,9 @@ export default async function Home({ searchParams: { delegateId } }) {
                   <div className="flex items-start gap-2">
                     <span className="text-accent font-bold">2.</span>
                     <p>
-                      <strong>Important:</strong> Add your Delegate ID{" "}
+                      <strong>Important:</strong> Add your email id{" "}
                       <span className="bg-yellow-100 px-1 py-0.5 rounded font-mono text-xs">
-                        {data?.delegateid || ""}
+                        {data?.email || "example@gmail.com"}
                       </span>{" "}
                       in the UPI payment remarks/comments section
                     </p>
