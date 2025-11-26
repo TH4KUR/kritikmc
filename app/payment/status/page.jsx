@@ -175,6 +175,12 @@ export default async function StatusPage({ searchParams }) {
                 </div>
               )}
 
+              {delegate && !delegate.paymentconfirmed && (
+                <p className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                  Your delegate ID is securely stored and will be displayed here once your payment is verified.
+                </p>
+              )}
+
               {hasQuery && (
                 <div className="mt-4 flex justify-center">
                   <ResetLookupButton />

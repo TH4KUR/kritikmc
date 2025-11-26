@@ -166,6 +166,8 @@ export async function formSubmit(formData) {
     }
     redirect(`${process.env.HOST_URL}/payment/status`);
   } else {
-    redirect(`${process.env.HOST_URL}/payment/status?delegateId=${delegateid}`);
+    redirect(
+      `${process.env.HOST_URL}/payment/v2?delegateId=${encodeURIComponent(delegateid)}`
+    );
   }
 }

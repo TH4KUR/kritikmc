@@ -32,6 +32,10 @@ function decodeRegistrationData(rawValue) {
 function buildDetailEntries(registrationData) {
   if (!registrationData) return [];
 
+  const isPaymentConfirmed = Boolean(
+    registrationData.paymentConfirmed ?? registrationData.paymentconfirmed
+  );
+
   const normalized = {
     delegateId: registrationData.delegateId || registrationData.delegateid,
     name: registrationData.name || registrationData.studentName,
@@ -66,7 +70,7 @@ function buildDetailEntries(registrationData) {
 
   const entries = [];
 
-  if (normalized.delegateId) {
+  if (normalized.delegateId && isPaymentConfirmed) {
     entries.push({ label: "Delegate ID", value: normalized.delegateId });
   }
 

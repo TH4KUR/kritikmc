@@ -66,19 +66,17 @@ export default async function Home({ searchParams: { delegateId } }) {
           pa: "77878301@ubin",
           pn: "KritiKMC",
           cu: "INR",
+          tn: "Kriti Registration",
         });
         if (hasValidAmount) {
           params.set("am", amountDueNumber.toString());
         }
-        params.set("tn", data.delegateid);
         params.set("tr", data.delegateid);
         return `upi://pay?${params.toString()}`;
       })()
     : null;
   const qrDownloadHref = "/payment_qr.jpg";
-  const qrDownloadName = data?.delegateid
-    ? `${data.delegateid}-kriti-payment-qr.jpg`
-    : "kriti-payment-qr.jpg";
+  const qrDownloadName = "kriti-payment-qr.jpg";
 
   return (
     <>
@@ -144,7 +142,6 @@ export default async function Home({ searchParams: { delegateId } }) {
               </h2>
               {(() => {
                 const rows = [
-                  { label: "Delegate ID", value: data.delegateid },
                   { label: "Name", value: data.name },
                   { label: "Email", value: data.email },
                   { label: "Mobile Number", value: data.mobileno },
@@ -168,6 +165,13 @@ export default async function Home({ searchParams: { delegateId } }) {
                     value: formatRupees(data.hastopay),
                   },
                 ];
+
+                if (data.paymentconfirmed) {
+                  rows.unshift({
+                    label: "Delegate ID",
+                    value: data.delegateid,
+                  });
+                }
 
                 return (
                   <div className="space-y-3">

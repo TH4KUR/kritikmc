@@ -3,8 +3,10 @@ import Footer from "@/app/components/Footer";
 import Form from "../components/Form";
 import Arrow from "@/app/components/icons/Arrow";
 import Link from "next/link";
+
 import getDeadlineData from "@/app/lib/getDeadlineData";
 import { buildMetadata } from "@/app/lib/metadata";
+import getEventsData from "@/app/lib/getEventsData";
 
 export const metadata = buildMetadata({
   title: "Active Delegate Registration",
@@ -20,7 +22,15 @@ export const metadata = buildMetadata({
 
 export default async function ActiveRegistration() {
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
-  const { registrationStart: start, deadline } = await getDeadlineData();
+  const [deadlineData, eventsRaw] = await Promise.all([
+    getDeadlineData(),
+    getEventsData(),
+  ]);
+  const { registrationStart: start, deadline } = deadlineData;
+  const registrationEvents = eventsRaw.map(({ eventName, eventSlug }) => ({
+    eventName,
+    eventSlug,
+  }));
 
   if (Date.now() > deadline.getTime() || Date.now() < start.getTime()) {
     return (
@@ -89,7 +99,7 @@ export default async function ActiveRegistration() {
               </Link>
             </p>
           </section>
-          <Form />
+          <Form events={registrationEvents} />
         </main>{" "}
       </>
     );

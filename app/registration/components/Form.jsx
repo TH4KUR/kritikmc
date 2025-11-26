@@ -10,7 +10,7 @@ import InputUgPg from "./InputUgPg";
 import { formSubmit } from "@/app/actions/formSubmit";
 import { calculateActiveDelegateFee } from "@/app/lib/paymentConfig";
 
-const eventsData = [
+const fallbackEvents = [
   { eventName: "Debate", eventSlug: "debate" },
   { eventName: "Med Exhibition", eventSlug: "medExhibition" },
   { eventName: "Paper Presentation", eventSlug: "paperPresentation" },
@@ -19,7 +19,8 @@ const eventsData = [
   { eventName: "Hackathon", eventSlug: "hackathon" },
   { eventName: "Symposium", eventSlug: "symposium" },
 ];
-const Form = () => {
+
+const Form = ({ events = fallbackEvents }) => {
   const [isStudentOfKmc, setIsStudentOfKmc] = useState(false);
   const [isPgStudent, setIsPgStudent] = useState(false);
 
@@ -108,7 +109,7 @@ const Form = () => {
         </header>
         <div className="px-6 py-6 sm:px-8 sm:py-8">
           <InputEvents
-            events={eventsData}
+            events={events}
             isStudentOfKmc={isStudentOfKmc}
             isPgStudent={isPgStudent}
           />

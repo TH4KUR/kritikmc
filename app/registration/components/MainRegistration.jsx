@@ -5,7 +5,7 @@ import Form from "./Form";
 import Footer from "@/app/components/Footer";
 import Arrow from "@/app/components/icons/Arrow";
 
-const MainRegistration = ({ deadline, start }) => {
+const MainRegistration = ({ deadline, start, events }) => {
   if (Date.now() > deadline.getTime() || Date.now() < start.getTime()) {
     return (
       <>
@@ -73,7 +73,7 @@ const MainRegistration = ({ deadline, start }) => {
               </Link>
             </p>
           </section>
-          <Form />
+          <Form events={events} />
         </main>{" "}
       </>
     );

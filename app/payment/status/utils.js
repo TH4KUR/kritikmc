@@ -34,7 +34,6 @@ export function normaliseEntries(delegate) {
       : [];
 
   const rows = [
-    { label: "Delegate ID", value: delegate.delegateid },
     { label: "Name", value: delegate.name },
     { label: "Email", value: delegate.email },
     { label: "Mobile Number", value: delegate.mobileno },
@@ -65,6 +64,12 @@ export function normaliseEntries(delegate) {
         value: formattedAmount,
       });
     }
+  }
+
+  if (delegate.paymentconfirmed) {
+    rows.unshift({ label: "Delegate ID", value: delegate.delegateid });
+  } else {
+    rows.unshift({ label: "Delegate ID", value: "PAYMENT REQUIRED" });
   }
 
   return rows.filter(
@@ -116,7 +121,7 @@ export function statusCopy(status, delegateId) {
       return {
         badge,
         heading: "Screenshot Received",
-        body: "We have your payment screenshot and it is currently being reviewed. If you now have the UPI reference ID, verify instantly from the payment portal.",
+        body: "We have your payment proof and it is currently being reviewed. Once verified, your delegate ID will appear here automatically.",
         actions: [
           {
             label: "Instant Verify with Upi Ref Id",
@@ -136,7 +141,7 @@ export function statusCopy(status, delegateId) {
       return {
         badge,
         heading: "Payment Pending",
-        body: "We have recorded your registration. Complete the payment using the portal to secure your slot.",
+        body: "We have recorded your registration. Complete the payment using the portal to secure your slot—your delegate ID unlocks once payment clears.",
         actions: [
           {
             label: "Go to Payment Portal",
