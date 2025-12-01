@@ -39,7 +39,7 @@ function Events({ data = [] }) {
     () =>
       data.map((event, index) => ({
         ...event,
-        slug: `${slugify(event?.eventName, `event-${index + 1}`)}`,
+        // slug: `${slugify(event?.eventName, `event-${index + 1}`)}`,
         index,
       })),
     [data]
@@ -231,9 +231,7 @@ function Events({ data = [] }) {
 
                   <div className="flex flex-wrap gap-3">
                     <Link
-                      href={`/events/${event.eventName
-                        ?.toLowerCase()
-                        .replaceAll(" ", "-")}`}
+                      href={`/events/${event?.slug ?? event.eventName.replaceAll(/ ()/g, "-")}`}
                       className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-accent/90 focus:outline-none focus:ring-4 focus:ring-accent/40"
                     >
                       {event.eventName?.toLowerCase() !== "amboss workshop"

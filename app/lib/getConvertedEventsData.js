@@ -1,7 +1,7 @@
-import { sanityFetch } from "@/sanity";
+import { sanityAnnouncementFetch, sanityFetch } from "@/sanity";
 
 export default async function getConvertedEventsData() {
-  const res = await sanityFetch({
+  const res = await sanityAnnouncementFetch({
     query: `*[_type == 'conferenceBreakdown']{
     conferenceDay,conferenceDate,
     timeslots[]{

@@ -20,7 +20,9 @@ export const metadata = buildMetadata({
     "kriti competitions",
   ],
 });
-
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store"; // optional, but helpful
+export const revalidate = 0;
 async function page() {
   const deadlineData = getDeadlineData();
   const eventsData = getEventsData();

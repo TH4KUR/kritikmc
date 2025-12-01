@@ -18,11 +18,32 @@ const fallbackSlug = (name) =>
 
 export default async function getEventsData() {
   const res = await sanityFetch({
-    query: `*[_type=="events" && !(eventName in ["Working Lunch","Guest Lecture - 1","Guest Lecture - 2","Prize Distribution","Inauguration Ceremony", "Debate"])]{eventName,eventImg,eventDesc,eventSlogan,eventCoordinator,eventCoordinatorContact}`,
+    query: `*[_type=="events" && !(eventName in ["Working Lunch","Guest Lecture - 1","Guest Lecture - 2","Prize Distribution","Inauguration Ceremony", "Debate"])]{eventName,eventImg,eventDesc,eventSlogan,eventCoordinator,eventCoordinatorContact,"slug":slug.current}`,
   });
 
   return res.map((event) => ({
     ...event,
-    eventSlug: slugOverrides[event.eventName] ?? fallbackSlug(event.eventName),
+    eventSlug:
+      event.slug ??
+      slugOverrides[event.eventName] ??
+      fallbackSlug(event.eventName),
   }));
+}
+
+export async function getEventBySlug(slug) {
+  const res = await sanityFetch({
+    query: `*[_type == 'events' && slug.current == $slug][0]{
+      eventName,
+      "slug": slug.current,
+      eventSlogan,
+      eventDesc,
+      eventImg,
+      rules,
+      prizes,
+      contacts
+    }`,
+    params: { slug },
+  });
+
+  return res;
 }

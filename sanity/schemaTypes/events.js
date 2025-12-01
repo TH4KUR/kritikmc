@@ -12,6 +12,19 @@ export const events = defineType({
       validation: (rule) => rule.required().error("An event name is required!"),
     }),
     defineField({
+      name: "slug",
+      title: "URL Slug",
+      type: "slug",
+      description:
+        "Unique URL identifier for this event (e.g., 'poster-presentation')",
+      options: {
+        source: "eventName",
+        maxLength: 96,
+      },
+      validation: (rule) =>
+        rule.required().error("A slug is required for URL routing!"),
+    }),
+    defineField({
       name: "eventImg",
       title: "Event Image (Convert your image to WebP)",
       type: "image",
@@ -36,25 +49,66 @@ export const events = defineType({
         rule.required().error("An event slogan is required!"),
     }),
     defineField({
-      name: "eventCoordinator",
-      title: "Event Coordinator",
-      type: "string",
-      validation: (rule) =>
-        rule.required().error("An event coordinator is required!"),
+      name: "rules",
+      title: "Event Rules",
+      type: "blockContent",
+      description:
+        "Rich text editor for event rules, guidelines, and format details",
+      validation: (rule) => rule.required().error("Event rules are required!"),
     }),
     defineField({
-      name: "eventCoordinatorContact",
-      title: "Event Coordinator's Contact Number",
-      type: "number",
-      description: "Enter a ten-digit mobile number (omit country code)",
+      name: "prizes",
+      title: "Prize Information",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "List prizes in order (Winner, 1st Runner Up, 2nd Runner Up, etc.)",
+    }),
+    defineField({
+      name: "contacts",
+      title: "Event Contacts",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "name",
+              title: "Contact Name",
+              type: "string",
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: "phone",
+              title: "Contact Number",
+              type: "string",
+              description: "Enter a ten-digit mobile number",
+              validation: (rule) =>
+                rule
+                  .required()
+                  .regex(/^[6-9][0-9]{9}$/, {
+                    name: "valid Indian mobile number",
+                  })
+                  .error("Please enter a valid 10-digit mobile number"),
+            },
+          ],
+          preview: {
+            select: {
+              title: "name",
+              subtitle: "phone",
+            },
+          },
+        },
+      ],
       validation: (rule) =>
-        rule
-          .required()
-          .error("An event coordinator is required!")
-          .greaterThan(6000000000)
-          .error("Please enter a valid mobile number")
-          .lessThan(10000000000)
-          .error("Please enter a valid mobile number"),
+        rule.required().min(1).error("At least one contact is required!"),
     }),
   ],
+  preview: {
+    select: {
+      title: "eventName",
+      subtitle: "eventSlogan",
+      media: "eventImg",
+    },
+  },
 });
