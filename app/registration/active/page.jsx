@@ -27,10 +27,15 @@ export default async function ActiveRegistration() {
     getEventsData(),
   ]);
   const { registrationStart: start, deadline } = deadlineData;
-  const registrationEvents = eventsRaw.map(({ eventName, eventSlug }) => ({
-    eventName,
-    eventSlug,
-  }));
+  const registrationEvents = eventsRaw
+    .map(({ eventName, eventSlug }) => ({
+      eventName,
+      eventSlug,
+    }))
+    .filter(
+      ({ eventName, eventSlug }) =>
+        !eventName.toLowerCase().includes("workshop")
+    );
 
   if (Date.now() > deadline.getTime() || Date.now() < start.getTime()) {
     return (
