@@ -1,8 +1,8 @@
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import { supabaseAdmin } from "../lib/supabase/supabaseAdmin";
 import Link from "next/link";
 import { buildMetadata } from "@/app/lib/metadata";
+import { fetchDelegateWithFilters } from "@/app/lib/delegateRecords";
 
 export const metadata = buildMetadata({
   title: "Kriti Registration Assistance",
@@ -20,22 +20,21 @@ export default async function Home({ searchParams }) {
   const allowedFields = ["email", "mobileno"];
   const field = allowedFields.includes(rawField) ? rawField : null;
 
-  let delegateData = [];
   let delegateError = null;
+  let delegate = null;
 
   if (field && value) {
-    const { data, error } = await supabaseAdmin
-      .from("activedelegates")
-      .select("delegateid,name,email,mobileno,events")
-      .eq(field, value);
-    delegateData = data || [];
+    const filters = [(query) => query.eq(field, value)];
+    const { delegate: fetchedDelegate, error } = await fetchDelegateWithFilters(
+      filters,
+      "delegateid,name,email,mobileno,events"
+    );
+    delegate = fetchedDelegate || null;
     delegateError = error;
     if (delegateError) {
       console.error("Delegate lookup failed", delegateError);
     }
   }
-
-  const delegate = delegateData?.[0];
   const shouldShowLookupPrompt =
     msg === "Please enter your details to retrieve your registration";
   const hasLookupParams = Boolean(field && value);

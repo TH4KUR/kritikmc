@@ -2,15 +2,16 @@ import { Fieldset, Legend } from "@headlessui/react";
 import EventsCheckbox from "./EventsCheckbox";
 
 const InputEvents = ({ events, isStudentOfKmc, isPgStudent }) => {
-  const filteredEvents = isStudentOfKmc
-    ? events
-    : isPgStudent
-      ? events.filter(
-          ({ eventSlug }) =>
-            eventSlug === "posterPresentation" ||
-            eventSlug === "paperPresentation"
-        )
-      : events.filter(({ eventSlug }) => eventSlug !== "medExhibition");
+  let filteredEvents = events.filter(
+    ({ eventName }) => !eventName.toLowerCase().includes("workshop")
+  );
+  if (!isStudentOfKmc) {
+    filteredEvents = filteredEvents.filter(({ kmcExclusive }) => !kmcExclusive);
+  } else if (isPgStudent) {
+    filteredEvents = filteredEvents.filter(
+      ({ pgsAllowed = true }) => pgsAllowed
+    );
+  }
 
   return (
     <Fieldset className="space-y-4">
@@ -21,8 +22,8 @@ const InputEvents = ({ events, isStudentOfKmc, isPgStudent }) => {
         {isStudentOfKmc
           ? "KMC students can opt into any challenge below."
           : isPgStudent
-            ? "PG delegates can participate in paper or poster presentations."
-            : "Pick all the competitions you&apos;d love to compete in."}
+            ? "PG delegates can participate in any event marked as PG-friendly below."
+            : "Pick all the competitions you'd love to compete in."}
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
         {filteredEvents.map(({ eventName, eventSlug }) => (

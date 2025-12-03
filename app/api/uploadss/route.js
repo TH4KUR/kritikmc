@@ -1,6 +1,7 @@
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
+import { fetchDelegateById } from "@/app/lib/delegateRecords";
 
 export async function POST(req) {
   try {
@@ -22,14 +23,19 @@ export async function POST(req) {
       );
     }
 
-    const { data: delegateData, error: delegateError } = await supabaseAdmin
-      .from("activedelegates")
-      .select("*")
-      .eq("delegateid", delegateId);
+    const {
+      delegate: delegateRecord,
+      table: delegateTable,
+      error: delegateError,
+    } = await fetchDelegateById(delegateId, "*");
 
-    console.log("delagete data:", delegateData);
+    console.log("delegate data:", delegateRecord);
+    if (delegateError) {
+      throw new Error(delegateError.message);
+    }
+
     // Validate user
-    if (delegateData.length == 0) {
+    if (!delegateRecord) {
       return NextResponse.json(
         { success: false, error: "Improper delegate id, retry registration!" },
         { status: 400 }
@@ -63,7 +69,7 @@ export async function POST(req) {
       "png"
     ).toLowerCase();
 
-    const existingPathRaw = delegateData?.[0]?.screenshotbucketpath || "";
+    const existingPathRaw = delegateRecord?.screenshotbucketpath || "";
     const normalisedExistingPath = existingPathRaw.startsWith("http")
       ? ""
       : existingPathRaw.replace(/^paymentss\//, "").replace(/^\//, "");
@@ -101,30 +107,25 @@ export async function POST(req) {
     } = supabaseAdmin.storage.from("paymentss").getPublicUrl(filePath);
 
     // update bucket path + permanent link in table
+    const targetTable = delegateTable || "unconfirmed_delegates";
+
     await supabaseAdmin
-      .from("activedelegates")
+      .from(targetTable)
       .update({
         screenshotbucketpath: filePath,
         paymentss: publicUrl,
       })
       .eq("delegateid", delegateId);
 
-    if (delegateData?.[0]) {
-      delegateData[0].screenshotbucketpath = filePath;
-      delegateData[0].paymentss = publicUrl;
-    }
-
-    const delegate = delegateData?.[0]
-      ? {
-          delegateId: delegateData[0].delegateid,
-          name: delegateData[0].name,
-          email: delegateData[0].email,
-          mobileNumber: delegateData[0].mobileno,
-          college: delegateData[0].collegename,
-          collegeYear: delegateData[0].collegeyear,
-          events: delegateData[0].events || [],
-        }
-      : null;
+    const delegate = {
+      delegateId: delegateRecord.delegateid,
+      name: delegateRecord.name,
+      email: delegateRecord.email,
+      mobileNumber: delegateRecord.mobileno,
+      college: delegateRecord.collegename,
+      collegeYear: delegateRecord.collegeyear,
+      events: delegateRecord.events || [],
+    };
 
     return NextResponse.json({
       success: true,

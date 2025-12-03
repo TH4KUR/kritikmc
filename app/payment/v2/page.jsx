@@ -4,6 +4,7 @@ import Image from "next/image";
 import DelegateIdForm from "./components/DelegateIdForm";
 import Nav from "@/app/components/Nav";
 import { buildMetadata } from "@/app/lib/metadata";
+import { fetchDelegateById } from "@/app/lib/delegateRecords";
 
 export const metadata = buildMetadata({
   title: "Kriti Payment Portal",
@@ -38,20 +39,18 @@ export default async function Home({ searchParams: { delegateId } }) {
   try {
     // Only fetch data if we have a delegate ID
     if (delId) {
-      const res = await supabaseAdmin
-        .from("activedelegates")
-        .select(
-          "delegateid,name,mobileno,email,collegename,collegeyear,events,paymentconfirmed,screenshotbucketpath,upitransactionid,hastopay"
-        )
-        .eq("delegateid", delId);
+      const { delegate, error: delegateError } = await fetchDelegateById(
+        delId,
+        "delegateid,name,mobileno,email,collegename,collegeyear,events,paymentconfirmed,screenshotbucketpath,upitransactionid,hastopay"
+      );
 
       ({ count: unclaimedCountx } = await supabaseAdmin
         .from("transactions")
         .select("*", { count: "exact" })
         .eq("isused", false));
-      console.log("supabase data:", data);
-      data = res?.data?.[0] || null;
-      error = res?.error;
+
+      data = delegate || null;
+      error = delegateError;
       if (error) throw new Error(error.message);
       console.log(data, delId);
       if (!data) throw new Error("No data returned by supabase.. Check ID.");

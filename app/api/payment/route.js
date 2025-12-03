@@ -1,5 +1,6 @@
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import { NextResponse } from "next/server";
+import { fetchDelegateById } from "@/app/lib/delegateRecords";
 
 function normaliseAmount(value) {
   if (value === null || value === undefined) return null;
@@ -125,19 +126,20 @@ export async function POST(req) {
       );
     }
 
-    const { data: delegateRows, error: delegateError } = await supabaseAdmin
-      .from("activedelegates")
-      .select(
-        "delegateid,name,email,mobileno,collegename,collegeyear,events,paymentconfirmed,upitransactionid,screenshotbucketpath,hastopay"
-      )
-      .eq("delegateid", delegateId)
-      .limit(1);
+    const {
+      delegate: fetchedDelegate,
+      table: delegateTable,
+      error: delegateError,
+    } = await fetchDelegateById(
+      delegateId,
+      "delegateid,name,email,mobileno,collegename,collegeyear,events,paymentconfirmed,upitransactionid,screenshotbucketpath,hastopay"
+    );
 
     if (delegateError) {
       throw new Error(delegateError.message);
     }
 
-    const delegate = delegateRows?.[0] || null;
+    const delegate = fetchedDelegate || null;
 
     if (!delegate) {
       return NextResponse.json(
@@ -239,8 +241,9 @@ export async function POST(req) {
       updatedat: new Date().toISOString(),
     };
 
+    const targetTable = delegateTable || "activedelegates";
     const { error: delegateUpdateError } = await supabaseAdmin
-      .from("activedelegates")
+      .from(targetTable)
       .update(delegateUpdatePayload)
       .eq("delegateid", delegateId);
 

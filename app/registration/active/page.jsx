@@ -27,15 +27,14 @@ export default async function ActiveRegistration() {
     getEventsData(),
   ]);
   const { registrationStart: start, deadline } = deadlineData;
-  const registrationEvents = eventsRaw
-    .map(({ eventName, eventSlug }) => ({
+  const registrationEvents = eventsRaw.map(
+    ({ eventName, eventSlug, kmcExclusive, pgsAllowed }) => ({
       eventName,
       eventSlug,
-    }))
-    .filter(
-      ({ eventName, eventSlug }) =>
-        !eventName.toLowerCase().includes("workshop")
-    );
+      kmcExclusive,
+      pgsAllowed,
+    })
+  );
 
   if (Date.now() > deadline.getTime() || Date.now() < start.getTime()) {
     return (

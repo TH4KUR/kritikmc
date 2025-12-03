@@ -11,13 +11,48 @@ import { formSubmit } from "@/app/actions/formSubmit";
 import { calculateActiveDelegateFee } from "@/app/lib/paymentConfig";
 
 const fallbackEvents = [
-  { eventName: "Debate", eventSlug: "debate" },
-  { eventName: "Med Exhibition", eventSlug: "medExhibition" },
-  { eventName: "Paper Presentation", eventSlug: "paperPresentation" },
-  { eventName: "Poster Presentation", eventSlug: "posterPresentation" },
-  { eventName: "Marrow's Jeopardy", eventSlug: "jeopardy" },
-  { eventName: "Hackathon", eventSlug: "hackathon" },
-  { eventName: "Symposium", eventSlug: "symposium" },
+  {
+    eventName: "Debate",
+    eventSlug: "debate",
+    kmcExclusive: false,
+    pgsAllowed: true,
+  },
+  {
+    eventName: "Med Exhibition",
+    eventSlug: "medExhibition",
+    kmcExclusive: true,
+    pgsAllowed: false,
+  },
+  {
+    eventName: "Paper Presentation",
+    eventSlug: "paperPresentation",
+    kmcExclusive: false,
+    pgsAllowed: true,
+  },
+  {
+    eventName: "Poster Presentation",
+    eventSlug: "posterPresentation",
+    kmcExclusive: false,
+    pgsAllowed: true,
+  },
+  {
+    eventName: "Marrow's Jeopardy",
+    eventSlug: "jeopardy",
+    kmcExclusive: false,
+    pgsAllowed: true,
+  },
+  {
+    eventName: "Hackathon",
+    eventSlug: "hackathon",
+    kmcExclusive: false,
+    pgsAllowed: true,
+  },
+  {
+    eventName: "Symposium",
+    eventSlug: "symposium",
+    kmcExclusive: false,
+    pgsAllowed: true,
+  },
 ];
 
 const Form = ({ events = fallbackEvents }) => {

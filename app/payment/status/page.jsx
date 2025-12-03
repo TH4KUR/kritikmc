@@ -5,6 +5,7 @@ import StatusLookupForm from "./components/StatusLookupForm";
 import ResetLookupButton from "./components/ResetLookupButton";
 import { determineStatus, normaliseEntries, statusCopy } from "./utils";
 import { buildMetadata } from "@/app/lib/metadata";
+import { fetchDelegateWithFilters } from "@/app/lib/delegateRecords";
 
 export const metadata = buildMetadata({
   title: "Check Registration Status",
@@ -28,6 +29,10 @@ export default async function StatusPage({ searchParams }) {
     .trim()
     .toLowerCase();
   const mobileQuery = (searchParams?.mobileno || "").toString().trim();
+  const noticeParam = (searchParams?.notice || "")
+    .toString()
+    .trim()
+    .toLowerCase();
 
   const delegateIdFromQuery = rawDelegateIdQuery
     ? rawDelegateIdQuery.toUpperCase()
@@ -43,6 +48,10 @@ export default async function StatusPage({ searchParams }) {
     effectiveDelegateId || trimmedEmail || trimmedMobile
   );
   const defaultDelegateIdForForm = delegateIdFromQuery;
+  const headingText =
+    noticeParam === "already-registered"
+      ? "ALREADY REGISTERED"
+      : "Registration Status";
 
   let delegate = null;
   let fetchError = null;
@@ -63,20 +72,13 @@ export default async function StatusPage({ searchParams }) {
   }
 
   if (filters.length) {
-    let query = supabaseAdmin
-      .from("activedelegates")
-      .select(
-        "delegateid,name,email,mobileno,collegename,collegeyear,events,participationtype,paymentconfirmed,screenshotbucketpath,paymentss,upitransactionid"
-      )
-      .limit(1);
-    filters.forEach((applyFilter) => {
-      query = applyFilter(query);
-    });
+    const { delegate: fetchedDelegate, error } = await fetchDelegateWithFilters(
+      filters,
+      "delegateid,name,email,mobileno,collegename,collegeyear,events,participationtype,paymentconfirmed,screenshotbucketpath,paymentss,upitransactionid"
+    );
 
-    const { data, error } = await query;
-
-    console.log("status res:", data, error);
-    delegate = data?.[0] || null;
+    console.log("status res:", fetchedDelegate, error);
+    delegate = fetchedDelegate || null;
     fetchError = error;
 
     if (delegate?.paymentss) {
@@ -110,9 +112,7 @@ export default async function StatusPage({ searchParams }) {
       <main className="min-h-screen bg-bgSecondary/[0.01] py-12 px-4">
         <div className="mx-auto w-full max-w-4xl">
           <header className="mb-8 text-center">
-            <h1 className="text-4xl font-bold text-gray-900">
-              Registration Status
-            </h1>
+            <h1 className="text-4xl font-bold text-gray-900">{headingText}</h1>
             <p className="mt-3 text-base text-gray-600">
               Enter your delegate ID, registered email, or mobile number to
               check payment progress and next steps.
@@ -177,7 +177,8 @@ export default async function StatusPage({ searchParams }) {
 
               {delegate && !delegate.paymentconfirmed && (
                 <p className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-                  Your delegate ID is securely stored and will be displayed here once your payment is verified.
+                  Your delegate ID is securely stored and will be displayed here
+                  once your payment is verified.
                 </p>
               )}
 

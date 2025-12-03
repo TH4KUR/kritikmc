@@ -25,6 +25,22 @@ export const events = defineType({
         rule.required().error("A slug is required for URL routing!"),
     }),
     defineField({
+      name: "kmcExclusive",
+      title: "KMC Exclusive",
+      type: "boolean",
+      description:
+        "Enable when the event should only be selectable by current KMC students.",
+      initialValue: false,
+    }),
+    defineField({
+      name: "pgsAllowed",
+      title: "Allow PG Delegates",
+      type: "boolean",
+      description:
+        "Disable only when postgraduates should not be able to register for this event.",
+      initialValue: true,
+    }),
+    defineField({
       name: "eventImg",
       title: "Event Image (Convert your image to WebP)",
       type: "image",

@@ -10,8 +10,8 @@ const EventsCheckbox = ({ eventName, eventSlug }) => {
       <Checkbox
         checked={enabled}
         onChange={setEnabled}
-        name={eventSlug}
-        value={"true"}
+        name="events"
+        value={eventSlug}
         className="flex size-6 items-center justify-center rounded-lg border border-slate-400 bg-white text-white transition data-[checked]:border-transparent data-[checked]:bg-accent"
       >
         <svg className="size-4 stroke-white" viewBox="0 0 14 14" fill="none">

@@ -18,7 +18,7 @@ const fallbackSlug = (name) =>
 
 export default async function getEventsData() {
   const res = await sanityFetch({
-    query: `*[_type=="events" && !(eventName in ["Working Lunch","Guest Lecture - 1","Guest Lecture - 2","Prize Distribution","Inauguration Ceremony", "Debate"])]{eventName,eventImg,eventDesc,eventSlogan,eventCoordinator,eventCoordinatorContact,"slug":slug.current}`,
+    query: `*[_type=="events" && !(eventName in ["Working Lunch","Guest Lecture - 1","Guest Lecture - 2","Prize Distribution","Inauguration Ceremony", "Debate"])]{eventName,eventImg,eventDesc,eventSlogan,eventCoordinator,eventCoordinatorContact,kmcExclusive,pgsAllowed,"slug":slug.current}`,
   });
 
   return res.map((event) => ({
@@ -27,6 +27,8 @@ export default async function getEventsData() {
       event.slug ??
       slugOverrides[event.eventName] ??
       fallbackSlug(event.eventName),
+    kmcExclusive: Boolean(event.kmcExclusive),
+    pgsAllowed: Boolean(event.pgsAllowed),
   }));
 }
 
