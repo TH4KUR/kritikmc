@@ -5,12 +5,16 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import getDeadlineData from "@/app/lib/getDeadlineData";
+import {
+  registrationToggle,
+  registrationClosedMessage,
+} from "@/app/lib/registrationConfig";
 
-// Toggle these to enable/disable individual registration paths
-// Set to `false` to temporarily turn off a registration type
-const ENABLE_ACTIVE = true;
-const ENABLE_PASSIVE = true;
-const ENABLE_WORKSHOP = false;
+const {
+  active: ENABLE_ACTIVE = true,
+  passive: ENABLE_PASSIVE = true,
+  workshop: ENABLE_WORKSHOP = false,
+} = registrationToggle;
 
 const RegistrationLanding = () => {
   const [showModal, setShowModal] = useState(false);
@@ -72,18 +76,29 @@ const RegistrationLanding = () => {
     };
   }, [deadlineInfo]);
 
-  const disabledCardClasses = registrationLocked
+  const allTypesDisabled =
+    !ENABLE_ACTIVE && !ENABLE_PASSIVE && !ENABLE_WORKSHOP;
+
+  const effectiveRegistrationLocked = registrationLocked || allTypesDisabled;
+  const effectiveStatusLabel = allTypesDisabled
+    ? "Registrations Closed"
+    : statusLabel;
+  const effectiveLockReason = allTypesDisabled
+    ? registrationClosedMessage
+    : lockReason;
+
+  const disabledCardClasses = effectiveRegistrationLocked
     ? "pointer-events-none opacity-50 grayscale"
     : "";
 
-  const disabledLinkProps = registrationLocked
+  const disabledLinkProps = effectiveRegistrationLocked
     ? { tabIndex: -1, "aria-disabled": true }
     : {};
 
   // Per-registration-type availability (toggle variables above)
-  const activeClosed = registrationLocked || !ENABLE_ACTIVE;
-  const passiveClosed = registrationLocked || !ENABLE_PASSIVE;
-  const workshopClosed = registrationLocked || !ENABLE_WORKSHOP;
+  const activeClosed = effectiveRegistrationLocked || !ENABLE_ACTIVE;
+  const passiveClosed = effectiveRegistrationLocked || !ENABLE_PASSIVE;
+  const workshopClosed = effectiveRegistrationLocked || !ENABLE_WORKSHOP;
 
   const cardPropsFor = (isClosed) => ({
     cardClasses: isClosed ? "pointer-events-none opacity-50 grayscale" : "",
@@ -131,17 +146,17 @@ const RegistrationLanding = () => {
             </button>
           </div>
 
-          {(registrationLocked || deadlineError) && (
+          {(effectiveRegistrationLocked || deadlineError) && (
             <div className="mb-8 rounded-2xl border border-amber-700 bg-amber-100 px-6 py-5 text-base text-amber-800 shadow-sm">
               <div className="font-semibold text-amber-900">
                 {deadlineError
                   ? "We’re unable to confirm registration availability right now."
-                  : statusLabel}
+                  : effectiveStatusLabel}
               </div>
               <div className="mt-1 leading-relaxed">
                 {deadlineError
                   ? "Please try again in a bit or contact the organising team for assistance."
-                  : lockReason}
+                  : effectiveLockReason}
               </div>
             </div>
           )}
