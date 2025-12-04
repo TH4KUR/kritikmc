@@ -11,27 +11,23 @@ export const DELEGATE_TABLES = [
 export const DEFAULT_DELEGATE_COLUMNS =
   "delegateid,name,email,mobileno,collegename,collegeyear,events,participationtype,paymentconfirmed,screenshotbucketpath,paymentss,upitransactionid,hastopay";
 
-export async function fetchDelegateById(
-  delegateId,
-  columns = DEFAULT_DELEGATE_COLUMNS
-) {
-  if (!delegateId) {
-    return { delegate: null, table: null, error: null };
-  }
+export async function fetchDelegateById(delegateId, columns = DEFAULT_DELEGATE_COLUMNS) {
+  if (!delegateId) return { delegate: null, table: null, error: null };
 
-  for (const table of DELEGATE_TABLES) {
-    const { data, error } = await supabaseAdmin
-      .from(table)
-      .select(columns)
-      .eq("delegateid", delegateId)
-      .limit(1);
+  const queries = DELEGATE_TABLES.map((table) =>
+    supabaseAdmin.from(table).select(columns).eq("delegateid", delegateId).limit(1)
+  );
 
-    if (error) {
-      return { delegate: null, table, error };
-    }
+  // Run all queries at once
+  const results = await Promise.all(queries);
+
+  for (let i = 0; i < results.length; i++) {
+    const { data, error } = results[i];
+
+    if (error) return { delegate: null, table: DELEGATE_TABLES[i], error };
 
     if (data?.[0]) {
-      return { delegate: data[0], table, error: null };
+      return { delegate: data[0], table: DELEGATE_TABLES[i], error: null };
     }
   }
 
