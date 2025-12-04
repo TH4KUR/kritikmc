@@ -1,7 +1,7 @@
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import { NextResponse } from "next/server";
 import { fetchDelegateById } from "@/app/lib/delegateRecords";
-
+export const maxDuration = 30;
 function normaliseAmount(value) {
   if (value === null || value === undefined) return null;
   if (typeof value === "number") {
