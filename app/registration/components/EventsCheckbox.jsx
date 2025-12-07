@@ -2,15 +2,31 @@
 import { useState } from "react";
 
 import { Checkbox, Field, Label } from "@headlessui/react";
-const EventsCheckbox = ({ eventName, eventSlug }) => {
-  const [enabled, setEnabled] = useState(false);
+const EventsCheckbox = ({
+  eventName,
+  eventSlug,
+  name = "events",
+  checked,
+  defaultChecked = false,
+  onToggle,
+}) => {
+  const isControlled = typeof checked === "boolean";
+  const [enabled, setEnabled] = useState(defaultChecked);
+  const resolvedChecked = isControlled ? checked : enabled;
+
+  const handleChange = (next) => {
+    if (!isControlled) {
+      setEnabled(next);
+    }
+    onToggle?.(next);
+  };
 
   return (
     <Field className="group flex items-center gap-3 rounded-2xl border border-slate-300 bg-white/80 px-4 py-3 shadow-sm transition hover:border-accent/50">
       <Checkbox
-        checked={enabled}
-        onChange={setEnabled}
-        name="events"
+        checked={resolvedChecked}
+        onChange={handleChange}
+        name={name}
         value={eventSlug}
         className="flex size-6 items-center justify-center rounded-lg border border-slate-400 bg-white text-white transition data-[checked]:border-transparent data-[checked]:bg-accent"
       >

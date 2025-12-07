@@ -8,14 +8,28 @@ export const DELEGATE_TABLES = [
   "workshop_delegates",
 ];
 
+export const ID_TO_TABLE = {
+  KUNC: "unconfirmed_delegates",
+  KAD: "active_delegates",
+  KPD: "passive_delegates",
+  KWD: "workshop_delegates",
+};
+
 export const DEFAULT_DELEGATE_COLUMNS =
   "delegateid,name,email,mobileno,collegename,collegeyear,events,participationtype,paymentconfirmed,screenshotbucketpath,paymentss,upitransactionid,hastopay";
 
-export async function fetchDelegateById(delegateId, columns = DEFAULT_DELEGATE_COLUMNS) {
+export async function fetchDelegateById(
+  delegateId,
+  columns = DEFAULT_DELEGATE_COLUMNS
+) {
   if (!delegateId) return { delegate: null, table: null, error: null };
 
   const queries = DELEGATE_TABLES.map((table) =>
-    supabaseAdmin.from(table).select(columns).eq("delegateid", delegateId).limit(1)
+    supabaseAdmin
+      .from(table)
+      .select(columns)
+      .eq("delegateid", delegateId)
+      .limit(1)
   );
 
   // Run all queries at once

@@ -3,9 +3,11 @@ import Nav from "@/app/components/Nav";
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import StatusLookupForm from "./components/StatusLookupForm";
 import ResetLookupButton from "./components/ResetLookupButton";
+import EditableDetails from "./components/EditableDetails";
 import { determineStatus, normaliseEntries, statusCopy } from "./utils";
 import { buildMetadata } from "@/app/lib/metadata";
 import { fetchDelegateWithFilters } from "@/app/lib/delegateRecords";
+import getEventsData from "@/app/lib/getEventsData";
 
 export const metadata = buildMetadata({
   title: "Check Registration Status",
@@ -51,11 +53,14 @@ export default async function StatusPage({ searchParams }) {
   const headingText =
     noticeParam === "already-registered"
       ? "ALREADY REGISTERED"
-      : "Registration Status";
+      : noticeParam === "details-updated"
+        ? "Details Updated"
+        : "Registration Status";
 
   let delegate = null;
   let fetchError = null;
   let screenshotUrl = null;
+  let eventsCatalog = [];
 
   const filters = [];
 
@@ -102,6 +107,15 @@ export default async function StatusPage({ searchParams }) {
     }
   }
 
+  if (delegate) {
+    try {
+      eventsCatalog = await getEventsData();
+    } catch (err) {
+      console.error("Failed to load events catalog", err);
+      eventsCatalog = [];
+    }
+  }
+
   const status = determineStatus(delegate);
   const copy = statusCopy(status, delegate?.delegateid || effectiveDelegateId);
   const details = normaliseEntries(delegate);
@@ -118,6 +132,13 @@ export default async function StatusPage({ searchParams }) {
               check payment progress and next steps.
             </p>
           </header>
+
+          {noticeParam === "details-updated" && (
+            <div className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-4 text-sm text-emerald-800">
+              Contact information updated successfully. We sent a confirmation
+              email to your registered inbox.
+            </div>
+          )}
 
           {!hasQuery && (
             <StatusLookupForm defaultDelegateId={defaultDelegateIdForForm} />
@@ -223,6 +244,13 @@ export default async function StatusPage({ searchParams }) {
                     />
                   </div>
                 </div>
+              )}
+
+              {delegate && (
+                <EditableDetails
+                  delegate={delegate}
+                  eventsCatalog={eventsCatalog}
+                />
               )}
 
               {copy.actions?.length ? (
