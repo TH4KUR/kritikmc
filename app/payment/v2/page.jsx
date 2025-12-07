@@ -293,11 +293,16 @@ export default async function Home({ searchParams: { delegateId } }) {
                       </a>
                     )} */}
                   </div>
-                  {upiLink && (
+                  {/* {upiLink && (
                     <p className="mt-2 text-xs text-center text-gray-500 break-all">
                       {upiLink}
                     </p>
-                  )}
+                    )} */}
+
+                  <p className="mt-2 text-xs text-center text-orange-900 bg-orange-300 border border-orange-500 px-2 py-1 rounded break-all">
+                    Download the Qr using the button above, take a screenshot of
+                    payment and verify the upi ref id or upload ss. below
+                  </p>
                 </div>
               </div>
               {/* Left Column - Delegate Info & Payment Instructions */}
