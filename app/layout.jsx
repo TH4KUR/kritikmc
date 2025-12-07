@@ -3,6 +3,7 @@ import "./globals.css";
 import Credits from "./components/Credits";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -68,6 +69,7 @@ export default function RootLayout({ children }) {
         {children}
 
         <Credits />
+        <SpeedInsights />
       </body>
     </html>
   );
