@@ -65,7 +65,9 @@ const Form = () => {
           </div>
         </header>
         <div className="space-y-6 px-6 py-6 sm:px-8 sm:py-8">
-          <InputUgPg enabled={isPgStudent} setEnabled={handlePgToggle} />
+          <div className="hidden">
+            <InputUgPg enabled={isPgStudent} setEnabled={handlePgToggle} />
+          </div>
           {!isPgStudent && (
             <>
               <InputCollege
