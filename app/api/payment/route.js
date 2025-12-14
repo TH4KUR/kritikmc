@@ -241,7 +241,7 @@ export async function POST(req) {
       updatedat: new Date().toISOString(),
     };
 
-    const targetTable = delegateTable || "activedelegates";
+    const targetTable = delegateTable;
     const { error: delegateUpdateError } = await supabaseAdmin
       .from(targetTable)
       .update(delegateUpdatePayload)

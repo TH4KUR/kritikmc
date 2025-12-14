@@ -2,7 +2,6 @@ import { supabaseAdmin } from "./supabase/supabaseAdmin";
 
 export const DELEGATE_TABLES = [
   "unconfirmed_delegates",
-  "activedelegates",
   "active_delegates",
   "passive_delegates",
   "workshop_delegates",

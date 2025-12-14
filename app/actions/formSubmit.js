@@ -48,7 +48,8 @@ export async function formSubmit(formData) {
   const emailValue = formData?.get("student_email")?.trim();
   const normalizedEmailLookup = emailValue ? emailValue.toLowerCase() : "";
   const collegeNameValue =
-    formData?.get("college_name")?.trim() || "Kakatiya Medical College";
+    formData?.get("college_name")?.trim() ||
+    (isPgStudent ? "NA" : "Kakatiya Medical College");
 
   if (mobileNumberValue === null) {
     throw new Error("A valid 10-digit mobile number is required.");
