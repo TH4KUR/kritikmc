@@ -182,7 +182,9 @@ export default async function Home({ searchParams: { delegateId } }) {
                         <span className="font-medium text-gray-600 min-w-[120px]">
                           {label}
                         </span>
-                        <span className="text-gray-800 font-mono">{value}</span>
+                        <span className="text-gray-800 font-mono text-wrap">
+                          {value}
+                        </span>
                       </div>
                     ))}
                   </div>

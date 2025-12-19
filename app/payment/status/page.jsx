@@ -181,7 +181,7 @@ export default async function StatusPage({ searchParams }) {
                             {value.map((entry) => (
                               <span
                                 key={`${label}-${entry}`}
-                                className="inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent"
+                                className="inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent text-wrap"
                               >
                                 {entry}
                               </span>
