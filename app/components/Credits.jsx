@@ -8,7 +8,7 @@ const Credits = () => {
         Made with ❤️ by{" "}
         <Link
           className=" underline underline-offset-2 flex items-center"
-          href={"https://portfolio-eashaan.vercel.app/"}
+          href={"https://www.linkedin.com/in/eashaan-thakur"}
           target="_blank"
         >
           Eashaan Thakur
