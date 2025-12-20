@@ -1,12 +1,15 @@
 "use client";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { Field, Label, Description, Input } from "@headlessui/react";
 import Checkmark from "../../components/icons/Checkmark";
 
 function normaliseMobileInput(rawValue) {
-  if (typeof rawValue !== "string") return "";
+  if (rawValue === undefined || rawValue === null) return "";
 
-  let digitsOnly = rawValue.replace(/\D/g, "");
+  const stringValue =
+    typeof rawValue === "string" ? rawValue : String(rawValue ?? "");
+
+  let digitsOnly = stringValue.replace(/\D/g, "");
 
   if (digitsOnly.length > 10 && digitsOnly.startsWith("0")) {
     digitsOnly = digitsOnly.replace(/^0+/, "");
@@ -19,8 +22,12 @@ function normaliseMobileInput(rawValue) {
   return digitsOnly;
 }
 
-const InputNumber = () => {
-  const [value, setValue] = useState("");
+const InputNumber = ({ value: initialValue = "", disabled = false }) => {
+  const [value, setValue] = useState(() => normaliseMobileInput(initialValue));
+
+  useEffect(() => {
+    setValue(normaliseMobileInput(initialValue));
+  }, [initialValue]);
 
   const displayValue = useMemo(() => value, [value]);
 
@@ -78,7 +85,8 @@ const InputNumber = () => {
             value={displayValue}
             onChange={handleChange}
             onBlur={handleBlur}
-            className="peer flex-1 border-none bg-transparent py-1 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:outline-none"
+            disabled={disabled}
+            className="peer flex-1 border-none bg-transparent py-1 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:outline-none disabled:text-slate-500"
           />
           <Checkmark className="h-5 w-5 flex-shrink-0 fill-emerald-500 opacity-0 transition-opacity peer-valid:opacity-100" />
         </div>

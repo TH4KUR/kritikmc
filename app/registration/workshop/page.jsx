@@ -10,14 +10,17 @@ import {
   registrationToggle,
   registrationClosedMessage,
 } from "@/app/lib/registrationConfig";
+import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
+import { ID_TO_TABLE } from "@/app/lib/delegateRecords";
+import FetchDetails from "./components/FetchDetails";
 
 export const metadata = buildMetadata({
   title: "Workshop Registration",
   description:
-    "Register for the AMBOSS workshop at Kriti to access guided USMLE preparation and mentorship sessions.",
+    "Register for the workshop at Kriti to access mentorship sessions.",
   path: "/registration/workshop",
   keywords: [
-    "amboss workshop registration",
+    "workshop registration",
     "kriti workshop",
     "kmc workshop registration",
   ],
@@ -28,7 +31,7 @@ const WORKSHOP_DEFAULT_CLOSED_COPY =
   "But Hey, you can always participate the next time in the most awaited medical conference of Telengana with amazing prize pools!";
 
 function WorkshopRegistrationClosed({
-  heading = "Registrations for the AMBOSS workshop are now over! 😭",
+  heading = "Registrations for the workshop are now over! 😭",
   message = WORKSHOP_DEFAULT_CLOSED_COPY,
 }) {
   return (
@@ -60,7 +63,10 @@ function WorkshopRegistrationClosed({
   );
 }
 
-export default async function Home() {
+export default async function Home({
+  searchParams: { delegateId: rawDelegateId },
+}) {
+  const delegateId = rawDelegateId?.trim();
   if (!WORKSHOP_ENABLED) {
     return (
       <WorkshopRegistrationClosed
@@ -69,7 +75,6 @@ export default async function Home() {
       />
     );
   }
-
   await fetch("https://reqres.in/api/users?delay=1", { cache: "no-cache" });
   const {
     showTimer,
@@ -79,6 +84,44 @@ export default async function Home() {
 
   if (Date.now() > deadline.getTime() || Date.now() < start.getTime()) {
     return <WorkshopRegistrationClosed />;
+  }
+
+  let details = null;
+  let prefillError = "";
+  if (delegateId) {
+    try {
+      const prefix = delegateId.split("-")[0]?.toUpperCase();
+      const table = ID_TO_TABLE[prefix];
+
+      if (!table) {
+        throw new Error(
+          "That delegate ID looks incorrect. Please double-check and try again."
+        );
+      }
+
+      const { data, error } = await supabaseAdmin
+        .from(table)
+        .select(
+          "delegateid,name,email,mobileno,collegename,collegeyear,iskmcstudent,ispgstudent,kmcrollno,participationtype"
+        )
+        .eq("delegateid", delegateId)
+        .single();
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      const participation = (data?.participationtype || "").toLowerCase();
+      if (!participation || !["active", "passive"].includes(participation)) {
+        throw new Error(
+          "Only active or passive delegates can claim the workshop discount."
+        );
+      }
+
+      details = data;
+    } catch (e) {
+      prefillError = e?.message || "Unable to fetch your delegate details.";
+    }
   }
 
   return (
@@ -97,7 +140,7 @@ export default async function Home() {
           {/* <Link ... /> */}
 
           <hr className="border-black border w-40 mt-5" />
-          <p className="bg-accent/10 px-3 py-2 text-base mt-2 font-medium">
+          <p className="bg-accent/10 px-3 py-2 text-lg mt-2 font-medium rounded">
             For any queries, contact:{" "}
             <Link
               href={
@@ -109,7 +152,13 @@ export default async function Home() {
             </Link>
           </p>
         </section>
-        <Form />
+        <FetchDetails
+          initialDelegateId={delegateId || ""}
+          errorMessage={prefillError}
+        />
+
+        <hr className="my-10" />
+        <Form details={details} />
       </main>{" "}
       <Footer />
     </>

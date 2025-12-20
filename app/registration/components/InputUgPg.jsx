@@ -1,13 +1,14 @@
 "use client";
 import { Checkbox, Field, Label, Description } from "@headlessui/react";
 
-function InputUgPg({ enabled, setEnabled }) {
+function InputUgPg({ enabled, setEnabled, disabled = false }) {
   return (
     <>
       <Field className="group flex items-center gap-3 rounded-2xl border border-slate-300 bg-white/85 px-4 py-3 shadow-sm transition hover:border-accent/50">
         <Checkbox
           checked={enabled}
           onChange={setEnabled}
+          disabled={disabled}
           name="is_pg_student"
           value={"true"}
           className="flex size-6 items-center justify-center rounded-lg border border-slate-400 bg-white text-white transition data-[checked]:border-transparent data-[checked]:bg-accent"

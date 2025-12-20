@@ -5,8 +5,12 @@ import {
   calculateActiveDelegateFee,
   PASSIVE_DELEGATE_FEE,
   WORKSHOP_FEE,
+  ALREADY_REGISTERED_WORKSHOP_FEE,
 } from "@/app/lib/paymentConfig";
-import { fetchDelegateWithFilters } from "@/app/lib/delegateRecords";
+import {
+  fetchDelegateWithFilters,
+  fetchDelegateById,
+} from "@/app/lib/delegateRecords";
 
 const PARTICIPATION_TYPES = new Set(["active", "passive", "workshop"]);
 const UNCONFIRMED_TABLE = "unconfirmed_delegates";
@@ -37,19 +41,65 @@ export async function formSubmit(formData) {
     ? rawParticipationType
     : "active";
 
-  const isKmcStudent = formData?.get("kmc_student") === "true";
-  const isPgStudent = formData?.get("is_pg_student") === "true";
-  const collegeYearValue = parseOptionalNumber(formData?.get("college_year"));
+  const existingDelegateId = (formData?.get("existing_delegate_id") || "")
+    .toString()
+    .trim();
+
+  let prefilledDelegate = null;
+
+  if (participationtype === "workshop" && existingDelegateId) {
+    const { delegate, error: delegateLookupError } = await fetchDelegateById(
+      existingDelegateId,
+      "delegateid,name,email,mobileno,collegename,collegeyear,iskmcstudent,ispgstudent,kmcrollno,participationtype"
+    );
+
+    if (delegateLookupError) {
+      throw delegateLookupError;
+    }
+
+    if (!delegate) {
+      throw new Error("We could not find a delegate for that ID.");
+    }
+
+    const participation = (delegate?.participationtype || "").toLowerCase();
+    if (!participation || !["active", "passive"].includes(participation)) {
+      throw new Error(
+        "Only active or passive delegates are eligible for the workshop discount."
+      );
+    }
+
+    prefilledDelegate = delegate;
+  }
+
+  const isPrefilled = Boolean(prefilledDelegate);
+
+  const isKmcStudent = isPrefilled
+    ? Boolean(prefilledDelegate?.iskmcstudent)
+    : formData?.get("kmc_student") === "true";
+  const isPgStudent = isPrefilled
+    ? Boolean(prefilledDelegate?.ispgstudent)
+    : formData?.get("is_pg_student") === "true";
+  const collegeYearValue = isPrefilled
+    ? parseOptionalNumber(prefilledDelegate?.collegeyear)
+    : parseOptionalNumber(formData?.get("college_year"));
   const mobileNumberValue = parseOptionalNumber(
-    formData?.get("student_number")
+    isPrefilled ? prefilledDelegate?.mobileno : formData?.get("student_number")
   );
-  const kmcRollValue = parseOptionalNumber(formData?.get("kmc_rollno"));
-  const nameValue = formData?.get("student_name")?.trim();
-  const emailValue = formData?.get("student_email")?.trim();
+  const kmcRollValue = isPrefilled
+    ? (prefilledDelegate?.kmcrollno ?? null)
+    : parseOptionalNumber(formData?.get("kmc_rollno"));
+  const nameValue = isPrefilled
+    ? prefilledDelegate?.name?.trim()
+    : formData?.get("student_name")?.trim();
+  const emailValue = isPrefilled
+    ? prefilledDelegate?.email?.trim()
+    : formData?.get("student_email")?.trim();
   const normalizedEmailLookup = emailValue ? emailValue.toLowerCase() : "";
-  const collegeNameValue =
-    formData?.get("college_name")?.trim() ||
-    (isPgStudent ? "NA" : "Kakatiya Medical College");
+  const collegeNameValue = isPrefilled
+    ? prefilledDelegate?.collegename ||
+      (isPgStudent ? "NA" : "Kakatiya Medical College")
+    : formData?.get("college_name")?.trim() ||
+      (isPgStudent ? "NA" : "Kakatiya Medical College");
 
   if (mobileNumberValue === null) {
     throw new Error("A valid 10-digit mobile number is required.");
@@ -57,43 +107,45 @@ export async function formSubmit(formData) {
 
   const statusBase = `${process.env.HOST_URL || ""}/payment/status`;
 
-  if (normalizedEmailLookup) {
-    const { delegate, error: existingEmailError } =
-      await fetchDelegateWithFilters(
-        [(query) => query.ilike("email", normalizedEmailLookup)],
-        "delegateid,email"
-      );
+  if (!isPrefilled) {
+    if (normalizedEmailLookup) {
+      const { delegate, error: existingEmailError } =
+        await fetchDelegateWithFilters(
+          [(query) => query.ilike("email", normalizedEmailLookup)],
+          "delegateid,email"
+        );
 
-    if (existingEmailError) {
-      throw existingEmailError;
+      if (existingEmailError) {
+        throw existingEmailError;
+      }
+
+      if (delegate) {
+        const query = new URLSearchParams({
+          email: normalizedEmailLookup,
+          notice: "already-registered",
+        });
+        redirect(`${statusBase}?${query.toString()}`);
+      }
     }
 
-    if (delegate) {
-      const query = new URLSearchParams({
-        email: normalizedEmailLookup,
-        notice: "already-registered",
-      });
-      redirect(`${statusBase}?${query.toString()}`);
-    }
-  }
+    if (mobileNumberValue !== null) {
+      const { delegate, error: existingMobileError } =
+        await fetchDelegateWithFilters(
+          [(query) => query.eq("mobileno", mobileNumberValue)],
+          "delegateid,mobileno"
+        );
 
-  if (mobileNumberValue !== null) {
-    const { delegate, error: existingMobileError } =
-      await fetchDelegateWithFilters(
-        [(query) => query.eq("mobileno", mobileNumberValue)],
-        "delegateid,mobileno"
-      );
+      if (existingMobileError) {
+        throw existingMobileError;
+      }
 
-    if (existingMobileError) {
-      throw existingMobileError;
-    }
-
-    if (delegate) {
-      const query = new URLSearchParams({
-        mobileno: String(mobileNumberValue),
-        notice: "already-registered",
-      });
-      redirect(`${statusBase}?${query.toString()}`);
+      if (delegate) {
+        const query = new URLSearchParams({
+          mobileno: String(mobileNumberValue),
+          notice: "already-registered",
+        });
+        redirect(`${statusBase}?${query.toString()}`);
+      }
     }
   }
 
@@ -151,7 +203,7 @@ export async function formSubmit(formData) {
   if (participationtype === "passive") {
     dueAmount = PASSIVE_DELEGATE_FEE;
   } else if (participationtype === "workshop") {
-    dueAmount = WORKSHOP_FEE;
+    dueAmount = isPrefilled ? ALREADY_REGISTERED_WORKSHOP_FEE : WORKSHOP_FEE;
   } else {
     dueAmount = calculateActiveDelegateFee({
       isKmcStudent,

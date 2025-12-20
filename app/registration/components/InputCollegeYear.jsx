@@ -1,6 +1,6 @@
 import { Description, Field, Label, Select } from "@headlessui/react";
 
-const InputCollegeYear = () => {
+const InputCollegeYear = ({ defaultValue = "", disabled = false }) => {
   function setValid(e) {
     const classesToAdd = [
       "focus:valid:border-green-500",
@@ -21,9 +21,10 @@ const InputCollegeYear = () => {
         <Select
           name="college_year"
           onChange={setValid}
-          className="block w-full appearance-none rounded-2xl border border-slate-300 bg-white/90 py-3 px-4 text-sm text-slate-900 shadow-sm transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 invalid:border-rose-400 focus:invalid:border-rose-400 focus:invalid:ring-rose-200 *:text-slate-700"
+          defaultValue={defaultValue || ""}
+          disabled={disabled}
+          className="block w-full appearance-none rounded-2xl border border-slate-300 bg-white/90 py-3 px-4 text-sm text-slate-900 shadow-sm transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 invalid:border-rose-400 focus:invalid:border-rose-400 focus:invalid:ring-rose-200 *:text-slate-700 disabled:bg-slate-100 disabled:text-slate-500"
           aria-placeholder="Choose the year of college you're in"
-          defaultValue=""
           required
         >
           <option value="" disabled hidden>

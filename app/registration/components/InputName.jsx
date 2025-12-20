@@ -1,7 +1,7 @@
 "use client";
 import { Field, Label, Description, Input } from "@headlessui/react";
 import Checkmark from "./icons/Checkmark";
-const InputName = () => {
+const InputName = ({ value = "", disabled = false }) => {
   return (
     <Field className="flex flex-col gap-1.5">
       <Label className="text-sm font-semibold text-slate-700">
@@ -17,6 +17,8 @@ const InputName = () => {
           type="text"
           placeholder="John Doe"
           required
+          value={value}
+          disabled={disabled}
           autoComplete="name"
           minLength={5}
           className="peer relative block w-full rounded-2xl border border-slate-300 bg-white/90 py-3 px-4 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 valid:border-emerald-400 valid:ring-emerald-200 invalid:border-rose-400 focus:invalid:border-rose-400 focus:invalid:ring-rose-200 disabled:bg-slate-100 disabled:text-slate-500"

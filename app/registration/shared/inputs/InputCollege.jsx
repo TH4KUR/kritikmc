@@ -2,7 +2,13 @@
 import { Input, Checkbox, Field, Label, Description } from "@headlessui/react";
 import Checkmark from "../../components/icons/Checkmark";
 
-function InputCollege({ enabled, setEnabled }) {
+function InputCollege({
+  enabled,
+  setEnabled,
+  disabled = false,
+  collegeName = "",
+  kmcRollNumber = "",
+}) {
   const toggle = () => {
     const next = !enabled;
     setEnabled(next);
@@ -14,9 +20,10 @@ function InputCollege({ enabled, setEnabled }) {
         <Checkbox
           checked={enabled}
           onChange={toggle}
+          disabled={disabled}
           name="kmc_student"
           value="true"
-          className="flex size-6 items-center justify-center rounded-lg border border-slate-400 bg-white text-white transition data-[checked]:border-transparent data-[checked]:bg-accent"
+          className="flex size-6 items-center justify-center rounded-lg border border-slate-400 bg-white text-white transition data-[checked]:border-transparent data-[checked]:bg-accent disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100"
         >
           <svg className="size-4 stroke-white" viewBox="0 0 14 14" fill="none">
             <path
@@ -47,6 +54,8 @@ function InputCollege({ enabled, setEnabled }) {
               required
               name="college_name"
               minLength={5}
+              defaultValue={collegeName}
+              disabled={disabled}
               className="peer relative block w-full rounded-2xl border border-slate-300 bg-white/90 py-3 px-4 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 valid:border-emerald-400 valid:ring-emerald-200 invalid:border-rose-400 focus:invalid:border-rose-400 focus:invalid:ring-rose-200 disabled:bg-slate-100 disabled:text-slate-500"
             />
             <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center opacity-0 transition-opacity peer-valid:opacity-100">
@@ -71,6 +80,8 @@ function InputCollege({ enabled, setEnabled }) {
               required
               name="kmc_rollno"
               minLength={4}
+              defaultValue={kmcRollNumber}
+              disabled={disabled}
               className="peer relative block w-full rounded-2xl border border-slate-300 bg-white/90 py-3 px-4 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 valid:border-emerald-400 valid:ring-emerald-200 invalid:border-rose-400 focus:invalid:border-rose-400 focus:invalid:ring-rose-200 disabled:bg-slate-100 disabled:text-slate-500"
             />
             <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center opacity-0 transition-opacity peer-valid:opacity-100">
