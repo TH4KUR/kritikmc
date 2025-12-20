@@ -99,6 +99,12 @@ export default async function Home({
         );
       }
 
+      if (table === "unconfirmed_delegates") {
+        throw new Error(
+          "Unconfirmed delegates are not eligible for the workshop discount. Please let us verify your payment first."
+        );
+      }
+
       const { data, error } = await supabaseAdmin
         .from(table)
         .select(

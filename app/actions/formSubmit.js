@@ -48,7 +48,11 @@ export async function formSubmit(formData) {
   let prefilledDelegate = null;
 
   if (participationtype === "workshop" && existingDelegateId) {
-    const { delegate, error: delegateLookupError } = await fetchDelegateById(
+    const {
+      delegate,
+      table: delegateTable,
+      error: delegateLookupError,
+    } = await fetchDelegateById(
       existingDelegateId,
       "delegateid,name,email,mobileno,collegename,collegeyear,iskmcstudent,ispgstudent,kmcrollno,participationtype"
     );
@@ -59,6 +63,12 @@ export async function formSubmit(formData) {
 
     if (!delegate) {
       throw new Error("We could not find a delegate for that ID.");
+    }
+
+    if (delegateTable === "unconfirmed_delegates") {
+      throw new Error(
+        "Unconfirmed delegates are not eligible for the workshop discount. Please complete your registration first."
+      );
     }
 
     const participation = (delegate?.participationtype || "").toLowerCase();
