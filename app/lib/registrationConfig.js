@@ -1,7 +1,7 @@
 export const registrationToggle = {
   active: true,
   passive: true,
-  workshop: true,
+  workshop: false,
 };
 
 export const registrationClosedMessage =
