@@ -25,6 +25,11 @@ export default function EditableDetails({ delegate, eventsCatalog = [] }) {
     [delegate]
   );
 
+  const participationType = (delegate?.participationtype || "")
+    .toString()
+    .toLowerCase();
+  const canEditEvents = participationType === "active";
+
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(originalValues.name);
   const [email, setEmail] = useState(originalValues.email);
@@ -169,8 +174,9 @@ export default function EditableDetails({ delegate, eventsCatalog = [] }) {
             Need to update your details?
           </h3>
           <p className="text-sm text-gray-600">
-            Edit your name, email, mobile number, or events. We&apos;ll send an
-            OTP to your registered email before applying changes.
+            {canEditEvents
+              ? "Edit your name, email, mobile number, or events. We\'ll send an OTP to your registered email before applying changes."
+              : "Edit your name, email, or mobile number. We\'ll send an OTP to your registered email before applying changes."}
           </p>
         </div>
         <button
@@ -238,17 +244,19 @@ export default function EditableDetails({ delegate, eventsCatalog = [] }) {
             />
           </div>
 
-          <div>
-            <InputEvents
-              events={eventsCatalog}
-              disableFilters
-              selectedEvents={selectedEvents}
-              onSelectedEventsChange={setSelectedEvents}
-              legendText="Select your events"
-              helperText="Use the checkboxes below to manage every event linked to your registration."
-              checkboxName={undefined}
-            />
-          </div>
+          {canEditEvents && (
+            <div>
+              <InputEvents
+                events={eventsCatalog}
+                disableFilters
+                selectedEvents={selectedEvents}
+                onSelectedEventsChange={setSelectedEvents}
+                legendText="Select your events"
+                helperText="Use the checkboxes below to manage every event linked to your registration."
+                checkboxName={undefined}
+              />
+            </div>
+          )}
 
           {formError && (
             <div className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-2 text-sm text-rose-800">
