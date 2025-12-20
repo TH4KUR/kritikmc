@@ -2,7 +2,12 @@
 import { Field, Label, Description, Input } from "@headlessui/react";
 import Checkmark from "./icons/Checkmark";
 
-const InputEmail = ({ value, defaultValue = "", disabled = false, onChange }) => {
+const InputEmail = ({
+  value,
+  defaultValue = "",
+  disabled = false,
+  onChange,
+}) => {
   const inputProps =
     typeof onChange === "function"
       ? { value: value ?? "", onChange }
