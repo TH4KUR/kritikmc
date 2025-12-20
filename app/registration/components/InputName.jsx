@@ -1,7 +1,13 @@
 "use client";
 import { Field, Label, Description, Input } from "@headlessui/react";
 import Checkmark from "./icons/Checkmark";
-const InputName = ({ value = "", disabled = false }) => {
+
+const InputName = ({ value, defaultValue = "", disabled = false, onChange }) => {
+  const inputProps =
+    typeof onChange === "function"
+      ? { value: value ?? "", onChange }
+      : { defaultValue: value ?? defaultValue };
+
   return (
     <Field className="flex flex-col gap-1.5">
       <Label className="text-sm font-semibold text-slate-700">
@@ -17,7 +23,7 @@ const InputName = ({ value = "", disabled = false }) => {
           type="text"
           placeholder="John Doe"
           required
-          value={value}
+          {...inputProps}
           disabled={disabled}
           autoComplete="name"
           minLength={5}
