@@ -10,6 +10,7 @@ import getEventsData from "@/app/lib/getEventsData";
 import {
   registrationToggle,
   registrationClosedMessage,
+  activePgOnly,
 } from "@/app/lib/registrationConfig";
 
 export const metadata = buildMetadata({
@@ -25,6 +26,7 @@ export const metadata = buildMetadata({
 });
 
 const { active: ACTIVE_ENABLED = true } = registrationToggle;
+const ENFORCE_PG_ONLY = Boolean(activePgOnly);
 const ACTIVE_DEFAULT_CLOSED_COPY =
   "But Hey, you can always participate the next time in the most awaited medical conference of Telengana with amazing prize pools!";
 
@@ -127,7 +129,7 @@ export default async function ActiveRegistration() {
             </Link>
           </p>
         </section>
-        <Form events={registrationEvents} />
+        <Form events={registrationEvents} enforcePgOnly={ENFORCE_PG_ONLY} />
       </main>{" "}
     </>
   );

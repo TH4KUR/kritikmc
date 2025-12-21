@@ -55,9 +55,10 @@ const fallbackEvents = [
   },
 ];
 
-const Form = ({ events = fallbackEvents }) => {
+const Form = ({ events = fallbackEvents, enforcePgOnly = false }) => {
   const [isStudentOfKmc, setIsStudentOfKmc] = useState(false);
   const [isPgStudent, setIsPgStudent] = useState(false);
+  const [showUgClosedModal, setShowUgClosedModal] = useState(false);
 
   const handlePgToggle = (next) => {
     setIsPgStudent(next);
@@ -71,9 +72,18 @@ const Form = ({ events = fallbackEvents }) => {
     isPgStudent,
   });
 
+  const handleSubmit = (event) => {
+    if (enforcePgOnly && !isPgStudent) {
+      event.preventDefault();
+      setShowUgClosedModal(true);
+      return;
+    }
+  };
+
   return (
     <form
       action={formSubmit}
+      onSubmit={handleSubmit}
       className="mx-auto mt-6 max-w-3xl space-y-8 px-4 sm:px-6"
     >
       <input type="hidden" name="participation_type" value="active" />
@@ -174,6 +184,46 @@ const Form = ({ events = fallbackEvents }) => {
           </div>
         </div>
       </section>
+
+      {showUgClosedModal && (
+        <div className="fixed inset-0 z-50 bg-black/60">
+          <div className="sticky left-1/2 top-1/2 w-full max-w-md md:-translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-6 shadow-xl">
+            <div className="flex items-start gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-rose-100 text-rose-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 256 256"
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M229.66,58.34l-32-32a8,8,0,0,0-11.32,11.32L204.69,56H51.31l18.35-18.34A8,8,0,0,0,58.34,26.34l-32,32a8,8,0,0,0,0,11.32l32,32a8,8,0,0,0,11.32-11.32L51.31,72H204.69l-18.35,18.34a8,8,0,0,0,11.32,11.32l32-32A8,8,0,0,0,229.66,58.34Z"></path>
+                  <path d="M197.66,154.34a8,8,0,0,0-11.32,0L128,212.69,69.66,154.34a8,8,0,0,0-11.32,11.32l64,64a8,8,0,0,0,11.32,0l64-64A8,8,0,0,0,197.66,154.34Z"></path>
+                </svg>
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg font-semibold text-slate-900">
+                  UG registrations are now closed
+                </h3>
+                <p className="text-sm text-slate-600">
+                  Active registration is currently open only for PG students.
+                  Select the PG option above or reach out to the organising team
+                  if you believe this is an error.
+                </p>
+              </div>
+            </div>
+            <div className="mt-5 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setShowUgClosedModal(false)}
+                className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </form>
   );
 };
