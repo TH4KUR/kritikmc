@@ -25,7 +25,8 @@ const InputEvents = ({
       filteredEvents = filteredEvents.filter(
         ({ kmcExclusive }) => !kmcExclusive
       );
-    } else if (isPgStudent) {
+    }
+    if (isPgStudent) {
       filteredEvents = filteredEvents.filter(
         ({ pgsAllowed = true }) => pgsAllowed
       );
