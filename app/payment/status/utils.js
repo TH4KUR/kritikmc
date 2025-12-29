@@ -19,6 +19,8 @@ export function normaliseEntries(delegate) {
     active: "Active Delegate",
     passive: "Passive Delegate",
     workshop: "Workshop Delegate",
+    workshop_default: "Workshop Delegate",
+    workshop_discounted: "Workshop Delegate",
   };
 
   const normaliseParticipation = (value) => {

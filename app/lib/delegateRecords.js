@@ -75,3 +75,33 @@ export async function fetchDelegateWithFilters(
 
   return { delegate: null, table: null, error: null };
 }
+
+export async function fetchDelegatesWithFilters(
+  filters = [],
+  columns = DEFAULT_DELEGATE_COLUMNS
+) {
+  const normalisedFilters = Array.isArray(filters) ? filters : [];
+  const delegates = [];
+
+  for (const table of DELEGATE_TABLES) {
+    let query = supabaseAdmin.from(table).select(columns).limit(1);
+
+    normalisedFilters.forEach((applyFilter) => {
+      if (typeof applyFilter === "function") {
+        query = applyFilter(query);
+      }
+    });
+
+    const { data, error } = await query;
+
+    if (error) {
+      return { delegates, table, error };
+    }
+
+    if (data?.[0]) {
+      delegates.push({ delegate: data[0], table });
+    }
+  }
+
+  return { delegates, table: null, error: null };
+}
