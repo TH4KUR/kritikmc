@@ -19,6 +19,8 @@ export function normaliseEntries(delegate) {
     active: "Active Delegate",
     passive: "Passive Delegate",
     workshop: "Workshop Delegate",
+    workshop_default: "Workshop Delegate",
+    workshop_discounted: "Workshop Delegate",
   };
 
   const normaliseParticipation = (value) => {
@@ -71,7 +73,7 @@ export function normaliseEntries(delegate) {
   } else {
     rows.unshift({ label: "Delegate ID", value: "PAYMENT REQUIRED" });
   }
-
+  rows.push({ label: "DAY", value: delegate?.daychosen ?? "NA" });
   return rows.filter(
     (row) => row.value !== null && row.value !== undefined && row.value !== ""
   );

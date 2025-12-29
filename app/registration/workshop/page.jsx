@@ -9,6 +9,7 @@ import { buildMetadata } from "@/app/lib/metadata";
 import {
   registrationToggle,
   registrationClosedMessage,
+  workshopDayCapacities,
 } from "@/app/lib/registrationConfig";
 import { supabaseAdmin } from "@/app/lib/supabase/supabaseAdmin";
 import { ID_TO_TABLE } from "@/app/lib/delegateRecords";
@@ -64,9 +65,10 @@ function WorkshopRegistrationClosed({
 }
 
 export default async function Home({
-  searchParams: { delegateId: rawDelegateId },
+  searchParams: { delegateId: rawDelegateId, allowPassive },
 }) {
   const delegateId = rawDelegateId?.trim();
+  const allowPassiveDefault = allowPassive === "true";
   if (!WORKSHOP_ENABLED) {
     return (
       <WorkshopRegistrationClosed
@@ -120,7 +122,7 @@ export default async function Home({
       const participation = (data?.participationtype || "").toLowerCase();
       if (!participation || !["active", "passive"].includes(participation)) {
         throw new Error(
-          "Only active or passive delegates can claim the workshop discount."
+          "Only active or passive delegates can claim the workshop discount. Check if this was a registration linked to workshop already."
         );
       }
 
@@ -161,10 +163,15 @@ export default async function Home({
         <FetchDetails
           initialDelegateId={delegateId || ""}
           errorMessage={prefillError}
+          allowPassiveDefault={allowPassiveDefault}
         />
 
         <hr className="my-10" />
-        <Form details={details} />
+        <Form
+          details={details}
+          dayOptions={workshopDayCapacities}
+          allowManualDefault={allowPassiveDefault}
+        />
       </main>{" "}
       <Footer />
     </>

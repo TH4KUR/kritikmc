@@ -11,6 +11,7 @@ import {
   fetchDelegateWithFilters,
   fetchDelegateById,
 } from "@/app/lib/delegateRecords";
+import { workshopDayCapacities } from "@/app/lib/registrationConfig";
 
 const PARTICIPATION_TYPES = new Set(["active", "passive", "workshop"]);
 const UNCONFIRMED_TABLE = "unconfirmed_delegates";
@@ -40,6 +41,8 @@ export async function formSubmit(formData) {
   const participationtype = PARTICIPATION_TYPES.has(rawParticipationType)
     ? rawParticipationType
     : "active";
+
+  const workshopDay = formData?.get("workshop_day")?.toString().trim() || "";
 
   const existingDelegateId = (formData?.get("existing_delegate_id") || "")
     .toString()
@@ -83,6 +86,41 @@ export async function formSubmit(formData) {
 
   const isPrefilled = Boolean(prefilledDelegate);
 
+  const storedParticipationType =
+    participationtype === "workshop"
+      ? isPrefilled
+        ? "workshop_discounted"
+        : "workshop_default"
+      : participationtype;
+
+  if (participationtype === "workshop") {
+    const dayConfig = workshopDayCapacities.find(
+      ({ value }) => value === workshopDay
+    );
+    if (!dayConfig) {
+      throw new Error("Please select a valid workshop day.");
+    }
+
+    const { error: capacityError, count: capacityCount } = await supabaseAdmin
+      .from("workshop_delegates")
+      .select("delegateid", { head: true, count: "exact" })
+      .eq("daychosen", workshopDay)
+      .or("paymentconfirmed.eq.true,screenshotbucketpath.not.is.null");
+
+    if (capacityError) {
+      throw new Error("Unable to check workshop capacity. Please try again.");
+    }
+
+    const currentConfirmed =
+      typeof capacityCount === "number" ? capacityCount : 0;
+
+    if (currentConfirmed >= (dayConfig.limit ?? Infinity)) {
+      throw new Error(
+        "This workshop day is fully booked. Please choose another day."
+      );
+    }
+  }
+
   const isKmcStudent = isPrefilled
     ? Boolean(prefilledDelegate?.iskmcstudent)
     : formData?.get("kmc_student") === "true";
@@ -113,6 +151,58 @@ export async function formSubmit(formData) {
 
   if (mobileNumberValue === null) {
     throw new Error("A valid 10-digit mobile number is required.");
+  }
+
+  if (participationtype === "workshop") {
+    const duplicateFilters = [];
+    if (normalizedEmailLookup) {
+      duplicateFilters.push(`email.ilike.${normalizedEmailLookup}`);
+    }
+    if (mobileNumberValue !== null) {
+      duplicateFilters.push(`mobileno.eq.${mobileNumberValue}`);
+    }
+
+    if (duplicateFilters.length) {
+      const orClause = duplicateFilters.join(",");
+
+      const { data: existingWorkshop, error: workshopDupError } =
+        await supabaseAdmin
+          .from("workshop_delegates")
+          .select("delegateid")
+          .or(orClause)
+          .limit(1);
+
+      if (workshopDupError) {
+        throw workshopDupError;
+      }
+
+      const { data: pendingWorkshop, error: pendingWorkshopError } =
+        await supabaseAdmin
+          .from(UNCONFIRMED_TABLE)
+          .select("delegateid")
+          .in("participationtype", ["workshop_default", "workshop_discounted"])
+          .or(orClause)
+          .limit(1);
+
+      if (pendingWorkshopError) {
+        throw pendingWorkshopError;
+      }
+
+      if (
+        (existingWorkshop && existingWorkshop.length) ||
+        (pendingWorkshop && pendingWorkshop.length)
+      ) {
+        const query = new URLSearchParams({
+          ...(normalizedEmailLookup ? { email: normalizedEmailLookup } : {}),
+          ...(mobileNumberValue !== null
+            ? { mobileno: String(mobileNumberValue) }
+            : {}),
+          notice: "already-registered",
+        });
+
+        redirect(`${process.env.HOST_URL}/payment/status?${query.toString()}`);
+      }
+    }
   }
 
   const statusBase = `${process.env.HOST_URL || ""}/payment/status`;
@@ -238,13 +328,14 @@ export async function formSubmit(formData) {
     ispgstudent: isPgStudent,
     collegename: collegeNameValue,
     events: participationtype === "active" ? uniqueSelectedEvents : [],
-    participationtype,
+    participationtype: storedParticipationType,
     hastopay: dueAmount,
+    daychosen: participationtype === "workshop" ? workshopDay : null,
   };
 
-  ({ data, error } = await supabaseAdmin
-    .from(UNCONFIRMED_TABLE)
-    .insert(rawFormData));
+  const targetTable = UNCONFIRMED_TABLE;
+
+  ({ data, error } = await supabaseAdmin.from(targetTable).insert(rawFormData));
 
   console.log("raw error:", error);
   if (error) {
