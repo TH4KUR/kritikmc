@@ -73,7 +73,7 @@ export function normaliseEntries(delegate) {
   } else {
     rows.unshift({ label: "Delegate ID", value: "PAYMENT REQUIRED" });
   }
-
+  rows.push({ label: "DAY", value: delegate?.daychosen ?? "NA" });
   return rows.filter(
     (row) => row.value !== null && row.value !== undefined && row.value !== ""
   );

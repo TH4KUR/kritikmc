@@ -114,7 +114,7 @@ export default async function StatusPage({ searchParams }) {
     const { delegates: fetchedDelegates, error } =
       await fetchDelegatesWithFilters(
         filters,
-        "delegateid,name,email,mobileno,collegename,collegeyear,events,participationtype,paymentconfirmed,screenshotbucketpath,paymentss,upitransactionid"
+        "delegateid,name,email,mobileno,collegename,collegeyear,events,participationtype,paymentconfirmed,screenshotbucketpath,paymentss,upitransactionid,daychosen"
       );
 
     console.log("status res:", fetchedDelegates, error);
@@ -168,7 +168,24 @@ export default async function StatusPage({ searchParams }) {
               check payment progress and next steps.
             </p>
           </header>
+          <div className="mb-6 px-8 py-6 mx-auto w-fit bg-orange-100 border border-orange-600 rounded-lg">
+            <h2 className="text-lg font-semibold text-orange-800">NOTICE</h2>
+            <p className="mb-4 text-base ">
+              IF YOU TRIED TO REGISTER FOR WORKSHOP AND GOT REDIRECTED HERE
+              FOLLOW THESE STEPS:
+            </p>
 
+            <ul>
+              <li>1. Copy your delegate id below</li>
+              <li>
+                2. Paste the id when you go to register for workshop, for
+                discount.
+              </li>
+              <li>3. your details will be fetched</li>
+              <li>4. Choose your day</li>
+              <li>4. Pay remaining amount.</li>
+            </ul>
+          </div>
           {noticeParam === "details-updated" && (
             <div className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-4 text-sm text-emerald-800">
               Contact information updated successfully. We sent a confirmation
