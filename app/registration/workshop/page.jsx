@@ -152,11 +152,11 @@ export default async function Home({
             For any queries, contact:{" "}
             <Link
               href={
-                "https://api.whatsapp.com/send?phone=918700621534&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
+                "https://api.whatsapp.com/send?phone=917702943703&text=Hi%20I%20want%20help%20with%20Kriti%20Registration%20in...."
               }
               className=" underline text-blue-700"
             >
-              +91 8700621534
+              +91 77029 43703
             </Link>
           </p>
         </section>
