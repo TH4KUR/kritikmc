@@ -274,7 +274,7 @@ const Form = ({
       </form>
 
       {showCapacityModal && (
-        <div className="fixed inset-0 z-50 flex h-screen items-center justify-center bg-black/60 px-4">
+        <div className="sticky inset-0 z-50 flex h-screen items-center justify-center bg-black/60 px-4">
           <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl bg-white p-6 shadow-xl">
             <div className="flex items-start gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100 text-amber-700">
