@@ -4,6 +4,7 @@ import Credits from "./components/Credits";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -57,6 +58,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" rel="canonical">
+      <Analytics />
+      <SpeedInsights />
       <GoogleTagManager gtmId="G-M6JXRZWCZC" />
       <Script strategy="afterInteractive" id="script">
         {`  window.dataLayer = window.dataLayer || [];
