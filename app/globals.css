@@ -4,7 +4,8 @@
 
 @media (min-width: 1280px) {
   html {
-    zoom: 0.90;
+    /* zoom: 0.90; */
+    max-width: 95vw;
     min-height: 100vh;
   }
 }
