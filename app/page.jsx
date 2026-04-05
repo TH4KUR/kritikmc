@@ -34,11 +34,17 @@ export const metadata = buildMetadata({
   path: "/",
 });
 export default async function Home() {
-  const { deadline, showTimer, registrationStart } = await getDeadlineData();
-  const speakerdata = await getSpeakerData();
-  const patrondata = await getPatronData();
-  const judgedata = await getJudgeData(); // FORCING Loading Screen
-  await fetch("https://reqres.in/api/users?delay=100", { cache: "no-cache" });
+    const [
+    { deadline, showTimer, registrationStart },
+    speakerdata,
+    patrondata,
+    judgedata
+  ] = await Promise.all([
+    getDeadlineData(),
+    getSpeakerData(),
+    getPatronData(),
+    getJudgeData()
+  ]);
 
   return (
     <>
